@@ -236,6 +236,10 @@ class IncidentServiceClient {
             function() {
               const args = Array.prototype.slice.call(arguments, 0);
               return stub[methodName].apply(stub, args);
+            },
+          err =>
+            function() {
+              throw err;
             }
         ),
         defaults[methodName],
@@ -264,6 +268,7 @@ class IncidentServiceClient {
    */
   static get scopes() {
     return [
+      'https://www.googleapis.com/auth/cloud-platform',
     ];
   }
 
@@ -307,7 +312,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -359,7 +364,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -480,7 +485,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -492,8 +497,8 @@ class IncidentServiceClient {
    * client.searchIncidents({parent: formattedParent})
    *   .then(responses => {
    *     const resources = responses[0];
-   *     for (let i = 0; i < resources.length; i += 1) {
-   *       // doThingsWith(resources[i])
+   *     for (const resource of resources) {
+   *       // doThingsWith(resource)
    *     }
    *   })
    *   .catch(err => {
@@ -512,8 +517,8 @@ class IncidentServiceClient {
    *   const nextRequest = responses[1];
    *   // The actual response object, if necessary.
    *   // const rawResponse = responses[2];
-   *   for (let i = 0; i < resources.length; i += 1) {
-   *     // doThingsWith(resources[i]);
+   *   for (const resource of resources) {
+   *     // doThingsWith(resource);
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
@@ -623,7 +628,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -673,7 +678,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -740,7 +745,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -752,8 +757,8 @@ class IncidentServiceClient {
    * client.searchSimilarIncidents({name: formattedName})
    *   .then(responses => {
    *     const resources = responses[0];
-   *     for (let i = 0; i < resources.length; i += 1) {
-   *       // doThingsWith(resources[i])
+   *     for (const resource of resources) {
+   *       // doThingsWith(resource)
    *     }
    *   })
    *   .catch(err => {
@@ -772,8 +777,8 @@ class IncidentServiceClient {
    *   const nextRequest = responses[1];
    *   // The actual response object, if necessary.
    *   // const rawResponse = responses[2];
-   *   for (let i = 0; i < resources.length; i += 1) {
-   *     // doThingsWith(resources[i]);
+   *   for (const resource of resources) {
+   *     // doThingsWith(resource);
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
@@ -828,7 +833,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -878,7 +883,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -949,7 +954,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -961,8 +966,8 @@ class IncidentServiceClient {
    * client.listAnnotations({parent: formattedParent})
    *   .then(responses => {
    *     const resources = responses[0];
-   *     for (let i = 0; i < resources.length; i += 1) {
-   *       // doThingsWith(resources[i])
+   *     for (const resource of resources) {
+   *       // doThingsWith(resource)
    *     }
    *   })
    *   .catch(err => {
@@ -981,8 +986,8 @@ class IncidentServiceClient {
    *   const nextRequest = responses[1];
    *   // The actual response object, if necessary.
    *   // const rawResponse = responses[2];
-   *   for (let i = 0; i < resources.length; i += 1) {
-   *     // doThingsWith(resources[i]);
+   *   for (const resource of resources) {
+   *     // doThingsWith(resource);
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
@@ -1037,7 +1042,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -1087,7 +1092,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -1138,7 +1143,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -1186,7 +1191,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -1246,7 +1251,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -1258,8 +1263,8 @@ class IncidentServiceClient {
    * client.listTags({parent: formattedParent})
    *   .then(responses => {
    *     const resources = responses[0];
-   *     for (let i = 0; i < resources.length; i += 1) {
-   *       // doThingsWith(resources[i])
+   *     for (const resource of resources) {
+   *       // doThingsWith(resource)
    *     }
    *   })
    *   .catch(err => {
@@ -1278,8 +1283,8 @@ class IncidentServiceClient {
    *   const nextRequest = responses[1];
    *   // The actual response object, if necessary.
    *   // const rawResponse = responses[2];
-   *   for (let i = 0; i < resources.length; i += 1) {
-   *     // doThingsWith(resources[i]);
+   *   for (const resource of resources) {
+   *     // doThingsWith(resource);
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
@@ -1334,7 +1339,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -1383,7 +1388,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -1456,7 +1461,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -1468,8 +1473,8 @@ class IncidentServiceClient {
    * client.listSignals({parent: formattedParent})
    *   .then(responses => {
    *     const resources = responses[0];
-   *     for (let i = 0; i < resources.length; i += 1) {
-   *       // doThingsWith(resources[i])
+   *     for (const resource of resources) {
+   *       // doThingsWith(resource)
    *     }
    *   })
    *   .catch(err => {
@@ -1488,8 +1493,8 @@ class IncidentServiceClient {
    *   const nextRequest = responses[1];
    *   // The actual response object, if necessary.
    *   // const rawResponse = responses[2];
-   *   for (let i = 0; i < resources.length; i += 1) {
-   *     // doThingsWith(resources[i]);
+   *   for (const resource of resources) {
+   *     // doThingsWith(resource);
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
@@ -1546,7 +1551,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -1591,7 +1596,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -1644,7 +1649,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -1692,7 +1697,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -1762,7 +1767,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -1813,7 +1818,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -1883,7 +1888,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -1895,8 +1900,8 @@ class IncidentServiceClient {
    * client.listArtifacts({parent: formattedParent})
    *   .then(responses => {
    *     const resources = responses[0];
-   *     for (let i = 0; i < resources.length; i += 1) {
-   *       // doThingsWith(resources[i])
+   *     for (const resource of resources) {
+   *       // doThingsWith(resource)
    *     }
    *   })
    *   .catch(err => {
@@ -1915,8 +1920,8 @@ class IncidentServiceClient {
    *   const nextRequest = responses[1];
    *   // The actual response object, if necessary.
    *   // const rawResponse = responses[2];
-   *   for (let i = 0; i < resources.length; i += 1) {
-   *     // doThingsWith(resources[i]);
+   *   for (const resource of resources) {
+   *     // doThingsWith(resource);
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
@@ -1971,7 +1976,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -2021,7 +2026,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -2064,7 +2069,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -2107,7 +2112,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -2172,7 +2177,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -2233,7 +2238,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -2303,7 +2308,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -2315,8 +2320,8 @@ class IncidentServiceClient {
    * client.listSubscriptions({parent: formattedParent})
    *   .then(responses => {
    *     const resources = responses[0];
-   *     for (let i = 0; i < resources.length; i += 1) {
-   *       // doThingsWith(resources[i])
+   *     for (const resource of resources) {
+   *       // doThingsWith(resource)
    *     }
    *   })
    *   .catch(err => {
@@ -2335,8 +2340,8 @@ class IncidentServiceClient {
    *   const nextRequest = responses[1];
    *   // The actual response object, if necessary.
    *   // const rawResponse = responses[2];
-   *   for (let i = 0; i < resources.length; i += 1) {
-   *     // doThingsWith(resources[i]);
+   *   for (const resource of resources) {
+   *     // doThingsWith(resource);
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
@@ -2391,7 +2396,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -2432,7 +2437,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -2482,7 +2487,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -2530,7 +2535,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -2590,7 +2595,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -2602,8 +2607,8 @@ class IncidentServiceClient {
    * client.listIncidentRoleAssignments({parent: formattedParent})
    *   .then(responses => {
    *     const resources = responses[0];
-   *     for (let i = 0; i < resources.length; i += 1) {
-   *       // doThingsWith(resources[i])
+   *     for (const resource of resources) {
+   *       // doThingsWith(resource)
    *     }
    *   })
    *   .catch(err => {
@@ -2622,8 +2627,8 @@ class IncidentServiceClient {
    *   const nextRequest = responses[1];
    *   // The actual response object, if necessary.
    *   // const rawResponse = responses[2];
-   *   for (let i = 0; i < resources.length; i += 1) {
-   *     // doThingsWith(resources[i]);
+   *   for (const resource of resources) {
+   *     // doThingsWith(resource);
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
@@ -2678,7 +2683,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -2728,7 +2733,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -2787,7 +2792,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -2846,7 +2851,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.
@@ -2905,7 +2910,7 @@ class IncidentServiceClient {
    *
    * @example
    *
-   * const irm = require('@google-cloud/irm');
+   * const irm = require('irm.v1alpha2');
    *
    * const client = new irm.v1alpha2.IncidentServiceClient({
    *   // optional auth parameters.

@@ -16,7 +16,7 @@ steps:
 
 ### Installation
 ```
-$ npm install --save @google-cloud/irm
+$ npm install --save irm
 ```
 
 ### Next Steps

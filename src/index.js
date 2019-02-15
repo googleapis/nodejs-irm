@@ -33,7 +33,7 @@ const gapic = Object.freeze({
 });
 
 /**
- * The `@google-cloud/irm` package has the following named exports:
+ * The `irm` package has the following named exports:
  *
  * - `IncidentServiceClient` - Reference to
  *   {@link v1alpha2.IncidentServiceClient}
@@ -42,14 +42,14 @@ const gapic = Object.freeze({
  *     - `IncidentServiceClient` - Reference to
  *       {@link v1alpha2.IncidentServiceClient}
  *
- * @module {object} @google-cloud/irm
+ * @module {object} irm
  * @alias nodejs-irm
  *
  * @example <caption>Install the client library with <a href="https://www.npmjs.com/">npm</a>:</caption>
- * npm install --save @google-cloud/irm
+ * npm install --save irm
  *
  * @example <caption>Import the client library:</caption>
- * const irm = require('@google-cloud/irm');
+ * const irm = require('irm');
  *
  * @example <caption>Create a client that uses <a href="https://goo.gl/64dyYX">Application Default Credentials (ADC)</a>:</caption>
  * const client = new irm.IncidentServiceClient();
