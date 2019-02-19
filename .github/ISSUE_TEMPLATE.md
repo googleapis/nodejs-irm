@@ -15,7 +15,7 @@ possible:
   - OS:
   - Node.js version:
   - npm version:
-  - `TODO` version:
+  - `@google-cloud/irm` version:
 
 #### Steps to reproduce
 

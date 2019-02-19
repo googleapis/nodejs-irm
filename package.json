@@ -1,14 +1,14 @@
 {
-  "repository": "googleapis/nodejs-irm",
   "name": "@google-cloud/irm",
-  "version": "0.1.0",
-  "author": "Google LLC",
   "description": "Stackdriver Incident Response & Management API client for Node.js",
-  "main": "src/index.js",
+  "version": "0.1.0",
   "license": "Apache-2.0",
+  "author": "Google LLC",
   "engines": {
     "node": ">=6.0.0"
   },
+  "repository": "googleapis/nodejs-irm",
+  "main": "src/index.js",
   "files": [
     "protos",
     "src"
@@ -26,6 +26,16 @@
     "irm",
     "Stackdriver Incident Response & Management API"
   ],
+  "scripts": {
+    "docs": "jsdoc -c .jsdoc.js",
+    "generate-scaffolding": "repo-tools generate all && repo-tools generate lib_samples_readme -l samples/ --config ../.cloud-repo-tools.json",
+    "lint": "eslint '**/*.js'",
+    "samples-test": "cd samples/ && npm link ../ && npm test && cd ../",
+    "system-test": "mocha system-test/*.js smoke-test/*.js --timeout 600000",
+    "test": "nyc mocha",
+    "docs-test": "linkinator docs -r --skip www.googleapis.com",
+    "fix": "eslint --fix '**/*.js'"
+  },
   "dependencies": {
     "google-gax": "^0.23.0",
     "lodash.merge": "^4.6.1"
@@ -37,21 +47,13 @@
     "eslint-config-prettier": "^3.0.0",
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "jsdoc-baseline": "git+https://github.com/hegemonic/jsdoc-baseline.git",
     "intelli-espower-loader": "^1.0.1",
     "jsdoc": "^3.5.5",
+    "jsdoc-baseline": "git+https://github.com/hegemonic/jsdoc-baseline.git",
+    "linkinator": "^1.1.6",
     "mocha": "^5.2.0",
     "nyc": "^13.0.0",
     "power-assert": "^1.6.0",
     "prettier": "^1.13.6"
-  },
-  "scripts": {
-    "docs": "jsdoc -c .jsdoc.js",
-    "generate-scaffolding": "repo-tools generate all && repo-tools generate lib_samples_readme -l samples/ --config ../.cloud-repo-tools.json",
-    "lint": "eslint '**/*.js'",
-    "samples-test": "cd samples/ && npm link ../ && npm test && cd ../",
-    "system-test": "mocha system-test/*.js smoke-test/*.js --timeout 600000",
-    "test": "nyc mocha",
-    "fix": "eslint --fix '**/*.js'"
   }
 }
