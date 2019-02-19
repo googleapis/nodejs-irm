@@ -178,7 +178,11 @@ describe('IncidentServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.searchIncidents = (actualRequest, options, callback) => {
+      client._innerApiCalls.searchIncidents = (
+        actualRequest,
+        options,
+        callback
+      ) => {
         assert.deepStrictEqual(actualRequest, request);
         callback(null, expectedResponse.incidents);
       };
@@ -305,7 +309,11 @@ describe('IncidentServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.searchSimilarIncidents = (actualRequest, options, callback) => {
+      client._innerApiCalls.searchSimilarIncidents = (
+        actualRequest,
+        options,
+        callback
+      ) => {
         assert.deepStrictEqual(actualRequest, request);
         callback(null, expectedResponse.results);
       };
@@ -434,7 +442,11 @@ describe('IncidentServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.listAnnotations = (actualRequest, options, callback) => {
+      client._innerApiCalls.listAnnotations = (
+        actualRequest,
+        options,
+        callback
+      ) => {
         assert.deepStrictEqual(actualRequest, request);
         callback(null, expectedResponse.annotations);
       };
@@ -813,7 +825,11 @@ describe('IncidentServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.listSignals = (actualRequest, options, callback) => {
+      client._innerApiCalls.listSignals = (
+        actualRequest,
+        options,
+        callback
+      ) => {
         assert.deepStrictEqual(actualRequest, request);
         callback(null, expectedResponse.signals);
       };
@@ -1200,7 +1216,11 @@ describe('IncidentServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.listArtifacts = (actualRequest, options, callback) => {
+      client._innerApiCalls.listArtifacts = (
+        actualRequest,
+        options,
+        callback
+      ) => {
         assert.deepStrictEqual(actualRequest, request);
         callback(null, expectedResponse.artifacts);
       };
@@ -1314,7 +1334,11 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.artifactPath('[PROJECT]', '[INCIDENT]', '[ARTIFACT]');
+      const formattedName = client.artifactPath(
+        '[PROJECT]',
+        '[INCIDENT]',
+        '[ARTIFACT]'
+      );
       const request = {
         name: formattedName,
       };
@@ -1335,7 +1359,11 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.artifactPath('[PROJECT]', '[INCIDENT]', '[ARTIFACT]');
+      const formattedName = client.artifactPath(
+        '[PROJECT]',
+        '[INCIDENT]',
+        '[ARTIFACT]'
+      );
       const request = {
         name: formattedName,
       };
@@ -1574,7 +1602,11 @@ describe('IncidentServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.listSubscriptions = (actualRequest, options, callback) => {
+      client._innerApiCalls.listSubscriptions = (
+        actualRequest,
+        options,
+        callback
+      ) => {
         assert.deepStrictEqual(actualRequest, request);
         callback(null, expectedResponse.subscriptions);
       };
@@ -1622,7 +1654,11 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.subscriptionPath('[PROJECT]', '[INCIDENT]', '[SUBSCRIPTION]');
+      const formattedName = client.subscriptionPath(
+        '[PROJECT]',
+        '[INCIDENT]',
+        '[SUBSCRIPTION]'
+      );
       const request = {
         name: formattedName,
       };
@@ -1643,7 +1679,11 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.subscriptionPath('[PROJECT]', '[INCIDENT]', '[SUBSCRIPTION]');
+      const formattedName = client.subscriptionPath(
+        '[PROJECT]',
+        '[INCIDENT]',
+        '[SUBSCRIPTION]'
+      );
       const request = {
         name: formattedName,
       };
@@ -1737,13 +1777,19 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.roleAssignmentPath('[PROJECT]', '[INCIDENT]', '[ROLE_ASSIGNMENT]');
+      const formattedName = client.roleAssignmentPath(
+        '[PROJECT]',
+        '[INCIDENT]',
+        '[ROLE_ASSIGNMENT]'
+      );
       const request = {
         name: formattedName,
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.deleteIncidentRoleAssignment = mockSimpleGrpcMethod(request);
+      client._innerApiCalls.deleteIncidentRoleAssignment = mockSimpleGrpcMethod(
+        request
+      );
 
       client.deleteIncidentRoleAssignment(request, err => {
         assert.ifError(err);
@@ -1758,7 +1804,11 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.roleAssignmentPath('[PROJECT]', '[INCIDENT]', '[ROLE_ASSIGNMENT]');
+      const formattedName = client.roleAssignmentPath(
+        '[PROJECT]',
+        '[INCIDENT]',
+        '[ROLE_ASSIGNMENT]'
+      );
       const request = {
         name: formattedName,
       };
@@ -1801,14 +1851,21 @@ describe('IncidentServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.listIncidentRoleAssignments = (actualRequest, options, callback) => {
+      client._innerApiCalls.listIncidentRoleAssignments = (
+        actualRequest,
+        options,
+        callback
+      ) => {
         assert.deepStrictEqual(actualRequest, request);
         callback(null, expectedResponse.incidentRoleAssignments);
       };
 
       client.listIncidentRoleAssignments(request, (err, response) => {
         assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse.incidentRoleAssignments);
+        assert.deepStrictEqual(
+          response,
+          expectedResponse.incidentRoleAssignments
+        );
         done();
       });
     });
@@ -1849,7 +1906,11 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.roleAssignmentPath('[PROJECT]', '[INCIDENT]', '[ROLE_ASSIGNMENT]');
+      const formattedName = client.roleAssignmentPath(
+        '[PROJECT]',
+        '[INCIDENT]',
+        '[ROLE_ASSIGNMENT]'
+      );
       const newAssignee = {};
       const request = {
         name: formattedName,
@@ -1884,7 +1945,11 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.roleAssignmentPath('[PROJECT]', '[INCIDENT]', '[ROLE_ASSIGNMENT]');
+      const formattedName = client.roleAssignmentPath(
+        '[PROJECT]',
+        '[INCIDENT]',
+        '[ROLE_ASSIGNMENT]'
+      );
       const newAssignee = {};
       const request = {
         name: formattedName,
@@ -1915,7 +1980,11 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.roleAssignmentPath('[PROJECT]', '[INCIDENT]', '[ROLE_ASSIGNMENT]');
+      const formattedName = client.roleAssignmentPath(
+        '[PROJECT]',
+        '[INCIDENT]',
+        '[ROLE_ASSIGNMENT]'
+      );
       const newAssignee = {};
       const request = {
         name: formattedName,
@@ -1950,7 +2019,11 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.roleAssignmentPath('[PROJECT]', '[INCIDENT]', '[ROLE_ASSIGNMENT]');
+      const formattedName = client.roleAssignmentPath(
+        '[PROJECT]',
+        '[INCIDENT]',
+        '[ROLE_ASSIGNMENT]'
+      );
       const newAssignee = {};
       const request = {
         name: formattedName,
@@ -1981,7 +2054,11 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.roleAssignmentPath('[PROJECT]', '[INCIDENT]', '[ROLE_ASSIGNMENT]');
+      const formattedName = client.roleAssignmentPath(
+        '[PROJECT]',
+        '[INCIDENT]',
+        '[ROLE_ASSIGNMENT]'
+      );
       const newAssignee = {};
       const request = {
         name: formattedName,
@@ -2016,7 +2093,11 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.roleAssignmentPath('[PROJECT]', '[INCIDENT]', '[ROLE_ASSIGNMENT]');
+      const formattedName = client.roleAssignmentPath(
+        '[PROJECT]',
+        '[INCIDENT]',
+        '[ROLE_ASSIGNMENT]'
+      );
       const newAssignee = {};
       const request = {
         name: formattedName,
@@ -2047,7 +2128,11 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.roleAssignmentPath('[PROJECT]', '[INCIDENT]', '[ROLE_ASSIGNMENT]');
+      const formattedName = client.roleAssignmentPath(
+        '[PROJECT]',
+        '[INCIDENT]',
+        '[ROLE_ASSIGNMENT]'
+      );
       const newAssignee = {};
       const request = {
         name: formattedName,
@@ -2082,7 +2167,11 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.roleAssignmentPath('[PROJECT]', '[INCIDENT]', '[ROLE_ASSIGNMENT]');
+      const formattedName = client.roleAssignmentPath(
+        '[PROJECT]',
+        '[INCIDENT]',
+        '[ROLE_ASSIGNMENT]'
+      );
       const newAssignee = {};
       const request = {
         name: formattedName,
@@ -2104,7 +2193,6 @@ describe('IncidentServiceClient', () => {
       });
     });
   });
-
 });
 
 function mockSimpleGrpcMethod(expectedRequest, response, error) {

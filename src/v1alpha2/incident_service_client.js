@@ -100,9 +100,7 @@ class IncidentServiceClient {
     // identifiers to uniquely identify resources within the API.
     // Create useful helper objects for these.
     this._pathTemplates = {
-      projectPathTemplate: new gax.PathTemplate(
-        'projects/{project}'
-      ),
+      projectPathTemplate: new gax.PathTemplate('projects/{project}'),
       incidentPathTemplate: new gax.PathTemplate(
         'projects/{project}/incidents/{incident}'
       ),
@@ -145,11 +143,7 @@ class IncidentServiceClient {
         'nextPageToken',
         'annotations'
       ),
-      listTags: new gax.PageDescriptor(
-        'pageToken',
-        'nextPageToken',
-        'tags'
-      ),
+      listTags: new gax.PageDescriptor('pageToken', 'nextPageToken', 'tags'),
       listSignals: new gax.PageDescriptor(
         'pageToken',
         'nextPageToken',
@@ -236,6 +230,10 @@ class IncidentServiceClient {
             function() {
               const args = Array.prototype.slice.call(arguments, 0);
               return stub[methodName].apply(stub, args);
+            },
+          err =>
+            function() {
+              throw err;
             }
         ),
         defaults[methodName],
@@ -263,8 +261,7 @@ class IncidentServiceClient {
    * in this service.
    */
   static get scopes() {
-    return [
-    ];
+    return ['https://www.googleapis.com/auth/cloud-platform'];
   }
 
   /**
@@ -492,8 +489,8 @@ class IncidentServiceClient {
    * client.searchIncidents({parent: formattedParent})
    *   .then(responses => {
    *     const resources = responses[0];
-   *     for (let i = 0; i < resources.length; i += 1) {
-   *       // doThingsWith(resources[i])
+   *     for (const resource of resources) {
+   *       // doThingsWith(resource)
    *     }
    *   })
    *   .catch(err => {
@@ -512,8 +509,8 @@ class IncidentServiceClient {
    *   const nextRequest = responses[1];
    *   // The actual response object, if necessary.
    *   // const rawResponse = responses[2];
-   *   for (let i = 0; i < resources.length; i += 1) {
-   *     // doThingsWith(resources[i]);
+   *   for (const resource of resources) {
+   *     // doThingsWith(resource);
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
@@ -645,7 +642,7 @@ class IncidentServiceClient {
       request,
       options
     );
-  };
+  }
 
   /**
    * Updates an existing incident.
@@ -752,8 +749,8 @@ class IncidentServiceClient {
    * client.searchSimilarIncidents({name: formattedName})
    *   .then(responses => {
    *     const resources = responses[0];
-   *     for (let i = 0; i < resources.length; i += 1) {
-   *       // doThingsWith(resources[i])
+   *     for (const resource of resources) {
+   *       // doThingsWith(resource)
    *     }
    *   })
    *   .catch(err => {
@@ -772,8 +769,8 @@ class IncidentServiceClient {
    *   const nextRequest = responses[1];
    *   // The actual response object, if necessary.
    *   // const rawResponse = responses[2];
-   *   for (let i = 0; i < resources.length; i += 1) {
-   *     // doThingsWith(resources[i]);
+   *   for (const resource of resources) {
+   *     // doThingsWith(resource);
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
@@ -793,7 +790,11 @@ class IncidentServiceClient {
     }
     options = options || {};
 
-    return this._innerApiCalls.searchSimilarIncidents(request, options, callback);
+    return this._innerApiCalls.searchSimilarIncidents(
+      request,
+      options,
+      callback
+    );
   }
 
   /**
@@ -850,7 +851,7 @@ class IncidentServiceClient {
       request,
       options
     );
-  };
+  }
 
   /**
    * Creates an annotation on an existing incident. Only 'text/plain' and
@@ -961,8 +962,8 @@ class IncidentServiceClient {
    * client.listAnnotations({parent: formattedParent})
    *   .then(responses => {
    *     const resources = responses[0];
-   *     for (let i = 0; i < resources.length; i += 1) {
-   *       // doThingsWith(resources[i])
+   *     for (const resource of resources) {
+   *       // doThingsWith(resource)
    *     }
    *   })
    *   .catch(err => {
@@ -981,8 +982,8 @@ class IncidentServiceClient {
    *   const nextRequest = responses[1];
    *   // The actual response object, if necessary.
    *   // const rawResponse = responses[2];
-   *   for (let i = 0; i < resources.length; i += 1) {
-   *     // doThingsWith(resources[i]);
+   *   for (const resource of resources) {
+   *     // doThingsWith(resource);
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
@@ -1059,7 +1060,7 @@ class IncidentServiceClient {
       request,
       options
     );
-  };
+  }
 
   /**
    * Updates an annotation on an existing incident.
@@ -1258,8 +1259,8 @@ class IncidentServiceClient {
    * client.listTags({parent: formattedParent})
    *   .then(responses => {
    *     const resources = responses[0];
-   *     for (let i = 0; i < resources.length; i += 1) {
-   *       // doThingsWith(resources[i])
+   *     for (const resource of resources) {
+   *       // doThingsWith(resource)
    *     }
    *   })
    *   .catch(err => {
@@ -1278,8 +1279,8 @@ class IncidentServiceClient {
    *   const nextRequest = responses[1];
    *   // The actual response object, if necessary.
    *   // const rawResponse = responses[2];
-   *   for (let i = 0; i < resources.length; i += 1) {
-   *     // doThingsWith(resources[i]);
+   *   for (const resource of resources) {
+   *     // doThingsWith(resource);
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
@@ -1356,7 +1357,7 @@ class IncidentServiceClient {
       request,
       options
     );
-  };
+  }
 
   /**
    * Creates a new signal.
@@ -1468,8 +1469,8 @@ class IncidentServiceClient {
    * client.listSignals({parent: formattedParent})
    *   .then(responses => {
    *     const resources = responses[0];
-   *     for (let i = 0; i < resources.length; i += 1) {
-   *       // doThingsWith(resources[i])
+   *     for (const resource of resources) {
+   *       // doThingsWith(resource)
    *     }
    *   })
    *   .catch(err => {
@@ -1488,8 +1489,8 @@ class IncidentServiceClient {
    *   const nextRequest = responses[1];
    *   // The actual response object, if necessary.
    *   // const rawResponse = responses[2];
-   *   for (let i = 0; i < resources.length; i += 1) {
-   *     // doThingsWith(resources[i]);
+   *   for (const resource of resources) {
+   *     // doThingsWith(resource);
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
@@ -1568,7 +1569,7 @@ class IncidentServiceClient {
       request,
       options
     );
-  };
+  }
 
   /**
    * Returns a signal by name.
@@ -1895,8 +1896,8 @@ class IncidentServiceClient {
    * client.listArtifacts({parent: formattedParent})
    *   .then(responses => {
    *     const resources = responses[0];
-   *     for (let i = 0; i < resources.length; i += 1) {
-   *       // doThingsWith(resources[i])
+   *     for (const resource of resources) {
+   *       // doThingsWith(resource)
    *     }
    *   })
    *   .catch(err => {
@@ -1915,8 +1916,8 @@ class IncidentServiceClient {
    *   const nextRequest = responses[1];
    *   // The actual response object, if necessary.
    *   // const rawResponse = responses[2];
-   *   for (let i = 0; i < resources.length; i += 1) {
-   *     // doThingsWith(resources[i]);
+   *   for (const resource of resources) {
+   *     // doThingsWith(resource);
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
@@ -1993,7 +1994,7 @@ class IncidentServiceClient {
       request,
       options
     );
-  };
+  }
 
   /**
    * Updates an existing artifact.
@@ -2130,7 +2131,11 @@ class IncidentServiceClient {
     }
     options = options || {};
 
-    return this._innerApiCalls.getShiftHandoffPresets(request, options, callback);
+    return this._innerApiCalls.getShiftHandoffPresets(
+      request,
+      options,
+      callback
+    );
   }
 
   /**
@@ -2315,8 +2320,8 @@ class IncidentServiceClient {
    * client.listSubscriptions({parent: formattedParent})
    *   .then(responses => {
    *     const resources = responses[0];
-   *     for (let i = 0; i < resources.length; i += 1) {
-   *       // doThingsWith(resources[i])
+   *     for (const resource of resources) {
+   *       // doThingsWith(resource)
    *     }
    *   })
    *   .catch(err => {
@@ -2335,8 +2340,8 @@ class IncidentServiceClient {
    *   const nextRequest = responses[1];
    *   // The actual response object, if necessary.
    *   // const rawResponse = responses[2];
-   *   for (let i = 0; i < resources.length; i += 1) {
-   *     // doThingsWith(resources[i]);
+   *   for (const resource of resources) {
+   *     // doThingsWith(resource);
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
@@ -2413,7 +2418,7 @@ class IncidentServiceClient {
       request,
       options
     );
-  };
+  }
 
   /**
    * Deletes an existing subscription.
@@ -2510,7 +2515,11 @@ class IncidentServiceClient {
     }
     options = options || {};
 
-    return this._innerApiCalls.createIncidentRoleAssignment(request, options, callback);
+    return this._innerApiCalls.createIncidentRoleAssignment(
+      request,
+      options,
+      callback
+    );
   }
 
   /**
@@ -2548,7 +2557,11 @@ class IncidentServiceClient {
     }
     options = options || {};
 
-    return this._innerApiCalls.deleteIncidentRoleAssignment(request, options, callback);
+    return this._innerApiCalls.deleteIncidentRoleAssignment(
+      request,
+      options,
+      callback
+    );
   }
 
   /**
@@ -2602,8 +2615,8 @@ class IncidentServiceClient {
    * client.listIncidentRoleAssignments({parent: formattedParent})
    *   .then(responses => {
    *     const resources = responses[0];
-   *     for (let i = 0; i < resources.length; i += 1) {
-   *       // doThingsWith(resources[i])
+   *     for (const resource of resources) {
+   *       // doThingsWith(resource)
    *     }
    *   })
    *   .catch(err => {
@@ -2622,8 +2635,8 @@ class IncidentServiceClient {
    *   const nextRequest = responses[1];
    *   // The actual response object, if necessary.
    *   // const rawResponse = responses[2];
-   *   for (let i = 0; i < resources.length; i += 1) {
-   *     // doThingsWith(resources[i]);
+   *   for (const resource of resources) {
+   *     // doThingsWith(resource);
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
@@ -2643,7 +2656,11 @@ class IncidentServiceClient {
     }
     options = options || {};
 
-    return this._innerApiCalls.listIncidentRoleAssignments(request, options, callback);
+    return this._innerApiCalls.listIncidentRoleAssignments(
+      request,
+      options,
+      callback
+    );
   }
 
   /**
@@ -2700,7 +2717,7 @@ class IncidentServiceClient {
       request,
       options
     );
-  };
+  }
 
   /**
    * Starts a role handover. The proposed assignee will receive an email
@@ -2756,7 +2773,11 @@ class IncidentServiceClient {
     }
     options = options || {};
 
-    return this._innerApiCalls.requestIncidentRoleHandover(request, options, callback);
+    return this._innerApiCalls.requestIncidentRoleHandover(
+      request,
+      options,
+      callback
+    );
   }
 
   /**
@@ -2815,7 +2836,11 @@ class IncidentServiceClient {
     }
     options = options || {};
 
-    return this._innerApiCalls.confirmIncidentRoleHandover(request, options, callback);
+    return this._innerApiCalls.confirmIncidentRoleHandover(
+      request,
+      options,
+      callback
+    );
   }
 
   /**
@@ -2874,7 +2899,11 @@ class IncidentServiceClient {
     }
     options = options || {};
 
-    return this._innerApiCalls.forceIncidentRoleHandover(request, options, callback);
+    return this._innerApiCalls.forceIncidentRoleHandover(
+      request,
+      options,
+      callback
+    );
   }
 
   /**
@@ -2933,7 +2962,11 @@ class IncidentServiceClient {
     }
     options = options || {};
 
-    return this._innerApiCalls.cancelIncidentRoleHandover(request, options, callback);
+    return this._innerApiCalls.cancelIncidentRoleHandover(
+      request,
+      options,
+      callback
+    );
   }
 
   // --------------------
@@ -3068,9 +3101,7 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromProjectName(projectName) {
-    return this._pathTemplates.projectPathTemplate
-      .match(projectName)
-      .project;
+    return this._pathTemplates.projectPathTemplate.match(projectName).project;
   }
 
   /**
@@ -3081,9 +3112,7 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromIncidentName(incidentName) {
-    return this._pathTemplates.incidentPathTemplate
-      .match(incidentName)
-      .project;
+    return this._pathTemplates.incidentPathTemplate.match(incidentName).project;
   }
 
   /**
@@ -3094,8 +3123,7 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the incident.
    */
   matchIncidentFromIncidentName(incidentName) {
-    return this._pathTemplates.incidentPathTemplate
-      .match(incidentName)
+    return this._pathTemplates.incidentPathTemplate.match(incidentName)
       .incident;
   }
 
@@ -3107,8 +3135,7 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromAnnotationName(annotationName) {
-    return this._pathTemplates.annotationPathTemplate
-      .match(annotationName)
+    return this._pathTemplates.annotationPathTemplate.match(annotationName)
       .project;
   }
 
@@ -3120,8 +3147,7 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the incident.
    */
   matchIncidentFromAnnotationName(annotationName) {
-    return this._pathTemplates.annotationPathTemplate
-      .match(annotationName)
+    return this._pathTemplates.annotationPathTemplate.match(annotationName)
       .incident;
   }
 
@@ -3133,8 +3159,7 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the annotation.
    */
   matchAnnotationFromAnnotationName(annotationName) {
-    return this._pathTemplates.annotationPathTemplate
-      .match(annotationName)
+    return this._pathTemplates.annotationPathTemplate.match(annotationName)
       .annotation;
   }
 
@@ -3146,9 +3171,7 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromArtifactName(artifactName) {
-    return this._pathTemplates.artifactPathTemplate
-      .match(artifactName)
-      .project;
+    return this._pathTemplates.artifactPathTemplate.match(artifactName).project;
   }
 
   /**
@@ -3159,8 +3182,7 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the incident.
    */
   matchIncidentFromArtifactName(artifactName) {
-    return this._pathTemplates.artifactPathTemplate
-      .match(artifactName)
+    return this._pathTemplates.artifactPathTemplate.match(artifactName)
       .incident;
   }
 
@@ -3172,8 +3194,7 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the artifact.
    */
   matchArtifactFromArtifactName(artifactName) {
-    return this._pathTemplates.artifactPathTemplate
-      .match(artifactName)
+    return this._pathTemplates.artifactPathTemplate.match(artifactName)
       .artifact;
   }
 
@@ -3185,9 +3206,9 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromRoleAssignmentName(roleAssignmentName) {
-    return this._pathTemplates.roleAssignmentPathTemplate
-      .match(roleAssignmentName)
-      .project;
+    return this._pathTemplates.roleAssignmentPathTemplate.match(
+      roleAssignmentName
+    ).project;
   }
 
   /**
@@ -3198,9 +3219,9 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the incident.
    */
   matchIncidentFromRoleAssignmentName(roleAssignmentName) {
-    return this._pathTemplates.roleAssignmentPathTemplate
-      .match(roleAssignmentName)
-      .incident;
+    return this._pathTemplates.roleAssignmentPathTemplate.match(
+      roleAssignmentName
+    ).incident;
   }
 
   /**
@@ -3211,9 +3232,9 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the role_assignment.
    */
   matchRoleAssignmentFromRoleAssignmentName(roleAssignmentName) {
-    return this._pathTemplates.roleAssignmentPathTemplate
-      .match(roleAssignmentName)
-      .role_assignment;
+    return this._pathTemplates.roleAssignmentPathTemplate.match(
+      roleAssignmentName
+    ).role_assignment;
   }
 
   /**
@@ -3224,8 +3245,7 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromSubscriptionName(subscriptionName) {
-    return this._pathTemplates.subscriptionPathTemplate
-      .match(subscriptionName)
+    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName)
       .project;
   }
 
@@ -3237,8 +3257,7 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the incident.
    */
   matchIncidentFromSubscriptionName(subscriptionName) {
-    return this._pathTemplates.subscriptionPathTemplate
-      .match(subscriptionName)
+    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName)
       .incident;
   }
 
@@ -3250,8 +3269,7 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the subscription.
    */
   matchSubscriptionFromSubscriptionName(subscriptionName) {
-    return this._pathTemplates.subscriptionPathTemplate
-      .match(subscriptionName)
+    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName)
       .subscription;
   }
 
@@ -3263,9 +3281,7 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromTagName(tagName) {
-    return this._pathTemplates.tagPathTemplate
-      .match(tagName)
-      .project;
+    return this._pathTemplates.tagPathTemplate.match(tagName).project;
   }
 
   /**
@@ -3276,9 +3292,7 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the incident.
    */
   matchIncidentFromTagName(tagName) {
-    return this._pathTemplates.tagPathTemplate
-      .match(tagName)
-      .incident;
+    return this._pathTemplates.tagPathTemplate.match(tagName).incident;
   }
 
   /**
@@ -3289,9 +3303,7 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the tag.
    */
   matchTagFromTagName(tagName) {
-    return this._pathTemplates.tagPathTemplate
-      .match(tagName)
-      .tag;
+    return this._pathTemplates.tagPathTemplate.match(tagName).tag;
   }
 
   /**
@@ -3302,9 +3314,7 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromSignalName(signalName) {
-    return this._pathTemplates.signalPathTemplate
-      .match(signalName)
-      .project;
+    return this._pathTemplates.signalPathTemplate.match(signalName).project;
   }
 
   /**
@@ -3315,11 +3325,8 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the signal.
    */
   matchSignalFromSignalName(signalName) {
-    return this._pathTemplates.signalPathTemplate
-      .match(signalName)
-      .signal;
+    return this._pathTemplates.signalPathTemplate.match(signalName).signal;
   }
 }
-
 
 module.exports = IncidentServiceClient;
