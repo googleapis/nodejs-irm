@@ -26,7 +26,7 @@ gapic = gcp.GAPICGenerator()
 versions = ["v1alpha2"]
 for version in versions:
     library = gapic.node_library("irm", version)
-    s.copy(library)
+    s.copy(library, excludes=['src/index.js', 'README.md', 'package.json'])
 
 # Copy common templates
 common_templates = gcp.CommonTemplates()
