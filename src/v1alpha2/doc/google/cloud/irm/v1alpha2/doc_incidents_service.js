@@ -41,7 +41,7 @@ const CreateIncidentRequest = {
  * Request for the GetIncident method.
  *
  * @property {string} name
- *   Resource name of the incident, e.g.
+ *   Resource name of the incident, for example,
  *   "projects/{project_id}/incidents/{incident_id}".
  *
  * @typedef GetIncidentRequest
@@ -77,7 +77,7 @@ const UpdateIncidentRequest = {
  * Request for the SearchSimilarIncidents method.
  *
  * @property {string} name
- *   Resource name of the incident or signal, e.g.
+ *   Resource name of the incident or signal, for example,
  *   "projects/{project_id}/incidents/{incident_id}".
  *
  * @property {number} pageSize
@@ -135,7 +135,7 @@ const SearchSimilarIncidentsResponse = {
  * Request for the CreateAnnotation method.
  *
  * @property {string} parent
- *   Resource name of the incident, e.g.
+ *   Resource name of the incident, for example,
  *   "projects/{project_id}/incidents/{incident_id}".
  *
  * @property {Object} annotation
@@ -155,7 +155,7 @@ const CreateAnnotationRequest = {
  * Request for the ListAnnotations method.
  *
  * @property {string} parent
- *   Resource name of the incident, e.g.
+ *   Resource name of the incident, for example,
  *   "projects/{project_id}/incidents/{incident_id}".
  *
  * @property {number} pageSize
@@ -195,7 +195,7 @@ const ListAnnotationsResponse = {
  * Request for the CreateTag method.
  *
  * @property {string} parent
- *   Resource name of the incident, e.g.
+ *   Resource name of the incident, for example,
  *   "projects/{project_id}/incidents/{incident_id}".
  *
  * @property {Object} tag
@@ -229,7 +229,7 @@ const DeleteTagRequest = {
  * Request for the ListTagsForIncident method.
  *
  * @property {string} parent
- *   Resource name of the incident, e.g.
+ *   Resource name of the incident, for example,
  *   "projects/{project_id}/incidents/{incident_id}".
  *
  * @property {number} pageSize
@@ -266,27 +266,6 @@ const ListTagsResponse = {
 };
 
 /**
- * Request for the UpdateAnnotation method.
- *
- * @property {Object} annotation
- *   The annotation to update with the new values.
- *
- *   This object should have the same structure as [Annotation]{@link google.cloud.irm.v1alpha2.Annotation}
- *
- * @property {Object} updateMask
- *   List of fields that should be updated.
- *
- *   This object should have the same structure as [FieldMask]{@link google.protobuf.FieldMask}
- *
- * @typedef UpdateAnnotationRequest
- * @memberof google.cloud.irm.v1alpha2
- * @see [google.cloud.irm.v1alpha2.UpdateAnnotationRequest definition in proto format]{@link https://github.com/googleapis/googleapis/blob/master/google/cloud/irm/v1alpha2/incidents_service.proto}
- */
-const UpdateAnnotationRequest = {
-  // This is for documentation. Actual contents will be loaded by gRPC.
-};
-
-/**
  * Request for the CreateSignal method.
  *
  * @property {string} parent
@@ -307,14 +286,14 @@ const CreateSignalRequest = {
 };
 
 /**
- * Request for the ListSignals method.
+ * Request for the SearchSignals method.
  *
  * @property {string} parent
  *   The resource name of the hosting Stackdriver project which requested
  *   incidents belong to.
  *
- * @property {string} filter
- *   Filter to specify which signals should be returned.
+ * @property {string} query
+ *   Query to specify which signals should be returned.
  *
  * @property {number} pageSize
  *   Maximum number of `signals` to return in the response.
@@ -324,30 +303,30 @@ const CreateSignalRequest = {
  *   field values except for page_size and page_token should be the same as the
  *   original query (may return an error or unexpected data otherwise).
  *
- * @typedef ListSignalsRequest
+ * @typedef SearchSignalsRequest
  * @memberof google.cloud.irm.v1alpha2
- * @see [google.cloud.irm.v1alpha2.ListSignalsRequest definition in proto format]{@link https://github.com/googleapis/googleapis/blob/master/google/cloud/irm/v1alpha2/incidents_service.proto}
+ * @see [google.cloud.irm.v1alpha2.SearchSignalsRequest definition in proto format]{@link https://github.com/googleapis/googleapis/blob/master/google/cloud/irm/v1alpha2/incidents_service.proto}
  */
-const ListSignalsRequest = {
+const SearchSignalsRequest = {
   // This is for documentation. Actual contents will be loaded by gRPC.
 };
 
 /**
- * Response for the ListSignals method.
+ * Response for the SearchSignals method.
  *
  * @property {Object[]} signals
- *   List of signals that have not been moved into an incident yet.
+ *   Signals that matched the query in the request.
  *
  *   This object should have the same structure as [Signal]{@link google.cloud.irm.v1alpha2.Signal}
  *
  * @property {string} nextPageToken
  *   Page token to fetch the next set of signals.
  *
- * @typedef ListSignalsResponse
+ * @typedef SearchSignalsResponse
  * @memberof google.cloud.irm.v1alpha2
- * @see [google.cloud.irm.v1alpha2.ListSignalsResponse definition in proto format]{@link https://github.com/googleapis/googleapis/blob/master/google/cloud/irm/v1alpha2/incidents_service.proto}
+ * @see [google.cloud.irm.v1alpha2.SearchSignalsResponse definition in proto format]{@link https://github.com/googleapis/googleapis/blob/master/google/cloud/irm/v1alpha2/incidents_service.proto}
  */
-const ListSignalsResponse = {
+const SearchSignalsResponse = {
   // This is for documentation. Actual contents will be loaded by gRPC.
 };
 
@@ -355,7 +334,7 @@ const ListSignalsResponse = {
  * Request for the GetSignal method.
  *
  * @property {string} name
- *   Resource name of the Signal resource, e.g.
+ *   Resource name of the Signal resource, for example,
  *   "projects/{project_id}/signals/{signal_id}".
  *
  * @typedef GetSignalRequest
@@ -388,31 +367,6 @@ const UpdateSignalRequest = {
 };
 
 /**
- * Request for the AcknowledgeSignal method.
- *
- * @property {string} name
- *   Resource name of the Signal resource, e.g.
- *   "projects/{project_id}/signals/{signal_id}".
- *
- * @typedef AcknowledgeSignalRequest
- * @memberof google.cloud.irm.v1alpha2
- * @see [google.cloud.irm.v1alpha2.AcknowledgeSignalRequest definition in proto format]{@link https://github.com/googleapis/googleapis/blob/master/google/cloud/irm/v1alpha2/incidents_service.proto}
- */
-const AcknowledgeSignalRequest = {
-  // This is for documentation. Actual contents will be loaded by gRPC.
-};
-
-/**
- * Response of the AcknowledgeSignal method.
- * @typedef AcknowledgeSignalResponse
- * @memberof google.cloud.irm.v1alpha2
- * @see [google.cloud.irm.v1alpha2.AcknowledgeSignalResponse definition in proto format]{@link https://github.com/googleapis/googleapis/blob/master/google/cloud/irm/v1alpha2/incidents_service.proto}
- */
-const AcknowledgeSignalResponse = {
-  // This is for documentation. Actual contents will be loaded by gRPC.
-};
-
-/**
  * Request for the SearchIncidents method.
  *
  * @property {string} parent
@@ -432,20 +386,22 @@ const AcknowledgeSignalResponse = {
  *     Incident.Stage enum). These are ordered, so `stage<resolved` is
  *     equivalent to `stage:detected OR stage:triaged OR stage:mitigated`.
  *   * `severity` - (Incident.Severity) The severity of the incident.
- *      + Supports matching on a specific severity (e.g., `severity:major`) or
- *        on a range (e.g., `severity>medium`, `severity<=minor`, etc.).
+ *      + Supports matching on a specific severity (for example,
+ *      `severity:major`) or on a range (for example, `severity>medium`,
+ *      `severity<=minor`, etc.).
  *
  *   Timestamp formats:
  *   * yyyy-MM-dd - an absolute date, treated as a calendar-day-wide window.
  *     In other words, the "<" operator will match dates before that date, the
  *     ">" operator will match dates after that date, and the ":" or "="
  *     operators will match the entire day.
- *   * Nd (e.g. 7d) - a relative number of days ago, treated as a moment in time
- *     (as opposed to a day-wide span) a multiple of 24 hours ago (as opposed to
- *     calendar days).  In the case of daylight savings time, it will apply the
- *     current timezone to both ends of the range.  Note that exact matching
- *     (e.g. `start:7d`) is unlikely to be useful because that would only match
- *     incidents created precisely at a particular instant in time.
+ *   * Nd (for example, 7d) - a relative number of days ago, treated as a moment
+ *     in time (as opposed to a day-wide span). A multiple of 24 hours ago (as
+ *     opposed to calendar days).  In the case of daylight savings time, it will
+ *     apply the current timezone to both ends of the range.  Note that exact
+ *     matching (for example, `start:7d`) is unlikely to be useful because that
+ *     would only match incidents created precisely at a particular instant in
+ *     time.
  *
  *   Examples:
  *
@@ -592,7 +548,7 @@ const EscalateIncidentResponse = {
  * Request for the CreateArtifact method.
  *
  * @property {string} parent
- *   Resource name of the incident, e.g.
+ *   Resource name of the incident, for example,
  *   "projects/{project_id}/incidents/{incident_id}".
  *
  * @property {Object} artifact
@@ -612,7 +568,7 @@ const CreateArtifactRequest = {
  * Request for the ListArtifacts method.
  *
  * @property {string} parent
- *   Resource name of the incident, e.g.
+ *   Resource name of the incident, for example,
  *   "projects/{project_id}/incidents/{incident_id}".
  *
  * @property {number} pageSize
@@ -684,52 +640,15 @@ const DeleteArtifactRequest = {
 };
 
 /**
- * GetShiftHandoffPresets RPC request.
- *
- * @property {string} parent
- *   Resource name of the Stackdriver project that the presets belong to. e.g.
- *   `projects/{project_id}`
- *
- * @typedef GetShiftHandoffPresetsRequest
- * @memberof google.cloud.irm.v1alpha2
- * @see [google.cloud.irm.v1alpha2.GetShiftHandoffPresetsRequest definition in proto format]{@link https://github.com/googleapis/googleapis/blob/master/google/cloud/irm/v1alpha2/incidents_service.proto}
- */
-const GetShiftHandoffPresetsRequest = {
-  // This is for documentation. Actual contents will be loaded by gRPC.
-};
-
-/**
- * GetShiftHandoffPresets RPC response.
- *
- * @property {string[]} recipients
- *   The recipients that the user might want to send the shift handoff to, in
- *   the form of email addresses, e.g. "user@example.com". Can be empty.
- *
- * @property {string[]} cc
- *   The recipients that the user might want to CC on the shift handoff, in the
- *   form of email addresses, e.g. "user@example.com". Can be empty.
- *
- * @property {string} subject
- *   A suggested subject for the shift handoff email. Can be empty.
- *
- * @typedef ShiftHandoffPresets
- * @memberof google.cloud.irm.v1alpha2
- * @see [google.cloud.irm.v1alpha2.ShiftHandoffPresets definition in proto format]{@link https://github.com/googleapis/googleapis/blob/master/google/cloud/irm/v1alpha2/incidents_service.proto}
- */
-const ShiftHandoffPresets = {
-  // This is for documentation. Actual contents will be loaded by gRPC.
-};
-
-/**
  * SendShiftHandoff and PreviewShiftHandoff RPC request.
  *
  * @property {string} parent
  *   The resource name of the Stackdriver project that the handoff is being sent
- *   from. e.g. `projects/{project_id}`
+ *   from. for example, `projects/{project_id}`
  *
  * @property {string[]} recipients
- *   Email addresses of the recipients of the handoff, e.g. "user@example.com".
- *   Must contain at least one entry.
+ *   Email addresses of the recipients of the handoff, for example,
+ *   "user@example.com". Must contain at least one entry.
  *
  * @property {string[]} cc
  *   Email addresses that should be CC'd on the handoff. Optional.
@@ -738,7 +657,7 @@ const ShiftHandoffPresets = {
  *   The subject of the email. Required.
  *
  * @property {string} notesContentType
- *   Content type string, e.g. 'text/plain' or 'text/html'.
+ *   Content type string, for example, 'text/plain' or 'text/html'.
  *
  * @property {string} notesContent
  *   Additional notes to be included in the handoff. Optional.
@@ -765,7 +684,7 @@ const SendShiftHandoffRequest = {
    * attaching additional data to each incident in the future.
    *
    * @property {string} name
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    *
    * @typedef Incident
@@ -781,7 +700,7 @@ const SendShiftHandoffRequest = {
  * SendShiftHandoff and PreviewShiftHandoff RPC response.
  *
  * @property {string} contentType
- *   Content type string, e.g. 'text/plain' or 'text/html'.
+ *   Content type string, for example, 'text/plain' or 'text/html'.
  *
  * @property {string} content
  *   The contents of the handoff that was sent or would have been sent (if the
@@ -800,7 +719,7 @@ const SendShiftHandoffResponse = {
  * Request for the CreateSubscription method.
  *
  * @property {string} parent
- *   Resource name of the incident, e.g.
+ *   Resource name of the incident, for example,
  *   "projects/{project_id}/incidents/{incident_id}".
  *
  * @property {Object} subscription
@@ -817,10 +736,31 @@ const CreateSubscriptionRequest = {
 };
 
 /**
+ * Request for the UpdateSubscription method.
+ *
+ * @property {Object} subscription
+ *   The subscription to update, with new values.
+ *
+ *   This object should have the same structure as [Subscription]{@link google.cloud.irm.v1alpha2.Subscription}
+ *
+ * @property {Object} updateMask
+ *   List of fields that should be updated.
+ *
+ *   This object should have the same structure as [FieldMask]{@link google.protobuf.FieldMask}
+ *
+ * @typedef UpdateSubscriptionRequest
+ * @memberof google.cloud.irm.v1alpha2
+ * @see [google.cloud.irm.v1alpha2.UpdateSubscriptionRequest definition in proto format]{@link https://github.com/googleapis/googleapis/blob/master/google/cloud/irm/v1alpha2/incidents_service.proto}
+ */
+const UpdateSubscriptionRequest = {
+  // This is for documentation. Actual contents will be loaded by gRPC.
+};
+
+/**
  * Request for the ListSubscriptions method.
  *
  * @property {string} parent
- *   Resource name of the incident, e.g.
+ *   Resource name of the incident, for example,
  *   "projects/{project_id}/incidents/{incident_id}".
  *
  * @property {number} pageSize
@@ -874,7 +814,7 @@ const DeleteSubscriptionRequest = {
  * Request for creating a role assignment.
  *
  * @property {string} parent
- *   Resource name of the incident, e.g.
+ *   Resource name of the incident, for example,
  *   "projects/{project_id}/incidents/{incident_id}".
  *
  * @property {Object} incidentRoleAssignment
@@ -908,7 +848,7 @@ const DeleteIncidentRoleAssignmentRequest = {
  * Request to list role assignments of an incident.
  *
  * @property {string} parent
- *   Resource name of the incident, e.g.
+ *   Resource name of the incident, for example,
  *   "projects/{project_id}/incidents/{incident_id}".
  *
  * @property {number} pageSize

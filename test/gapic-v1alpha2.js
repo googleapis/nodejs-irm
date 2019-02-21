@@ -42,10 +42,12 @@ describe('IncidentServiceClient', () => {
       const name = 'name3373707';
       const title = 'title110371416';
       const etag = 'etag3123477';
+      const duplicateIncident = 'duplicateIncident-316496506';
       const expectedResponse = {
         name: name,
         title: title,
         etag: etag,
+        duplicateIncident: duplicateIncident,
       };
 
       // Mock Grpc layer
@@ -108,10 +110,12 @@ describe('IncidentServiceClient', () => {
       const name2 = 'name2-1052831874';
       const title = 'title110371416';
       const etag = 'etag3123477';
+      const duplicateIncident = 'duplicateIncident-316496506';
       const expectedResponse = {
         name: name2,
         title: title,
         etag: etag,
+        duplicateIncident: duplicateIncident,
       };
 
       // Mock Grpc layer
@@ -239,10 +243,12 @@ describe('IncidentServiceClient', () => {
       const name = 'name3373707';
       const title = 'title110371416';
       const etag = 'etag3123477';
+      const duplicateIncident = 'duplicateIncident-316496506';
       const expectedResponse = {
         name: name,
         title: title,
         etag: etag,
+        duplicateIncident: duplicateIncident,
       };
 
       // Mock Grpc layer
@@ -486,68 +492,6 @@ describe('IncidentServiceClient', () => {
     });
   });
 
-  describe('updateAnnotation', () => {
-    it('invokes updateAnnotation without error', done => {
-      const client = new irmModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-
-      // Mock request
-      const annotation = {};
-      const request = {
-        annotation: annotation,
-      };
-
-      // Mock response
-      const name = 'name3373707';
-      const content = 'content951530617';
-      const expectedResponse = {
-        name: name,
-        content: content,
-      };
-
-      // Mock Grpc layer
-      client._innerApiCalls.updateAnnotation = mockSimpleGrpcMethod(
-        request,
-        expectedResponse
-      );
-
-      client.updateAnnotation(request, (err, response) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes updateAnnotation with error', done => {
-      const client = new irmModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-
-      // Mock request
-      const annotation = {};
-      const request = {
-        annotation: annotation,
-      };
-
-      // Mock Grpc layer
-      client._innerApiCalls.updateAnnotation = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-
-      client.updateAnnotation(request, (err, response) => {
-        assert(err instanceof Error);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-
   describe('createTag', () => {
     it('invokes createTag without error', done => {
       const client = new irmModule.v1alpha2.IncidentServiceClient({
@@ -566,11 +510,9 @@ describe('IncidentServiceClient', () => {
       // Mock response
       const name = 'name3373707';
       const displayName = 'displayName1615086568';
-      const url = 'url116079';
       const expectedResponse = {
         name: name,
         displayName: displayName,
-        url: url,
       };
 
       // Mock Grpc layer
@@ -802,8 +744,8 @@ describe('IncidentServiceClient', () => {
     });
   });
 
-  describe('listSignals', () => {
-    it('invokes listSignals without error', done => {
+  describe('searchSignals', () => {
+    it('invokes searchSignals without error', done => {
       const client = new irmModule.v1alpha2.IncidentServiceClient({
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
@@ -825,7 +767,7 @@ describe('IncidentServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.listSignals = (
+      client._innerApiCalls.searchSignals = (
         actualRequest,
         options,
         callback
@@ -834,14 +776,14 @@ describe('IncidentServiceClient', () => {
         callback(null, expectedResponse.signals);
       };
 
-      client.listSignals(request, (err, response) => {
+      client.searchSignals(request, (err, response) => {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse.signals);
         done();
       });
     });
 
-    it('invokes listSignals with error', done => {
+    it('invokes searchSignals with error', done => {
       const client = new irmModule.v1alpha2.IncidentServiceClient({
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
@@ -854,13 +796,13 @@ describe('IncidentServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.listSignals = mockSimpleGrpcMethod(
+      client._innerApiCalls.searchSignals = mockSimpleGrpcMethod(
         request,
         null,
         error
       );
 
-      client.listSignals(request, (err, response) => {
+      client.searchSignals(request, (err, response) => {
         assert(err instanceof Error);
         assert.strictEqual(err.code, FAKE_STATUS_CODE);
         assert(typeof response === 'undefined');
@@ -1001,63 +943,6 @@ describe('IncidentServiceClient', () => {
       );
 
       client.updateSignal(request, (err, response) => {
-        assert(err instanceof Error);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-
-  describe('acknowledgeSignal', () => {
-    it('invokes acknowledgeSignal without error', done => {
-      const client = new irmModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-
-      // Mock request
-      const formattedName = client.signalPath('[PROJECT]', '[SIGNAL]');
-      const request = {
-        name: formattedName,
-      };
-
-      // Mock response
-      const expectedResponse = {};
-
-      // Mock Grpc layer
-      client._innerApiCalls.acknowledgeSignal = mockSimpleGrpcMethod(
-        request,
-        expectedResponse
-      );
-
-      client.acknowledgeSignal(request, (err, response) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes acknowledgeSignal with error', done => {
-      const client = new irmModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-
-      // Mock request
-      const formattedName = client.signalPath('[PROJECT]', '[SIGNAL]');
-      const request = {
-        name: formattedName,
-      };
-
-      // Mock Grpc layer
-      client._innerApiCalls.acknowledgeSignal = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-
-      client.acknowledgeSignal(request, (err, response) => {
         assert(err instanceof Error);
         assert.strictEqual(err.code, FAKE_STATUS_CODE);
         assert(typeof response === 'undefined');
@@ -1383,66 +1268,6 @@ describe('IncidentServiceClient', () => {
     });
   });
 
-  describe('getShiftHandoffPresets', () => {
-    it('invokes getShiftHandoffPresets without error', done => {
-      const client = new irmModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-
-      // Mock request
-      const formattedParent = client.projectPath('[PROJECT]');
-      const request = {
-        parent: formattedParent,
-      };
-
-      // Mock response
-      const subject = 'subject-1867885268';
-      const expectedResponse = {
-        subject: subject,
-      };
-
-      // Mock Grpc layer
-      client._innerApiCalls.getShiftHandoffPresets = mockSimpleGrpcMethod(
-        request,
-        expectedResponse
-      );
-
-      client.getShiftHandoffPresets(request, (err, response) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes getShiftHandoffPresets with error', done => {
-      const client = new irmModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-
-      // Mock request
-      const formattedParent = client.projectPath('[PROJECT]');
-      const request = {
-        parent: formattedParent,
-      };
-
-      // Mock Grpc layer
-      client._innerApiCalls.getShiftHandoffPresets = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-
-      client.getShiftHandoffPresets(request, (err, response) => {
-        assert(err instanceof Error);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-
   describe('sendShiftHandoff', () => {
     it('invokes sendShiftHandoff without error', done => {
       const client = new irmModule.v1alpha2.IncidentServiceClient({
@@ -1571,6 +1396,68 @@ describe('IncidentServiceClient', () => {
       );
 
       client.createSubscription(request, (err, response) => {
+        assert(err instanceof Error);
+        assert.strictEqual(err.code, FAKE_STATUS_CODE);
+        assert(typeof response === 'undefined');
+        done();
+      });
+    });
+  });
+
+  describe('updateSubscription', () => {
+    it('invokes updateSubscription without error', done => {
+      const client = new irmModule.v1alpha2.IncidentServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+
+      // Mock request
+      const subscription = {};
+      const request = {
+        subscription: subscription,
+      };
+
+      // Mock response
+      const name = 'name3373707';
+      const etag = 'etag3123477';
+      const expectedResponse = {
+        name: name,
+        etag: etag,
+      };
+
+      // Mock Grpc layer
+      client._innerApiCalls.updateSubscription = mockSimpleGrpcMethod(
+        request,
+        expectedResponse
+      );
+
+      client.updateSubscription(request, (err, response) => {
+        assert.ifError(err);
+        assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes updateSubscription with error', done => {
+      const client = new irmModule.v1alpha2.IncidentServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+
+      // Mock request
+      const subscription = {};
+      const request = {
+        subscription: subscription,
+      };
+
+      // Mock Grpc layer
+      client._innerApiCalls.updateSubscription = mockSimpleGrpcMethod(
+        request,
+        null,
+        error
+      );
+
+      client.updateSubscription(request, (err, response) => {
         assert(err instanceof Error);
         assert.strictEqual(err.code, FAKE_STATUS_CODE);
         assert(typeof response === 'undefined');
