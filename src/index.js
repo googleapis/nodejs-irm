@@ -24,6 +24,9 @@
 /**
  * @namespace google.cloud.irm.v1alpha2
  */
+/**
+ * @namespace google.protobuf
+ */
 
 'use strict';
 

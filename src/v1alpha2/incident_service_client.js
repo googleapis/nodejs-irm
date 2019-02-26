@@ -144,7 +144,7 @@ class IncidentServiceClient {
         'annotations'
       ),
       listTags: new gax.PageDescriptor('pageToken', 'nextPageToken', 'tags'),
-      listSignals: new gax.PageDescriptor(
+      searchSignals: new gax.PageDescriptor(
         'pageToken',
         'nextPageToken',
         'signals'
@@ -196,23 +196,21 @@ class IncidentServiceClient {
       'searchSimilarIncidents',
       'createAnnotation',
       'listAnnotations',
-      'updateAnnotation',
       'createTag',
       'deleteTag',
       'listTags',
       'createSignal',
-      'listSignals',
+      'searchSignals',
       'getSignal',
       'updateSignal',
-      'acknowledgeSignal',
       'escalateIncident',
       'createArtifact',
       'listArtifacts',
       'updateArtifact',
       'deleteArtifact',
-      'getShiftHandoffPresets',
       'sendShiftHandoff',
       'createSubscription',
+      'updateSubscription',
       'listSubscriptions',
       'deleteSubscription',
       'createIncidentRoleAssignment',
@@ -341,7 +339,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
@@ -404,20 +402,22 @@ class IncidentServiceClient {
    *     Incident.Stage enum). These are ordered, so `stage<resolved` is
    *     equivalent to `stage:detected OR stage:triaged OR stage:mitigated`.
    *   * `severity` - (Incident.Severity) The severity of the incident.
-   *      + Supports matching on a specific severity (e.g., `severity:major`) or
-   *        on a range (e.g., `severity>medium`, `severity<=minor`, etc.).
+   *      + Supports matching on a specific severity (for example,
+   *      `severity:major`) or on a range (for example, `severity>medium`,
+   *      `severity<=minor`, etc.).
    *
    *   Timestamp formats:
    *   * yyyy-MM-dd - an absolute date, treated as a calendar-day-wide window.
    *     In other words, the "<" operator will match dates before that date, the
    *     ">" operator will match dates after that date, and the ":" or "="
    *     operators will match the entire day.
-   *   * Nd (e.g. 7d) - a relative number of days ago, treated as a moment in time
-   *     (as opposed to a day-wide span) a multiple of 24 hours ago (as opposed to
-   *     calendar days).  In the case of daylight savings time, it will apply the
-   *     current timezone to both ends of the range.  Note that exact matching
-   *     (e.g. `start:7d`) is unlikely to be useful because that would only match
-   *     incidents created precisely at a particular instant in time.
+   *   * Nd (for example, 7d) - a relative number of days ago, treated as a moment
+   *     in time (as opposed to a day-wide span). A multiple of 24 hours ago (as
+   *     opposed to calendar days).  In the case of daylight savings time, it will
+   *     apply the current timezone to both ends of the range.  Note that exact
+   *     matching (for example, `start:7d`) is unlikely to be useful because that
+   *     would only match incidents created precisely at a particular instant in
+   *     time.
    *
    *   Examples:
    *
@@ -564,20 +564,22 @@ class IncidentServiceClient {
    *     Incident.Stage enum). These are ordered, so `stage<resolved` is
    *     equivalent to `stage:detected OR stage:triaged OR stage:mitigated`.
    *   * `severity` - (Incident.Severity) The severity of the incident.
-   *      + Supports matching on a specific severity (e.g., `severity:major`) or
-   *        on a range (e.g., `severity>medium`, `severity<=minor`, etc.).
+   *      + Supports matching on a specific severity (for example,
+   *      `severity:major`) or on a range (for example, `severity>medium`,
+   *      `severity<=minor`, etc.).
    *
    *   Timestamp formats:
    *   * yyyy-MM-dd - an absolute date, treated as a calendar-day-wide window.
    *     In other words, the "<" operator will match dates before that date, the
    *     ">" operator will match dates after that date, and the ":" or "="
    *     operators will match the entire day.
-   *   * Nd (e.g. 7d) - a relative number of days ago, treated as a moment in time
-   *     (as opposed to a day-wide span) a multiple of 24 hours ago (as opposed to
-   *     calendar days).  In the case of daylight savings time, it will apply the
-   *     current timezone to both ends of the range.  Note that exact matching
-   *     (e.g. `start:7d`) is unlikely to be useful because that would only match
-   *     incidents created precisely at a particular instant in time.
+   *   * Nd (for example, 7d) - a relative number of days ago, treated as a moment
+   *     in time (as opposed to a day-wide span). A multiple of 24 hours ago (as
+   *     opposed to calendar days).  In the case of daylight savings time, it will
+   *     apply the current timezone to both ends of the range.  Note that exact
+   *     matching (for example, `start:7d`) is unlikely to be useful because that
+   *     would only match incidents created precisely at a particular instant in
+   *     time.
    *
    *   Examples:
    *
@@ -704,7 +706,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
-   *   Resource name of the incident or signal, e.g.
+   *   Resource name of the incident or signal, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
@@ -813,7 +815,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
-   *   Resource name of the incident or signal, e.g.
+   *   Resource name of the incident or signal, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
@@ -860,7 +862,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {Object} request.annotation
    *   Only annotation.content is an input argument.
@@ -917,7 +919,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
@@ -1022,7 +1024,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
@@ -1063,64 +1065,12 @@ class IncidentServiceClient {
   }
 
   /**
-   * Updates an annotation on an existing incident.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {Object} request.annotation
-   *   The annotation to update with the new values.
-   *
-   *   This object should have the same structure as [Annotation]{@link google.cloud.irm.v1alpha2.Annotation}
-   * @param {Object} [request.updateMask]
-   *   List of fields that should be updated.
-   *
-   *   This object should have the same structure as [FieldMask]{@link google.protobuf.FieldMask}
-   * @param {Object} [options]
-   *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
-   * @param {function(?Error, ?Object)} [callback]
-   *   The function which will be called with the result of the API call.
-   *
-   *   The second parameter to the callback is an object representing [Annotation]{@link google.cloud.irm.v1alpha2.Annotation}.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Annotation]{@link google.cloud.irm.v1alpha2.Annotation}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   *
-   * @example
-   *
-   * const irm = require('@google-cloud/irm');
-   *
-   * const client = new irm.v1alpha2.IncidentServiceClient({
-   *   // optional auth parameters.
-   * });
-   *
-   * const annotation = {};
-   * client.updateAnnotation({annotation: annotation})
-   *   .then(responses => {
-   *     const response = responses[0];
-   *     // doThingsWith(response)
-   *   })
-   *   .catch(err => {
-   *     console.error(err);
-   *   });
-   */
-  updateAnnotation(request, options, callback) {
-    if (options instanceof Function && callback === undefined) {
-      callback = options;
-      options = {};
-    }
-    options = options || {};
-
-    return this._innerApiCalls.updateAnnotation(request, options, callback);
-  }
-
-  /**
    * Creates a tag on an existing incident.
    *
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {Object} request.tag
    *   Tag to create. Only tag.display_name is an input argument.
@@ -1214,7 +1164,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
@@ -1319,7 +1269,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
@@ -1424,8 +1374,8 @@ class IncidentServiceClient {
    * @param {string} request.parent
    *   The resource name of the hosting Stackdriver project which requested
    *   incidents belong to.
-   * @param {string} [request.filter]
-   *   Filter to specify which signals should be returned.
+   * @param {string} [request.query]
+   *   Query to specify which signals should be returned.
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
    *   response. If page streaming is performed per-resource, this
@@ -1443,7 +1393,7 @@ class IncidentServiceClient {
    *   When autoPaginate: false is specified through options, it contains the result
    *   in a single response. If the response indicates the next page exists, the third
    *   parameter is set to be used for the next request object. The fourth parameter keeps
-   *   the raw response object of an object representing [ListSignalsResponse]{@link google.cloud.irm.v1alpha2.ListSignalsResponse}.
+   *   the raw response object of an object representing [SearchSignalsResponse]{@link google.cloud.irm.v1alpha2.SearchSignalsResponse}.
    * @returns {Promise} - The promise which resolves to an array.
    *   The first element of the array is Array of [Signal]{@link google.cloud.irm.v1alpha2.Signal}.
    *
@@ -1451,7 +1401,7 @@ class IncidentServiceClient {
    *   The first element is Array of [Signal]{@link google.cloud.irm.v1alpha2.Signal} in a single response.
    *   The second element is the next request object if the response
    *   indicates the next page exists, or null. The third element is
-   *   an object representing [ListSignalsResponse]{@link google.cloud.irm.v1alpha2.ListSignalsResponse}.
+   *   an object representing [SearchSignalsResponse]{@link google.cloud.irm.v1alpha2.SearchSignalsResponse}.
    *
    *   The promise has a method named "cancel" which cancels the ongoing API call.
    *
@@ -1466,7 +1416,7 @@ class IncidentServiceClient {
    * // Iterate over all elements.
    * const formattedParent = client.projectPath('[PROJECT]');
    *
-   * client.listSignals({parent: formattedParent})
+   * client.searchSignals({parent: formattedParent})
    *   .then(responses => {
    *     const resources = responses[0];
    *     for (const resource of resources) {
@@ -1494,29 +1444,29 @@ class IncidentServiceClient {
    *   }
    *   if (nextRequest) {
    *     // Fetch the next page.
-   *     return client.listSignals(nextRequest, options).then(callback);
+   *     return client.searchSignals(nextRequest, options).then(callback);
    *   }
    * }
-   * client.listSignals({parent: formattedParent}, options)
+   * client.searchSignals({parent: formattedParent}, options)
    *   .then(callback)
    *   .catch(err => {
    *     console.error(err);
    *   });
    */
-  listSignals(request, options, callback) {
+  searchSignals(request, options, callback) {
     if (options instanceof Function && callback === undefined) {
       callback = options;
       options = {};
     }
     options = options || {};
 
-    return this._innerApiCalls.listSignals(request, options, callback);
+    return this._innerApiCalls.searchSignals(request, options, callback);
   }
 
   /**
-   * Equivalent to {@link listSignals}, but returns a NodeJS Stream object.
+   * Equivalent to {@link searchSignals}, but returns a NodeJS Stream object.
    *
-   * This fetches the paged responses for {@link listSignals} continuously
+   * This fetches the paged responses for {@link searchSignals} continuously
    * and invokes the callback registered for 'data' event for each element in the
    * responses.
    *
@@ -1531,8 +1481,8 @@ class IncidentServiceClient {
    * @param {string} request.parent
    *   The resource name of the hosting Stackdriver project which requested
    *   incidents belong to.
-   * @param {string} [request.filter]
-   *   Filter to specify which signals should be returned.
+   * @param {string} [request.query]
+   *   Query to specify which signals should be returned.
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
    *   response. If page streaming is performed per-resource, this
@@ -1554,18 +1504,18 @@ class IncidentServiceClient {
    * });
    *
    * const formattedParent = client.projectPath('[PROJECT]');
-   * client.listSignalsStream({parent: formattedParent})
+   * client.searchSignalsStream({parent: formattedParent})
    *   .on('data', element => {
    *     // doThingsWith(element)
    *   }).on('error', err => {
    *     console.log(err);
    *   });
    */
-  listSignalsStream(request, options) {
+  searchSignalsStream(request, options) {
     options = options || {};
 
-    return this._descriptors.page.listSignals.createStream(
-      this._innerApiCalls.listSignals,
+    return this._descriptors.page.searchSignals.createStream(
+      this._innerApiCalls.searchSignals,
       request,
       options
     );
@@ -1577,7 +1527,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
-   *   Resource name of the Signal resource, e.g.
+   *   Resource name of the Signal resource, for example,
    *   "projects/{project_id}/signals/{signal_id}".
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
@@ -1619,7 +1569,7 @@ class IncidentServiceClient {
   }
 
   /**
-   * Updates an existing signal (e.g. to assign/unassign it to an
+   * Updates an existing signal (for example, to assign/unassign it to an
    * incident).
    *
    * @param {Object} request
@@ -1669,54 +1619,6 @@ class IncidentServiceClient {
     options = options || {};
 
     return this._innerApiCalls.updateSignal(request, options, callback);
-  }
-
-  /**
-   * Acks a signal. This acknowledges the signal in the underlying system,
-   * indicating that the caller takes responsibility for looking into this.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Resource name of the Signal resource, e.g.
-   *   "projects/{project_id}/signals/{signal_id}".
-   * @param {Object} [options]
-   *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
-   * @param {function(?Error, ?Object)} [callback]
-   *   The function which will be called with the result of the API call.
-   *
-   *   The second parameter to the callback is an object representing [AcknowledgeSignalResponse]{@link google.cloud.irm.v1alpha2.AcknowledgeSignalResponse}.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [AcknowledgeSignalResponse]{@link google.cloud.irm.v1alpha2.AcknowledgeSignalResponse}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   *
-   * @example
-   *
-   * const irm = require('@google-cloud/irm');
-   *
-   * const client = new irm.v1alpha2.IncidentServiceClient({
-   *   // optional auth parameters.
-   * });
-   *
-   * const formattedName = client.signalPath('[PROJECT]', '[SIGNAL]');
-   * client.acknowledgeSignal({name: formattedName})
-   *   .then(responses => {
-   *     const response = responses[0];
-   *     // doThingsWith(response)
-   *   })
-   *   .catch(err => {
-   *     console.error(err);
-   *   });
-   */
-  acknowledgeSignal(request, options, callback) {
-    if (options instanceof Function && callback === undefined) {
-      callback = options;
-      options = {};
-    }
-    options = options || {};
-
-    return this._innerApiCalls.acknowledgeSignal(request, options, callback);
   }
 
   /**
@@ -1795,7 +1697,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {Object} request.artifact
    *   The artifact to create.
@@ -1851,7 +1753,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
@@ -1956,7 +1858,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
@@ -2087,74 +1989,22 @@ class IncidentServiceClient {
   }
 
   /**
-   * Returns "presets" specific to shift handoff (see SendShiftHandoff), e.g.
-   * default values for handoff message fields.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Resource name of the Stackdriver project that the presets belong to. e.g.
-   *   `projects/{project_id}`
-   * @param {Object} [options]
-   *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
-   * @param {function(?Error, ?Object)} [callback]
-   *   The function which will be called with the result of the API call.
-   *
-   *   The second parameter to the callback is an object representing [ShiftHandoffPresets]{@link google.cloud.irm.v1alpha2.ShiftHandoffPresets}.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [ShiftHandoffPresets]{@link google.cloud.irm.v1alpha2.ShiftHandoffPresets}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   *
-   * @example
-   *
-   * const irm = require('@google-cloud/irm');
-   *
-   * const client = new irm.v1alpha2.IncidentServiceClient({
-   *   // optional auth parameters.
-   * });
-   *
-   * const formattedParent = client.projectPath('[PROJECT]');
-   * client.getShiftHandoffPresets({parent: formattedParent})
-   *   .then(responses => {
-   *     const response = responses[0];
-   *     // doThingsWith(response)
-   *   })
-   *   .catch(err => {
-   *     console.error(err);
-   *   });
-   */
-  getShiftHandoffPresets(request, options, callback) {
-    if (options instanceof Function && callback === undefined) {
-      callback = options;
-      options = {};
-    }
-    options = options || {};
-
-    return this._innerApiCalls.getShiftHandoffPresets(
-      request,
-      options,
-      callback
-    );
-  }
-
-  /**
    * Sends a summary of the shift for oncall handoff.
    *
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
    *   The resource name of the Stackdriver project that the handoff is being sent
-   *   from. e.g. `projects/{project_id}`
+   *   from. for example, `projects/{project_id}`
    * @param {string[]} request.recipients
-   *   Email addresses of the recipients of the handoff, e.g. "user@example.com".
-   *   Must contain at least one entry.
+   *   Email addresses of the recipients of the handoff, for example,
+   *   "user@example.com". Must contain at least one entry.
    * @param {string} request.subject
    *   The subject of the email. Required.
    * @param {string[]} [request.cc]
    *   Email addresses that should be CC'd on the handoff. Optional.
    * @param {string} [request.notesContentType]
-   *   Content type string, e.g. 'text/plain' or 'text/html'.
+   *   Content type string, for example, 'text/plain' or 'text/html'.
    * @param {string} [request.notesContent]
    *   Additional notes to be included in the handoff. Optional.
    * @param {Object[]} [request.incidents]
@@ -2219,7 +2069,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {Object} request.subscription
    *   The subscription to create.
@@ -2270,12 +2120,64 @@ class IncidentServiceClient {
   }
 
   /**
+   * Updates a subscription.
+   *
+   * @param {Object} request
+   *   The request object that will be sent.
+   * @param {Object} request.subscription
+   *   The subscription to update, with new values.
+   *
+   *   This object should have the same structure as [Subscription]{@link google.cloud.irm.v1alpha2.Subscription}
+   * @param {Object} [request.updateMask]
+   *   List of fields that should be updated.
+   *
+   *   This object should have the same structure as [FieldMask]{@link google.protobuf.FieldMask}
+   * @param {Object} [options]
+   *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   * @param {function(?Error, ?Object)} [callback]
+   *   The function which will be called with the result of the API call.
+   *
+   *   The second parameter to the callback is an object representing [Subscription]{@link google.cloud.irm.v1alpha2.Subscription}.
+   * @returns {Promise} - The promise which resolves to an array.
+   *   The first element of the array is an object representing [Subscription]{@link google.cloud.irm.v1alpha2.Subscription}.
+   *   The promise has a method named "cancel" which cancels the ongoing API call.
+   *
+   * @example
+   *
+   * const irm = require('@google-cloud/irm');
+   *
+   * const client = new irm.v1alpha2.IncidentServiceClient({
+   *   // optional auth parameters.
+   * });
+   *
+   * const subscription = {};
+   * client.updateSubscription({subscription: subscription})
+   *   .then(responses => {
+   *     const response = responses[0];
+   *     // doThingsWith(response)
+   *   })
+   *   .catch(err => {
+   *     console.error(err);
+   *   });
+   */
+  updateSubscription(request, options, callback) {
+    if (options instanceof Function && callback === undefined) {
+      callback = options;
+      options = {};
+    }
+    options = options || {};
+
+    return this._innerApiCalls.updateSubscription(request, options, callback);
+  }
+
+  /**
    * Returns a list of subscriptions for an incident.
    *
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
@@ -2380,7 +2282,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
@@ -2468,7 +2370,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {Object} request.incidentRoleAssignment
    *   Role assignment to create.
@@ -2570,7 +2472,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
@@ -2679,7 +2581,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, e.g.
+   *   Resource name of the incident, for example,
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
