@@ -69,7 +69,7 @@ Google APIs Client Libraries, in [Client Libraries Explained][explained].
 
 [explained]: https://cloud.google.com/apis/docs/client-libraries-explained
 
-[client-docs]: https://cloud.google.com/irm
+[client-docs]: https://cloud.google.com/incident-response/docs/
 [product-docs]: https://cloud.google.com/incident-response/docs/
 [shell_img]: https://gstatic.com/cloudssh/images/open-btn.png
 [projects]: https://console.cloud.google.com/project
