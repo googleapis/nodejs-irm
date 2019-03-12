@@ -18,10 +18,10 @@
 function main(projectId = 'YOUR_PROJECT_ID', incidentId = 'YOUR_INCIDENT_ID') {
   // [START monitoring_irm_change_stage]
   // Imports the Google Cloud client libraries
-  const irm = require('@google-cloud/irm').v1alpha2;
+  const {IncidentServiceClient} = require('@google-cloud/irm');
 
   // Creates a client
-  const client = new irm.IncidentServiceClient();
+  const client = new IncidentServiceClient();
 
   /**
    * TODO(developer): Uncomment the following line before running the sample.

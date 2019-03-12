@@ -15,8 +15,8 @@
 
 'use strict';
 
-function main(projectId = 'YOUR_PROJECT_ID') {
-  // [START monitoring_irm_create_signal]
+function main(projectId = 'YOUR_PROJECT_ID', incidentId = 'YOUR_INCIDENT_ID') {
+  // [START monitoring_irm_change_severity]
   // Imports the Google Cloud client libraries
   const {IncidentServiceClient} = require('@google-cloud/irm');
 
@@ -27,26 +27,25 @@ function main(projectId = 'YOUR_PROJECT_ID') {
    * TODO(developer): Uncomment the following line before running the sample.
    */
   // const projectId = 'Your Google Cloud project Id';
+  // const incidentId = 'IRM Incident id';
 
-  async function createSignal() {
-    const formattedParent = client.projectPath(projectId);
-    const newSignal = {
-      title: 'Red button pushed.',
-      content: 'Somebody pushed the red button!',
-      contentType: 'text/plain',
-    };
+  async function changeSeverity() {
+    const formattedName = client.incidentPath(projectId, incidentId);
+    const incident = client.getIncident({name: formattedName});
+
+    incident.severity = 'minor';
 
     const request = {
-      parent: formattedParent,
-      signal: newSignal,
+      incident,
+      updateMask: {paths: ['severity']},
     };
 
-    const response = await client.createSignal(request);
-    console.log(`Created signal ${response.name}.`);
+    const response = await client.updateIncident(request);
+    console.log(`Changed severity of ${response.name}.`);
   }
 
-  createSignal();
-  // [END monitoring_irm_create_signal]
+  changeSeverity();
+  // [END monitoring_irm_change_severity]
 }
 
 main(...process.argv.slice(2));
