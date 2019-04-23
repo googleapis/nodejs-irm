@@ -100,27 +100,27 @@ class IncidentServiceClient {
     // identifiers to uniquely identify resources within the API.
     // Create useful helper objects for these.
     this._pathTemplates = {
-      projectPathTemplate: new gax.PathTemplate('projects/{project}'),
-      incidentPathTemplate: new gax.PathTemplate(
-        'projects/{project}/incidents/{incident}'
-      ),
       annotationPathTemplate: new gax.PathTemplate(
         'projects/{project}/incidents/{incident}/annotations/{annotation}'
       ),
       artifactPathTemplate: new gax.PathTemplate(
         'projects/{project}/incidents/{incident}/artifacts/{artifact}'
       ),
+      incidentPathTemplate: new gax.PathTemplate(
+        'projects/{project}/incidents/{incident}'
+      ),
+      projectPathTemplate: new gax.PathTemplate('projects/{project}'),
       roleAssignmentPathTemplate: new gax.PathTemplate(
         'projects/{project}/incidents/{incident}/roleAssignments/{role_assignment}'
+      ),
+      signalPathTemplate: new gax.PathTemplate(
+        'projects/{project}/signals/{signal}'
       ),
       subscriptionPathTemplate: new gax.PathTemplate(
         'projects/{project}/incidents/{incident}/subscriptions/{subscription}'
       ),
       tagPathTemplate: new gax.PathTemplate(
         'projects/{project}/incidents/{incident}/tags/{tag}'
-      ),
-      signalPathTemplate: new gax.PathTemplate(
-        'projects/{project}/signals/{signal}'
       ),
     };
 
@@ -3093,32 +3093,6 @@ class IncidentServiceClient {
   // --------------------
 
   /**
-   * Return a fully-qualified project resource name string.
-   *
-   * @param {String} project
-   * @returns {String}
-   */
-  projectPath(project) {
-    return this._pathTemplates.projectPathTemplate.render({
-      project: project,
-    });
-  }
-
-  /**
-   * Return a fully-qualified incident resource name string.
-   *
-   * @param {String} project
-   * @param {String} incident
-   * @returns {String}
-   */
-  incidentPath(project, incident) {
-    return this._pathTemplates.incidentPathTemplate.render({
-      project: project,
-      incident: incident,
-    });
-  }
-
-  /**
    * Return a fully-qualified annotation resource name string.
    *
    * @param {String} project
@@ -3151,6 +3125,32 @@ class IncidentServiceClient {
   }
 
   /**
+   * Return a fully-qualified incident resource name string.
+   *
+   * @param {String} project
+   * @param {String} incident
+   * @returns {String}
+   */
+  incidentPath(project, incident) {
+    return this._pathTemplates.incidentPathTemplate.render({
+      project: project,
+      incident: incident,
+    });
+  }
+
+  /**
+   * Return a fully-qualified project resource name string.
+   *
+   * @param {String} project
+   * @returns {String}
+   */
+  projectPath(project) {
+    return this._pathTemplates.projectPathTemplate.render({
+      project: project,
+    });
+  }
+
+  /**
    * Return a fully-qualified role_assignment resource name string.
    *
    * @param {String} project
@@ -3163,6 +3163,20 @@ class IncidentServiceClient {
       project: project,
       incident: incident,
       role_assignment: roleAssignment,
+    });
+  }
+
+  /**
+   * Return a fully-qualified signal resource name string.
+   *
+   * @param {String} project
+   * @param {String} signal
+   * @returns {String}
+   */
+  signalPath(project, signal) {
+    return this._pathTemplates.signalPathTemplate.render({
+      project: project,
+      signal: signal,
     });
   }
 
@@ -3196,54 +3210,6 @@ class IncidentServiceClient {
       incident: incident,
       tag: tag,
     });
-  }
-
-  /**
-   * Return a fully-qualified signal resource name string.
-   *
-   * @param {String} project
-   * @param {String} signal
-   * @returns {String}
-   */
-  signalPath(project, signal) {
-    return this._pathTemplates.signalPathTemplate.render({
-      project: project,
-      signal: signal,
-    });
-  }
-
-  /**
-   * Parse the projectName from a project resource.
-   *
-   * @param {String} projectName
-   *   A fully-qualified path representing a project resources.
-   * @returns {String} - A string representing the project.
-   */
-  matchProjectFromProjectName(projectName) {
-    return this._pathTemplates.projectPathTemplate.match(projectName).project;
-  }
-
-  /**
-   * Parse the incidentName from a incident resource.
-   *
-   * @param {String} incidentName
-   *   A fully-qualified path representing a incident resources.
-   * @returns {String} - A string representing the project.
-   */
-  matchProjectFromIncidentName(incidentName) {
-    return this._pathTemplates.incidentPathTemplate.match(incidentName).project;
-  }
-
-  /**
-   * Parse the incidentName from a incident resource.
-   *
-   * @param {String} incidentName
-   *   A fully-qualified path representing a incident resources.
-   * @returns {String} - A string representing the incident.
-   */
-  matchIncidentFromIncidentName(incidentName) {
-    return this._pathTemplates.incidentPathTemplate.match(incidentName)
-      .incident;
   }
 
   /**
@@ -3318,6 +3284,40 @@ class IncidentServiceClient {
   }
 
   /**
+   * Parse the incidentName from a incident resource.
+   *
+   * @param {String} incidentName
+   *   A fully-qualified path representing a incident resources.
+   * @returns {String} - A string representing the project.
+   */
+  matchProjectFromIncidentName(incidentName) {
+    return this._pathTemplates.incidentPathTemplate.match(incidentName).project;
+  }
+
+  /**
+   * Parse the incidentName from a incident resource.
+   *
+   * @param {String} incidentName
+   *   A fully-qualified path representing a incident resources.
+   * @returns {String} - A string representing the incident.
+   */
+  matchIncidentFromIncidentName(incidentName) {
+    return this._pathTemplates.incidentPathTemplate.match(incidentName)
+      .incident;
+  }
+
+  /**
+   * Parse the projectName from a project resource.
+   *
+   * @param {String} projectName
+   *   A fully-qualified path representing a project resources.
+   * @returns {String} - A string representing the project.
+   */
+  matchProjectFromProjectName(projectName) {
+    return this._pathTemplates.projectPathTemplate.match(projectName).project;
+  }
+
+  /**
    * Parse the roleAssignmentName from a role_assignment resource.
    *
    * @param {String} roleAssignmentName
@@ -3354,6 +3354,28 @@ class IncidentServiceClient {
     return this._pathTemplates.roleAssignmentPathTemplate.match(
       roleAssignmentName
     ).role_assignment;
+  }
+
+  /**
+   * Parse the signalName from a signal resource.
+   *
+   * @param {String} signalName
+   *   A fully-qualified path representing a signal resources.
+   * @returns {String} - A string representing the project.
+   */
+  matchProjectFromSignalName(signalName) {
+    return this._pathTemplates.signalPathTemplate.match(signalName).project;
+  }
+
+  /**
+   * Parse the signalName from a signal resource.
+   *
+   * @param {String} signalName
+   *   A fully-qualified path representing a signal resources.
+   * @returns {String} - A string representing the signal.
+   */
+  matchSignalFromSignalName(signalName) {
+    return this._pathTemplates.signalPathTemplate.match(signalName).signal;
   }
 
   /**
@@ -3423,28 +3445,6 @@ class IncidentServiceClient {
    */
   matchTagFromTagName(tagName) {
     return this._pathTemplates.tagPathTemplate.match(tagName).tag;
-  }
-
-  /**
-   * Parse the signalName from a signal resource.
-   *
-   * @param {String} signalName
-   *   A fully-qualified path representing a signal resources.
-   * @returns {String} - A string representing the project.
-   */
-  matchProjectFromSignalName(signalName) {
-    return this._pathTemplates.signalPathTemplate.match(signalName).project;
-  }
-
-  /**
-   * Parse the signalName from a signal resource.
-   *
-   * @param {String} signalName
-   *   A fully-qualified path representing a signal resources.
-   * @returns {String} - A string representing the signal.
-   */
-  matchSignalFromSignalName(signalName) {
-    return this._pathTemplates.signalPathTemplate.match(signalName).signal;
   }
 }
 
