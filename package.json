@@ -34,7 +34,7 @@
     "system-test": "mocha system-test/*.js smoke-test/*.js --timeout 600000",
     "test": "nyc mocha",
     "predocs-test": "npm run docs",
-    "docs-test": "linkinator docs -r --skip www.googleapis.com",
+    "docs-test": "linkinator docs -r --skip www.npmjs.org",
     "fix": "eslint --fix '**/*.js'"
   },
   "dependencies": {
