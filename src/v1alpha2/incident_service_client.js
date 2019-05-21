@@ -16,7 +16,6 @@
 
 const gapicConfig = require('./incident_service_client_config.json');
 const gax = require('google-gax');
-const merge = require('lodash.merge');
 const path = require('path');
 
 const VERSION = require('../../package.json').version;
@@ -88,12 +87,9 @@ class IncidentServiceClient {
     }
 
     // Load the applicable protos.
-    const protos = merge(
-      {},
-      gaxGrpc.loadProto(
-        path.join(__dirname, '..', '..', 'protos'),
-        'google/cloud/irm/v1alpha2/incidents_service.proto'
-      )
+    const protos = gaxGrpc.loadProto(
+      path.join(__dirname, '..', '..', 'protos'),
+      ['google/cloud/irm/v1alpha2/incidents_service.proto']
     );
 
     // This API contains "path templates"; forward-slash-separated
@@ -291,7 +287,7 @@ class IncidentServiceClient {
    *   .
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -350,7 +346,7 @@ class IncidentServiceClient {
    *   "projects/{project_id}/incidents/{incident_id}".
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -468,7 +464,7 @@ class IncidentServiceClient {
    *   If no time zone is specified, the default is UTC.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Array, ?Object, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -637,7 +633,7 @@ class IncidentServiceClient {
    *   If no time zone is specified, the default is UTC.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @returns {Stream}
    *   An object stream which emits an object representing [Incident]{@link google.cloud.irm.v1alpha2.Incident} on 'data' event.
    *
@@ -682,7 +678,7 @@ class IncidentServiceClient {
    *   This object should have the same structure as [FieldMask]{@link google.protobuf.FieldMask}
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -744,7 +740,7 @@ class IncidentServiceClient {
    *   resources in a page.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Array, ?Object, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -860,7 +856,7 @@ class IncidentServiceClient {
    *   resources in a page.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @returns {Stream}
    *   An object stream which emits an object representing [Result]{@link google.cloud.irm.v1alpha2.Result} on 'data' event.
    *
@@ -905,7 +901,7 @@ class IncidentServiceClient {
    *   This object should have the same structure as [Annotation]{@link google.cloud.irm.v1alpha2.Annotation}
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -971,7 +967,7 @@ class IncidentServiceClient {
    *   resources in a page.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Array, ?Object, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -1083,7 +1079,7 @@ class IncidentServiceClient {
    *   resources in a page.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @returns {Stream}
    *   An object stream which emits an object representing [Annotation]{@link google.cloud.irm.v1alpha2.Annotation} on 'data' event.
    *
@@ -1127,7 +1123,7 @@ class IncidentServiceClient {
    *   This object should have the same structure as [Tag]{@link google.cloud.irm.v1alpha2.Tag}
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -1185,7 +1181,7 @@ class IncidentServiceClient {
    *   Resource name of the tag.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error)} [callback]
    *   The function which will be called with the result of the API call.
    * @returns {Promise} - The promise which resolves when API call finishes.
@@ -1237,7 +1233,7 @@ class IncidentServiceClient {
    *   resources in a page.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Array, ?Object, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -1349,7 +1345,7 @@ class IncidentServiceClient {
    *   resources in a page.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @returns {Stream}
    *   An object stream which emits an object representing [Tag]{@link google.cloud.irm.v1alpha2.Tag} on 'data' event.
    *
@@ -1393,7 +1389,7 @@ class IncidentServiceClient {
    *   This object should have the same structure as [Signal]{@link google.cloud.irm.v1alpha2.Signal}
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -1461,7 +1457,7 @@ class IncidentServiceClient {
    *   resources in a page.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Array, ?Object, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -1575,7 +1571,7 @@ class IncidentServiceClient {
    *   resources in a page.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @returns {Stream}
    *   An object stream which emits an object representing [Signal]{@link google.cloud.irm.v1alpha2.Signal} on 'data' event.
    *
@@ -1615,7 +1611,7 @@ class IncidentServiceClient {
    *   "projects/{project_id}/signals/{signal_id}".
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -1675,7 +1671,7 @@ class IncidentServiceClient {
    *   This object should have the same structure as [FieldMask]{@link google.protobuf.FieldMask}
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -1752,7 +1748,7 @@ class IncidentServiceClient {
    *   This object should have the same structure as [Artifact]{@link google.cloud.irm.v1alpha2.Artifact}
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -1810,7 +1806,7 @@ class IncidentServiceClient {
    *   This object should have the same structure as [Artifact]{@link google.cloud.irm.v1alpha2.Artifact}
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -1875,7 +1871,7 @@ class IncidentServiceClient {
    *   resources in a page.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Array, ?Object, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -1987,7 +1983,7 @@ class IncidentServiceClient {
    *   resources in a page.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @returns {Stream}
    *   An object stream which emits an object representing [Artifact]{@link google.cloud.irm.v1alpha2.Artifact} on 'data' event.
    *
@@ -2032,7 +2028,7 @@ class IncidentServiceClient {
    *   This object should have the same structure as [FieldMask]{@link google.protobuf.FieldMask}
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -2085,7 +2081,7 @@ class IncidentServiceClient {
    *   Resource name of the artifact.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error)} [callback]
    *   The function which will be called with the result of the API call.
    * @returns {Promise} - The promise which resolves when API call finishes.
@@ -2149,7 +2145,7 @@ class IncidentServiceClient {
    *   will not actually be sent.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -2217,7 +2213,7 @@ class IncidentServiceClient {
    *   This object should have the same structure as [Subscription]{@link google.cloud.irm.v1alpha2.Subscription}
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -2281,7 +2277,7 @@ class IncidentServiceClient {
    *   This object should have the same structure as [FieldMask]{@link google.protobuf.FieldMask}
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -2341,7 +2337,7 @@ class IncidentServiceClient {
    *   resources in a page.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Array, ?Object, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -2453,7 +2449,7 @@ class IncidentServiceClient {
    *   resources in a page.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @returns {Stream}
    *   An object stream which emits an object representing [Subscription]{@link google.cloud.irm.v1alpha2.Subscription} on 'data' event.
    *
@@ -2492,7 +2488,7 @@ class IncidentServiceClient {
    *   Resource name of the subscription.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error)} [callback]
    *   The function which will be called with the result of the API call.
    * @returns {Promise} - The promise which resolves when API call finishes.
@@ -2546,7 +2542,7 @@ class IncidentServiceClient {
    *   This object should have the same structure as [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -2608,7 +2604,7 @@ class IncidentServiceClient {
    *   Resource name of the role assignment.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error)} [callback]
    *   The function which will be called with the result of the API call.
    * @returns {Promise} - The promise which resolves when API call finishes.
@@ -2664,7 +2660,7 @@ class IncidentServiceClient {
    *   resources in a page.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Array, ?Object, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -2780,7 +2776,7 @@ class IncidentServiceClient {
    *   resources in a page.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @returns {Stream}
    *   An object stream which emits an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment} on 'data' event.
    *
@@ -2825,7 +2821,7 @@ class IncidentServiceClient {
    *   This object should have the same structure as [User]{@link google.cloud.irm.v1alpha2.User}
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -2895,7 +2891,7 @@ class IncidentServiceClient {
    *   This object should have the same structure as [User]{@link google.cloud.irm.v1alpha2.User}
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -2965,7 +2961,7 @@ class IncidentServiceClient {
    *   This object should have the same structure as [User]{@link google.cloud.irm.v1alpha2.User}
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
@@ -3035,7 +3031,7 @@ class IncidentServiceClient {
    *   This object should have the same structure as [User]{@link google.cloud.irm.v1alpha2.User}
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
    * @param {function(?Error, ?Object)} [callback]
    *   The function which will be called with the result of the API call.
    *
