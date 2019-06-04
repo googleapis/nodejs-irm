@@ -23,6 +23,22 @@ const error = new Error();
 error.code = FAKE_STATUS_CODE;
 
 describe('IncidentServiceClient', () => {
+  it('has servicePath', () => {
+    const servicePath = irmModule.v1alpha2.IncidentServiceClient.servicePath;
+    assert(servicePath);
+  });
+
+  it('has apiEndpoint', () => {
+    const apiEndpoint = irmModule.v1alpha2.IncidentServiceClient.apiEndpoint;
+    assert(apiEndpoint);
+  });
+
+  it('has port', () => {
+    const port = irmModule.v1alpha2.IncidentServiceClient.port;
+    assert(port);
+    assert(typeof port === 'number');
+  });
+
   describe('createIncident', () => {
     it('invokes createIncident without error', done => {
       const client = new irmModule.v1alpha2.IncidentServiceClient({
