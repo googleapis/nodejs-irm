@@ -4,6 +4,18 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+## [1.1.0](https://www.github.com/googleapis/nodejs-irm/compare/v1.0.0...v1.1.0) (2019-06-05)
+
+
+### Bug Fixes
+
+* default options to empty object ([a5a4a83](https://www.github.com/googleapis/nodejs-irm/commit/a5a4a83))
+
+
+### Features
+
+* support apiEndpoint override in client constructor ([#57](https://www.github.com/googleapis/nodejs-irm/issues/57)) ([c9b0914](https://www.github.com/googleapis/nodejs-irm/commit/c9b0914))
+
 ## 1.0.0 (2019-05-22)
 
 
