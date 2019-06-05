@@ -39,6 +39,11 @@ describe('IncidentServiceClient', () => {
     assert(typeof port === 'number');
   });
 
+  it('should create a client with no options', () => {
+    const client = new irmModule.v1alpha2.IncidentServiceClient();
+    assert(client);
+  });
+
   describe('createIncident', () => {
     it('invokes createIncident without error', done => {
       const client = new irmModule.v1alpha2.IncidentServiceClient({
