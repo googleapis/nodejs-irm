@@ -8,5 +8,6 @@
   "repo": "googleapis/nodejs-irm",
   "distribution_name": "@google-cloud/irm",
   "api_id": "irm.googleapis.com",
-  "requires_billing": true
+  "requires_billing": true,
+  "client_documentation": "https://googleapis.dev/nodejs/irm/latest"
 }
