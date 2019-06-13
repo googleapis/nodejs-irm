@@ -14,7 +14,7 @@
 Stackdriver Incident Response & Management API client for Node.js
 
 
-
+* [Stackdriver Incident Response &amp; Management Node.js Client API Reference][client-docs]
 * [Stackdriver Incident Response &amp; Management Documentation][product-docs]
 * [github.com/googleapis/nodejs-irm](https://github.com/googleapis/nodejs-irm)
 
@@ -69,6 +69,9 @@ has instructions for running the samples.
 
 
 
+The [Stackdriver Incident Response &amp; Management Node.js Client API Reference][client-docs] documentation
+also contains samples.
+
 ## Versioning
 
 This library follows [Semantic Versioning](http://semver.org/).
@@ -96,7 +99,7 @@ Apache Version 2.0
 
 See [LICENSE](https://github.com/googleapis/nodejs-irm/blob/master/LICENSE)
 
-
+[client-docs]: https://googleapis.dev/nodejs/irm/latest
 [product-docs]: https://cloud.google.com/incident-response
 [shell_img]: https://gstatic.com/cloudssh/images/open-btn.png
 [projects]: https://console.cloud.google.com/project
