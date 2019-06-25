@@ -41,5 +41,8 @@ module.exports = {
     sourceFiles: false,
     systemName: '@google-cloud/irm',
     theme: 'lumen'
+  },
+  markdown: {
+    idInHeadings: true
   }
 };
