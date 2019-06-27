@@ -82,7 +82,10 @@ const User = {
  *   Immutable.
  *
  * @property {string} contentType
- *   Content type string, for example, 'text/plain' or'text/html'.
+ *   Content type string. 'text/plain' is currently the only supported content
+ *   type for Signals created via the API. Signals created by Stackdriver
+ *   Alerting support 'text/html' as well. Immutable for Signals created by
+ *   Stackdriver Alerting.
  *
  * @property {string} content
  *   Full message of the signal.
@@ -170,6 +173,10 @@ const Signal = {
  * @property {string} content
  *   Content of the annotation. Immutable.
  *
+ * @property {string} contentType
+ *   Content type of the annotation, for example, 'text/plain'
+ *   or 'text/markdown'. Immutable.
+ *
  * @typedef Annotation
  * @memberof google.cloud.irm.v1alpha2
  * @see [google.cloud.irm.v1alpha2.Annotation definition in proto format]{@link https://github.com/googleapis/googleapis/blob/master/google/cloud/irm/v1alpha2/incidents.proto}
@@ -201,7 +208,7 @@ const Tag = {
  * an author and a last updated timestamp.
  *
  * @property {string} contentType
- *   Content type string, for example, 'text/plain' or 'text/html'.
+ *   Content type string, for example, 'text/plain' or 'text/markdown'.
  *
  * @property {string} content
  *   Textual content of the synopsis. It can be plain text or markdown as

@@ -398,9 +398,11 @@ describe('IncidentServiceClient', () => {
       // Mock response
       const name = 'name3373707';
       const content = 'content951530617';
+      const contentType = 'contentType831846208';
       const expectedResponse = {
         name: name,
         content: content,
+        contentType: contentType,
       };
 
       // Mock Grpc layer
@@ -894,6 +896,70 @@ describe('IncidentServiceClient', () => {
       );
 
       client.getSignal(request, (err, response) => {
+        assert(err instanceof Error);
+        assert.strictEqual(err.code, FAKE_STATUS_CODE);
+        assert(typeof response === 'undefined');
+        done();
+      });
+    });
+  });
+
+  describe('lookupSignal', () => {
+    it('invokes lookupSignal without error', done => {
+      const client = new irmModule.v1alpha2.IncidentServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+
+      // Mock request
+      const request = {};
+
+      // Mock response
+      const name = 'name3373707';
+      const etag = 'etag3123477';
+      const incident = 'incident86983890';
+      const title = 'title110371416';
+      const contentType = 'contentType831846208';
+      const content = 'content951530617';
+      const expectedResponse = {
+        name: name,
+        etag: etag,
+        incident: incident,
+        title: title,
+        contentType: contentType,
+        content: content,
+      };
+
+      // Mock Grpc layer
+      client._innerApiCalls.lookupSignal = mockSimpleGrpcMethod(
+        request,
+        expectedResponse
+      );
+
+      client.lookupSignal(request, (err, response) => {
+        assert.ifError(err);
+        assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes lookupSignal with error', done => {
+      const client = new irmModule.v1alpha2.IncidentServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+
+      // Mock request
+      const request = {};
+
+      // Mock Grpc layer
+      client._innerApiCalls.lookupSignal = mockSimpleGrpcMethod(
+        request,
+        null,
+        error
+      );
+
+      client.lookupSignal(request, (err, response) => {
         assert(err instanceof Error);
         assert.strictEqual(err.code, FAKE_STATUS_CODE);
         assert(typeof response === 'undefined');
