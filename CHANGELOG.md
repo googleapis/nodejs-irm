@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+## [1.2.0](https://www.github.com/googleapis/nodejs-irm/compare/v1.1.2...v1.2.0) (2019-06-27)
+
+
+### Features
+
+* add the lookupSignal method and improve jsdoc comments ([#65](https://www.github.com/googleapis/nodejs-irm/issues/65)) ([b1485e9](https://www.github.com/googleapis/nodejs-irm/commit/b1485e9))
+
 ### [1.1.2](https://www.github.com/googleapis/nodejs-irm/compare/v1.1.1...v1.1.2) (2019-06-26)
 
 
