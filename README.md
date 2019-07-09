@@ -11,7 +11,9 @@
 
 
 
-Stackdriver Incident Response & Management API client for Node.js
+Stackdriver Incident Response is currently in private alpha,
+visit [cloud.google.com/incident-response](https://cloud.google.com/incident-response/) to
+sign up.
 
 
 * [Stackdriver Incident Response &amp; Management Node.js Client API Reference][client-docs]
