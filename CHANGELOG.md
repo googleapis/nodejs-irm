@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+### [1.2.1](https://www.github.com/googleapis/nodejs-irm/compare/v1.2.0...v1.2.1) (2019-07-10)
+
+
+### Bug Fixes
+
+* **docs:** add note about library being in private alpha ([#68](https://www.github.com/googleapis/nodejs-irm/issues/68)) ([2a327e4](https://www.github.com/googleapis/nodejs-irm/commit/2a327e4))
+
 ## [1.2.0](https://www.github.com/googleapis/nodejs-irm/compare/v1.1.2...v1.2.0) (2019-06-27)
 
 
