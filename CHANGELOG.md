@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+### [1.2.2](https://www.github.com/googleapis/nodejs-irm/compare/v1.2.1...v1.2.2) (2019-08-05)
+
+
+### Bug Fixes
+
+* allow calls with no request, add JSON proto ([e97b569](https://www.github.com/googleapis/nodejs-irm/commit/e97b569))
+
 ### [1.2.1](https://www.github.com/googleapis/nodejs-irm/compare/v1.2.0...v1.2.1) (2019-07-10)
 
 
