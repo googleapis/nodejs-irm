@@ -1,7 +1,7 @@
 {
   "name": "@google-cloud/irm",
   "description": "Stackdriver Incident Response & Management API client for Node.js",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "license": "Apache-2.0",
   "author": "Google LLC",
   "engines": {
