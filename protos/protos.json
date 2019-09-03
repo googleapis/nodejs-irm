@@ -14,420 +14,6 @@
                     "java_package": "com.google.irm.service.v1alpha2.api"
                   },
                   "nested": {
-                    "User": {
-                      "oneofs": {
-                        "user": {
-                          "oneof": [
-                            "userId",
-                            "email"
-                          ]
-                        }
-                      },
-                      "fields": {
-                        "userId": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "email": {
-                          "type": "string",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "Signal": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "etag": {
-                          "type": "string",
-                          "id": 2
-                        },
-                        "incident": {
-                          "type": "string",
-                          "id": 3
-                        },
-                        "createTime": {
-                          "type": "google.protobuf.Timestamp",
-                          "id": 4
-                        },
-                        "closeTime": {
-                          "type": "google.protobuf.Timestamp",
-                          "id": 10
-                        },
-                        "detectTime": {
-                          "type": "google.protobuf.Timestamp",
-                          "id": 15
-                        },
-                        "creator": {
-                          "type": "User",
-                          "id": 5
-                        },
-                        "title": {
-                          "type": "string",
-                          "id": 6
-                        },
-                        "contentType": {
-                          "type": "string",
-                          "id": 7
-                        },
-                        "content": {
-                          "type": "string",
-                          "id": 8
-                        },
-                        "signalState": {
-                          "type": "State",
-                          "id": 9
-                        },
-                        "signalArtifacts": {
-                          "rule": "repeated",
-                          "type": "SignalArtifact",
-                          "id": 16
-                        }
-                      },
-                      "nested": {
-                        "SignalArtifact": {
-                          "oneofs": {
-                            "artifactType": {
-                              "oneof": [
-                                "userType"
-                              ]
-                            }
-                          },
-                          "fields": {
-                            "userType": {
-                              "type": "string",
-                              "id": 2
-                            },
-                            "uri": {
-                              "type": "string",
-                              "id": 3
-                            }
-                          }
-                        },
-                        "State": {
-                          "values": {
-                            "STATE_UNSPECIFIED": 0,
-                            "STATE_OPEN": 1,
-                            "STATE_CLOSED": 2
-                          }
-                        }
-                      }
-                    },
-                    "Annotation": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "author": {
-                          "type": "User",
-                          "id": 2
-                        },
-                        "createTime": {
-                          "type": "google.protobuf.Timestamp",
-                          "id": 3
-                        },
-                        "content": {
-                          "type": "string",
-                          "id": 4
-                        },
-                        "contentType": {
-                          "type": "string",
-                          "id": 5
-                        }
-                      }
-                    },
-                    "Tag": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "displayName": {
-                          "type": "string",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "Synopsis": {
-                      "fields": {
-                        "contentType": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "content": {
-                          "type": "string",
-                          "id": 2
-                        },
-                        "updateTime": {
-                          "type": "google.protobuf.Timestamp",
-                          "id": 3
-                        },
-                        "author": {
-                          "type": "User",
-                          "id": 4
-                        }
-                      }
-                    },
-                    "Incident": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "title": {
-                          "type": "string",
-                          "id": 2
-                        },
-                        "escalationLevel": {
-                          "type": "EscalationLevel",
-                          "id": 3
-                        },
-                        "etag": {
-                          "type": "string",
-                          "id": 4
-                        },
-                        "severity": {
-                          "type": "Severity",
-                          "id": 5
-                        },
-                        "stage": {
-                          "type": "Stage",
-                          "id": 6
-                        },
-                        "duplicateIncident": {
-                          "type": "string",
-                          "id": 9
-                        },
-                        "startTime": {
-                          "type": "google.protobuf.Timestamp",
-                          "id": 7
-                        },
-                        "synopsis": {
-                          "type": "Synopsis",
-                          "id": 8
-                        },
-                        "communicationVenue": {
-                          "type": "CommunicationVenue",
-                          "id": 10
-                        }
-                      },
-                      "nested": {
-                        "CommunicationVenue": {
-                          "fields": {
-                            "uri": {
-                              "type": "string",
-                              "id": 1
-                            },
-                            "displayName": {
-                              "type": "string",
-                              "id": 2
-                            },
-                            "channelType": {
-                              "type": "ChannelType",
-                              "id": 3
-                            }
-                          },
-                          "nested": {
-                            "ChannelType": {
-                              "values": {
-                                "CHANNEL_TYPE_UNSPECIFIED": 0,
-                                "CHANNEL_TYPE_URI": 1,
-                                "CHANNEL_TYPE_SLACK": 5
-                              }
-                            }
-                          }
-                        },
-                        "EscalationLevel": {
-                          "values": {
-                            "ESCALATION_LEVEL_UNSPECIFIED": 0,
-                            "ESCALATION_LEVEL_ORGANIZATION": 1
-                          }
-                        },
-                        "Severity": {
-                          "values": {
-                            "SEVERITY_UNSPECIFIED": 0,
-                            "SEVERITY_HUGE": 1,
-                            "SEVERITY_MAJOR": 2,
-                            "SEVERITY_MEDIUM": 3,
-                            "SEVERITY_MINOR": 4,
-                            "SEVERITY_NEGLIGIBLE": 5
-                          }
-                        },
-                        "Stage": {
-                          "values": {
-                            "STAGE_UNSPECIFIED": 0,
-                            "STAGE_DETECTED": 4,
-                            "STAGE_TRIAGED": 1,
-                            "STAGE_MITIGATED": 2,
-                            "STAGE_RESOLVED": 3,
-                            "STAGE_DOCUMENTED": 5,
-                            "STAGE_DUPLICATE": 6
-                          }
-                        }
-                      }
-                    },
-                    "IncidentRole": {
-                      "fields": {
-                        "type": {
-                          "type": "Type",
-                          "id": 1
-                        },
-                        "title": {
-                          "type": "string",
-                          "id": 2
-                        },
-                        "description": {
-                          "type": "string",
-                          "id": 3
-                        }
-                      },
-                      "nested": {
-                        "Type": {
-                          "values": {
-                            "TYPE_UNSPECIFIED": 0,
-                            "TYPE_INCIDENT_COMMANDER": 1,
-                            "TYPE_COMMUNICATIONS_LEAD": 2,
-                            "TYPE_OPERATIONS_LEAD": 3,
-                            "TYPE_EXTERNAL_CUSTOMER_COMMUNICATIONS_LEAD": 4,
-                            "TYPE_PRIMARY_ONCALL": 5,
-                            "TYPE_SECONDARY_ONCALL": 6,
-                            "TYPE_OTHER": 7
-                          }
-                        }
-                      }
-                    },
-                    "IncidentRoleAssignment": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "etag": {
-                          "type": "string",
-                          "id": 2
-                        },
-                        "role": {
-                          "type": "IncidentRole",
-                          "id": 3
-                        },
-                        "assignee": {
-                          "type": "User",
-                          "id": 4
-                        },
-                        "proposedAssignee": {
-                          "type": "User",
-                          "id": 5
-                        }
-                      }
-                    },
-                    "Artifact": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "displayName": {
-                          "type": "string",
-                          "id": 2
-                        },
-                        "etag": {
-                          "type": "string",
-                          "id": 3
-                        },
-                        "url": {
-                          "type": "string",
-                          "id": 4
-                        },
-                        "type": {
-                          "type": "Type",
-                          "id": 5
-                        }
-                      },
-                      "nested": {
-                        "Type": {
-                          "values": {
-                            "TYPE_UNSPECIFIED": 0,
-                            "TYPE_URL": 1,
-                            "TYPE_JIRA_ISSUE": 4
-                          }
-                        }
-                      }
-                    },
-                    "CommunicationChannel": {
-                      "oneofs": {
-                        "endpoint": {
-                          "oneof": [
-                            "email",
-                            "notificationChannel"
-                          ]
-                        }
-                      },
-                      "fields": {
-                        "email": {
-                          "type": "Email",
-                          "id": 1
-                        },
-                        "notificationChannel": {
-                          "type": "NotificationChannel",
-                          "id": 2
-                        }
-                      },
-                      "nested": {
-                        "Email": {
-                          "fields": {
-                            "address": {
-                              "type": "string",
-                              "id": 1
-                            }
-                          }
-                        },
-                        "NotificationChannel": {
-                          "fields": {
-                            "name": {
-                              "type": "string",
-                              "id": 1
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "Subscription": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "etag": {
-                          "type": "string",
-                          "id": 2
-                        },
-                        "subscriptionChannel": {
-                          "type": "CommunicationChannel",
-                          "id": 3
-                        },
-                        "eventTypes": {
-                          "rule": "repeated",
-                          "type": "EventType",
-                          "id": 4
-                        }
-                      },
-                      "nested": {
-                        "EventType": {
-                          "values": {
-                            "EVENT_TYPE_UNSPECIFIED": 0,
-                            "EVENT_TYPE_TITLE_CHANGE": 1,
-                            "EVENT_TYPE_SYNOPSIS_CHANGE": 2,
-                            "EVENT_TYPE_STAGE_CHANGE": 3,
-                            "EVENT_TYPE_SEVERITY_CHANGE": 4,
-                            "EVENT_TYPE_ANNOTATION_ADD": 5,
-                            "EVENT_TYPE_ANNOTATION_CHANGE": 6
-                          }
-                        }
-                      }
-                    },
                     "IncidentService": {
                       "options": {
                         "(google.api.default_host)": "irm.googleapis.com",
@@ -1298,6 +884,420 @@
                         "newAssignee": {
                           "type": "User",
                           "id": 2
+                        }
+                      }
+                    },
+                    "User": {
+                      "oneofs": {
+                        "user": {
+                          "oneof": [
+                            "userId",
+                            "email"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "userId": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "email": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "Signal": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "etag": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "incident": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "createTime": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 4
+                        },
+                        "closeTime": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 10
+                        },
+                        "detectTime": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 15
+                        },
+                        "creator": {
+                          "type": "User",
+                          "id": 5
+                        },
+                        "title": {
+                          "type": "string",
+                          "id": 6
+                        },
+                        "contentType": {
+                          "type": "string",
+                          "id": 7
+                        },
+                        "content": {
+                          "type": "string",
+                          "id": 8
+                        },
+                        "signalState": {
+                          "type": "State",
+                          "id": 9
+                        },
+                        "signalArtifacts": {
+                          "rule": "repeated",
+                          "type": "SignalArtifact",
+                          "id": 16
+                        }
+                      },
+                      "nested": {
+                        "SignalArtifact": {
+                          "oneofs": {
+                            "artifactType": {
+                              "oneof": [
+                                "userType"
+                              ]
+                            }
+                          },
+                          "fields": {
+                            "userType": {
+                              "type": "string",
+                              "id": 2
+                            },
+                            "uri": {
+                              "type": "string",
+                              "id": 3
+                            }
+                          }
+                        },
+                        "State": {
+                          "values": {
+                            "STATE_UNSPECIFIED": 0,
+                            "STATE_OPEN": 1,
+                            "STATE_CLOSED": 2
+                          }
+                        }
+                      }
+                    },
+                    "Annotation": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "author": {
+                          "type": "User",
+                          "id": 2
+                        },
+                        "createTime": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 3
+                        },
+                        "content": {
+                          "type": "string",
+                          "id": 4
+                        },
+                        "contentType": {
+                          "type": "string",
+                          "id": 5
+                        }
+                      }
+                    },
+                    "Tag": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "displayName": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "Synopsis": {
+                      "fields": {
+                        "contentType": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "content": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "updateTime": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 3
+                        },
+                        "author": {
+                          "type": "User",
+                          "id": 4
+                        }
+                      }
+                    },
+                    "Incident": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "title": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "escalationLevel": {
+                          "type": "EscalationLevel",
+                          "id": 3
+                        },
+                        "etag": {
+                          "type": "string",
+                          "id": 4
+                        },
+                        "severity": {
+                          "type": "Severity",
+                          "id": 5
+                        },
+                        "stage": {
+                          "type": "Stage",
+                          "id": 6
+                        },
+                        "duplicateIncident": {
+                          "type": "string",
+                          "id": 9
+                        },
+                        "startTime": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 7
+                        },
+                        "synopsis": {
+                          "type": "Synopsis",
+                          "id": 8
+                        },
+                        "communicationVenue": {
+                          "type": "CommunicationVenue",
+                          "id": 10
+                        }
+                      },
+                      "nested": {
+                        "CommunicationVenue": {
+                          "fields": {
+                            "uri": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "displayName": {
+                              "type": "string",
+                              "id": 2
+                            },
+                            "channelType": {
+                              "type": "ChannelType",
+                              "id": 3
+                            }
+                          },
+                          "nested": {
+                            "ChannelType": {
+                              "values": {
+                                "CHANNEL_TYPE_UNSPECIFIED": 0,
+                                "CHANNEL_TYPE_URI": 1,
+                                "CHANNEL_TYPE_SLACK": 5
+                              }
+                            }
+                          }
+                        },
+                        "EscalationLevel": {
+                          "values": {
+                            "ESCALATION_LEVEL_UNSPECIFIED": 0,
+                            "ESCALATION_LEVEL_ORGANIZATION": 1
+                          }
+                        },
+                        "Severity": {
+                          "values": {
+                            "SEVERITY_UNSPECIFIED": 0,
+                            "SEVERITY_HUGE": 1,
+                            "SEVERITY_MAJOR": 2,
+                            "SEVERITY_MEDIUM": 3,
+                            "SEVERITY_MINOR": 4,
+                            "SEVERITY_NEGLIGIBLE": 5
+                          }
+                        },
+                        "Stage": {
+                          "values": {
+                            "STAGE_UNSPECIFIED": 0,
+                            "STAGE_DETECTED": 4,
+                            "STAGE_TRIAGED": 1,
+                            "STAGE_MITIGATED": 2,
+                            "STAGE_RESOLVED": 3,
+                            "STAGE_DOCUMENTED": 5,
+                            "STAGE_DUPLICATE": 6
+                          }
+                        }
+                      }
+                    },
+                    "IncidentRole": {
+                      "fields": {
+                        "type": {
+                          "type": "Type",
+                          "id": 1
+                        },
+                        "title": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "description": {
+                          "type": "string",
+                          "id": 3
+                        }
+                      },
+                      "nested": {
+                        "Type": {
+                          "values": {
+                            "TYPE_UNSPECIFIED": 0,
+                            "TYPE_INCIDENT_COMMANDER": 1,
+                            "TYPE_COMMUNICATIONS_LEAD": 2,
+                            "TYPE_OPERATIONS_LEAD": 3,
+                            "TYPE_EXTERNAL_CUSTOMER_COMMUNICATIONS_LEAD": 4,
+                            "TYPE_PRIMARY_ONCALL": 5,
+                            "TYPE_SECONDARY_ONCALL": 6,
+                            "TYPE_OTHER": 7
+                          }
+                        }
+                      }
+                    },
+                    "IncidentRoleAssignment": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "etag": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "role": {
+                          "type": "IncidentRole",
+                          "id": 3
+                        },
+                        "assignee": {
+                          "type": "User",
+                          "id": 4
+                        },
+                        "proposedAssignee": {
+                          "type": "User",
+                          "id": 5
+                        }
+                      }
+                    },
+                    "Artifact": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "displayName": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "etag": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "url": {
+                          "type": "string",
+                          "id": 4
+                        },
+                        "type": {
+                          "type": "Type",
+                          "id": 5
+                        }
+                      },
+                      "nested": {
+                        "Type": {
+                          "values": {
+                            "TYPE_UNSPECIFIED": 0,
+                            "TYPE_URL": 1,
+                            "TYPE_JIRA_ISSUE": 4
+                          }
+                        }
+                      }
+                    },
+                    "CommunicationChannel": {
+                      "oneofs": {
+                        "endpoint": {
+                          "oneof": [
+                            "email",
+                            "notificationChannel"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "email": {
+                          "type": "Email",
+                          "id": 1
+                        },
+                        "notificationChannel": {
+                          "type": "NotificationChannel",
+                          "id": 2
+                        }
+                      },
+                      "nested": {
+                        "Email": {
+                          "fields": {
+                            "address": {
+                              "type": "string",
+                              "id": 1
+                            }
+                          }
+                        },
+                        "NotificationChannel": {
+                          "fields": {
+                            "name": {
+                              "type": "string",
+                              "id": 1
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Subscription": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "etag": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "subscriptionChannel": {
+                          "type": "CommunicationChannel",
+                          "id": 3
+                        },
+                        "eventTypes": {
+                          "rule": "repeated",
+                          "type": "EventType",
+                          "id": 4
+                        }
+                      },
+                      "nested": {
+                        "EventType": {
+                          "values": {
+                            "EVENT_TYPE_UNSPECIFIED": 0,
+                            "EVENT_TYPE_TITLE_CHANGE": 1,
+                            "EVENT_TYPE_SYNOPSIS_CHANGE": 2,
+                            "EVENT_TYPE_STAGE_CHANGE": 3,
+                            "EVENT_TYPE_SEVERITY_CHANGE": 4,
+                            "EVENT_TYPE_ANNOTATION_ADD": 5,
+                            "EVENT_TYPE_ANNOTATION_CHANGE": 6
+                          }
                         }
                       }
                     }

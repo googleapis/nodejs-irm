@@ -44,6 +44,13 @@ describe('IncidentServiceClient', () => {
     assert(client);
   });
 
+  it('should create a client with gRPC fallback', () => {
+    const client = new irmModule.v1alpha2.IncidentServiceClient({
+      fallback: true,
+    });
+    assert(client);
+  });
+
   describe('createIncident', () => {
     it('invokes createIncident without error', done => {
       const client = new irmModule.v1alpha2.IncidentServiceClient({
