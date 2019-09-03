@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+### [1.2.3](https://www.github.com/googleapis/nodejs-irm/compare/v1.2.2...v1.2.3) (2019-09-03)
+
+
+### Bug Fixes
+
+* set proper version # for x-goog-api-client ([f5bce70](https://www.github.com/googleapis/nodejs-irm/commit/f5bce70))
+
 ### [1.2.2](https://www.github.com/googleapis/nodejs-irm/compare/v1.2.1...v1.2.2) (2019-08-05)
 
 
