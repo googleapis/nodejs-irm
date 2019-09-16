@@ -4,6 +4,18 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+## [1.3.0](https://www.github.com/googleapis/nodejs-irm/compare/v1.2.2...v1.3.0) (2019-09-16)
+
+
+### Bug Fixes
+
+* set proper version # for x-goog-api-client ([f5bce70](https://www.github.com/googleapis/nodejs-irm/commit/f5bce70))
+
+
+### Features
+
+* load protos from JSON, grpc-fallback support ([f7fe6bb](https://www.github.com/googleapis/nodejs-irm/commit/f7fe6bb))
+
 ### [1.2.2](https://www.github.com/googleapis/nodejs-irm/compare/v1.2.1...v1.2.2) (2019-08-05)
 
 
