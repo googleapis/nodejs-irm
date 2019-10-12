@@ -4,6 +4,18 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+## [1.4.0](https://www.github.com/googleapis/nodejs-irm/compare/v1.3.0...v1.4.0) (2019-10-09)
+
+
+### Bug Fixes
+
+* use compatible version of google-gax ([706c57b](https://www.github.com/googleapis/nodejs-irm/commit/706c57b))
+
+
+### Features
+
+* .d.ts for protos ([#88](https://www.github.com/googleapis/nodejs-irm/issues/88)) ([7cbb418](https://www.github.com/googleapis/nodejs-irm/commit/7cbb418))
+
 ## [1.3.0](https://www.github.com/googleapis/nodejs-irm/compare/v1.2.2...v1.3.0) (2019-09-16)
 
 
