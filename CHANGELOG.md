@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+### [1.4.1](https://www.github.com/googleapis/nodejs-irm/compare/v1.4.0...v1.4.1) (2019-10-22)
+
+
+### Bug Fixes
+
+* **deps:** bump google-gax to 1.7.5 ([#97](https://www.github.com/googleapis/nodejs-irm/issues/97)) ([930b673](https://www.github.com/googleapis/nodejs-irm/commit/930b67318594c59ab93fe4ab543a8afcb45216d2))
+
 ## [1.4.0](https://www.github.com/googleapis/nodejs-irm/compare/v1.3.0...v1.4.0) (2019-10-09)
 
 
