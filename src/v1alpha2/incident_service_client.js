@@ -69,7 +69,9 @@ class IncidentServiceClient {
     const gaxModule = !global.isBrowser && opts.fallback ? gax.fallback : gax;
 
     const servicePath =
-      opts.servicePath || opts.apiEndpoint || this.constructor.servicePath;
+      opts.servicePath ||
+      opts.apiEndpoint ||
+      this.constructor.servicePath;
 
     // Ensure that options include the service address and port.
     opts = Object.assign(
@@ -110,15 +112,11 @@ class IncidentServiceClient {
     // For Node.js, pass the path to JSON proto file.
     // For browsers, pass the JSON content.
 
-    const nodejsProtoPath = path.join(
-      __dirname,
-      '..',
-      '..',
-      'protos',
-      'protos.json'
-    );
+    const nodejsProtoPath = path.join(__dirname, '..', '..', 'protos', 'protos.json');
     const protos = gaxGrpc.loadProto(
-      opts.fallback ? require('../../protos/protos.json') : nodejsProtoPath
+      opts.fallback ?
+        require("../../protos/protos.json") :
+        nodejsProtoPath
     );
 
     // This API contains "path templates"; forward-slash-separated
@@ -134,7 +132,9 @@ class IncidentServiceClient {
       incidentPathTemplate: new gaxModule.PathTemplate(
         'projects/{project}/incidents/{incident}'
       ),
-      projectPathTemplate: new gaxModule.PathTemplate('projects/{project}'),
+      projectPathTemplate: new gaxModule.PathTemplate(
+        'projects/{project}'
+      ),
       roleAssignmentPathTemplate: new gaxModule.PathTemplate(
         'projects/{project}/incidents/{incident}/roleAssignments/{role_assignment}'
       ),
@@ -211,9 +211,9 @@ class IncidentServiceClient {
     // Put together the "service stub" for
     // google.cloud.irm.v1alpha2.IncidentService.
     const incidentServiceStub = gaxGrpc.createStub(
-      opts.fallback
-        ? protos.lookupService('google.cloud.irm.v1alpha2.IncidentService')
-        : protos.google.cloud.irm.v1alpha2.IncidentService,
+      opts.fallback ?
+        protos.lookupService('google.cloud.irm.v1alpha2.IncidentService') :
+        protos.google.cloud.irm.v1alpha2.IncidentService,
       opts
     );
 
@@ -297,7 +297,9 @@ class IncidentServiceClient {
    * in this service.
    */
   static get scopes() {
-    return ['https://www.googleapis.com/auth/cloud-platform'];
+    return [
+      'https://www.googleapis.com/auth/cloud-platform',
+    ];
   }
 
   /**
@@ -370,11 +372,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.createIncident(request, options, callback);
   }
@@ -425,11 +426,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
     return this._innerApiCalls.getIncident(request, options, callback);
   }
@@ -586,11 +586,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.searchIncidents(request, options, callback);
   }
@@ -706,7 +705,7 @@ class IncidentServiceClient {
       request,
       options
     );
-  }
+  };
 
   /**
    * Updates an existing incident.
@@ -759,11 +758,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      'incident.name': request.incident.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'incident.name': request.incident.name
+      });
 
     return this._innerApiCalls.updateIncident(request, options, callback);
   }
@@ -864,17 +862,12 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
-    return this._innerApiCalls.searchSimilarIncidents(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.searchSimilarIncidents(request, options, callback);
   }
 
   /**
@@ -931,7 +924,7 @@ class IncidentServiceClient {
       request,
       options
     );
-  }
+  };
 
   /**
    * Creates an annotation on an existing incident. Only 'text/plain' and
@@ -989,11 +982,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.createAnnotation(request, options, callback);
   }
@@ -1093,11 +1085,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.listAnnotations(request, options, callback);
   }
@@ -1156,7 +1147,7 @@ class IncidentServiceClient {
       request,
       options
     );
-  }
+  };
 
   /**
    * Creates a tag on an existing incident.
@@ -1213,11 +1204,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.createTag(request, options, callback);
   }
@@ -1259,11 +1249,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
     return this._innerApiCalls.deleteTag(request, options, callback);
   }
@@ -1362,11 +1351,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.listTags(request, options, callback);
   }
@@ -1425,7 +1413,7 @@ class IncidentServiceClient {
       request,
       options
     );
-  }
+  };
 
   /**
    * Creates a new signal.
@@ -1482,11 +1470,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.createSignal(request, options, callback);
   }
@@ -1645,11 +1632,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.searchSignals(request, options, callback);
   }
@@ -1767,7 +1753,7 @@ class IncidentServiceClient {
       request,
       options
     );
-  }
+  };
 
   /**
    * Returns a signal by name.
@@ -1815,11 +1801,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
     return this._innerApiCalls.getSignal(request, options, callback);
   }
@@ -1926,11 +1911,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      'signal.name': request.signal.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'signal.name': request.signal.name
+      });
 
     return this._innerApiCalls.updateSignal(request, options, callback);
   }
@@ -2004,11 +1988,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      'incident.name': request.incident.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'incident.name': request.incident.name
+      });
 
     return this._innerApiCalls.escalateIncident(request, options, callback);
   }
@@ -2068,11 +2051,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.createArtifact(request, options, callback);
   }
@@ -2171,11 +2153,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.listArtifacts(request, options, callback);
   }
@@ -2234,7 +2215,7 @@ class IncidentServiceClient {
       request,
       options
     );
-  }
+  };
 
   /**
    * Updates an existing artifact.
@@ -2287,11 +2268,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      'artifact.name': request.artifact.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'artifact.name': request.artifact.name
+      });
 
     return this._innerApiCalls.updateArtifact(request, options, callback);
   }
@@ -2333,11 +2313,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
     return this._innerApiCalls.deleteArtifact(request, options, callback);
   }
@@ -2413,11 +2392,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.sendShiftHandoff(request, options, callback);
   }
@@ -2480,11 +2458,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.createSubscription(request, options, callback);
   }
@@ -2540,11 +2517,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      'subscription.name': request.subscription.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'subscription.name': request.subscription.name
+      });
 
     return this._innerApiCalls.updateSubscription(request, options, callback);
   }
@@ -2643,11 +2619,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.listSubscriptions(request, options, callback);
   }
@@ -2706,7 +2681,7 @@ class IncidentServiceClient {
       request,
       options
     );
-  }
+  };
 
   /**
    * Deletes an existing subscription.
@@ -2745,11 +2720,10 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
     return this._innerApiCalls.deleteSubscription(request, options, callback);
   }
@@ -2813,17 +2787,12 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
-    return this._innerApiCalls.createIncidentRoleAssignment(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.createIncidentRoleAssignment(request, options, callback);
   }
 
   /**
@@ -2863,17 +2832,12 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
-    return this._innerApiCalls.deleteIncidentRoleAssignment(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.deleteIncidentRoleAssignment(request, options, callback);
   }
 
   /**
@@ -2970,17 +2934,12 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
-    return this._innerApiCalls.listIncidentRoleAssignments(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.listIncidentRoleAssignments(request, options, callback);
   }
 
   /**
@@ -3037,7 +2996,7 @@ class IncidentServiceClient {
       request,
       options
     );
-  }
+  };
 
   /**
    * Starts a role handover. The proposed assignee will receive an email
@@ -3095,17 +3054,12 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
-    return this._innerApiCalls.requestIncidentRoleHandover(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.requestIncidentRoleHandover(request, options, callback);
   }
 
   /**
@@ -3166,17 +3120,12 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
-    return this._innerApiCalls.confirmIncidentRoleHandover(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.confirmIncidentRoleHandover(request, options, callback);
   }
 
   /**
@@ -3237,17 +3186,12 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
-    return this._innerApiCalls.forceIncidentRoleHandover(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.forceIncidentRoleHandover(request, options, callback);
   }
 
   /**
@@ -3308,17 +3252,12 @@ class IncidentServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
-    return this._innerApiCalls.cancelIncidentRoleHandover(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.cancelIncidentRoleHandover(request, options, callback);
   }
 
   // --------------------
@@ -3453,7 +3392,8 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromAnnotationName(annotationName) {
-    return this._pathTemplates.annotationPathTemplate.match(annotationName)
+    return this._pathTemplates.annotationPathTemplate
+      .match(annotationName)
       .project;
   }
 
@@ -3465,7 +3405,8 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the incident.
    */
   matchIncidentFromAnnotationName(annotationName) {
-    return this._pathTemplates.annotationPathTemplate.match(annotationName)
+    return this._pathTemplates.annotationPathTemplate
+      .match(annotationName)
       .incident;
   }
 
@@ -3477,7 +3418,8 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the annotation.
    */
   matchAnnotationFromAnnotationName(annotationName) {
-    return this._pathTemplates.annotationPathTemplate.match(annotationName)
+    return this._pathTemplates.annotationPathTemplate
+      .match(annotationName)
       .annotation;
   }
 
@@ -3489,7 +3431,9 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromArtifactName(artifactName) {
-    return this._pathTemplates.artifactPathTemplate.match(artifactName).project;
+    return this._pathTemplates.artifactPathTemplate
+      .match(artifactName)
+      .project;
   }
 
   /**
@@ -3500,7 +3444,8 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the incident.
    */
   matchIncidentFromArtifactName(artifactName) {
-    return this._pathTemplates.artifactPathTemplate.match(artifactName)
+    return this._pathTemplates.artifactPathTemplate
+      .match(artifactName)
       .incident;
   }
 
@@ -3512,7 +3457,8 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the artifact.
    */
   matchArtifactFromArtifactName(artifactName) {
-    return this._pathTemplates.artifactPathTemplate.match(artifactName)
+    return this._pathTemplates.artifactPathTemplate
+      .match(artifactName)
       .artifact;
   }
 
@@ -3524,7 +3470,9 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromIncidentName(incidentName) {
-    return this._pathTemplates.incidentPathTemplate.match(incidentName).project;
+    return this._pathTemplates.incidentPathTemplate
+      .match(incidentName)
+      .project;
   }
 
   /**
@@ -3535,7 +3483,8 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the incident.
    */
   matchIncidentFromIncidentName(incidentName) {
-    return this._pathTemplates.incidentPathTemplate.match(incidentName)
+    return this._pathTemplates.incidentPathTemplate
+      .match(incidentName)
       .incident;
   }
 
@@ -3547,7 +3496,9 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromProjectName(projectName) {
-    return this._pathTemplates.projectPathTemplate.match(projectName).project;
+    return this._pathTemplates.projectPathTemplate
+      .match(projectName)
+      .project;
   }
 
   /**
@@ -3558,9 +3509,9 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromRoleAssignmentName(roleAssignmentName) {
-    return this._pathTemplates.roleAssignmentPathTemplate.match(
-      roleAssignmentName
-    ).project;
+    return this._pathTemplates.roleAssignmentPathTemplate
+      .match(roleAssignmentName)
+      .project;
   }
 
   /**
@@ -3571,9 +3522,9 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the incident.
    */
   matchIncidentFromRoleAssignmentName(roleAssignmentName) {
-    return this._pathTemplates.roleAssignmentPathTemplate.match(
-      roleAssignmentName
-    ).incident;
+    return this._pathTemplates.roleAssignmentPathTemplate
+      .match(roleAssignmentName)
+      .incident;
   }
 
   /**
@@ -3584,9 +3535,9 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the role_assignment.
    */
   matchRoleAssignmentFromRoleAssignmentName(roleAssignmentName) {
-    return this._pathTemplates.roleAssignmentPathTemplate.match(
-      roleAssignmentName
-    ).role_assignment;
+    return this._pathTemplates.roleAssignmentPathTemplate
+      .match(roleAssignmentName)
+      .role_assignment;
   }
 
   /**
@@ -3597,7 +3548,9 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromSignalName(signalName) {
-    return this._pathTemplates.signalPathTemplate.match(signalName).project;
+    return this._pathTemplates.signalPathTemplate
+      .match(signalName)
+      .project;
   }
 
   /**
@@ -3608,7 +3561,9 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the signal.
    */
   matchSignalFromSignalName(signalName) {
-    return this._pathTemplates.signalPathTemplate.match(signalName).signal;
+    return this._pathTemplates.signalPathTemplate
+      .match(signalName)
+      .signal;
   }
 
   /**
@@ -3619,7 +3574,8 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromSubscriptionName(subscriptionName) {
-    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName)
+    return this._pathTemplates.subscriptionPathTemplate
+      .match(subscriptionName)
       .project;
   }
 
@@ -3631,7 +3587,8 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the incident.
    */
   matchIncidentFromSubscriptionName(subscriptionName) {
-    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName)
+    return this._pathTemplates.subscriptionPathTemplate
+      .match(subscriptionName)
       .incident;
   }
 
@@ -3643,7 +3600,8 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the subscription.
    */
   matchSubscriptionFromSubscriptionName(subscriptionName) {
-    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName)
+    return this._pathTemplates.subscriptionPathTemplate
+      .match(subscriptionName)
       .subscription;
   }
 
@@ -3655,7 +3613,9 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromTagName(tagName) {
-    return this._pathTemplates.tagPathTemplate.match(tagName).project;
+    return this._pathTemplates.tagPathTemplate
+      .match(tagName)
+      .project;
   }
 
   /**
@@ -3666,7 +3626,9 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the incident.
    */
   matchIncidentFromTagName(tagName) {
-    return this._pathTemplates.tagPathTemplate.match(tagName).incident;
+    return this._pathTemplates.tagPathTemplate
+      .match(tagName)
+      .incident;
   }
 
   /**
@@ -3677,8 +3639,11 @@ class IncidentServiceClient {
    * @returns {String} - A string representing the tag.
    */
   matchTagFromTagName(tagName) {
-    return this._pathTemplates.tagPathTemplate.match(tagName).tag;
+    return this._pathTemplates.tagPathTemplate
+      .match(tagName)
+      .tag;
   }
 }
+
 
 module.exports = IncidentServiceClient;
