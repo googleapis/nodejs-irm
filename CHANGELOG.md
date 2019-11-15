@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+### [1.4.2](https://www.github.com/googleapis/nodejs-irm/compare/v1.4.1...v1.4.2) (2019-11-15)
+
+
+### Bug Fixes
+
+* **docs:** snippets are now replaced in jsdoc comments ([#105](https://www.github.com/googleapis/nodejs-irm/issues/105)) ([76b6878](https://www.github.com/googleapis/nodejs-irm/commit/76b68782801487b0828b47960a028b39ee2feb52))
+
 ### [1.4.1](https://www.github.com/googleapis/nodejs-irm/compare/v1.4.0...v1.4.1) (2019-10-22)
 
 
