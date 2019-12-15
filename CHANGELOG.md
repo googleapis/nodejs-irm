@@ -4,6 +4,14 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+### [1.4.3](https://www.github.com/googleapis/nodejs-irm/compare/v1.4.2...v1.4.3) (2019-12-15)
+
+
+### Bug Fixes
+
+* **deps:** pin TypeScript below 3.7.0 ([c2f6557](https://www.github.com/googleapis/nodejs-irm/commit/c2f6557e6e6f0cf1acf8de888b50a85d68d1ed43))
+* update imports to include long ([#109](https://www.github.com/googleapis/nodejs-irm/issues/109)) ([10c9a05](https://www.github.com/googleapis/nodejs-irm/commit/10c9a0590186ed089f53ee1599aebed9d958c8cd))
+
 ### [1.4.2](https://www.github.com/googleapis/nodejs-irm/compare/v1.4.1...v1.4.2) (2019-11-15)
 
 
