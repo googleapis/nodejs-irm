@@ -14,7 +14,7 @@
     "test": "mocha --timeout 600000"
   },
   "dependencies": {
-    "@google-cloud/irm": "^1.4.2"
+    "@google-cloud/irm": "^1.4.3"
   },
   "devDependencies": {}
 }
