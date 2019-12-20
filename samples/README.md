@@ -25,6 +25,12 @@ sign up.
 Before running the samples, make sure you've followed the steps outlined in
 [Using the client library](https://github.com/googleapis/nodejs-irm#using-the-client-library).
 
+`cd samples`
+
+`npm install`
+
+`cd ..`
+
 ## Samples
 
 
@@ -38,7 +44,7 @@ View the [source code](https://github.com/googleapis/nodejs-irm/blob/master/samp
 __Usage:__
 
 
-`node annotateIncident.js`
+`node samples/annotateIncident.js`
 
 
 -----
@@ -55,7 +61,7 @@ View the [source code](https://github.com/googleapis/nodejs-irm/blob/master/samp
 __Usage:__
 
 
-`node changeSeverity.js`
+`node samples/changeSeverity.js`
 
 
 -----
@@ -72,7 +78,7 @@ View the [source code](https://github.com/googleapis/nodejs-irm/blob/master/samp
 __Usage:__
 
 
-`node changeStage.js`
+`node samples/changeStage.js`
 
 
 -----
@@ -89,7 +95,7 @@ View the [source code](https://github.com/googleapis/nodejs-irm/blob/master/samp
 __Usage:__
 
 
-`node createIncident.js`
+`node samples/createIncident.js`
 
 
 -----
@@ -106,7 +112,7 @@ View the [source code](https://github.com/googleapis/nodejs-irm/blob/master/samp
 __Usage:__
 
 
-`node createSignal.js`
+`node samples/createSignal.js`
 
 
 
