@@ -1,3 +1,4 @@
 [
+  "../../protos/google/cloud/irm/v1alpha2/incidents.proto",
   "../../protos/google/cloud/irm/v1alpha2/incidents_service.proto"
 ]
