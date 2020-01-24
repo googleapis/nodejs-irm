@@ -52,6 +52,277 @@ describe('IncidentServiceClient', () => {
     assert(client);
   });
 
+  describe('deleteArtifact', () => {
+    it('invokes deleteArtifact without error', done => {
+      const client = new irmModule.v1alpha2.IncidentServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+
+      // Mock request
+      const formattedName = client.artifactPath(
+        '[PROJECT]',
+        '[INCIDENT]',
+        '[ARTIFACT]'
+      );
+      const request = {
+        name: formattedName,
+      };
+
+      // Mock Grpc layer
+      client._innerApiCalls.deleteArtifact = mockSimpleGrpcMethod(request);
+
+      client.deleteArtifact(request, err => {
+        assert.ifError(err);
+        done();
+      });
+    });
+
+    it('invokes deleteArtifact with error', done => {
+      const client = new irmModule.v1alpha2.IncidentServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+
+      // Mock request
+      const formattedName = client.artifactPath(
+        '[PROJECT]',
+        '[INCIDENT]',
+        '[ARTIFACT]'
+      );
+      const request = {
+        name: formattedName,
+      };
+
+      // Mock Grpc layer
+      client._innerApiCalls.deleteArtifact = mockSimpleGrpcMethod(
+        request,
+        null,
+        error
+      );
+
+      client.deleteArtifact(request, err => {
+        assert(err instanceof Error);
+        assert.strictEqual(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
+  });
+
+  describe('requestIncidentRoleHandover', () => {
+    it('invokes requestIncidentRoleHandover without error', done => {
+      const client = new irmModule.v1alpha2.IncidentServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+
+      // Mock request
+      const name = 'name3373707';
+      const newAssignee = {};
+      const request = {
+        name: name,
+        newAssignee: newAssignee,
+      };
+
+      // Mock response
+      const name2 = 'name2-1052831874';
+      const etag = 'etag3123477';
+      const expectedResponse = {
+        name: name2,
+        etag: etag,
+      };
+
+      // Mock Grpc layer
+      client._innerApiCalls.requestIncidentRoleHandover = mockSimpleGrpcMethod(
+        request,
+        expectedResponse
+      );
+
+      client.requestIncidentRoleHandover(request, (err, response) => {
+        assert.ifError(err);
+        assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes requestIncidentRoleHandover with error', done => {
+      const client = new irmModule.v1alpha2.IncidentServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+
+      // Mock request
+      const name = 'name3373707';
+      const newAssignee = {};
+      const request = {
+        name: name,
+        newAssignee: newAssignee,
+      };
+
+      // Mock Grpc layer
+      client._innerApiCalls.requestIncidentRoleHandover = mockSimpleGrpcMethod(
+        request,
+        null,
+        error
+      );
+
+      client.requestIncidentRoleHandover(request, (err, response) => {
+        assert(err instanceof Error);
+        assert.strictEqual(err.code, FAKE_STATUS_CODE);
+        assert(typeof response === 'undefined');
+        done();
+      });
+    });
+  });
+
+  describe('confirmIncidentRoleHandover', () => {
+    it('invokes confirmIncidentRoleHandover without error', done => {
+      const client = new irmModule.v1alpha2.IncidentServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+
+      // Mock request
+      const formattedName = client.incidentRoleAssignmentPath(
+        '[PROJECT_ID_OR_NUMBER]',
+        '[INCIDENT_ID]',
+        '[ROLE_ID]'
+      );
+      const newAssignee = {};
+      const request = {
+        name: formattedName,
+        newAssignee: newAssignee,
+      };
+
+      // Mock response
+      const name2 = 'name2-1052831874';
+      const etag = 'etag3123477';
+      const expectedResponse = {
+        name: name2,
+        etag: etag,
+      };
+
+      // Mock Grpc layer
+      client._innerApiCalls.confirmIncidentRoleHandover = mockSimpleGrpcMethod(
+        request,
+        expectedResponse
+      );
+
+      client.confirmIncidentRoleHandover(request, (err, response) => {
+        assert.ifError(err);
+        assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes confirmIncidentRoleHandover with error', done => {
+      const client = new irmModule.v1alpha2.IncidentServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+
+      // Mock request
+      const formattedName = client.incidentRoleAssignmentPath(
+        '[PROJECT_ID_OR_NUMBER]',
+        '[INCIDENT_ID]',
+        '[ROLE_ID]'
+      );
+      const newAssignee = {};
+      const request = {
+        name: formattedName,
+        newAssignee: newAssignee,
+      };
+
+      // Mock Grpc layer
+      client._innerApiCalls.confirmIncidentRoleHandover = mockSimpleGrpcMethod(
+        request,
+        null,
+        error
+      );
+
+      client.confirmIncidentRoleHandover(request, (err, response) => {
+        assert(err instanceof Error);
+        assert.strictEqual(err.code, FAKE_STATUS_CODE);
+        assert(typeof response === 'undefined');
+        done();
+      });
+    });
+  });
+
+  describe('forceIncidentRoleHandover', () => {
+    it('invokes forceIncidentRoleHandover without error', done => {
+      const client = new irmModule.v1alpha2.IncidentServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+
+      // Mock request
+      const formattedName = client.incidentRoleAssignmentPath(
+        '[PROJECT_ID_OR_NUMBER]',
+        '[INCIDENT_ID]',
+        '[ROLE_ID]'
+      );
+      const newAssignee = {};
+      const request = {
+        name: formattedName,
+        newAssignee: newAssignee,
+      };
+
+      // Mock response
+      const name2 = 'name2-1052831874';
+      const etag = 'etag3123477';
+      const expectedResponse = {
+        name: name2,
+        etag: etag,
+      };
+
+      // Mock Grpc layer
+      client._innerApiCalls.forceIncidentRoleHandover = mockSimpleGrpcMethod(
+        request,
+        expectedResponse
+      );
+
+      client.forceIncidentRoleHandover(request, (err, response) => {
+        assert.ifError(err);
+        assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes forceIncidentRoleHandover with error', done => {
+      const client = new irmModule.v1alpha2.IncidentServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+
+      // Mock request
+      const formattedName = client.incidentRoleAssignmentPath(
+        '[PROJECT_ID_OR_NUMBER]',
+        '[INCIDENT_ID]',
+        '[ROLE_ID]'
+      );
+      const newAssignee = {};
+      const request = {
+        name: formattedName,
+        newAssignee: newAssignee,
+      };
+
+      // Mock Grpc layer
+      client._innerApiCalls.forceIncidentRoleHandover = mockSimpleGrpcMethod(
+        request,
+        null,
+        error
+      );
+
+      client.forceIncidentRoleHandover(request, (err, response) => {
+        assert(err instanceof Error);
+        assert.strictEqual(err.code, FAKE_STATUS_CODE);
+        assert(typeof response === 'undefined');
+        done();
+      });
+    });
+  });
+
   describe('createIncident', () => {
     it('invokes createIncident without error', done => {
       const client = new irmModule.v1alpha2.IncidentServiceClient({
@@ -842,6 +1113,70 @@ describe('IncidentServiceClient', () => {
     });
   });
 
+  describe('lookupSignal', () => {
+    it('invokes lookupSignal without error', done => {
+      const client = new irmModule.v1alpha2.IncidentServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+
+      // Mock request
+      const request = {};
+
+      // Mock response
+      const name = 'name3373707';
+      const etag = 'etag3123477';
+      const incident = 'incident86983890';
+      const title = 'title110371416';
+      const contentType = 'contentType831846208';
+      const content = 'content951530617';
+      const expectedResponse = {
+        name: name,
+        etag: etag,
+        incident: incident,
+        title: title,
+        contentType: contentType,
+        content: content,
+      };
+
+      // Mock Grpc layer
+      client._innerApiCalls.lookupSignal = mockSimpleGrpcMethod(
+        request,
+        expectedResponse
+      );
+
+      client.lookupSignal(request, (err, response) => {
+        assert.ifError(err);
+        assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes lookupSignal with error', done => {
+      const client = new irmModule.v1alpha2.IncidentServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+
+      // Mock request
+      const request = {};
+
+      // Mock Grpc layer
+      client._innerApiCalls.lookupSignal = mockSimpleGrpcMethod(
+        request,
+        null,
+        error
+      );
+
+      client.lookupSignal(request, (err, response) => {
+        assert(err instanceof Error);
+        assert.strictEqual(err.code, FAKE_STATUS_CODE);
+        assert(typeof response === 'undefined');
+        done();
+      });
+    });
+  });
+
   describe('getSignal', () => {
     it('invokes getSignal without error', done => {
       const client = new irmModule.v1alpha2.IncidentServiceClient({
@@ -904,70 +1239,6 @@ describe('IncidentServiceClient', () => {
       );
 
       client.getSignal(request, (err, response) => {
-        assert(err instanceof Error);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-
-  describe('lookupSignal', () => {
-    it('invokes lookupSignal without error', done => {
-      const client = new irmModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-
-      // Mock request
-      const request = {};
-
-      // Mock response
-      const name = 'name3373707';
-      const etag = 'etag3123477';
-      const incident = 'incident86983890';
-      const title = 'title110371416';
-      const contentType = 'contentType831846208';
-      const content = 'content951530617';
-      const expectedResponse = {
-        name: name,
-        etag: etag,
-        incident: incident,
-        title: title,
-        contentType: contentType,
-        content: content,
-      };
-
-      // Mock Grpc layer
-      client._innerApiCalls.lookupSignal = mockSimpleGrpcMethod(
-        request,
-        expectedResponse
-      );
-
-      client.lookupSignal(request, (err, response) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes lookupSignal with error', done => {
-      const client = new irmModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-
-      // Mock request
-      const request = {};
-
-      // Mock Grpc layer
-      client._innerApiCalls.lookupSignal = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-
-      client.lookupSignal(request, (err, response) => {
         assert(err instanceof Error);
         assert.strictEqual(err.code, FAKE_STATUS_CODE);
         assert(typeof response === 'undefined');
@@ -1301,63 +1572,6 @@ describe('IncidentServiceClient', () => {
         assert(err instanceof Error);
         assert.strictEqual(err.code, FAKE_STATUS_CODE);
         assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-
-  describe('deleteArtifact', () => {
-    it('invokes deleteArtifact without error', done => {
-      const client = new irmModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-
-      // Mock request
-      const formattedName = client.artifactPath(
-        '[PROJECT]',
-        '[INCIDENT]',
-        '[ARTIFACT]'
-      );
-      const request = {
-        name: formattedName,
-      };
-
-      // Mock Grpc layer
-      client._innerApiCalls.deleteArtifact = mockSimpleGrpcMethod(request);
-
-      client.deleteArtifact(request, err => {
-        assert.ifError(err);
-        done();
-      });
-    });
-
-    it('invokes deleteArtifact with error', done => {
-      const client = new irmModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-
-      // Mock request
-      const formattedName = client.artifactPath(
-        '[PROJECT]',
-        '[INCIDENT]',
-        '[ARTIFACT]'
-      );
-      const request = {
-        name: formattedName,
-      };
-
-      // Mock Grpc layer
-      client._innerApiCalls.deleteArtifact = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-
-      client.deleteArtifact(request, err => {
-        assert(err instanceof Error);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -1759,11 +1973,7 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.roleAssignmentPath(
-        '[PROJECT]',
-        '[INCIDENT]',
-        '[ROLE_ASSIGNMENT]'
-      );
+      const formattedName = client.incidentPath('[PROJECT]', '[INCIDENT]');
       const request = {
         name: formattedName,
       };
@@ -1786,11 +1996,7 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.roleAssignmentPath(
-        '[PROJECT]',
-        '[INCIDENT]',
-        '[ROLE_ASSIGNMENT]'
-      );
+      const formattedName = client.incidentPath('[PROJECT]', '[INCIDENT]');
       const request = {
         name: formattedName,
       };
@@ -1880,228 +2086,6 @@ describe('IncidentServiceClient', () => {
     });
   });
 
-  describe('requestIncidentRoleHandover', () => {
-    it('invokes requestIncidentRoleHandover without error', done => {
-      const client = new irmModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-
-      // Mock request
-      const formattedName = client.roleAssignmentPath(
-        '[PROJECT]',
-        '[INCIDENT]',
-        '[ROLE_ASSIGNMENT]'
-      );
-      const newAssignee = {};
-      const request = {
-        name: formattedName,
-        newAssignee: newAssignee,
-      };
-
-      // Mock response
-      const name2 = 'name2-1052831874';
-      const etag = 'etag3123477';
-      const expectedResponse = {
-        name: name2,
-        etag: etag,
-      };
-
-      // Mock Grpc layer
-      client._innerApiCalls.requestIncidentRoleHandover = mockSimpleGrpcMethod(
-        request,
-        expectedResponse
-      );
-
-      client.requestIncidentRoleHandover(request, (err, response) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes requestIncidentRoleHandover with error', done => {
-      const client = new irmModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-
-      // Mock request
-      const formattedName = client.roleAssignmentPath(
-        '[PROJECT]',
-        '[INCIDENT]',
-        '[ROLE_ASSIGNMENT]'
-      );
-      const newAssignee = {};
-      const request = {
-        name: formattedName,
-        newAssignee: newAssignee,
-      };
-
-      // Mock Grpc layer
-      client._innerApiCalls.requestIncidentRoleHandover = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-
-      client.requestIncidentRoleHandover(request, (err, response) => {
-        assert(err instanceof Error);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-
-  describe('confirmIncidentRoleHandover', () => {
-    it('invokes confirmIncidentRoleHandover without error', done => {
-      const client = new irmModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-
-      // Mock request
-      const formattedName = client.roleAssignmentPath(
-        '[PROJECT]',
-        '[INCIDENT]',
-        '[ROLE_ASSIGNMENT]'
-      );
-      const newAssignee = {};
-      const request = {
-        name: formattedName,
-        newAssignee: newAssignee,
-      };
-
-      // Mock response
-      const name2 = 'name2-1052831874';
-      const etag = 'etag3123477';
-      const expectedResponse = {
-        name: name2,
-        etag: etag,
-      };
-
-      // Mock Grpc layer
-      client._innerApiCalls.confirmIncidentRoleHandover = mockSimpleGrpcMethod(
-        request,
-        expectedResponse
-      );
-
-      client.confirmIncidentRoleHandover(request, (err, response) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes confirmIncidentRoleHandover with error', done => {
-      const client = new irmModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-
-      // Mock request
-      const formattedName = client.roleAssignmentPath(
-        '[PROJECT]',
-        '[INCIDENT]',
-        '[ROLE_ASSIGNMENT]'
-      );
-      const newAssignee = {};
-      const request = {
-        name: formattedName,
-        newAssignee: newAssignee,
-      };
-
-      // Mock Grpc layer
-      client._innerApiCalls.confirmIncidentRoleHandover = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-
-      client.confirmIncidentRoleHandover(request, (err, response) => {
-        assert(err instanceof Error);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-
-  describe('forceIncidentRoleHandover', () => {
-    it('invokes forceIncidentRoleHandover without error', done => {
-      const client = new irmModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-
-      // Mock request
-      const formattedName = client.roleAssignmentPath(
-        '[PROJECT]',
-        '[INCIDENT]',
-        '[ROLE_ASSIGNMENT]'
-      );
-      const newAssignee = {};
-      const request = {
-        name: formattedName,
-        newAssignee: newAssignee,
-      };
-
-      // Mock response
-      const name2 = 'name2-1052831874';
-      const etag = 'etag3123477';
-      const expectedResponse = {
-        name: name2,
-        etag: etag,
-      };
-
-      // Mock Grpc layer
-      client._innerApiCalls.forceIncidentRoleHandover = mockSimpleGrpcMethod(
-        request,
-        expectedResponse
-      );
-
-      client.forceIncidentRoleHandover(request, (err, response) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes forceIncidentRoleHandover with error', done => {
-      const client = new irmModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-
-      // Mock request
-      const formattedName = client.roleAssignmentPath(
-        '[PROJECT]',
-        '[INCIDENT]',
-        '[ROLE_ASSIGNMENT]'
-      );
-      const newAssignee = {};
-      const request = {
-        name: formattedName,
-        newAssignee: newAssignee,
-      };
-
-      // Mock Grpc layer
-      client._innerApiCalls.forceIncidentRoleHandover = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-
-      client.forceIncidentRoleHandover(request, (err, response) => {
-        assert(err instanceof Error);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-
   describe('cancelIncidentRoleHandover', () => {
     it('invokes cancelIncidentRoleHandover without error', done => {
       const client = new irmModule.v1alpha2.IncidentServiceClient({
@@ -2110,10 +2094,10 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.roleAssignmentPath(
-        '[PROJECT]',
-        '[INCIDENT]',
-        '[ROLE_ASSIGNMENT]'
+      const formattedName = client.incidentRoleAssignmentPath(
+        '[PROJECT_ID_OR_NUMBER]',
+        '[INCIDENT_ID]',
+        '[ROLE_ID]'
       );
       const newAssignee = {};
       const request = {
@@ -2149,10 +2133,10 @@ describe('IncidentServiceClient', () => {
       });
 
       // Mock request
-      const formattedName = client.roleAssignmentPath(
-        '[PROJECT]',
-        '[INCIDENT]',
-        '[ROLE_ASSIGNMENT]'
+      const formattedName = client.incidentRoleAssignmentPath(
+        '[PROJECT_ID_OR_NUMBER]',
+        '[INCIDENT_ID]',
+        '[ROLE_ID]'
       );
       const newAssignee = {};
       const request = {

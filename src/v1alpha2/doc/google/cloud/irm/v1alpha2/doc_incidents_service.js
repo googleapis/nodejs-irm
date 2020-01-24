@@ -19,12 +19,12 @@
  * Request for the CreateIncident method.
  *
  * @property {Object} incident
- *   The incident to create.
+ *   Required. The incident to create.
  *
  *   This object should have the same structure as [Incident]{@link google.cloud.irm.v1alpha2.Incident}
  *
  * @property {string} parent
- *   The resource name of the hosting Stackdriver project which the incident
+ *   Required. The resource name of the hosting Stackdriver project which the incident
  *   belongs to.
  *   The name is of the form `projects/{project_id_or_number}`
  *   .
@@ -41,8 +41,8 @@ const CreateIncidentRequest = {
  * Request for the GetIncident method.
  *
  * @property {string} name
- *   Resource name of the incident, for example,
- *   "projects/{project_id}/incidents/{incident_id}".
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
  *
  * @typedef GetIncidentRequest
  * @memberof google.cloud.irm.v1alpha2
@@ -56,7 +56,7 @@ const GetIncidentRequest = {
  * Request for the UpdateIncident method.
  *
  * @property {Object} incident
- *   The incident to update with the new values.
+ *   Required. The incident to update with the new values.
  *
  *   This object should have the same structure as [Incident]{@link google.cloud.irm.v1alpha2.Incident}
  *
@@ -77,8 +77,8 @@ const UpdateIncidentRequest = {
  * Request for the SearchSimilarIncidents method.
  *
  * @property {string} name
- *   Resource name of the incident or signal, for example,
- *   "projects/{project_id}/incidents/{incident_id}".
+ *   Required. Resource name of the incident or signal, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
  *
  * @property {number} pageSize
  *   Number of similar incidents to return.
@@ -135,11 +135,11 @@ const SearchSimilarIncidentsResponse = {
  * Request for the CreateAnnotation method.
  *
  * @property {string} parent
- *   Resource name of the incident, for example,
- *   "projects/{project_id}/incidents/{incident_id}".
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
  *
  * @property {Object} annotation
- *   Only annotation.content is an input argument.
+ *   Required. Only annotation.content is an input argument.
  *
  *   This object should have the same structure as [Annotation]{@link google.cloud.irm.v1alpha2.Annotation}
  *
@@ -155,8 +155,8 @@ const CreateAnnotationRequest = {
  * Request for the ListAnnotations method.
  *
  * @property {string} parent
- *   Resource name of the incident, for example,
- *   "projects/{project_id}/incidents/{incident_id}".
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
  *
  * @property {number} pageSize
  *   Number of annotations to return.
@@ -195,11 +195,11 @@ const ListAnnotationsResponse = {
  * Request for the CreateTag method.
  *
  * @property {string} parent
- *   Resource name of the incident, for example,
- *   "projects/{project_id}/incidents/{incident_id}".
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
  *
  * @property {Object} tag
- *   Tag to create. Only tag.display_name is an input argument.
+ *   Required. Tag to create. Only tag.display_name is an input argument.
  *
  *   This object should have the same structure as [Tag]{@link google.cloud.irm.v1alpha2.Tag}
  *
@@ -215,7 +215,7 @@ const CreateTagRequest = {
  * Request for the DeleteTag method.
  *
  * @property {string} name
- *   Resource name of the tag.
+ *   Required. Resource name of the tag.
  *
  * @typedef DeleteTagRequest
  * @memberof google.cloud.irm.v1alpha2
@@ -229,8 +229,8 @@ const DeleteTagRequest = {
  * Request for the ListTagsForIncident method.
  *
  * @property {string} parent
- *   Resource name of the incident, for example,
- *   "projects/{project_id}/incidents/{incident_id}".
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
  *
  * @property {number} pageSize
  *   Number of tags to return.
@@ -269,11 +269,11 @@ const ListTagsResponse = {
  * Request for the CreateSignal method.
  *
  * @property {string} parent
- *   The resource name of the hosting Stackdriver project which requested
+ *   Required. The resource name of the hosting Stackdriver project which requested
  *   signal belongs to.
  *
  * @property {Object} signal
- *   The signal to create.
+ *   Required. The signal to create.
  *
  *   This object should have the same structure as [Signal]{@link google.cloud.irm.v1alpha2.Signal}
  *
@@ -289,7 +289,7 @@ const CreateSignalRequest = {
  * Request for the SearchSignals method.
  *
  * @property {string} parent
- *   The resource name of the hosting Stackdriver project which requested
+ *   Required. The resource name of the hosting Stackdriver project which requested
  *   incidents belong to.
  *
  * @property {string} query
@@ -391,8 +391,8 @@ const SearchSignalsResponse = {
  * Request for the GetSignal method.
  *
  * @property {string} name
- *   Resource name of the Signal resource, for example,
- *   "projects/{project_id}/signals/{signal_id}".
+ *   Required. Resource name of the Signal resource, for example,
+ *   "projects/{project_id_or_number}/signals/{signal_id}".
  *
  * @typedef GetSignalRequest
  * @memberof google.cloud.irm.v1alpha2
@@ -406,7 +406,7 @@ const GetSignalRequest = {
  * Request for the LookupSignal method.
  *
  * @property {string} csccFinding
- *   Full resource name of the CSCC finding id this signal refers to (e.g.
+ *   Required. Full resource name of the CSCC finding id this signal refers to (e.g.
  *   "organizations/abc/sources/123/findings/xyz")
  *
  * @property {string} stackdriverNotificationId
@@ -424,7 +424,7 @@ const LookupSignalRequest = {
  * Request for the UpdateSignal method.
  *
  * @property {Object} signal
- *   The signal to update with the new values.
+ *   Required. The signal to update with the new values.
  *
  *   This object should have the same structure as [Signal]{@link google.cloud.irm.v1alpha2.Signal}
  *
@@ -445,7 +445,7 @@ const UpdateSignalRequest = {
  * Request for the SearchIncidents method.
  *
  * @property {string} parent
- *   The resource name of the hosting Stackdriver project which requested
+ *   Required. The resource name of the hosting Stackdriver project which requested
  *   incidents belong to.
  *
  * @property {string} query
@@ -544,7 +544,7 @@ const SearchIncidentsResponse = {
  * Request to escalate an incident.
  *
  * @property {Object} incident
- *   The incident to escalate with the new values.
+ *   Required. The incident to escalate with the new values.
  *
  *   This object should have the same structure as [Incident]{@link google.cloud.irm.v1alpha2.Incident}
  *
@@ -623,11 +623,11 @@ const EscalateIncidentResponse = {
  * Request for the CreateArtifact method.
  *
  * @property {string} parent
- *   Resource name of the incident, for example,
- *   "projects/{project_id}/incidents/{incident_id}".
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
  *
  * @property {Object} artifact
- *   The artifact to create.
+ *   Required. The artifact to create.
  *
  *   This object should have the same structure as [Artifact]{@link google.cloud.irm.v1alpha2.Artifact}
  *
@@ -643,8 +643,8 @@ const CreateArtifactRequest = {
  * Request for the ListArtifacts method.
  *
  * @property {string} parent
- *   Resource name of the incident, for example,
- *   "projects/{project_id}/incidents/{incident_id}".
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
  *
  * @property {number} pageSize
  *   Number of artifacts to return.
@@ -683,7 +683,7 @@ const ListArtifactsResponse = {
  * Request for the UpdateArtifact method.
  *
  * @property {Object} artifact
- *   The artifact to update with the new values.
+ *   Required. The artifact to update with the new values.
  *
  *   This object should have the same structure as [Artifact]{@link google.cloud.irm.v1alpha2.Artifact}
  *
@@ -704,7 +704,7 @@ const UpdateArtifactRequest = {
  * Request for deleting an artifact.
  *
  * @property {string} name
- *   Resource name of the artifact.
+ *   Required. Resource name of the artifact.
  *
  * @typedef DeleteArtifactRequest
  * @memberof google.cloud.irm.v1alpha2
@@ -718,27 +718,27 @@ const DeleteArtifactRequest = {
  * SendShiftHandoff and PreviewShiftHandoff RPC request.
  *
  * @property {string} parent
- *   The resource name of the Stackdriver project that the handoff is being sent
- *   from. for example, `projects/{project_id}`
+ *   Required. The resource name of the Stackdriver project that the handoff is being sent
+ *   from. for example, `projects/{project_id_or_number}`
  *
  * @property {string[]} recipients
- *   Email addresses of the recipients of the handoff, for example,
+ *   Required. Email addresses of the recipients of the handoff, for example,
  *   "user@example.com". Must contain at least one entry.
  *
  * @property {string[]} cc
- *   Email addresses that should be CC'd on the handoff. Optional.
+ *   Optional. Email addresses that should be CC'd on the handoff.
  *
  * @property {string} subject
- *   The subject of the email. Required.
+ *   Required. The subject of the email.
  *
  * @property {string} notesContentType
  *   Content type string, for example, 'text/plain' or 'text/html'.
  *
  * @property {string} notesContent
- *   Additional notes to be included in the handoff. Optional.
+ *   Optional. Additional notes to be included in the handoff.
  *
  * @property {Object[]} incidents
- *   The set of incidents that should be included in the handoff. Optional.
+ *   Optional. The set of incidents that should be included in the handoff.
  *
  *   This object should have the same structure as [Incident]{@link google.cloud.irm.v1alpha2.Incident}
  *
@@ -760,7 +760,7 @@ const SendShiftHandoffRequest = {
    *
    * @property {string} name
    *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    *
    * @typedef Incident
    * @memberof google.cloud.irm.v1alpha2
@@ -794,11 +794,11 @@ const SendShiftHandoffResponse = {
  * Request for the CreateSubscription method.
  *
  * @property {string} parent
- *   Resource name of the incident, for example,
- *   "projects/{project_id}/incidents/{incident_id}".
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
  *
  * @property {Object} subscription
- *   The subscription to create.
+ *   Required. The subscription to create.
  *
  *   This object should have the same structure as [Subscription]{@link google.cloud.irm.v1alpha2.Subscription}
  *
@@ -814,7 +814,7 @@ const CreateSubscriptionRequest = {
  * Request for the UpdateSubscription method.
  *
  * @property {Object} subscription
- *   The subscription to update, with new values.
+ *   Required. The subscription to update, with new values.
  *
  *   This object should have the same structure as [Subscription]{@link google.cloud.irm.v1alpha2.Subscription}
  *
@@ -835,8 +835,8 @@ const UpdateSubscriptionRequest = {
  * Request for the ListSubscriptions method.
  *
  * @property {string} parent
- *   Resource name of the incident, for example,
- *   "projects/{project_id}/incidents/{incident_id}".
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
  *
  * @property {number} pageSize
  *   Number of subscriptions to return.
@@ -875,7 +875,7 @@ const ListSubscriptionsResponse = {
  * Request for deleting a subscription.
  *
  * @property {string} name
- *   Resource name of the subscription.
+ *   Required. Resource name of the subscription.
  *
  * @typedef DeleteSubscriptionRequest
  * @memberof google.cloud.irm.v1alpha2
@@ -889,11 +889,11 @@ const DeleteSubscriptionRequest = {
  * Request for creating a role assignment.
  *
  * @property {string} parent
- *   Resource name of the incident, for example,
- *   "projects/{project_id}/incidents/{incident_id}".
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
  *
  * @property {Object} incidentRoleAssignment
- *   Role assignment to create.
+ *   Required. Role assignment to create.
  *
  *   This object should have the same structure as [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}
  *
@@ -909,7 +909,7 @@ const CreateIncidentRoleAssignmentRequest = {
  * Request for deleting a role assignment.
  *
  * @property {string} name
- *   Resource name of the role assignment.
+ *   Required. Resource name of the role assignment.
  *
  * @typedef DeleteIncidentRoleAssignmentRequest
  * @memberof google.cloud.irm.v1alpha2
@@ -923,8 +923,8 @@ const DeleteIncidentRoleAssignmentRequest = {
  * Request to list role assignments of an incident.
  *
  * @property {string} parent
- *   Resource name of the incident, for example,
- *   "projects/{project_id}/incidents/{incident_id}".
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
  *
  * @property {number} pageSize
  *   Number of assignments to return.
@@ -963,10 +963,10 @@ const ListIncidentRoleAssignmentsResponse = {
  * Request to start a role handover.
  *
  * @property {string} name
- *   Resource name of the role assignment.
+ *   Required. Resource name of the role assignment.
  *
  * @property {Object} newAssignee
- *   The proposed assignee.
+ *   Required. The proposed assignee.
  *
  *   This object should have the same structure as [User]{@link google.cloud.irm.v1alpha2.User}
  *
@@ -982,10 +982,10 @@ const RequestIncidentRoleHandoverRequest = {
  * Request to confirm a role handover.
  *
  * @property {string} name
- *   Resource name of the role assignment.
+ *   Required. Resource name of the role assignment.
  *
  * @property {Object} newAssignee
- *   The proposed assignee, who will now be the assignee. This should be the
+ *   Required. The proposed assignee, who will now be the assignee. This should be the
  *   current user; otherwise ForceRoleHandover should be called.
  *
  *   This object should have the same structure as [User]{@link google.cloud.irm.v1alpha2.User}
@@ -1002,10 +1002,10 @@ const ConfirmIncidentRoleHandoverRequest = {
  * Request to force a role handover.
  *
  * @property {string} name
- *   Resource name of the role assignment.
+ *   Required. Resource name of the role assignment.
  *
  * @property {Object} newAssignee
- *   The proposed assignee, who will now be the assignee. This should not be
+ *   Required. The proposed assignee, who will now be the assignee. This should not be
  *   the current user; otherwise ConfirmRoleHandover should be called.
  *
  *   This object should have the same structure as [User]{@link google.cloud.irm.v1alpha2.User}
@@ -1022,10 +1022,10 @@ const ForceIncidentRoleHandoverRequest = {
  * Request to cancel a role handover.
  *
  * @property {string} name
- *   Resource name of the role assignment.
+ *   Required. Resource name of the role assignment.
  *
  * @property {Object} newAssignee
- *   Person who was proposed as the next assignee (i.e.
+ *   Required. Person who was proposed as the next assignee (i.e.
  *   IncidentRoleAssignment.proposed_assignee) and whose proposal is being
  *   cancelled.
  *

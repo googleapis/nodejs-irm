@@ -43,7 +43,7 @@ const User = {
  *
  * @property {string} name
  *   Resource name of the signal, for example,
- *   "projects/{project_id}/signals/{signal_id}".
+ *   "projects/{project_id_or_number}/signals/{signal_id}".
  *
  * @property {string} etag
  *   Etag to validate the object is unchanged for a read-modify-write operation.
@@ -158,7 +158,7 @@ const Signal = {
  *
  * @property {string} name
  *   Resource name of the annotation, for example,
- *   "projects/{project_id}/incidents/{incident_id}/annotations/{annotation_id}".
+ *   "projects/{project_id_or_number}/incidents/{incident_id}/annotations/{annotation_id}".
  *
  * @property {Object} author
  *   Output only. Author of the annotation.
@@ -171,11 +171,11 @@ const Signal = {
  *   This object should have the same structure as [Timestamp]{@link google.protobuf.Timestamp}
  *
  * @property {string} content
- *   Content of the annotation. Immutable.
+ *   Content of the annotation.
  *
  * @property {string} contentType
  *   Content type of the annotation, for example, 'text/plain'
- *   or 'text/markdown'. Immutable.
+ *   or 'text/markdown'.
  *
  * @typedef Annotation
  * @memberof google.cloud.irm.v1alpha2
@@ -190,7 +190,7 @@ const Annotation = {
  *
  * @property {string} name
  *   Resource name of a tag, for example,
- *   "projects/{project_id}/incidents/{incident_id}/tags/{tag_id}"
+ *   "projects/{project_id_or_number}/incidents/{incident_id}/tags/{tag_id}"
  *
  * @property {string} displayName
  *   Display name of the resource (for example, "cause:rollout"). Immutable.
@@ -237,7 +237,7 @@ const Synopsis = {
  *
  * @property {string} name
  *   Output only. Resource name of the incident, for example,
- *   "projects/{project_id}/incidents/{incident_id}".
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
  *
  * @property {string} title
  *   One-line summary of the incident.
@@ -463,11 +463,11 @@ const Incident = {
  *   The number should be among the values of [Type]{@link google.cloud.irm.v1alpha2.Type}
  *
  * @property {string} title
- *   Output only unless TYPE_OTHER is used. Title of the role. For TYPE_OTHER,
- *   must be unique within an incident.
+ *   Output only and empty unless TYPE_OTHER is used. Title of the role. For
+ *   TYPE_OTHER, must be unique within an incident.
  *
  * @property {string} description
- *   Output only unless TYPE_OTHER is used. Description of the role.
+ *   Output only and empty unless TYPE_OTHER is used. Description of the role.
  *
  * @typedef IncidentRole
  * @memberof google.cloud.irm.v1alpha2
@@ -537,7 +537,7 @@ const IncidentRole = {
  *
  * @property {string} name
  *   Output only. Resource name such as
- *   "projects/{project_id}/incidents/{incident_id}/role_assignments/{role_id}".
+ *   "projects/{project_id_or_number}/incidents/{incident_id}/role_assignments/{role_id}".
  *
  * @property {string} etag
  *   Output only. Etag for this version of the resource. Must be specified in
@@ -593,7 +593,7 @@ const IncidentRoleAssignment = {
  *
  * @property {string} name
  *   Output only. Resource name such as
- *   "projects/{project_id}/incidents/{incident_id}/artifacts/{artifact_id}".
+ *   "projects/{project_id_or_number}/incidents/{incident_id}/artifacts/{artifact_id}".
  *
  * @property {string} displayName
  *   User provided name of an artifact.
@@ -700,7 +700,7 @@ const CommunicationChannel = {
  *
  * @property {string} name
  *   Output only. Resource name such as
- *   "projects/{project_id}/incidents/{incident_id}/subscriptions/{subscription_id}".
+ *   "projects/{project_id_or_number}/incidents/{incident_id}/subscriptions/{subscription_id}".
  *
  * @property {string} etag
  *   Output only. Etag for this version of the resource. Must be specified in

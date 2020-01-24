@@ -134,10 +134,10 @@ class IncidentServiceClient {
       incidentPathTemplate: new gaxModule.PathTemplate(
         'projects/{project}/incidents/{incident}'
       ),
-      projectPathTemplate: new gaxModule.PathTemplate('projects/{project}'),
-      roleAssignmentPathTemplate: new gaxModule.PathTemplate(
-        'projects/{project}/incidents/{incident}/roleAssignments/{role_assignment}'
+      incidentRoleAssignmentPathTemplate: new gaxModule.PathTemplate(
+        'projects/{project_id_or_number}/incidents/{incident_id}/role_assignments/{role_id}'
       ),
+      projectPathTemplate: new gaxModule.PathTemplate('projects/{project}'),
       signalPathTemplate: new gaxModule.PathTemplate(
         'projects/{project}/signals/{signal}'
       ),
@@ -220,6 +220,10 @@ class IncidentServiceClient {
     // Iterate over each of the methods that the service provides
     // and create an API call method for each.
     const incidentServiceStubMethods = [
+      'deleteArtifact',
+      'requestIncidentRoleHandover',
+      'confirmIncidentRoleHandover',
+      'forceIncidentRoleHandover',
       'createIncident',
       'getIncident',
       'searchIncidents',
@@ -232,14 +236,13 @@ class IncidentServiceClient {
       'listTags',
       'createSignal',
       'searchSignals',
-      'getSignal',
       'lookupSignal',
+      'getSignal',
       'updateSignal',
       'escalateIncident',
       'createArtifact',
       'listArtifacts',
       'updateArtifact',
-      'deleteArtifact',
       'sendShiftHandoff',
       'createSubscription',
       'updateSubscription',
@@ -248,9 +251,6 @@ class IncidentServiceClient {
       'createIncidentRoleAssignment',
       'deleteIncidentRoleAssignment',
       'listIncidentRoleAssignments',
-      'requestIncidentRoleHandover',
-      'confirmIncidentRoleHandover',
-      'forceIncidentRoleHandover',
       'cancelIncidentRoleHandover',
     ];
     for (const methodName of incidentServiceStubMethods) {
@@ -314,16 +314,275 @@ class IncidentServiceClient {
   // -------------------
 
   /**
+   * Deletes an existing artifact.
+   *
+   * @param {Object} request
+   *   The request object that will be sent.
+   * @param {string} request.name
+   *   Required. Resource name of the artifact.
+   * @param {Object} [options]
+   *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
+   * @param {function(?Error)} [callback]
+   *   The function which will be called with the result of the API call.
+   * @returns {Promise} - The promise which resolves when API call finishes.
+   *   The promise has a method named "cancel" which cancels the ongoing API call.
+   *
+   * @example
+   *
+   * const irm = require('@google-cloud/irm');
+   *
+   * const client = new irm.v1alpha2.IncidentServiceClient({
+   *   // optional auth parameters.
+   * });
+   *
+   * const formattedName = client.artifactPath('[PROJECT]', '[INCIDENT]', '[ARTIFACT]');
+   * client.deleteArtifact({name: formattedName}).catch(err => {
+   *   console.error(err);
+   * });
+   */
+  deleteArtifact(request, options, callback) {
+    if (options instanceof Function && callback === undefined) {
+      callback = options;
+      options = {};
+    }
+    request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      name: request.name,
+    });
+
+    return this._innerApiCalls.deleteArtifact(request, options, callback);
+  }
+
+  /**
+   * Starts a role handover. The proposed assignee will receive an email
+   * notifying them of the assignment. This will fail if a role handover is
+   * already pending.
+   * Handover to an oncall ladder is not permitted. Use
+   * CreateIncidentRoleAssignment instead.
+   *
+   * @param {Object} request
+   *   The request object that will be sent.
+   * @param {string} request.name
+   *   Required. Resource name of the role assignment.
+   * @param {Object} request.newAssignee
+   *   Required. The proposed assignee.
+   *
+   *   This object should have the same structure as [User]{@link google.cloud.irm.v1alpha2.User}
+   * @param {Object} [options]
+   *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
+   * @param {function(?Error, ?Object)} [callback]
+   *   The function which will be called with the result of the API call.
+   *
+   *   The second parameter to the callback is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
+   * @returns {Promise} - The promise which resolves to an array.
+   *   The first element of the array is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
+   *   The promise has a method named "cancel" which cancels the ongoing API call.
+   *
+   * @example
+   *
+   * const irm = require('@google-cloud/irm');
+   *
+   * const client = new irm.v1alpha2.IncidentServiceClient({
+   *   // optional auth parameters.
+   * });
+   *
+   * const name = '';
+   * const newAssignee = {};
+   * const request = {
+   *   name: name,
+   *   newAssignee: newAssignee,
+   * };
+   * client.requestIncidentRoleHandover(request)
+   *   .then(responses => {
+   *     const response = responses[0];
+   *     // doThingsWith(response)
+   *   })
+   *   .catch(err => {
+   *     console.error(err);
+   *   });
+   */
+  requestIncidentRoleHandover(request, options, callback) {
+    if (options instanceof Function && callback === undefined) {
+      callback = options;
+      options = {};
+    }
+    request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      name: request.name,
+    });
+
+    return this._innerApiCalls.requestIncidentRoleHandover(
+      request,
+      options,
+      callback
+    );
+  }
+
+  /**
+   * Confirms a role handover. This will fail if the 'proposed_assignee' field
+   * of the IncidentRoleAssignment is not equal to the 'new_assignee' field of
+   * the request. If the caller is not the new_assignee,
+   * ForceIncidentRoleHandover should be used instead.
+   *
+   * @param {Object} request
+   *   The request object that will be sent.
+   * @param {string} request.name
+   *   Required. Resource name of the role assignment.
+   * @param {Object} request.newAssignee
+   *   Required. The proposed assignee, who will now be the assignee. This should be the
+   *   current user; otherwise ForceRoleHandover should be called.
+   *
+   *   This object should have the same structure as [User]{@link google.cloud.irm.v1alpha2.User}
+   * @param {Object} [options]
+   *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
+   * @param {function(?Error, ?Object)} [callback]
+   *   The function which will be called with the result of the API call.
+   *
+   *   The second parameter to the callback is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
+   * @returns {Promise} - The promise which resolves to an array.
+   *   The first element of the array is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
+   *   The promise has a method named "cancel" which cancels the ongoing API call.
+   *
+   * @example
+   *
+   * const irm = require('@google-cloud/irm');
+   *
+   * const client = new irm.v1alpha2.IncidentServiceClient({
+   *   // optional auth parameters.
+   * });
+   *
+   * const formattedName = client.incidentRoleAssignmentPath('[PROJECT_ID_OR_NUMBER]', '[INCIDENT_ID]', '[ROLE_ID]');
+   * const newAssignee = {};
+   * const request = {
+   *   name: formattedName,
+   *   newAssignee: newAssignee,
+   * };
+   * client.confirmIncidentRoleHandover(request)
+   *   .then(responses => {
+   *     const response = responses[0];
+   *     // doThingsWith(response)
+   *   })
+   *   .catch(err => {
+   *     console.error(err);
+   *   });
+   */
+  confirmIncidentRoleHandover(request, options, callback) {
+    if (options instanceof Function && callback === undefined) {
+      callback = options;
+      options = {};
+    }
+    request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      name: request.name,
+    });
+
+    return this._innerApiCalls.confirmIncidentRoleHandover(
+      request,
+      options,
+      callback
+    );
+  }
+
+  /**
+   * Forces a role handover. This will fail if the 'proposed_assignee' field of
+   * the IncidentRoleAssignment is not equal to the 'new_assignee' field of the
+   * request. If the caller is the new_assignee, ConfirmIncidentRoleHandover
+   * should be used instead.
+   *
+   * @param {Object} request
+   *   The request object that will be sent.
+   * @param {string} request.name
+   *   Required. Resource name of the role assignment.
+   * @param {Object} request.newAssignee
+   *   Required. The proposed assignee, who will now be the assignee. This should not be
+   *   the current user; otherwise ConfirmRoleHandover should be called.
+   *
+   *   This object should have the same structure as [User]{@link google.cloud.irm.v1alpha2.User}
+   * @param {Object} [options]
+   *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
+   * @param {function(?Error, ?Object)} [callback]
+   *   The function which will be called with the result of the API call.
+   *
+   *   The second parameter to the callback is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
+   * @returns {Promise} - The promise which resolves to an array.
+   *   The first element of the array is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
+   *   The promise has a method named "cancel" which cancels the ongoing API call.
+   *
+   * @example
+   *
+   * const irm = require('@google-cloud/irm');
+   *
+   * const client = new irm.v1alpha2.IncidentServiceClient({
+   *   // optional auth parameters.
+   * });
+   *
+   * const formattedName = client.incidentRoleAssignmentPath('[PROJECT_ID_OR_NUMBER]', '[INCIDENT_ID]', '[ROLE_ID]');
+   * const newAssignee = {};
+   * const request = {
+   *   name: formattedName,
+   *   newAssignee: newAssignee,
+   * };
+   * client.forceIncidentRoleHandover(request)
+   *   .then(responses => {
+   *     const response = responses[0];
+   *     // doThingsWith(response)
+   *   })
+   *   .catch(err => {
+   *     console.error(err);
+   *   });
+   */
+  forceIncidentRoleHandover(request, options, callback) {
+    if (options instanceof Function && callback === undefined) {
+      callback = options;
+      options = {};
+    }
+    request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      name: request.name,
+    });
+
+    return this._innerApiCalls.forceIncidentRoleHandover(
+      request,
+      options,
+      callback
+    );
+  }
+
+  /**
    * Creates a new incident.
    *
    * @param {Object} request
    *   The request object that will be sent.
    * @param {Object} request.incident
-   *   The incident to create.
+   *   Required. The incident to create.
    *
    *   This object should have the same structure as [Incident]{@link google.cloud.irm.v1alpha2.Incident}
    * @param {string} request.parent
-   *   The resource name of the hosting Stackdriver project which the incident
+   *   Required. The resource name of the hosting Stackdriver project which the incident
    *   belongs to.
    *   The name is of the form `projects/{project_id_or_number}`
    *   .
@@ -385,8 +644,8 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
-   *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
    *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
@@ -441,7 +700,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   The resource name of the hosting Stackdriver project which requested
+   *   Required. The resource name of the hosting Stackdriver project which requested
    *   incidents belong to.
    * @param {string} [request.query]
    *   An expression that defines which incidents to return.
@@ -611,7 +870,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   The resource name of the hosting Stackdriver project which requested
+   *   Required. The resource name of the hosting Stackdriver project which requested
    *   incidents belong to.
    * @param {string} [request.query]
    *   An expression that defines which incidents to return.
@@ -714,7 +973,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {Object} request.incident
-   *   The incident to update with the new values.
+   *   Required. The incident to update with the new values.
    *
    *   This object should have the same structure as [Incident]{@link google.cloud.irm.v1alpha2.Incident}
    * @param {Object} [request.updateMask]
@@ -776,8 +1035,8 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
-   *   Resource name of the incident or signal, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident or signal, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
    *   response. If page streaming is performed per-resource, this
@@ -893,8 +1152,8 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
-   *   Resource name of the incident or signal, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident or signal, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
    *   response. If page streaming is performed per-resource, this
@@ -940,10 +1199,10 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {Object} request.annotation
-   *   Only annotation.content is an input argument.
+   *   Required. Only annotation.content is an input argument.
    *
    *   This object should have the same structure as [Annotation]{@link google.cloud.irm.v1alpha2.Annotation}
    * @param {Object} [options]
@@ -1005,8 +1264,8 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
    *   response. If page streaming is performed per-resource, this
@@ -1118,8 +1377,8 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
    *   response. If page streaming is performed per-resource, this
@@ -1164,10 +1423,10 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {Object} request.tag
-   *   Tag to create. Only tag.display_name is an input argument.
+   *   Required. Tag to create. Only tag.display_name is an input argument.
    *
    *   This object should have the same structure as [Tag]{@link google.cloud.irm.v1alpha2.Tag}
    * @param {Object} [options]
@@ -1228,7 +1487,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
-   *   Resource name of the tag.
+   *   Required. Resource name of the tag.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
    *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
@@ -1274,8 +1533,8 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
    *   response. If page streaming is performed per-resource, this
@@ -1387,8 +1646,8 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
    *   response. If page streaming is performed per-resource, this
@@ -1433,10 +1692,10 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   The resource name of the hosting Stackdriver project which requested
+   *   Required. The resource name of the hosting Stackdriver project which requested
    *   signal belongs to.
    * @param {Object} request.signal
-   *   The signal to create.
+   *   Required. The signal to create.
    *
    *   This object should have the same structure as [Signal]{@link google.cloud.irm.v1alpha2.Signal}
    * @param {Object} [options]
@@ -1494,11 +1753,14 @@ class IncidentServiceClient {
   /**
    * Lists signals that are part of an incident.
    * Signals are returned in reverse chronological order.
+   * Note that search should not be relied on for critical functionality.  It
+   * has lower availability guarantees and might fail to return valid results.
+   * Returned results might include stale or extraneous entries.
    *
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   The resource name of the hosting Stackdriver project which requested
+   *   Required. The resource name of the hosting Stackdriver project which requested
    *   incidents belong to.
    * @param {string} [request.query]
    *   An expression that defines which signals to return.
@@ -1670,7 +1932,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   The resource name of the hosting Stackdriver project which requested
+   *   Required. The resource name of the hosting Stackdriver project which requested
    *   incidents belong to.
    * @param {string} [request.query]
    *   An expression that defines which signals to return.
@@ -1770,13 +2032,63 @@ class IncidentServiceClient {
   }
 
   /**
+   * Finds a signal by other unique IDs.
+   *
+   * @param {Object} request
+   *   The request object that will be sent.
+   * @param {string} [request.csccFinding]
+   *   Required. Full resource name of the CSCC finding id this signal refers to (e.g.
+   *   "organizations/abc/sources/123/findings/xyz")
+   * @param {string} [request.stackdriverNotificationId]
+   *   The ID from the Stackdriver Alerting notification.
+   * @param {Object} [options]
+   *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
+   * @param {function(?Error, ?Object)} [callback]
+   *   The function which will be called with the result of the API call.
+   *
+   *   The second parameter to the callback is an object representing [Signal]{@link google.cloud.irm.v1alpha2.Signal}.
+   * @returns {Promise} - The promise which resolves to an array.
+   *   The first element of the array is an object representing [Signal]{@link google.cloud.irm.v1alpha2.Signal}.
+   *   The promise has a method named "cancel" which cancels the ongoing API call.
+   *
+   * @example
+   *
+   * const irm = require('@google-cloud/irm');
+   *
+   * const client = new irm.v1alpha2.IncidentServiceClient({
+   *   // optional auth parameters.
+   * });
+   *
+   *
+   * client.lookupSignal({})
+   *   .then(responses => {
+   *     const response = responses[0];
+   *     // doThingsWith(response)
+   *   })
+   *   .catch(err => {
+   *     console.error(err);
+   *   });
+   */
+  lookupSignal(request, options, callback) {
+    if (options instanceof Function && callback === undefined) {
+      callback = options;
+      options = {};
+    }
+    request = request || {};
+    options = options || {};
+
+    return this._innerApiCalls.lookupSignal(request, options, callback);
+  }
+
+  /**
    * Returns a signal by name.
    *
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
-   *   Resource name of the Signal resource, for example,
-   *   "projects/{project_id}/signals/{signal_id}".
+   *   Required. Resource name of the Signal resource, for example,
+   *   "projects/{project_id_or_number}/signals/{signal_id}".
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
    *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
@@ -1825,63 +2137,13 @@ class IncidentServiceClient {
   }
 
   /**
-   * Finds a signal by other unique IDs.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} [request.csccFinding]
-   *   Full resource name of the CSCC finding id this signal refers to (e.g.
-   *   "organizations/abc/sources/123/findings/xyz")
-   * @param {string} [request.stackdriverNotificationId]
-   *   The ID from the Stackdriver Alerting notification.
-   * @param {Object} [options]
-   *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
-   * @param {function(?Error, ?Object)} [callback]
-   *   The function which will be called with the result of the API call.
-   *
-   *   The second parameter to the callback is an object representing [Signal]{@link google.cloud.irm.v1alpha2.Signal}.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Signal]{@link google.cloud.irm.v1alpha2.Signal}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   *
-   * @example
-   *
-   * const irm = require('@google-cloud/irm');
-   *
-   * const client = new irm.v1alpha2.IncidentServiceClient({
-   *   // optional auth parameters.
-   * });
-   *
-   *
-   * client.lookupSignal({})
-   *   .then(responses => {
-   *     const response = responses[0];
-   *     // doThingsWith(response)
-   *   })
-   *   .catch(err => {
-   *     console.error(err);
-   *   });
-   */
-  lookupSignal(request, options, callback) {
-    if (options instanceof Function && callback === undefined) {
-      callback = options;
-      options = {};
-    }
-    request = request || {};
-    options = options || {};
-
-    return this._innerApiCalls.lookupSignal(request, options, callback);
-  }
-
-  /**
    * Updates an existing signal (for example, to assign/unassign it to an
    * incident).
    *
    * @param {Object} request
    *   The request object that will be sent.
    * @param {Object} request.signal
-   *   The signal to update with the new values.
+   *   Required. The signal to update with the new values.
    *
    *   This object should have the same structure as [Signal]{@link google.cloud.irm.v1alpha2.Signal}
    * @param {Object} [request.updateMask]
@@ -1941,7 +2203,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {Object} request.incident
-   *   The incident to escalate with the new values.
+   *   Required. The incident to escalate with the new values.
    *
    *   This object should have the same structure as [Incident]{@link google.cloud.irm.v1alpha2.Incident}
    * @param {Object} [request.updateMask]
@@ -2019,10 +2281,10 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {Object} request.artifact
-   *   The artifact to create.
+   *   Required. The artifact to create.
    *
    *   This object should have the same structure as [Artifact]{@link google.cloud.irm.v1alpha2.Artifact}
    * @param {Object} [options]
@@ -2083,8 +2345,8 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
    *   response. If page streaming is performed per-resource, this
@@ -2196,8 +2458,8 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
    *   response. If page streaming is performed per-resource, this
@@ -2242,7 +2504,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {Object} request.artifact
-   *   The artifact to update with the new values.
+   *   Required. The artifact to update with the new values.
    *
    *   This object should have the same structure as [Artifact]{@link google.cloud.irm.v1alpha2.Artifact}
    * @param {Object} [request.updateMask]
@@ -2297,72 +2559,26 @@ class IncidentServiceClient {
   }
 
   /**
-   * Deletes an existing artifact.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Resource name of the artifact.
-   * @param {Object} [options]
-   *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
-   * @param {function(?Error)} [callback]
-   *   The function which will be called with the result of the API call.
-   * @returns {Promise} - The promise which resolves when API call finishes.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   *
-   * @example
-   *
-   * const irm = require('@google-cloud/irm');
-   *
-   * const client = new irm.v1alpha2.IncidentServiceClient({
-   *   // optional auth parameters.
-   * });
-   *
-   * const formattedName = client.artifactPath('[PROJECT]', '[INCIDENT]', '[ARTIFACT]');
-   * client.deleteArtifact({name: formattedName}).catch(err => {
-   *   console.error(err);
-   * });
-   */
-  deleteArtifact(request, options, callback) {
-    if (options instanceof Function && callback === undefined) {
-      callback = options;
-      options = {};
-    }
-    request = request || {};
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
-
-    return this._innerApiCalls.deleteArtifact(request, options, callback);
-  }
-
-  /**
    * Sends a summary of the shift for oncall handoff.
    *
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   The resource name of the Stackdriver project that the handoff is being sent
-   *   from. for example, `projects/{project_id}`
+   *   Required. The resource name of the Stackdriver project that the handoff is being sent
+   *   from. for example, `projects/{project_id_or_number}`
    * @param {string[]} request.recipients
-   *   Email addresses of the recipients of the handoff, for example,
+   *   Required. Email addresses of the recipients of the handoff, for example,
    *   "user@example.com". Must contain at least one entry.
    * @param {string} request.subject
-   *   The subject of the email. Required.
+   *   Required. The subject of the email.
    * @param {string[]} [request.cc]
-   *   Email addresses that should be CC'd on the handoff. Optional.
+   *   Optional. Email addresses that should be CC'd on the handoff.
    * @param {string} [request.notesContentType]
    *   Content type string, for example, 'text/plain' or 'text/html'.
    * @param {string} [request.notesContent]
-   *   Additional notes to be included in the handoff. Optional.
+   *   Optional. Additional notes to be included in the handoff.
    * @param {Object[]} [request.incidents]
-   *   The set of incidents that should be included in the handoff. Optional.
+   *   Optional. The set of incidents that should be included in the handoff.
    *
    *   This object should have the same structure as [Incident]{@link google.cloud.irm.v1alpha2.Incident}
    * @param {boolean} [request.previewOnly]
@@ -2431,10 +2647,10 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {Object} request.subscription
-   *   The subscription to create.
+   *   Required. The subscription to create.
    *
    *   This object should have the same structure as [Subscription]{@link google.cloud.irm.v1alpha2.Subscription}
    * @param {Object} [options]
@@ -2495,7 +2711,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {Object} request.subscription
-   *   The subscription to update, with new values.
+   *   Required. The subscription to update, with new values.
    *
    *   This object should have the same structure as [Subscription]{@link google.cloud.irm.v1alpha2.Subscription}
    * @param {Object} [request.updateMask]
@@ -2555,8 +2771,8 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
    *   response. If page streaming is performed per-resource, this
@@ -2668,8 +2884,8 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
    *   response. If page streaming is performed per-resource, this
@@ -2714,7 +2930,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
-   *   Resource name of the subscription.
+   *   Required. Resource name of the subscription.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
    *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
@@ -2764,10 +2980,10 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {Object} request.incidentRoleAssignment
-   *   Role assignment to create.
+   *   Required. Role assignment to create.
    *
    *   This object should have the same structure as [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}
    * @param {Object} [options]
@@ -2832,7 +3048,7 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
-   *   Resource name of the role assignment.
+   *   Required. Resource name of the role assignment.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
    *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
@@ -2849,7 +3065,7 @@ class IncidentServiceClient {
    *   // optional auth parameters.
    * });
    *
-   * const formattedName = client.roleAssignmentPath('[PROJECT]', '[INCIDENT]', '[ROLE_ASSIGNMENT]');
+   * const formattedName = client.incidentPath('[PROJECT]', '[INCIDENT]');
    * client.deleteIncidentRoleAssignment({name: formattedName}).catch(err => {
    *   console.error(err);
    * });
@@ -2882,8 +3098,8 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
    *   response. If page streaming is performed per-resource, this
@@ -2999,8 +3215,8 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.parent
-   *   Resource name of the incident, for example,
-   *   "projects/{project_id}/incidents/{incident_id}".
+   *   Required. Resource name of the incident, for example,
+   *   "projects/{project_id_or_number}/incidents/{incident_id}".
    * @param {number} [request.pageSize]
    *   The maximum number of resources contained in the underlying API
    *   response. If page streaming is performed per-resource, this
@@ -3040,217 +3256,6 @@ class IncidentServiceClient {
   }
 
   /**
-   * Starts a role handover. The proposed assignee will receive an email
-   * notifying them of the assignment. This will fail if a role handover is
-   * already pending.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Resource name of the role assignment.
-   * @param {Object} request.newAssignee
-   *   The proposed assignee.
-   *
-   *   This object should have the same structure as [User]{@link google.cloud.irm.v1alpha2.User}
-   * @param {Object} [options]
-   *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
-   * @param {function(?Error, ?Object)} [callback]
-   *   The function which will be called with the result of the API call.
-   *
-   *   The second parameter to the callback is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   *
-   * @example
-   *
-   * const irm = require('@google-cloud/irm');
-   *
-   * const client = new irm.v1alpha2.IncidentServiceClient({
-   *   // optional auth parameters.
-   * });
-   *
-   * const formattedName = client.roleAssignmentPath('[PROJECT]', '[INCIDENT]', '[ROLE_ASSIGNMENT]');
-   * const newAssignee = {};
-   * const request = {
-   *   name: formattedName,
-   *   newAssignee: newAssignee,
-   * };
-   * client.requestIncidentRoleHandover(request)
-   *   .then(responses => {
-   *     const response = responses[0];
-   *     // doThingsWith(response)
-   *   })
-   *   .catch(err => {
-   *     console.error(err);
-   *   });
-   */
-  requestIncidentRoleHandover(request, options, callback) {
-    if (options instanceof Function && callback === undefined) {
-      callback = options;
-      options = {};
-    }
-    request = request || {};
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
-
-    return this._innerApiCalls.requestIncidentRoleHandover(
-      request,
-      options,
-      callback
-    );
-  }
-
-  /**
-   * Confirms a role handover. This will fail if the 'proposed_assignee' field
-   * of the IncidentRoleAssignment is not equal to the 'new_assignee' field of
-   * the request. If the caller is not the new_assignee,
-   * ForceIncidentRoleHandover should be used instead.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Resource name of the role assignment.
-   * @param {Object} request.newAssignee
-   *   The proposed assignee, who will now be the assignee. This should be the
-   *   current user; otherwise ForceRoleHandover should be called.
-   *
-   *   This object should have the same structure as [User]{@link google.cloud.irm.v1alpha2.User}
-   * @param {Object} [options]
-   *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
-   * @param {function(?Error, ?Object)} [callback]
-   *   The function which will be called with the result of the API call.
-   *
-   *   The second parameter to the callback is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   *
-   * @example
-   *
-   * const irm = require('@google-cloud/irm');
-   *
-   * const client = new irm.v1alpha2.IncidentServiceClient({
-   *   // optional auth parameters.
-   * });
-   *
-   * const formattedName = client.roleAssignmentPath('[PROJECT]', '[INCIDENT]', '[ROLE_ASSIGNMENT]');
-   * const newAssignee = {};
-   * const request = {
-   *   name: formattedName,
-   *   newAssignee: newAssignee,
-   * };
-   * client.confirmIncidentRoleHandover(request)
-   *   .then(responses => {
-   *     const response = responses[0];
-   *     // doThingsWith(response)
-   *   })
-   *   .catch(err => {
-   *     console.error(err);
-   *   });
-   */
-  confirmIncidentRoleHandover(request, options, callback) {
-    if (options instanceof Function && callback === undefined) {
-      callback = options;
-      options = {};
-    }
-    request = request || {};
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
-
-    return this._innerApiCalls.confirmIncidentRoleHandover(
-      request,
-      options,
-      callback
-    );
-  }
-
-  /**
-   * Forces a role handover. This will fail if the 'proposed_assignee' field of
-   * the IncidentRoleAssignment is not equal to the 'new_assignee' field of the
-   * request. If the caller is the new_assignee, ConfirmIncidentRoleHandover
-   * should be used instead.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Resource name of the role assignment.
-   * @param {Object} request.newAssignee
-   *   The proposed assignee, who will now be the assignee. This should not be
-   *   the current user; otherwise ConfirmRoleHandover should be called.
-   *
-   *   This object should have the same structure as [User]{@link google.cloud.irm.v1alpha2.User}
-   * @param {Object} [options]
-   *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
-   * @param {function(?Error, ?Object)} [callback]
-   *   The function which will be called with the result of the API call.
-   *
-   *   The second parameter to the callback is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   *
-   * @example
-   *
-   * const irm = require('@google-cloud/irm');
-   *
-   * const client = new irm.v1alpha2.IncidentServiceClient({
-   *   // optional auth parameters.
-   * });
-   *
-   * const formattedName = client.roleAssignmentPath('[PROJECT]', '[INCIDENT]', '[ROLE_ASSIGNMENT]');
-   * const newAssignee = {};
-   * const request = {
-   *   name: formattedName,
-   *   newAssignee: newAssignee,
-   * };
-   * client.forceIncidentRoleHandover(request)
-   *   .then(responses => {
-   *     const response = responses[0];
-   *     // doThingsWith(response)
-   *   })
-   *   .catch(err => {
-   *     console.error(err);
-   *   });
-   */
-  forceIncidentRoleHandover(request, options, callback) {
-    if (options instanceof Function && callback === undefined) {
-      callback = options;
-      options = {};
-    }
-    request = request || {};
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
-
-    return this._innerApiCalls.forceIncidentRoleHandover(
-      request,
-      options,
-      callback
-    );
-  }
-
-  /**
    * Cancels a role handover. This will fail if the 'proposed_assignee' field of
    * the IncidentRoleAssignment is not equal to the 'new_assignee' field of the
    * request.
@@ -3258,9 +3263,9 @@ class IncidentServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
-   *   Resource name of the role assignment.
+   *   Required. Resource name of the role assignment.
    * @param {Object} request.newAssignee
-   *   Person who was proposed as the next assignee (i.e.
+   *   Required. Person who was proposed as the next assignee (i.e.
    *   IncidentRoleAssignment.proposed_assignee) and whose proposal is being
    *   cancelled.
    *
@@ -3284,7 +3289,7 @@ class IncidentServiceClient {
    *   // optional auth parameters.
    * });
    *
-   * const formattedName = client.roleAssignmentPath('[PROJECT]', '[INCIDENT]', '[ROLE_ASSIGNMENT]');
+   * const formattedName = client.incidentRoleAssignmentPath('[PROJECT_ID_OR_NUMBER]', '[INCIDENT_ID]', '[ROLE_ID]');
    * const newAssignee = {};
    * const request = {
    *   name: formattedName,
@@ -3372,6 +3377,22 @@ class IncidentServiceClient {
   }
 
   /**
+   * Return a fully-qualified incident_role_assignment resource name string.
+   *
+   * @param {String} projectIdOrNumber
+   * @param {String} incidentId
+   * @param {String} roleId
+   * @returns {String}
+   */
+  incidentRoleAssignmentPath(projectIdOrNumber, incidentId, roleId) {
+    return this._pathTemplates.incidentRoleAssignmentPathTemplate.render({
+      project_id_or_number: projectIdOrNumber,
+      incident_id: incidentId,
+      role_id: roleId,
+    });
+  }
+
+  /**
    * Return a fully-qualified project resource name string.
    *
    * @param {String} project
@@ -3380,22 +3401,6 @@ class IncidentServiceClient {
   projectPath(project) {
     return this._pathTemplates.projectPathTemplate.render({
       project: project,
-    });
-  }
-
-  /**
-   * Return a fully-qualified role_assignment resource name string.
-   *
-   * @param {String} project
-   * @param {String} incident
-   * @param {String} roleAssignment
-   * @returns {String}
-   */
-  roleAssignmentPath(project, incident, roleAssignment) {
-    return this._pathTemplates.roleAssignmentPathTemplate.render({
-      project: project,
-      incident: incident,
-      role_assignment: roleAssignment,
     });
   }
 
@@ -3540,6 +3545,47 @@ class IncidentServiceClient {
   }
 
   /**
+   * Parse the incidentRoleAssignmentName from a incident_role_assignment resource.
+   *
+   * @param {String} incidentRoleAssignmentName
+   *   A fully-qualified path representing a incident_role_assignment resources.
+   * @returns {String} - A string representing the project_id_or_number.
+   */
+  matchProjectIdOrNumberFromIncidentRoleAssignmentName(
+    incidentRoleAssignmentName
+  ) {
+    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(
+      incidentRoleAssignmentName
+    ).project_id_or_number;
+  }
+
+  /**
+   * Parse the incidentRoleAssignmentName from a incident_role_assignment resource.
+   *
+   * @param {String} incidentRoleAssignmentName
+   *   A fully-qualified path representing a incident_role_assignment resources.
+   * @returns {String} - A string representing the incident_id.
+   */
+  matchIncidentIdFromIncidentRoleAssignmentName(incidentRoleAssignmentName) {
+    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(
+      incidentRoleAssignmentName
+    ).incident_id;
+  }
+
+  /**
+   * Parse the incidentRoleAssignmentName from a incident_role_assignment resource.
+   *
+   * @param {String} incidentRoleAssignmentName
+   *   A fully-qualified path representing a incident_role_assignment resources.
+   * @returns {String} - A string representing the role_id.
+   */
+  matchRoleIdFromIncidentRoleAssignmentName(incidentRoleAssignmentName) {
+    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(
+      incidentRoleAssignmentName
+    ).role_id;
+  }
+
+  /**
    * Parse the projectName from a project resource.
    *
    * @param {String} projectName
@@ -3548,45 +3594,6 @@ class IncidentServiceClient {
    */
   matchProjectFromProjectName(projectName) {
     return this._pathTemplates.projectPathTemplate.match(projectName).project;
-  }
-
-  /**
-   * Parse the roleAssignmentName from a role_assignment resource.
-   *
-   * @param {String} roleAssignmentName
-   *   A fully-qualified path representing a role_assignment resources.
-   * @returns {String} - A string representing the project.
-   */
-  matchProjectFromRoleAssignmentName(roleAssignmentName) {
-    return this._pathTemplates.roleAssignmentPathTemplate.match(
-      roleAssignmentName
-    ).project;
-  }
-
-  /**
-   * Parse the roleAssignmentName from a role_assignment resource.
-   *
-   * @param {String} roleAssignmentName
-   *   A fully-qualified path representing a role_assignment resources.
-   * @returns {String} - A string representing the incident.
-   */
-  matchIncidentFromRoleAssignmentName(roleAssignmentName) {
-    return this._pathTemplates.roleAssignmentPathTemplate.match(
-      roleAssignmentName
-    ).incident;
-  }
-
-  /**
-   * Parse the roleAssignmentName from a role_assignment resource.
-   *
-   * @param {String} roleAssignmentName
-   *   A fully-qualified path representing a role_assignment resources.
-   * @returns {String} - A string representing the role_assignment.
-   */
-  matchRoleAssignmentFromRoleAssignmentName(roleAssignmentName) {
-    return this._pathTemplates.roleAssignmentPathTemplate.match(
-      roleAssignmentName
-    ).role_assignment;
   }
 
   /**
