@@ -13,3 +13,4 @@ google-cloud-logging-winston-*.tgz
 google-cloud-logging-bunyan-*.tgz
 __pycache__
 package-lock.json
+node_modules/
