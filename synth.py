@@ -28,9 +28,10 @@ for version in versions:
     library = gapic.typescript_library(
             "irm", version,
             generator_args={
-                    "grpc-service-config": f"google/cloud/irm/{version}/irm_grpc_service_config.json"
+                    "grpc-service-config": f"google/cloud/irm/{version}/irm_grpc_service_config.json",
+                    "package-name": f"@google-cloud/irm"
             },
-            proto_path=f'/google/cloud/irm/{version}',
+            proto_path=f'google/cloud/irm/{version}',
             extra_proto_files=['google/cloud/common_resources.proto'],
             )
     s.copy(library, excludes=['src/index.ts', 'README.md', 'package.json'])
@@ -39,16 +40,6 @@ for version in versions:
 common_templates = gcp.CommonTemplates()
 templates = common_templates.node_library(source_location='build/src')
 s.copy(templates)
-
-# [START fix-dead-link]
-s.replace('**/doc/google/protobuf/doc_timestamp.js',
-        'https:\/\/cloud\.google\.com[\s\*]*http:\/\/(.*)[\s\*]*\)',
-        r"https://\1)")
-
-s.replace('**/doc/google/protobuf/doc_timestamp.js',
-        'toISOString\]',
-        'toISOString)')
-# [END fix-dead-link]
 
 # Node.js specific cleanup
 subprocess.run(["npm", "install"])
