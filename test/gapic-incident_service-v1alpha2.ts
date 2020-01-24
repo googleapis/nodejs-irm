@@ -39,8 +39,8 @@ export interface Callback {
 }
 
 export class Operation{
-    constructor(){};
-    promise() {};
+    constructor(){}
+    promise() {}
 }
 function mockSimpleGrpcMethod(expectedRequest: {}, response: {} | null, error: FakeError | null) {
     return (actualRequest: {}, options: {}, callback: Callback) => {
@@ -98,7 +98,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes createIncident with error', done => {
@@ -121,7 +121,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('getIncident', () => {
@@ -144,7 +144,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes getIncident with error', done => {
@@ -167,7 +167,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('updateIncident', () => {
@@ -192,7 +192,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes updateIncident with error', done => {
@@ -217,7 +217,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('createAnnotation', () => {
@@ -240,7 +240,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes createAnnotation with error', done => {
@@ -263,7 +263,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('createTag', () => {
@@ -286,7 +286,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes createTag with error', done => {
@@ -309,7 +309,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('deleteTag', () => {
@@ -332,7 +332,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes deleteTag with error', done => {
@@ -355,7 +355,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('createSignal', () => {
@@ -378,7 +378,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes createSignal with error', done => {
@@ -401,7 +401,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('lookupSignal', () => {
@@ -424,7 +424,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes lookupSignal with error', done => {
@@ -447,7 +447,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('getSignal', () => {
@@ -470,7 +470,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes getSignal with error', done => {
@@ -493,7 +493,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('updateSignal', () => {
@@ -518,7 +518,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes updateSignal with error', done => {
@@ -543,7 +543,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('escalateIncident', () => {
@@ -568,7 +568,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes escalateIncident with error', done => {
@@ -593,7 +593,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('createArtifact', () => {
@@ -616,7 +616,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes createArtifact with error', done => {
@@ -639,7 +639,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('updateArtifact', () => {
@@ -664,7 +664,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes updateArtifact with error', done => {
@@ -689,7 +689,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('deleteArtifact', () => {
@@ -712,7 +712,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes deleteArtifact with error', done => {
@@ -735,7 +735,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('sendShiftHandoff', () => {
@@ -758,7 +758,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes sendShiftHandoff with error', done => {
@@ -781,7 +781,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('createSubscription', () => {
@@ -804,7 +804,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes createSubscription with error', done => {
@@ -827,7 +827,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('updateSubscription', () => {
@@ -852,7 +852,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes updateSubscription with error', done => {
@@ -877,7 +877,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('deleteSubscription', () => {
@@ -900,7 +900,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes deleteSubscription with error', done => {
@@ -923,7 +923,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('createIncidentRoleAssignment', () => {
@@ -946,7 +946,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes createIncidentRoleAssignment with error', done => {
@@ -969,7 +969,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('deleteIncidentRoleAssignment', () => {
@@ -992,7 +992,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes deleteIncidentRoleAssignment with error', done => {
@@ -1015,7 +1015,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('requestIncidentRoleHandover', () => {
@@ -1038,7 +1038,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes requestIncidentRoleHandover with error', done => {
@@ -1061,7 +1061,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('confirmIncidentRoleHandover', () => {
@@ -1084,7 +1084,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes confirmIncidentRoleHandover with error', done => {
@@ -1107,7 +1107,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('forceIncidentRoleHandover', () => {
@@ -1130,7 +1130,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes forceIncidentRoleHandover with error', done => {
@@ -1153,7 +1153,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('cancelIncidentRoleHandover', () => {
@@ -1176,7 +1176,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.ifError(err);
                 assert.deepStrictEqual(response, expectedResponse);
                 done();
-            })
+            });
         });
 
         it('invokes cancelIncidentRoleHandover with error', done => {
@@ -1199,7 +1199,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
                 assert.strictEqual(err.code, FAKE_STATUS_CODE);
                 assert(typeof response === 'undefined');
                 done();
-            })
+            });
         });
     });
     describe('searchIncidents', () => {

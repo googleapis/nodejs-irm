@@ -28,8 +28,8 @@ describe('typescript consumer tests', () => {
       packageDir: process.cwd(),  // path to your module.
       sample: {
         description: 'typescript based user can use the type definitions',
-        ts: readFileSync('./system-test/fixtures/sample/src/index.ts').toString()
-      }
+        ts: readFileSync('./system-test/fixtures/sample/src/index.ts').toString(),
+      },
     };
     await packNTest(options);  // will throw upon error.
   });
@@ -40,8 +40,8 @@ describe('typescript consumer tests', () => {
       packageDir: process.cwd(),  // path to your module.
       sample: {
         description: 'typescript based user can use the type definitions',
-        ts: readFileSync('./system-test/fixtures/sample/src/index.js').toString()
-      }
+        ts: readFileSync('./system-test/fixtures/sample/src/index.js').toString(),
+      },
     };
     await packNTest(options);  // will throw upon error.
   });

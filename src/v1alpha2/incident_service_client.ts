@@ -173,7 +173,7 @@ export class IncidentServiceClient {
       listSubscriptions:
           new gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'subscriptions'),
       listIncidentRoleAssignments:
-          new gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'incidentRoleAssignments')
+          new gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'incidentRoleAssignments'),
     };
 
     // Put together the default options sent with requests.
@@ -258,7 +258,7 @@ export class IncidentServiceClient {
    */
   static get scopes() {
     return [
-      'https://www.googleapis.com/auth/cloud-platform'
+      'https://www.googleapis.com/auth/cloud-platform',
     ];
   }
 
@@ -2997,7 +2997,7 @@ export class IncidentServiceClient {
    */
   projectPath(project:string) {
     return this._pathTemplates.projectPathTemplate.render({
-      project: project,
+      project,
     });
   }
 
@@ -3021,8 +3021,8 @@ export class IncidentServiceClient {
    */
   incidentPath(project:string,incident:string) {
     return this._pathTemplates.incidentPathTemplate.render({
-      project: project,
-      incident: incident,
+      project,
+      incident,
     });
   }
 
@@ -3058,9 +3058,9 @@ export class IncidentServiceClient {
    */
   tagPath(project:string,incident:string,tag:string) {
     return this._pathTemplates.tagPathTemplate.render({
-      project: project,
-      incident: incident,
-      tag: tag,
+      project,
+      incident,
+      tag,
     });
   }
 
@@ -3106,8 +3106,8 @@ export class IncidentServiceClient {
    */
   signalPath(project:string,signal:string) {
     return this._pathTemplates.signalPathTemplate.render({
-      project: project,
-      signal: signal,
+      project,
+      signal,
     });
   }
 
@@ -3143,9 +3143,9 @@ export class IncidentServiceClient {
    */
   artifactPath(project:string,incident:string,artifact:string) {
     return this._pathTemplates.artifactPathTemplate.render({
-      project: project,
-      incident: incident,
-      artifact: artifact,
+      project,
+      incident,
+      artifact,
     });
   }
 
@@ -3192,9 +3192,9 @@ export class IncidentServiceClient {
    */
   subscriptionPath(project:string,incident:string,subscription:string) {
     return this._pathTemplates.subscriptionPathTemplate.render({
-      project: project,
-      incident: incident,
-      subscription: subscription,
+      project,
+      incident,
+      subscription,
     });
   }
 
@@ -3241,9 +3241,9 @@ export class IncidentServiceClient {
    */
   incidentRoleAssignmentPath(project_id_or_number:string,incident_id:string,role_id:string) {
     return this._pathTemplates.incidentroleassignmentPathTemplate.render({
-      project_id_or_number: project_id_or_number,
-      incident_id: incident_id,
-      role_id: role_id,
+      project_id_or_number,
+      incident_id,
+      role_id,
     });
   }
 
