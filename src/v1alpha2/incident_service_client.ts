@@ -1,4 +1,4 @@
-// Copyright 2020 Google LLC
+// Copyright 2019 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -3825,14 +3825,14 @@ export class IncidentServiceClient {
    * @returns {string} Resource name string.
    */
   incidentRoleAssignmentPath(
-    project_id_or_number: string,
-    incident_id: string,
-    role_id: string
+    projectIdOrNumber: string,
+    incidentId: string,
+    roleId: string
   ) {
     return this._pathTemplates.incidentroleassignmentPathTemplate.render({
-      project_id_or_number,
-      incident_id,
-      role_id,
+      project_id_or_number: projectIdOrNumber,
+      incident_id: incidentId,
+      role_id: roleId,
     });
   }
 
