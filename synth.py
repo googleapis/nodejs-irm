@@ -22,27 +22,26 @@ import subprocess
 logging.basicConfig(level=logging.DEBUG)
 
 # Run the gapic generator
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICMicrogenerator()
 versions = ["v1alpha2"]
 for version in versions:
-    library = gapic.node_library("irm", version)
-    s.copy(library, excludes=['src/index.js', 'README.md', 'package.json'])
+    library = gapic.typescript_library(
+            "irm", version,
+            generator_args={
+                    "grpc-service-config": f"google/cloud/irm/{version}/irm_grpc_service_config.json",
+                    "package-name": f"@google-cloud/irm"
+            },
+            proto_path=f'google/cloud/irm/{version}',
+            extra_proto_files=['google/cloud/common_resources.proto'],
+            )
+    s.copy(library, excludes=['src/index.ts', 'README.md', 'package.json'])
 
 # Copy common templates
 common_templates = gcp.CommonTemplates()
-templates = common_templates.node_library()
+templates = common_templates.node_library(source_location='build/src')
 s.copy(templates)
-
-# [START fix-dead-link]
-s.replace('**/doc/google/protobuf/doc_timestamp.js',
-        'https:\/\/cloud\.google\.com[\s\*]*http:\/\/(.*)[\s\*]*\)',
-        r"https://\1)")
-
-s.replace('**/doc/google/protobuf/doc_timestamp.js',
-        'toISOString\]',
-        'toISOString)')
-# [END fix-dead-link]
 
 # Node.js specific cleanup
 subprocess.run(["npm", "install"])
 subprocess.run(["npm", "run", "fix"])
+subprocess.run(["npx", "compileProtos", "run"])
