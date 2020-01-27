@@ -4,6 +4,17 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+## [2.0.0](https://www.github.com/googleapis/nodejs-irm/compare/v1.4.3...v2.0.0) (2020-01-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* move the API to typescript code generation (#126)
+
+### Features
+
+* move the API to typescript code generation ([#126](https://www.github.com/googleapis/nodejs-irm/issues/126)) ([157ea2f](https://www.github.com/googleapis/nodejs-irm/commit/157ea2f1b194a21beddf2322c96edc2da144f3c4))
+
 ### [1.4.3](https://www.github.com/googleapis/nodejs-irm/compare/v1.4.2...v1.4.3) (2019-12-15)
 
 
