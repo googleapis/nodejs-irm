@@ -3817,7 +3817,7 @@ export class IncidentServiceClient {
   }
 
   /**
-   * Return a fully-qualified incidentroleassignment resource name string.
+   * Return a fully-qualified incidentRoleAssignment resource name string.
    *
    * @param {string} project_id_or_number
    * @param {string} incident_id
@@ -3829,7 +3829,7 @@ export class IncidentServiceClient {
     incidentId: string,
     roleId: string
   ) {
-    return this._pathTemplates.incidentroleassignmentPathTemplate.render({
+    return this._pathTemplates.incidentRoleAssignmentPathTemplate.render({
       project_id_or_number: projectIdOrNumber,
       incident_id: incidentId,
       role_id: roleId,
@@ -3839,45 +3839,45 @@ export class IncidentServiceClient {
   /**
    * Parse the project_id_or_number from IncidentRoleAssignment resource.
    *
-   * @param {string} incidentroleassignmentName
+   * @param {string} incidentRoleAssignmentName
    *   A fully-qualified path representing IncidentRoleAssignment resource.
    * @returns {string} A string representing the project_id_or_number.
    */
-  matchProject_id_or_numberFromIncidentRoleAssignmentName(
-    incidentroleassignmentName: string
+  matchProjectIdOrNumberFromIncidentRoleAssignmentName(
+    incidentRoleAssignmentName: string
   ) {
-    return this._pathTemplates.incidentroleassignmentPathTemplate.match(
-      incidentroleassignmentName
+    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(
+      incidentRoleAssignmentName
     ).project_id_or_number;
   }
 
   /**
    * Parse the incident_id from IncidentRoleAssignment resource.
    *
-   * @param {string} incidentroleassignmentName
+   * @param {string} incidentRoleAssignmentName
    *   A fully-qualified path representing IncidentRoleAssignment resource.
    * @returns {string} A string representing the incident_id.
    */
-  matchIncident_idFromIncidentRoleAssignmentName(
-    incidentroleassignmentName: string
+  matchIncidentIdFromIncidentRoleAssignmentName(
+    incidentRoleAssignmentName: string
   ) {
-    return this._pathTemplates.incidentroleassignmentPathTemplate.match(
-      incidentroleassignmentName
+    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(
+      incidentRoleAssignmentName
     ).incident_id;
   }
 
   /**
    * Parse the role_id from IncidentRoleAssignment resource.
    *
-   * @param {string} incidentroleassignmentName
+   * @param {string} incidentRoleAssignmentName
    *   A fully-qualified path representing IncidentRoleAssignment resource.
    * @returns {string} A string representing the role_id.
    */
-  matchRole_idFromIncidentRoleAssignmentName(
-    incidentroleassignmentName: string
+  matchRoleIdFromIncidentRoleAssignmentName(
+    incidentRoleAssignmentName: string
   ) {
-    return this._pathTemplates.incidentroleassignmentPathTemplate.match(
-      incidentroleassignmentName
+    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(
+      incidentRoleAssignmentName
     ).role_id;
   }
 
