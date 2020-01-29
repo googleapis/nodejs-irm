@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+### [2.0.1](https://www.github.com/googleapis/nodejs-irm/compare/v2.0.0...v2.0.1) (2020-01-29)
+
+
+### Bug Fixes
+
+* making resource helpers work ([18b58d4](https://www.github.com/googleapis/nodejs-irm/commit/18b58d46f35cac7ce6dfa688a4b5a18d2ecf785c))
+
 ## [2.0.0](https://www.github.com/googleapis/nodejs-irm/compare/v1.4.3...v2.0.0) (2020-01-27)
 
 
