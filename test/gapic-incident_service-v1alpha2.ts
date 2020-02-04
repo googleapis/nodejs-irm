@@ -91,6 +91,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -113,6 +114,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -137,6 +139,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -159,6 +162,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -233,6 +237,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -255,6 +260,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -279,6 +285,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -301,6 +308,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -325,6 +333,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -347,6 +356,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -371,6 +381,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -393,6 +404,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -463,6 +475,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -485,6 +498,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -609,6 +623,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -631,6 +646,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -705,6 +721,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -727,6 +744,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -751,6 +769,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -773,6 +792,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -797,6 +817,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -819,6 +840,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -893,6 +915,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -915,6 +938,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -939,6 +963,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -961,6 +986,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -988,6 +1014,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -1010,6 +1037,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -1037,6 +1065,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -1059,6 +1088,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -1086,6 +1116,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -1108,6 +1139,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -1135,6 +1167,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -1157,6 +1190,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -1184,6 +1218,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -1206,6 +1241,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock gRPC layer
@@ -1233,6 +1269,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock Grpc layer
@@ -1259,8 +1296,9 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest = {};
+      request.parent = '';
       // Mock response
-      const expectedResponse = {};
+      const expectedResponse = {response: 'data'};
       // Mock Grpc layer
       client._innerApiCalls.searchIncidents = (
         actualRequest: {},
@@ -1279,7 +1317,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         .on('error', (err: FakeError) => {
           done(err);
         });
-      stream.write(request);
+      stream.write(expectedResponse);
     });
   });
   describe('searchSimilarIncidents', () => {
@@ -1290,6 +1328,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest = {};
+      request.name = '';
       // Mock response
       const expectedResponse = {};
       // Mock Grpc layer
@@ -1316,8 +1355,9 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest = {};
+      request.name = '';
       // Mock response
-      const expectedResponse = {};
+      const expectedResponse = {response: 'data'};
       // Mock Grpc layer
       client._innerApiCalls.searchSimilarIncidents = (
         actualRequest: {},
@@ -1336,7 +1376,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         .on('error', (err: FakeError) => {
           done(err);
         });
-      stream.write(request);
+      stream.write(expectedResponse);
     });
   });
   describe('listAnnotations', () => {
@@ -1347,6 +1387,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock Grpc layer
@@ -1373,8 +1414,9 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest = {};
+      request.parent = '';
       // Mock response
-      const expectedResponse = {};
+      const expectedResponse = {response: 'data'};
       // Mock Grpc layer
       client._innerApiCalls.listAnnotations = (
         actualRequest: {},
@@ -1393,7 +1435,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         .on('error', (err: FakeError) => {
           done(err);
         });
-      stream.write(request);
+      stream.write(expectedResponse);
     });
   });
   describe('listTags', () => {
@@ -1404,6 +1446,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock Grpc layer
@@ -1430,8 +1473,9 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest = {};
+      request.parent = '';
       // Mock response
-      const expectedResponse = {};
+      const expectedResponse = {response: 'data'};
       // Mock Grpc layer
       client._innerApiCalls.listTags = (
         actualRequest: {},
@@ -1450,7 +1494,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         .on('error', (err: FakeError) => {
           done(err);
         });
-      stream.write(request);
+      stream.write(expectedResponse);
     });
   });
   describe('searchSignals', () => {
@@ -1461,6 +1505,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock Grpc layer
@@ -1487,8 +1532,9 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest = {};
+      request.parent = '';
       // Mock response
-      const expectedResponse = {};
+      const expectedResponse = {response: 'data'};
       // Mock Grpc layer
       client._innerApiCalls.searchSignals = (
         actualRequest: {},
@@ -1507,7 +1553,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         .on('error', (err: FakeError) => {
           done(err);
         });
-      stream.write(request);
+      stream.write(expectedResponse);
     });
   });
   describe('listArtifacts', () => {
@@ -1518,6 +1564,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock Grpc layer
@@ -1544,8 +1591,9 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest = {};
+      request.parent = '';
       // Mock response
-      const expectedResponse = {};
+      const expectedResponse = {response: 'data'};
       // Mock Grpc layer
       client._innerApiCalls.listArtifacts = (
         actualRequest: {},
@@ -1564,7 +1612,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         .on('error', (err: FakeError) => {
           done(err);
         });
-      stream.write(request);
+      stream.write(expectedResponse);
     });
   });
   describe('listSubscriptions', () => {
@@ -1575,6 +1623,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock Grpc layer
@@ -1601,8 +1650,9 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest = {};
+      request.parent = '';
       // Mock response
-      const expectedResponse = {};
+      const expectedResponse = {response: 'data'};
       // Mock Grpc layer
       client._innerApiCalls.listSubscriptions = (
         actualRequest: {},
@@ -1621,7 +1671,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         .on('error', (err: FakeError) => {
           done(err);
         });
-      stream.write(request);
+      stream.write(expectedResponse);
     });
   });
   describe('listIncidentRoleAssignments', () => {
@@ -1632,6 +1682,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest = {};
+      request.parent = '';
       // Mock response
       const expectedResponse = {};
       // Mock Grpc layer
@@ -1661,8 +1712,9 @@ describe('v1alpha2.IncidentServiceClient', () => {
       });
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest = {};
+      request.parent = '';
       // Mock response
-      const expectedResponse = {};
+      const expectedResponse = {response: 'data'};
       // Mock Grpc layer
       client._innerApiCalls.listIncidentRoleAssignments = (
         actualRequest: {},
@@ -1681,7 +1733,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         .on('error', (err: FakeError) => {
           done(err);
         });
-      stream.write(request);
+      stream.write(expectedResponse);
     });
   });
 });

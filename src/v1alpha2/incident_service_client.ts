@@ -142,15 +142,20 @@ export class IncidentServiceClient {
     // identifiers to uniquely identify resources within the API.
     // Create useful helper objects for these.
     this._pathTemplates = {
-      projectPathTemplate: new gaxModule.PathTemplate('projects/{project}'),
-      incidentPathTemplate: new gaxModule.PathTemplate(
-        'projects/{project}/incidents/{incident}'
+      signalPathTemplate: new gaxModule.PathTemplate(
+        'projects/{project}/signals/{signal}'
+      ),
+      annotationPathTemplate: new gaxModule.PathTemplate(
+        'projects/{project}/incidents/{incident}/annotations/{annotation}'
       ),
       tagPathTemplate: new gaxModule.PathTemplate(
         'projects/{project}/incidents/{incident}/tags/{tag}'
       ),
-      signalPathTemplate: new gaxModule.PathTemplate(
-        'projects/{project}/signals/{signal}'
+      incidentPathTemplate: new gaxModule.PathTemplate(
+        'projects/{project}/incidents/{incident}'
+      ),
+      incidentRoleAssignmentPathTemplate: new gaxModule.PathTemplate(
+        'projects/{project_id_or_number}/incidents/{incident_id}/role_assignments/{role_id}'
       ),
       artifactPathTemplate: new gaxModule.PathTemplate(
         'projects/{project}/incidents/{incident}/artifacts/{artifact}'
@@ -158,9 +163,7 @@ export class IncidentServiceClient {
       subscriptionPathTemplate: new gaxModule.PathTemplate(
         'projects/{project}/incidents/{incident}/subscriptions/{subscription}'
       ),
-      incidentRoleAssignmentPathTemplate: new gaxModule.PathTemplate(
-        'projects/{project_id_or_number}/incidents/{incident_id}/role_assignments/{role_id}'
-      ),
+      projectPathTemplate: new gaxModule.PathTemplate('projects/{project}'),
     };
 
     // Some of the methods on this service return "paged" results,
@@ -3569,63 +3572,91 @@ export class IncidentServiceClient {
   // --------------------
 
   /**
-   * Return a fully-qualified project resource name string.
+   * Return a fully-qualified signal resource name string.
    *
    * @param {string} project
+   * @param {string} signal
    * @returns {string} Resource name string.
    */
-  projectPath(project: string) {
-    return this._pathTemplates.projectPathTemplate.render({
+  signalPath(project: string, signal: string) {
+    return this._pathTemplates.signalPathTemplate.render({
       project,
+      signal,
     });
   }
 
   /**
-   * Parse the project from Project resource.
+   * Parse the project from Signal resource.
    *
-   * @param {string} projectName
-   *   A fully-qualified path representing Project resource.
+   * @param {string} signalName
+   *   A fully-qualified path representing Signal resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromProjectName(projectName: string) {
-    return this._pathTemplates.projectPathTemplate.match(projectName).project;
+  matchProjectFromSignalName(signalName: string) {
+    return this._pathTemplates.signalPathTemplate.match(signalName).project;
   }
 
   /**
-   * Return a fully-qualified incident resource name string.
+   * Parse the signal from Signal resource.
+   *
+   * @param {string} signalName
+   *   A fully-qualified path representing Signal resource.
+   * @returns {string} A string representing the signal.
+   */
+  matchSignalFromSignalName(signalName: string) {
+    return this._pathTemplates.signalPathTemplate.match(signalName).signal;
+  }
+
+  /**
+   * Return a fully-qualified annotation resource name string.
    *
    * @param {string} project
    * @param {string} incident
+   * @param {string} annotation
    * @returns {string} Resource name string.
    */
-  incidentPath(project: string, incident: string) {
-    return this._pathTemplates.incidentPathTemplate.render({
+  annotationPath(project: string, incident: string, annotation: string) {
+    return this._pathTemplates.annotationPathTemplate.render({
       project,
       incident,
+      annotation,
     });
   }
 
   /**
-   * Parse the project from Incident resource.
+   * Parse the project from Annotation resource.
    *
-   * @param {string} incidentName
-   *   A fully-qualified path representing Incident resource.
+   * @param {string} annotationName
+   *   A fully-qualified path representing Annotation resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromIncidentName(incidentName: string) {
-    return this._pathTemplates.incidentPathTemplate.match(incidentName).project;
+  matchProjectFromAnnotationName(annotationName: string) {
+    return this._pathTemplates.annotationPathTemplate.match(annotationName)
+      .project;
   }
 
   /**
-   * Parse the incident from Incident resource.
+   * Parse the incident from Annotation resource.
    *
-   * @param {string} incidentName
-   *   A fully-qualified path representing Incident resource.
+   * @param {string} annotationName
+   *   A fully-qualified path representing Annotation resource.
    * @returns {string} A string representing the incident.
    */
-  matchIncidentFromIncidentName(incidentName: string) {
-    return this._pathTemplates.incidentPathTemplate.match(incidentName)
+  matchIncidentFromAnnotationName(annotationName: string) {
+    return this._pathTemplates.annotationPathTemplate.match(annotationName)
       .incident;
+  }
+
+  /**
+   * Parse the annotation from Annotation resource.
+   *
+   * @param {string} annotationName
+   *   A fully-qualified path representing Annotation resource.
+   * @returns {string} A string representing the annotation.
+   */
+  matchAnnotationFromAnnotationName(annotationName: string) {
+    return this._pathTemplates.annotationPathTemplate.match(annotationName)
+      .annotation;
   }
 
   /**
@@ -3678,39 +3709,105 @@ export class IncidentServiceClient {
   }
 
   /**
-   * Return a fully-qualified signal resource name string.
+   * Return a fully-qualified incident resource name string.
    *
    * @param {string} project
-   * @param {string} signal
+   * @param {string} incident
    * @returns {string} Resource name string.
    */
-  signalPath(project: string, signal: string) {
-    return this._pathTemplates.signalPathTemplate.render({
+  incidentPath(project: string, incident: string) {
+    return this._pathTemplates.incidentPathTemplate.render({
       project,
-      signal,
+      incident,
     });
   }
 
   /**
-   * Parse the project from Signal resource.
+   * Parse the project from Incident resource.
    *
-   * @param {string} signalName
-   *   A fully-qualified path representing Signal resource.
+   * @param {string} incidentName
+   *   A fully-qualified path representing Incident resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromSignalName(signalName: string) {
-    return this._pathTemplates.signalPathTemplate.match(signalName).project;
+  matchProjectFromIncidentName(incidentName: string) {
+    return this._pathTemplates.incidentPathTemplate.match(incidentName).project;
   }
 
   /**
-   * Parse the signal from Signal resource.
+   * Parse the incident from Incident resource.
    *
-   * @param {string} signalName
-   *   A fully-qualified path representing Signal resource.
-   * @returns {string} A string representing the signal.
+   * @param {string} incidentName
+   *   A fully-qualified path representing Incident resource.
+   * @returns {string} A string representing the incident.
    */
-  matchSignalFromSignalName(signalName: string) {
-    return this._pathTemplates.signalPathTemplate.match(signalName).signal;
+  matchIncidentFromIncidentName(incidentName: string) {
+    return this._pathTemplates.incidentPathTemplate.match(incidentName)
+      .incident;
+  }
+
+  /**
+   * Return a fully-qualified incidentRoleAssignment resource name string.
+   *
+   * @param {string} project_id_or_number
+   * @param {string} incident_id
+   * @param {string} role_id
+   * @returns {string} Resource name string.
+   */
+  incidentRoleAssignmentPath(
+    projectIdOrNumber: string,
+    incidentId: string,
+    roleId: string
+  ) {
+    return this._pathTemplates.incidentRoleAssignmentPathTemplate.render({
+      project_id_or_number: projectIdOrNumber,
+      incident_id: incidentId,
+      role_id: roleId,
+    });
+  }
+
+  /**
+   * Parse the project_id_or_number from IncidentRoleAssignment resource.
+   *
+   * @param {string} incidentRoleAssignmentName
+   *   A fully-qualified path representing IncidentRoleAssignment resource.
+   * @returns {string} A string representing the project_id_or_number.
+   */
+  matchProjectIdOrNumberFromIncidentRoleAssignmentName(
+    incidentRoleAssignmentName: string
+  ) {
+    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(
+      incidentRoleAssignmentName
+    ).project_id_or_number;
+  }
+
+  /**
+   * Parse the incident_id from IncidentRoleAssignment resource.
+   *
+   * @param {string} incidentRoleAssignmentName
+   *   A fully-qualified path representing IncidentRoleAssignment resource.
+   * @returns {string} A string representing the incident_id.
+   */
+  matchIncidentIdFromIncidentRoleAssignmentName(
+    incidentRoleAssignmentName: string
+  ) {
+    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(
+      incidentRoleAssignmentName
+    ).incident_id;
+  }
+
+  /**
+   * Parse the role_id from IncidentRoleAssignment resource.
+   *
+   * @param {string} incidentRoleAssignmentName
+   *   A fully-qualified path representing IncidentRoleAssignment resource.
+   * @returns {string} A string representing the role_id.
+   */
+  matchRoleIdFromIncidentRoleAssignmentName(
+    incidentRoleAssignmentName: string
+  ) {
+    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(
+      incidentRoleAssignmentName
+    ).role_id;
   }
 
   /**
@@ -3817,68 +3914,26 @@ export class IncidentServiceClient {
   }
 
   /**
-   * Return a fully-qualified incidentRoleAssignment resource name string.
+   * Return a fully-qualified project resource name string.
    *
-   * @param {string} project_id_or_number
-   * @param {string} incident_id
-   * @param {string} role_id
+   * @param {string} project
    * @returns {string} Resource name string.
    */
-  incidentRoleAssignmentPath(
-    projectIdOrNumber: string,
-    incidentId: string,
-    roleId: string
-  ) {
-    return this._pathTemplates.incidentRoleAssignmentPathTemplate.render({
-      project_id_or_number: projectIdOrNumber,
-      incident_id: incidentId,
-      role_id: roleId,
+  projectPath(project: string) {
+    return this._pathTemplates.projectPathTemplate.render({
+      project,
     });
   }
 
   /**
-   * Parse the project_id_or_number from IncidentRoleAssignment resource.
+   * Parse the project from Project resource.
    *
-   * @param {string} incidentRoleAssignmentName
-   *   A fully-qualified path representing IncidentRoleAssignment resource.
-   * @returns {string} A string representing the project_id_or_number.
+   * @param {string} projectName
+   *   A fully-qualified path representing Project resource.
+   * @returns {string} A string representing the project.
    */
-  matchProjectIdOrNumberFromIncidentRoleAssignmentName(
-    incidentRoleAssignmentName: string
-  ) {
-    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(
-      incidentRoleAssignmentName
-    ).project_id_or_number;
-  }
-
-  /**
-   * Parse the incident_id from IncidentRoleAssignment resource.
-   *
-   * @param {string} incidentRoleAssignmentName
-   *   A fully-qualified path representing IncidentRoleAssignment resource.
-   * @returns {string} A string representing the incident_id.
-   */
-  matchIncidentIdFromIncidentRoleAssignmentName(
-    incidentRoleAssignmentName: string
-  ) {
-    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(
-      incidentRoleAssignmentName
-    ).incident_id;
-  }
-
-  /**
-   * Parse the role_id from IncidentRoleAssignment resource.
-   *
-   * @param {string} incidentRoleAssignmentName
-   *   A fully-qualified path representing IncidentRoleAssignment resource.
-   * @returns {string} A string representing the role_id.
-   */
-  matchRoleIdFromIncidentRoleAssignmentName(
-    incidentRoleAssignmentName: string
-  ) {
-    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(
-      incidentRoleAssignmentName
-    ).role_id;
+  matchProjectFromProjectName(projectName: string) {
+    return this._pathTemplates.projectPathTemplate.match(projectName).project;
   }
 
   /**
