@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+### [2.0.2](https://www.github.com/googleapis/nodejs-irm/compare/v2.0.1...v2.0.2) (2020-02-07)
+
+
+### Bug Fixes
+
+* pass x-goog-request-params header for streaming calls ([b980771](https://www.github.com/googleapis/nodejs-irm/commit/b9807714da94becd93bd47d90af6c89f0b95682d))
+
 ### [2.0.1](https://www.github.com/googleapis/nodejs-irm/compare/v2.0.0...v2.0.1) (2020-01-29)
 
 
