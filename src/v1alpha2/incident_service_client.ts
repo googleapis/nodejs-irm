@@ -142,24 +142,27 @@ export class IncidentServiceClient {
     // identifiers to uniquely identify resources within the API.
     // Create useful helper objects for these.
     this._pathTemplates = {
-      projectPathTemplate: new gaxModule.PathTemplate('projects/{project}'),
-      incidentPathTemplate: new gaxModule.PathTemplate(
-        'projects/{project}/incidents/{incident}'
-      ),
-      tagPathTemplate: new gaxModule.PathTemplate(
-        'projects/{project}/incidents/{incident}/tags/{tag}'
-      ),
-      signalPathTemplate: new gaxModule.PathTemplate(
-        'projects/{project}/signals/{signal}'
+      annotationPathTemplate: new gaxModule.PathTemplate(
+        'projects/{project}/incidents/{incident}/annotations/{annotation}'
       ),
       artifactPathTemplate: new gaxModule.PathTemplate(
         'projects/{project}/incidents/{incident}/artifacts/{artifact}'
       ),
-      subscriptionPathTemplate: new gaxModule.PathTemplate(
-        'projects/{project}/incidents/{incident}/subscriptions/{subscription}'
+      incidentPathTemplate: new gaxModule.PathTemplate(
+        'projects/{project}/incidents/{incident}'
       ),
       incidentRoleAssignmentPathTemplate: new gaxModule.PathTemplate(
         'projects/{project_id_or_number}/incidents/{incident_id}/role_assignments/{role_id}'
+      ),
+      projectPathTemplate: new gaxModule.PathTemplate('projects/{project}'),
+      signalPathTemplate: new gaxModule.PathTemplate(
+        'projects/{project}/signals/{signal}'
+      ),
+      subscriptionPathTemplate: new gaxModule.PathTemplate(
+        'projects/{project}/incidents/{incident}/subscriptions/{subscription}'
+      ),
+      tagPathTemplate: new gaxModule.PathTemplate(
+        'projects/{project}/incidents/{incident}/tags/{tag}'
       ),
     };
 
@@ -2521,9 +2524,17 @@ export class IncidentServiceClient {
    */
   searchIncidentsStream(
     request?: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest,
-    options?: gax.CallOptions | {}
+    options?: gax.CallOptions
   ): Transform {
     request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      parent: request.parent || '',
+    });
     const callSettings = new gax.CallSettings(options);
     return this._descriptors.page.searchIncidents.createStream(
       this._innerApiCalls.searchIncidents as gax.GaxCall,
@@ -2655,9 +2666,17 @@ export class IncidentServiceClient {
    */
   searchSimilarIncidentsStream(
     request?: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest,
-    options?: gax.CallOptions | {}
+    options?: gax.CallOptions
   ): Transform {
     request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      name: request.name || '',
+    });
     const callSettings = new gax.CallSettings(options);
     return this._descriptors.page.searchSimilarIncidents.createStream(
       this._innerApiCalls.searchSimilarIncidents as gax.GaxCall,
@@ -2784,9 +2803,17 @@ export class IncidentServiceClient {
    */
   listAnnotationsStream(
     request?: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest,
-    options?: gax.CallOptions | {}
+    options?: gax.CallOptions
   ): Transform {
     request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      parent: request.parent || '',
+    });
     const callSettings = new gax.CallSettings(options);
     return this._descriptors.page.listAnnotations.createStream(
       this._innerApiCalls.listAnnotations as gax.GaxCall,
@@ -2912,9 +2939,17 @@ export class IncidentServiceClient {
    */
   listTagsStream(
     request?: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest,
-    options?: gax.CallOptions | {}
+    options?: gax.CallOptions
   ): Transform {
     request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      parent: request.parent || '',
+    });
     const callSettings = new gax.CallSettings(options);
     return this._descriptors.page.listTags.createStream(
       this._innerApiCalls.listTags as gax.GaxCall,
@@ -3166,9 +3201,17 @@ export class IncidentServiceClient {
    */
   searchSignalsStream(
     request?: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest,
-    options?: gax.CallOptions | {}
+    options?: gax.CallOptions
   ): Transform {
     request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      parent: request.parent || '',
+    });
     const callSettings = new gax.CallSettings(options);
     return this._descriptors.page.searchSignals.createStream(
       this._innerApiCalls.searchSignals as gax.GaxCall,
@@ -3294,9 +3337,17 @@ export class IncidentServiceClient {
    */
   listArtifactsStream(
     request?: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest,
-    options?: gax.CallOptions | {}
+    options?: gax.CallOptions
   ): Transform {
     request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      parent: request.parent || '',
+    });
     const callSettings = new gax.CallSettings(options);
     return this._descriptors.page.listArtifacts.createStream(
       this._innerApiCalls.listArtifacts as gax.GaxCall,
@@ -3422,9 +3473,17 @@ export class IncidentServiceClient {
    */
   listSubscriptionsStream(
     request?: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest,
-    options?: gax.CallOptions | {}
+    options?: gax.CallOptions
   ): Transform {
     request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      parent: request.parent || '',
+    });
     const callSettings = new gax.CallSettings(options);
     return this._descriptors.page.listSubscriptions.createStream(
       this._innerApiCalls.listSubscriptions as gax.GaxCall,
@@ -3554,9 +3613,17 @@ export class IncidentServiceClient {
    */
   listIncidentRoleAssignmentsStream(
     request?: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest,
-    options?: gax.CallOptions | {}
+    options?: gax.CallOptions
   ): Transform {
     request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      parent: request.parent || '',
+    });
     const callSettings = new gax.CallSettings(options);
     return this._descriptors.page.listIncidentRoleAssignments.createStream(
       this._innerApiCalls.listIncidentRoleAssignments as gax.GaxCall,
@@ -3569,148 +3636,55 @@ export class IncidentServiceClient {
   // --------------------
 
   /**
-   * Return a fully-qualified project resource name string.
-   *
-   * @param {string} project
-   * @returns {string} Resource name string.
-   */
-  projectPath(project: string) {
-    return this._pathTemplates.projectPathTemplate.render({
-      project,
-    });
-  }
-
-  /**
-   * Parse the project from Project resource.
-   *
-   * @param {string} projectName
-   *   A fully-qualified path representing Project resource.
-   * @returns {string} A string representing the project.
-   */
-  matchProjectFromProjectName(projectName: string) {
-    return this._pathTemplates.projectPathTemplate.match(projectName).project;
-  }
-
-  /**
-   * Return a fully-qualified incident resource name string.
+   * Return a fully-qualified annotation resource name string.
    *
    * @param {string} project
    * @param {string} incident
+   * @param {string} annotation
    * @returns {string} Resource name string.
    */
-  incidentPath(project: string, incident: string) {
-    return this._pathTemplates.incidentPathTemplate.render({
+  annotationPath(project: string, incident: string, annotation: string) {
+    return this._pathTemplates.annotationPathTemplate.render({
       project,
       incident,
+      annotation,
     });
   }
 
   /**
-   * Parse the project from Incident resource.
+   * Parse the project from Annotation resource.
    *
-   * @param {string} incidentName
-   *   A fully-qualified path representing Incident resource.
+   * @param {string} annotationName
+   *   A fully-qualified path representing Annotation resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromIncidentName(incidentName: string) {
-    return this._pathTemplates.incidentPathTemplate.match(incidentName).project;
+  matchProjectFromAnnotationName(annotationName: string) {
+    return this._pathTemplates.annotationPathTemplate.match(annotationName)
+      .project;
   }
 
   /**
-   * Parse the incident from Incident resource.
+   * Parse the incident from Annotation resource.
    *
-   * @param {string} incidentName
-   *   A fully-qualified path representing Incident resource.
+   * @param {string} annotationName
+   *   A fully-qualified path representing Annotation resource.
    * @returns {string} A string representing the incident.
    */
-  matchIncidentFromIncidentName(incidentName: string) {
-    return this._pathTemplates.incidentPathTemplate.match(incidentName)
+  matchIncidentFromAnnotationName(annotationName: string) {
+    return this._pathTemplates.annotationPathTemplate.match(annotationName)
       .incident;
   }
 
   /**
-   * Return a fully-qualified tag resource name string.
+   * Parse the annotation from Annotation resource.
    *
-   * @param {string} project
-   * @param {string} incident
-   * @param {string} tag
-   * @returns {string} Resource name string.
+   * @param {string} annotationName
+   *   A fully-qualified path representing Annotation resource.
+   * @returns {string} A string representing the annotation.
    */
-  tagPath(project: string, incident: string, tag: string) {
-    return this._pathTemplates.tagPathTemplate.render({
-      project,
-      incident,
-      tag,
-    });
-  }
-
-  /**
-   * Parse the project from Tag resource.
-   *
-   * @param {string} tagName
-   *   A fully-qualified path representing Tag resource.
-   * @returns {string} A string representing the project.
-   */
-  matchProjectFromTagName(tagName: string) {
-    return this._pathTemplates.tagPathTemplate.match(tagName).project;
-  }
-
-  /**
-   * Parse the incident from Tag resource.
-   *
-   * @param {string} tagName
-   *   A fully-qualified path representing Tag resource.
-   * @returns {string} A string representing the incident.
-   */
-  matchIncidentFromTagName(tagName: string) {
-    return this._pathTemplates.tagPathTemplate.match(tagName).incident;
-  }
-
-  /**
-   * Parse the tag from Tag resource.
-   *
-   * @param {string} tagName
-   *   A fully-qualified path representing Tag resource.
-   * @returns {string} A string representing the tag.
-   */
-  matchTagFromTagName(tagName: string) {
-    return this._pathTemplates.tagPathTemplate.match(tagName).tag;
-  }
-
-  /**
-   * Return a fully-qualified signal resource name string.
-   *
-   * @param {string} project
-   * @param {string} signal
-   * @returns {string} Resource name string.
-   */
-  signalPath(project: string, signal: string) {
-    return this._pathTemplates.signalPathTemplate.render({
-      project,
-      signal,
-    });
-  }
-
-  /**
-   * Parse the project from Signal resource.
-   *
-   * @param {string} signalName
-   *   A fully-qualified path representing Signal resource.
-   * @returns {string} A string representing the project.
-   */
-  matchProjectFromSignalName(signalName: string) {
-    return this._pathTemplates.signalPathTemplate.match(signalName).project;
-  }
-
-  /**
-   * Parse the signal from Signal resource.
-   *
-   * @param {string} signalName
-   *   A fully-qualified path representing Signal resource.
-   * @returns {string} A string representing the signal.
-   */
-  matchSignalFromSignalName(signalName: string) {
-    return this._pathTemplates.signalPathTemplate.match(signalName).signal;
+  matchAnnotationFromAnnotationName(annotationName: string) {
+    return this._pathTemplates.annotationPathTemplate.match(annotationName)
+      .annotation;
   }
 
   /**
@@ -3765,55 +3739,40 @@ export class IncidentServiceClient {
   }
 
   /**
-   * Return a fully-qualified subscription resource name string.
+   * Return a fully-qualified incident resource name string.
    *
    * @param {string} project
    * @param {string} incident
-   * @param {string} subscription
    * @returns {string} Resource name string.
    */
-  subscriptionPath(project: string, incident: string, subscription: string) {
-    return this._pathTemplates.subscriptionPathTemplate.render({
+  incidentPath(project: string, incident: string) {
+    return this._pathTemplates.incidentPathTemplate.render({
       project,
       incident,
-      subscription,
     });
   }
 
   /**
-   * Parse the project from Subscription resource.
+   * Parse the project from Incident resource.
    *
-   * @param {string} subscriptionName
-   *   A fully-qualified path representing Subscription resource.
+   * @param {string} incidentName
+   *   A fully-qualified path representing Incident resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromSubscriptionName(subscriptionName: string) {
-    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName)
-      .project;
+  matchProjectFromIncidentName(incidentName: string) {
+    return this._pathTemplates.incidentPathTemplate.match(incidentName).project;
   }
 
   /**
-   * Parse the incident from Subscription resource.
+   * Parse the incident from Incident resource.
    *
-   * @param {string} subscriptionName
-   *   A fully-qualified path representing Subscription resource.
+   * @param {string} incidentName
+   *   A fully-qualified path representing Incident resource.
    * @returns {string} A string representing the incident.
    */
-  matchIncidentFromSubscriptionName(subscriptionName: string) {
-    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName)
+  matchIncidentFromIncidentName(incidentName: string) {
+    return this._pathTemplates.incidentPathTemplate.match(incidentName)
       .incident;
-  }
-
-  /**
-   * Parse the subscription from Subscription resource.
-   *
-   * @param {string} subscriptionName
-   *   A fully-qualified path representing Subscription resource.
-   * @returns {string} A string representing the subscription.
-   */
-  matchSubscriptionFromSubscriptionName(subscriptionName: string) {
-    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName)
-      .subscription;
   }
 
   /**
@@ -3879,6 +3838,166 @@ export class IncidentServiceClient {
     return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(
       incidentRoleAssignmentName
     ).role_id;
+  }
+
+  /**
+   * Return a fully-qualified project resource name string.
+   *
+   * @param {string} project
+   * @returns {string} Resource name string.
+   */
+  projectPath(project: string) {
+    return this._pathTemplates.projectPathTemplate.render({
+      project,
+    });
+  }
+
+  /**
+   * Parse the project from Project resource.
+   *
+   * @param {string} projectName
+   *   A fully-qualified path representing Project resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromProjectName(projectName: string) {
+    return this._pathTemplates.projectPathTemplate.match(projectName).project;
+  }
+
+  /**
+   * Return a fully-qualified signal resource name string.
+   *
+   * @param {string} project
+   * @param {string} signal
+   * @returns {string} Resource name string.
+   */
+  signalPath(project: string, signal: string) {
+    return this._pathTemplates.signalPathTemplate.render({
+      project,
+      signal,
+    });
+  }
+
+  /**
+   * Parse the project from Signal resource.
+   *
+   * @param {string} signalName
+   *   A fully-qualified path representing Signal resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromSignalName(signalName: string) {
+    return this._pathTemplates.signalPathTemplate.match(signalName).project;
+  }
+
+  /**
+   * Parse the signal from Signal resource.
+   *
+   * @param {string} signalName
+   *   A fully-qualified path representing Signal resource.
+   * @returns {string} A string representing the signal.
+   */
+  matchSignalFromSignalName(signalName: string) {
+    return this._pathTemplates.signalPathTemplate.match(signalName).signal;
+  }
+
+  /**
+   * Return a fully-qualified subscription resource name string.
+   *
+   * @param {string} project
+   * @param {string} incident
+   * @param {string} subscription
+   * @returns {string} Resource name string.
+   */
+  subscriptionPath(project: string, incident: string, subscription: string) {
+    return this._pathTemplates.subscriptionPathTemplate.render({
+      project,
+      incident,
+      subscription,
+    });
+  }
+
+  /**
+   * Parse the project from Subscription resource.
+   *
+   * @param {string} subscriptionName
+   *   A fully-qualified path representing Subscription resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromSubscriptionName(subscriptionName: string) {
+    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName)
+      .project;
+  }
+
+  /**
+   * Parse the incident from Subscription resource.
+   *
+   * @param {string} subscriptionName
+   *   A fully-qualified path representing Subscription resource.
+   * @returns {string} A string representing the incident.
+   */
+  matchIncidentFromSubscriptionName(subscriptionName: string) {
+    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName)
+      .incident;
+  }
+
+  /**
+   * Parse the subscription from Subscription resource.
+   *
+   * @param {string} subscriptionName
+   *   A fully-qualified path representing Subscription resource.
+   * @returns {string} A string representing the subscription.
+   */
+  matchSubscriptionFromSubscriptionName(subscriptionName: string) {
+    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName)
+      .subscription;
+  }
+
+  /**
+   * Return a fully-qualified tag resource name string.
+   *
+   * @param {string} project
+   * @param {string} incident
+   * @param {string} tag
+   * @returns {string} Resource name string.
+   */
+  tagPath(project: string, incident: string, tag: string) {
+    return this._pathTemplates.tagPathTemplate.render({
+      project,
+      incident,
+      tag,
+    });
+  }
+
+  /**
+   * Parse the project from Tag resource.
+   *
+   * @param {string} tagName
+   *   A fully-qualified path representing Tag resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromTagName(tagName: string) {
+    return this._pathTemplates.tagPathTemplate.match(tagName).project;
+  }
+
+  /**
+   * Parse the incident from Tag resource.
+   *
+   * @param {string} tagName
+   *   A fully-qualified path representing Tag resource.
+   * @returns {string} A string representing the incident.
+   */
+  matchIncidentFromTagName(tagName: string) {
+    return this._pathTemplates.tagPathTemplate.match(tagName).incident;
+  }
+
+  /**
+   * Parse the tag from Tag resource.
+   *
+   * @param {string} tagName
+   *   A fully-qualified path representing Tag resource.
+   * @returns {string} A string representing the tag.
+   */
+  matchTagFromTagName(tagName: string) {
+    return this._pathTemplates.tagPathTemplate.match(tagName).tag;
   }
 
   /**
