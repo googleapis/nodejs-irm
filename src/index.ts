@@ -22,3 +22,5 @@ export {v1alpha2, IncidentServiceClient};
 // For compatibility with JavaScript libraries we need to provide this default export:
 // tslint:disable-next-line no-default-export
 export default {v1alpha2, IncidentServiceClient};
+import * as protos from '../protos/protos';
+export {protos};
