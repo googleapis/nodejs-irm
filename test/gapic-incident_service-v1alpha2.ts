@@ -83,12 +83,30 @@ describe('v1alpha2.IncidentServiceClient', () => {
     });
     assert(client);
   });
+  it('has initialize method and supports deferred initialization', async () => {
+    const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+      credentials: {client_email: 'bogus', private_key: 'bogus'},
+      projectId: 'bogus',
+    });
+    assert.strictEqual(client.incidentServiceStub, undefined);
+    await client.initialize();
+    assert(client.incidentServiceStub);
+  });
+  it('has close method', () => {
+    const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+      credentials: {client_email: 'bogus', private_key: 'bogus'},
+      projectId: 'bogus',
+    });
+    client.close();
+  });
   describe('createIncident', () => {
     it('invokes createIncident without error', done => {
       const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest = {};
       request.parent = '';
@@ -112,6 +130,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest = {};
       request.parent = '';
@@ -137,6 +157,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest = {};
       request.name = '';
@@ -160,6 +182,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest = {};
       request.name = '';
@@ -185,6 +209,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest = {};
       request.incident = {};
@@ -209,6 +235,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest = {};
       request.incident = {};
@@ -235,6 +263,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest = {};
       request.parent = '';
@@ -258,6 +288,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest = {};
       request.parent = '';
@@ -283,6 +315,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest = {};
       request.parent = '';
@@ -306,6 +340,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest = {};
       request.parent = '';
@@ -331,6 +367,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest = {};
       request.name = '';
@@ -354,6 +392,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest = {};
       request.name = '';
@@ -379,6 +419,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest = {};
       request.parent = '';
@@ -402,6 +444,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest = {};
       request.parent = '';
@@ -427,6 +471,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest = {};
       // Mock response
@@ -449,6 +495,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest = {};
       // Mock response
@@ -473,6 +521,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest = {};
       request.name = '';
@@ -496,6 +546,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest = {};
       request.name = '';
@@ -521,6 +573,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest = {};
       request.signal = {};
@@ -545,6 +599,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest = {};
       request.signal = {};
@@ -571,6 +627,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest = {};
       request.incident = {};
@@ -595,6 +653,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest = {};
       request.incident = {};
@@ -621,6 +681,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest = {};
       request.parent = '';
@@ -644,6 +706,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest = {};
       request.parent = '';
@@ -669,6 +733,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest = {};
       request.artifact = {};
@@ -693,6 +759,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest = {};
       request.artifact = {};
@@ -719,6 +787,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest = {};
       request.name = '';
@@ -742,6 +812,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest = {};
       request.name = '';
@@ -767,6 +839,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest = {};
       request.parent = '';
@@ -790,6 +864,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest = {};
       request.parent = '';
@@ -815,6 +891,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest = {};
       request.parent = '';
@@ -838,6 +916,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest = {};
       request.parent = '';
@@ -863,6 +943,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest = {};
       request.subscription = {};
@@ -887,6 +969,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest = {};
       request.subscription = {};
@@ -913,6 +997,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest = {};
       request.name = '';
@@ -936,6 +1022,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest = {};
       request.name = '';
@@ -961,6 +1049,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest = {};
       request.parent = '';
@@ -984,6 +1074,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest = {};
       request.parent = '';
@@ -1012,6 +1104,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest = {};
       request.name = '';
@@ -1035,6 +1129,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest = {};
       request.name = '';
@@ -1063,6 +1159,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest = {};
       request.name = '';
@@ -1086,6 +1184,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest = {};
       request.name = '';
@@ -1114,6 +1214,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest = {};
       request.name = '';
@@ -1137,6 +1239,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest = {};
       request.name = '';
@@ -1165,6 +1269,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest = {};
       request.name = '';
@@ -1188,6 +1294,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest = {};
       request.name = '';
@@ -1216,6 +1324,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest = {};
       request.name = '';
@@ -1239,6 +1349,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest = {};
       request.name = '';
@@ -1267,6 +1379,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest = {};
       request.parent = '';
@@ -1294,6 +1408,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest = {};
       request.parent = '';
@@ -1326,6 +1442,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest = {};
       request.name = '';
@@ -1353,6 +1471,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest = {};
       request.name = '';
@@ -1385,6 +1505,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest = {};
       request.parent = '';
@@ -1412,6 +1534,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest = {};
       request.parent = '';
@@ -1444,6 +1568,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest = {};
       request.parent = '';
@@ -1471,6 +1597,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest = {};
       request.parent = '';
@@ -1503,6 +1631,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest = {};
       request.parent = '';
@@ -1530,6 +1660,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest = {};
       request.parent = '';
@@ -1562,6 +1694,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest = {};
       request.parent = '';
@@ -1589,6 +1723,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest = {};
       request.parent = '';
@@ -1621,6 +1757,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest = {};
       request.parent = '';
@@ -1648,6 +1786,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest = {};
       request.parent = '';
@@ -1680,6 +1820,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest = {};
       request.parent = '';
@@ -1710,6 +1852,8 @@ describe('v1alpha2.IncidentServiceClient', () => {
         credentials: {client_email: 'bogus', private_key: 'bogus'},
         projectId: 'bogus',
       });
+      // Initialize client before mocking
+      client.initialize();
       // Mock request
       const request: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest = {};
       request.parent = '';

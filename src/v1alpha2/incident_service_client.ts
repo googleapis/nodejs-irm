@@ -44,8 +44,13 @@ export class IncidentServiceClient {
   private _innerApiCalls: {[name: string]: Function};
   private _pathTemplates: {[name: string]: gax.PathTemplate};
   private _terminated = false;
+  private _opts: ClientOptions;
+  private _gaxModule: typeof gax | typeof gax.fallback;
+  private _gaxGrpc: gax.GrpcClient | gax.fallback.GrpcClient;
+  private _protos: {};
+  private _defaults: {[method: string]: gax.CallSettings};
   auth: gax.GoogleAuth;
-  incidentServiceStub: Promise<{[name: string]: Function}>;
+  incidentServiceStub?: Promise<{[name: string]: Function}>;
 
   /**
    * Construct an instance of IncidentServiceClient.
@@ -69,8 +74,6 @@ export class IncidentServiceClient {
    *     app is running in an environment which supports
    *     {@link https://developers.google.com/identity/protocols/application-default-credentials Application Default Credentials},
    *     your project ID will be detected automatically.
-   * @param {function} [options.promise] - Custom promise module to use instead
-   *     of native Promises.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
    */
@@ -100,25 +103,28 @@ export class IncidentServiceClient {
     // If we are in browser, we are already using fallback because of the
     // "browser" field in package.json.
     // But if we were explicitly requested to use fallback, let's do it now.
-    const gaxModule = !isBrowser && opts.fallback ? gax.fallback : gax;
+    this._gaxModule = !isBrowser && opts.fallback ? gax.fallback : gax;
 
     // Create a `gaxGrpc` object, with any grpc-specific options
     // sent to the client.
     opts.scopes = (this.constructor as typeof IncidentServiceClient).scopes;
-    const gaxGrpc = new gaxModule.GrpcClient(opts);
+    this._gaxGrpc = new this._gaxModule.GrpcClient(opts);
+
+    // Save options to use in initialize() method.
+    this._opts = opts;
 
     // Save the auth object to the client, for use by other methods.
-    this.auth = gaxGrpc.auth as gax.GoogleAuth;
+    this.auth = this._gaxGrpc.auth as gax.GoogleAuth;
 
     // Determine the client header string.
-    const clientHeader = [`gax/${gaxModule.version}`, `gapic/${version}`];
+    const clientHeader = [`gax/${this._gaxModule.version}`, `gapic/${version}`];
     if (typeof process !== 'undefined' && 'versions' in process) {
       clientHeader.push(`gl-node/${process.versions.node}`);
     } else {
-      clientHeader.push(`gl-web/${gaxModule.version}`);
+      clientHeader.push(`gl-web/${this._gaxModule.version}`);
     }
     if (!opts.fallback) {
-      clientHeader.push(`grpc/${gaxGrpc.grpcVersion}`);
+      clientHeader.push(`grpc/${this._gaxGrpc.grpcVersion}`);
     }
     if (opts.libName && opts.libVersion) {
       clientHeader.push(`${opts.libName}/${opts.libVersion}`);
@@ -134,7 +140,7 @@ export class IncidentServiceClient {
       'protos',
       'protos.json'
     );
-    const protos = gaxGrpc.loadProto(
+    this._protos = this._gaxGrpc.loadProto(
       opts.fallback ? require('../../protos/protos.json') : nodejsProtoPath
     );
 
@@ -142,26 +148,28 @@ export class IncidentServiceClient {
     // identifiers to uniquely identify resources within the API.
     // Create useful helper objects for these.
     this._pathTemplates = {
-      annotationPathTemplate: new gaxModule.PathTemplate(
+      annotationPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/incidents/{incident}/annotations/{annotation}'
       ),
-      artifactPathTemplate: new gaxModule.PathTemplate(
+      artifactPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/incidents/{incident}/artifacts/{artifact}'
       ),
-      incidentPathTemplate: new gaxModule.PathTemplate(
+      incidentPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/incidents/{incident}'
       ),
-      incidentRoleAssignmentPathTemplate: new gaxModule.PathTemplate(
+      incidentRoleAssignmentPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project_id_or_number}/incidents/{incident_id}/role_assignments/{role_id}'
       ),
-      projectPathTemplate: new gaxModule.PathTemplate('projects/{project}'),
-      signalPathTemplate: new gaxModule.PathTemplate(
+      projectPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}'
+      ),
+      signalPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/signals/{signal}'
       ),
-      subscriptionPathTemplate: new gaxModule.PathTemplate(
+      subscriptionPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/incidents/{incident}/subscriptions/{subscription}'
       ),
-      tagPathTemplate: new gaxModule.PathTemplate(
+      tagPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/incidents/{incident}/tags/{tag}'
       ),
     };
@@ -170,42 +178,42 @@ export class IncidentServiceClient {
     // (e.g. 50 results at a time, with tokens to get subsequent
     // pages). Denote the keys used for pagination and results.
     this._descriptors.page = {
-      searchIncidents: new gaxModule.PageDescriptor(
+      searchIncidents: new this._gaxModule.PageDescriptor(
         'pageToken',
         'nextPageToken',
         'incidents'
       ),
-      searchSimilarIncidents: new gaxModule.PageDescriptor(
+      searchSimilarIncidents: new this._gaxModule.PageDescriptor(
         'pageToken',
         'nextPageToken',
         'results'
       ),
-      listAnnotations: new gaxModule.PageDescriptor(
+      listAnnotations: new this._gaxModule.PageDescriptor(
         'pageToken',
         'nextPageToken',
         'annotations'
       ),
-      listTags: new gaxModule.PageDescriptor(
+      listTags: new this._gaxModule.PageDescriptor(
         'pageToken',
         'nextPageToken',
         'tags'
       ),
-      searchSignals: new gaxModule.PageDescriptor(
+      searchSignals: new this._gaxModule.PageDescriptor(
         'pageToken',
         'nextPageToken',
         'signals'
       ),
-      listArtifacts: new gaxModule.PageDescriptor(
+      listArtifacts: new this._gaxModule.PageDescriptor(
         'pageToken',
         'nextPageToken',
         'artifacts'
       ),
-      listSubscriptions: new gaxModule.PageDescriptor(
+      listSubscriptions: new this._gaxModule.PageDescriptor(
         'pageToken',
         'nextPageToken',
         'subscriptions'
       ),
-      listIncidentRoleAssignments: new gaxModule.PageDescriptor(
+      listIncidentRoleAssignments: new this._gaxModule.PageDescriptor(
         'pageToken',
         'nextPageToken',
         'incidentRoleAssignments'
@@ -213,7 +221,7 @@ export class IncidentServiceClient {
     };
 
     // Put together the default options sent with requests.
-    const defaults = gaxGrpc.constructSettings(
+    this._defaults = this._gaxGrpc.constructSettings(
       'google.cloud.irm.v1alpha2.IncidentService',
       gapicConfig as gax.ClientConfig,
       opts.clientConfig || {},
@@ -224,17 +232,35 @@ export class IncidentServiceClient {
     // of calling the API is handled in `google-gax`, with this code
     // merely providing the destination and request information.
     this._innerApiCalls = {};
+  }
+
+  /**
+   * Initialize the client.
+   * Performs asynchronous operations (such as authentication) and prepares the client.
+   * This function will be called automatically when any class method is called for the
+   * first time, but if you need to initialize it before calling an actual method,
+   * feel free to call initialize() directly.
+   *
+   * You can await on this method if you want to make sure the client is initialized.
+   *
+   * @returns {Promise} A promise that resolves to an authenticated service stub.
+   */
+  initialize() {
+    // If the client stub promise is already initialized, return immediately.
+    if (this.incidentServiceStub) {
+      return this.incidentServiceStub;
+    }
 
     // Put together the "service stub" for
     // google.cloud.irm.v1alpha2.IncidentService.
-    this.incidentServiceStub = gaxGrpc.createStub(
-      opts.fallback
-        ? (protos as protobuf.Root).lookupService(
+    this.incidentServiceStub = this._gaxGrpc.createStub(
+      this._opts.fallback
+        ? (this._protos as protobuf.Root).lookupService(
             'google.cloud.irm.v1alpha2.IncidentService'
           )
         : // tslint:disable-next-line no-any
-          (protos as any).google.cloud.irm.v1alpha2.IncidentService,
-      opts
+          (this._protos as any).google.cloud.irm.v1alpha2.IncidentService,
+      this._opts
     ) as Promise<{[method: string]: Function}>;
 
     // Iterate over each of the methods that the service provides
@@ -287,9 +313,9 @@ export class IncidentServiceClient {
         }
       );
 
-      const apiCall = gaxModule.createApiCall(
+      const apiCall = this._gaxModule.createApiCall(
         innerCallPromise,
-        defaults[methodName],
+        this._defaults[methodName],
         this._descriptors.page[methodName] ||
           this._descriptors.stream[methodName] ||
           this._descriptors.longrunning[methodName]
@@ -303,6 +329,8 @@ export class IncidentServiceClient {
         return apiCall(argument, callOptions, callback);
       };
     }
+
+    return this.incidentServiceStub;
   }
 
   /**
@@ -430,6 +458,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       parent: request.parent || '',
     });
+    this.initialize();
     return this._innerApiCalls.createIncident(request, options, callback);
   }
   getIncident(
@@ -502,6 +531,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       name: request.name || '',
     });
+    this.initialize();
     return this._innerApiCalls.getIncident(request, options, callback);
   }
   updateIncident(
@@ -576,6 +606,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       'incident.name': request.incident!.name || '',
     });
+    this.initialize();
     return this._innerApiCalls.updateIncident(request, options, callback);
   }
   createAnnotation(
@@ -660,6 +691,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       parent: request.parent || '',
     });
+    this.initialize();
     return this._innerApiCalls.createAnnotation(request, options, callback);
   }
   createTag(
@@ -734,6 +766,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       parent: request.parent || '',
     });
+    this.initialize();
     return this._innerApiCalls.createTag(request, options, callback);
   }
   deleteTag(
@@ -805,6 +838,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       name: request.name || '',
     });
+    this.initialize();
     return this._innerApiCalls.deleteTag(request, options, callback);
   }
   createSignal(
@@ -880,6 +914,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       parent: request.parent || '',
     });
+    this.initialize();
     return this._innerApiCalls.createSignal(request, options, callback);
   }
   lookupSignal(
@@ -948,6 +983,7 @@ export class IncidentServiceClient {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
+    this.initialize();
     return this._innerApiCalls.lookupSignal(request, options, callback);
   }
   getSignal(
@@ -1020,6 +1056,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       name: request.name || '',
     });
+    this.initialize();
     return this._innerApiCalls.getSignal(request, options, callback);
   }
   updateSignal(
@@ -1095,6 +1132,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       'signal.name': request.signal!.name || '',
     });
+    this.initialize();
     return this._innerApiCalls.updateSignal(request, options, callback);
   }
   escalateIncident(
@@ -1187,6 +1225,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       'incident.name': request.incident!.name || '',
     });
+    this.initialize();
     return this._innerApiCalls.escalateIncident(request, options, callback);
   }
   createArtifact(
@@ -1262,6 +1301,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       parent: request.parent || '',
     });
+    this.initialize();
     return this._innerApiCalls.createArtifact(request, options, callback);
   }
   updateArtifact(
@@ -1336,6 +1376,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       'artifact.name': request.artifact!.name || '',
     });
+    this.initialize();
     return this._innerApiCalls.updateArtifact(request, options, callback);
   }
   deleteArtifact(
@@ -1408,6 +1449,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       name: request.name || '',
     });
+    this.initialize();
     return this._innerApiCalls.deleteArtifact(request, options, callback);
   }
   sendShiftHandoff(
@@ -1505,6 +1547,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       parent: request.parent || '',
     });
+    this.initialize();
     return this._innerApiCalls.sendShiftHandoff(request, options, callback);
   }
   createSubscription(
@@ -1591,6 +1634,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       parent: request.parent || '',
     });
+    this.initialize();
     return this._innerApiCalls.createSubscription(request, options, callback);
   }
   updateSubscription(
@@ -1673,6 +1717,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       'subscription.name': request.subscription!.name || '',
     });
+    this.initialize();
     return this._innerApiCalls.updateSubscription(request, options, callback);
   }
   deleteSubscription(
@@ -1753,6 +1798,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       name: request.name || '',
     });
+    this.initialize();
     return this._innerApiCalls.deleteSubscription(request, options, callback);
   }
   createIncidentRoleAssignment(
@@ -1840,6 +1886,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       parent: request.parent || '',
     });
+    this.initialize();
     return this._innerApiCalls.createIncidentRoleAssignment(
       request,
       options,
@@ -1924,6 +1971,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       name: request.name || '',
     });
+    this.initialize();
     return this._innerApiCalls.deleteIncidentRoleAssignment(
       request,
       options,
@@ -2014,6 +2062,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       name: request.name || '',
     });
+    this.initialize();
     return this._innerApiCalls.requestIncidentRoleHandover(
       request,
       options,
@@ -2104,6 +2153,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       name: request.name || '',
     });
+    this.initialize();
     return this._innerApiCalls.confirmIncidentRoleHandover(
       request,
       options,
@@ -2194,6 +2244,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       name: request.name || '',
     });
+    this.initialize();
     return this._innerApiCalls.forceIncidentRoleHandover(
       request,
       options,
@@ -2284,6 +2335,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       name: request.name || '',
     });
+    this.initialize();
     return this._innerApiCalls.cancelIncidentRoleHandover(
       request,
       options,
@@ -2435,6 +2487,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       parent: request.parent || '',
     });
+    this.initialize();
     return this._innerApiCalls.searchIncidents(request, options, callback);
   }
 
@@ -2536,6 +2589,7 @@ export class IncidentServiceClient {
       parent: request.parent || '',
     });
     const callSettings = new gax.CallSettings(options);
+    this.initialize();
     return this._descriptors.page.searchIncidents.createStream(
       this._innerApiCalls.searchIncidents as gax.GaxCall,
       request,
@@ -2630,6 +2684,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       name: request.name || '',
     });
+    this.initialize();
     return this._innerApiCalls.searchSimilarIncidents(
       request,
       options,
@@ -2678,6 +2733,7 @@ export class IncidentServiceClient {
       name: request.name || '',
     });
     const callSettings = new gax.CallSettings(options);
+    this.initialize();
     return this._descriptors.page.searchSimilarIncidents.createStream(
       this._innerApiCalls.searchSimilarIncidents as gax.GaxCall,
       request,
@@ -2771,6 +2827,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       parent: request.parent || '',
     });
+    this.initialize();
     return this._innerApiCalls.listAnnotations(request, options, callback);
   }
 
@@ -2815,6 +2872,7 @@ export class IncidentServiceClient {
       parent: request.parent || '',
     });
     const callSettings = new gax.CallSettings(options);
+    this.initialize();
     return this._descriptors.page.listAnnotations.createStream(
       this._innerApiCalls.listAnnotations as gax.GaxCall,
       request,
@@ -2907,6 +2965,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       parent: request.parent || '',
     });
+    this.initialize();
     return this._innerApiCalls.listTags(request, options, callback);
   }
 
@@ -2951,6 +3010,7 @@ export class IncidentServiceClient {
       parent: request.parent || '',
     });
     const callSettings = new gax.CallSettings(options);
+    this.initialize();
     return this._descriptors.page.listTags.createStream(
       this._innerApiCalls.listTags as gax.GaxCall,
       request,
@@ -3108,6 +3168,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       parent: request.parent || '',
     });
+    this.initialize();
     return this._innerApiCalls.searchSignals(request, options, callback);
   }
 
@@ -3213,6 +3274,7 @@ export class IncidentServiceClient {
       parent: request.parent || '',
     });
     const callSettings = new gax.CallSettings(options);
+    this.initialize();
     return this._descriptors.page.searchSignals.createStream(
       this._innerApiCalls.searchSignals as gax.GaxCall,
       request,
@@ -3305,6 +3367,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       parent: request.parent || '',
     });
+    this.initialize();
     return this._innerApiCalls.listArtifacts(request, options, callback);
   }
 
@@ -3349,6 +3412,7 @@ export class IncidentServiceClient {
       parent: request.parent || '',
     });
     const callSettings = new gax.CallSettings(options);
+    this.initialize();
     return this._descriptors.page.listArtifacts.createStream(
       this._innerApiCalls.listArtifacts as gax.GaxCall,
       request,
@@ -3441,6 +3505,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       parent: request.parent || '',
     });
+    this.initialize();
     return this._innerApiCalls.listSubscriptions(request, options, callback);
   }
 
@@ -3485,6 +3550,7 @@ export class IncidentServiceClient {
       parent: request.parent || '',
     });
     const callSettings = new gax.CallSettings(options);
+    this.initialize();
     return this._descriptors.page.listSubscriptions.createStream(
       this._innerApiCalls.listSubscriptions as gax.GaxCall,
       request,
@@ -3577,6 +3643,7 @@ export class IncidentServiceClient {
     ] = gax.routingHeader.fromParams({
       parent: request.parent || '',
     });
+    this.initialize();
     return this._innerApiCalls.listIncidentRoleAssignments(
       request,
       options,
@@ -3625,6 +3692,7 @@ export class IncidentServiceClient {
       parent: request.parent || '',
     });
     const callSettings = new gax.CallSettings(options);
+    this.initialize();
     return this._descriptors.page.listIncidentRoleAssignments.createStream(
       this._innerApiCalls.listIncidentRoleAssignments as gax.GaxCall,
       request,
@@ -4006,8 +4074,9 @@ export class IncidentServiceClient {
    * The client will no longer be usable and all future behavior is undefined.
    */
   close(): Promise<void> {
+    this.initialize();
     if (!this._terminated) {
-      return this.incidentServiceStub.then(stub => {
+      return this.incidentServiceStub!.then(stub => {
         this._terminated = true;
         stub.close();
       });
