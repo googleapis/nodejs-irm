@@ -4,6 +4,19 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+## [2.1.0](https://www.github.com/googleapis/nodejs-irm/compare/v2.0.1...v2.1.0) (2020-03-06)
+
+
+### Features
+
+* deferred client initialization ([#152](https://www.github.com/googleapis/nodejs-irm/issues/152)) ([64cac7c](https://www.github.com/googleapis/nodejs-irm/commit/64cac7c6d6be327d34b01688e8711e33eac0608a))
+* export protos in src/index.ts ([efec057](https://www.github.com/googleapis/nodejs-irm/commit/efec057638edecebdb44e968dd94542250078ec6))
+
+
+### Bug Fixes
+
+* pass x-goog-request-params header for streaming calls ([b980771](https://www.github.com/googleapis/nodejs-irm/commit/b9807714da94becd93bd47d90af6c89f0b95682d))
+
 ### [2.0.1](https://www.github.com/googleapis/nodejs-irm/compare/v2.0.0...v2.0.1) (2020-01-29)
 
 
