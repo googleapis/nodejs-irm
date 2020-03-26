@@ -17,18 +17,10 @@
 // ** All changes to this file may be overwritten. **
 
 import * as gax from 'google-gax';
-import {
-  APICallback,
-  Callback,
-  CallOptions,
-  Descriptors,
-  ClientOptions,
-  PaginationCallback,
-  PaginationResponse,
-} from 'google-gax';
+import {APICallback, Callback, CallOptions, Descriptors, ClientOptions, PaginationCallback} from 'google-gax';
 import * as path from 'path';
 
-import {Transform} from 'stream';
+import { Transform } from 'stream';
 import * as protosTypes from '../../protos/protos';
 import * as gapicConfig from './incident_service_client_config.json';
 
@@ -40,12 +32,7 @@ const version = require('../../../package.json').version;
  * @memberof v1alpha2
  */
 export class IncidentServiceClient {
-  private _descriptors: Descriptors = {
-    page: {},
-    stream: {},
-    longrunning: {},
-    batching: {},
-  };
+  private _descriptors: Descriptors = {page: {}, stream: {}, longrunning: {}, batching: {}};
   private _innerApiCalls: {[name: string]: Function};
   private _pathTemplates: {[name: string]: gax.PathTemplate};
   private _terminated = false;
@@ -86,12 +73,10 @@ export class IncidentServiceClient {
   constructor(opts?: ClientOptions) {
     // Ensure that options include the service address and port.
     const staticMembers = this.constructor as typeof IncidentServiceClient;
-    const servicePath =
-      opts && opts.servicePath
-        ? opts.servicePath
-        : opts && opts.apiEndpoint
-        ? opts.apiEndpoint
-        : staticMembers.servicePath;
+    const servicePath = opts && opts.servicePath ?
+        opts.servicePath :
+        ((opts && opts.apiEndpoint) ? opts.apiEndpoint :
+                                      staticMembers.servicePath);
     const port = opts && opts.port ? opts.port : staticMembers.port;
 
     if (!opts) {
@@ -101,8 +86,8 @@ export class IncidentServiceClient {
     opts.port = opts.port || port;
     opts.clientConfig = opts.clientConfig || {};
 
-    const isBrowser = typeof window !== 'undefined';
-    if (isBrowser) {
+    const isBrowser = (typeof window !== 'undefined');
+    if (isBrowser){
       opts.fallback = true;
     }
     // If we are in browser, we are already using fallback because of the
@@ -119,10 +104,13 @@ export class IncidentServiceClient {
     this._opts = opts;
 
     // Save the auth object to the client, for use by other methods.
-    this.auth = this._gaxGrpc.auth as gax.GoogleAuth;
+    this.auth = (this._gaxGrpc.auth as gax.GoogleAuth);
 
     // Determine the client header string.
-    const clientHeader = [`gax/${this._gaxModule.version}`, `gapic/${version}`];
+    const clientHeader = [
+      `gax/${this._gaxModule.version}`,
+      `gapic/${version}`,
+    ];
     if (typeof process !== 'undefined' && 'versions' in process) {
       clientHeader.push(`gl-node/${process.versions.node}`);
     } else {
@@ -138,15 +126,11 @@ export class IncidentServiceClient {
     // For Node.js, pass the path to JSON proto file.
     // For browsers, pass the JSON content.
 
-    const nodejsProtoPath = path.join(
-      __dirname,
-      '..',
-      '..',
-      'protos',
-      'protos.json'
-    );
+    const nodejsProtoPath = path.join(__dirname, '..', '..', 'protos', 'protos.json');
     this._protos = this._gaxGrpc.loadProto(
-      opts.fallback ? require('../../protos/protos.json') : nodejsProtoPath
+      opts.fallback ?
+        require("../../protos/protos.json") :
+        nodejsProtoPath
     );
 
     // This API contains "path templates"; forward-slash-separated
@@ -183,55 +167,28 @@ export class IncidentServiceClient {
     // (e.g. 50 results at a time, with tokens to get subsequent
     // pages). Denote the keys used for pagination and results.
     this._descriptors.page = {
-      searchIncidents: new this._gaxModule.PageDescriptor(
-        'pageToken',
-        'nextPageToken',
-        'incidents'
-      ),
-      searchSimilarIncidents: new this._gaxModule.PageDescriptor(
-        'pageToken',
-        'nextPageToken',
-        'results'
-      ),
-      listAnnotations: new this._gaxModule.PageDescriptor(
-        'pageToken',
-        'nextPageToken',
-        'annotations'
-      ),
-      listTags: new this._gaxModule.PageDescriptor(
-        'pageToken',
-        'nextPageToken',
-        'tags'
-      ),
-      searchSignals: new this._gaxModule.PageDescriptor(
-        'pageToken',
-        'nextPageToken',
-        'signals'
-      ),
-      listArtifacts: new this._gaxModule.PageDescriptor(
-        'pageToken',
-        'nextPageToken',
-        'artifacts'
-      ),
-      listSubscriptions: new this._gaxModule.PageDescriptor(
-        'pageToken',
-        'nextPageToken',
-        'subscriptions'
-      ),
-      listIncidentRoleAssignments: new this._gaxModule.PageDescriptor(
-        'pageToken',
-        'nextPageToken',
-        'incidentRoleAssignments'
-      ),
+      searchIncidents:
+          new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'incidents'),
+      searchSimilarIncidents:
+          new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'results'),
+      listAnnotations:
+          new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'annotations'),
+      listTags:
+          new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'tags'),
+      searchSignals:
+          new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'signals'),
+      listArtifacts:
+          new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'artifacts'),
+      listSubscriptions:
+          new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'subscriptions'),
+      listIncidentRoleAssignments:
+          new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'incidentRoleAssignments')
     };
 
     // Put together the default options sent with requests.
     this._defaults = this._gaxGrpc.constructSettings(
-      'google.cloud.irm.v1alpha2.IncidentService',
-      gapicConfig as gax.ClientConfig,
-      opts.clientConfig || {},
-      {'x-goog-api-client': clientHeader.join(' ')}
-    );
+        'google.cloud.irm.v1alpha2.IncidentService', gapicConfig as gax.ClientConfig,
+        opts.clientConfig || {}, {'x-goog-api-client': clientHeader.join(' ')});
 
     // Set up a dictionary of "inner API calls"; the core implementation
     // of calling the API is handled in `google-gax`, with this code
@@ -259,51 +216,16 @@ export class IncidentServiceClient {
     // Put together the "service stub" for
     // google.cloud.irm.v1alpha2.IncidentService.
     this.incidentServiceStub = this._gaxGrpc.createStub(
-      this._opts.fallback
-        ? (this._protos as protobuf.Root).lookupService(
-            'google.cloud.irm.v1alpha2.IncidentService'
-          )
-        : // tslint:disable-next-line no-any
+        this._opts.fallback ?
+          (this._protos as protobuf.Root).lookupService('google.cloud.irm.v1alpha2.IncidentService') :
+          /* eslint-disable @typescript-eslint/no-explicit-any */
           (this._protos as any).google.cloud.irm.v1alpha2.IncidentService,
-      this._opts
-    ) as Promise<{[method: string]: Function}>;
+        this._opts) as Promise<{[method: string]: Function}>;
 
     // Iterate over each of the methods that the service provides
     // and create an API call method for each.
-    const incidentServiceStubMethods = [
-      'createIncident',
-      'getIncident',
-      'searchIncidents',
-      'updateIncident',
-      'searchSimilarIncidents',
-      'createAnnotation',
-      'listAnnotations',
-      'createTag',
-      'deleteTag',
-      'listTags',
-      'createSignal',
-      'searchSignals',
-      'lookupSignal',
-      'getSignal',
-      'updateSignal',
-      'escalateIncident',
-      'createArtifact',
-      'listArtifacts',
-      'updateArtifact',
-      'deleteArtifact',
-      'sendShiftHandoff',
-      'createSubscription',
-      'updateSubscription',
-      'listSubscriptions',
-      'deleteSubscription',
-      'createIncidentRoleAssignment',
-      'deleteIncidentRoleAssignment',
-      'listIncidentRoleAssignments',
-      'requestIncidentRoleHandover',
-      'confirmIncidentRoleHandover',
-      'forceIncidentRoleHandover',
-      'cancelIncidentRoleHandover',
-    ];
+    const incidentServiceStubMethods =
+        ['createIncident', 'getIncident', 'searchIncidents', 'updateIncident', 'searchSimilarIncidents', 'createAnnotation', 'listAnnotations', 'createTag', 'deleteTag', 'listTags', 'createSignal', 'searchSignals', 'lookupSignal', 'getSignal', 'updateSignal', 'escalateIncident', 'createArtifact', 'listArtifacts', 'updateArtifact', 'deleteArtifact', 'sendShiftHandoff', 'createSubscription', 'updateSubscription', 'listSubscriptions', 'deleteSubscription', 'createIncidentRoleAssignment', 'deleteIncidentRoleAssignment', 'listIncidentRoleAssignments', 'requestIncidentRoleHandover', 'confirmIncidentRoleHandover', 'forceIncidentRoleHandover', 'cancelIncidentRoleHandover'];
 
     for (const methodName of incidentServiceStubMethods) {
       const innerCallPromise = this.incidentServiceStub.then(
@@ -314,17 +236,16 @@ export class IncidentServiceClient {
           const func = stub[methodName];
           return func.apply(stub, args);
         },
-        (err: Error | null | undefined) => () => {
+        (err: Error|null|undefined) => () => {
           throw err;
-        }
-      );
+        });
 
       const apiCall = this._gaxModule.createApiCall(
         innerCallPromise,
         this._defaults[methodName],
         this._descriptors.page[methodName] ||
-          this._descriptors.stream[methodName] ||
-          this._descriptors.longrunning[methodName]
+            this._descriptors.stream[methodName] ||
+            this._descriptors.longrunning[methodName]
       );
 
       this._innerApiCalls[methodName] = (
@@ -366,7 +287,9 @@ export class IncidentServiceClient {
    * in this service.
    */
   static get scopes() {
-    return ['https://www.googleapis.com/auth/cloud-platform'];
+    return [
+      'https://www.googleapis.com/auth/cloud-platform'
+    ];
   }
 
   getProjectId(): Promise<string>;
@@ -376,9 +299,8 @@ export class IncidentServiceClient {
    * @param {function(Error, string)} callback - the callback to
    *   be called with the current project Id.
    */
-  getProjectId(
-    callback?: Callback<string, undefined, undefined>
-  ): Promise<string> | void {
+  getProjectId(callback?: Callback<string, undefined, undefined>):
+      Promise<string>|void {
     if (callback) {
       this.auth.getProjectId(callback);
       return;
@@ -390,70 +312,57 @@ export class IncidentServiceClient {
   // -- Service calls --
   // -------------------
   createIncident(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncident,
-      protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncident,
+        protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest|undefined, {}|undefined
+      ]>;
   createIncident(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncident,
-      protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Creates a new incident.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {google.cloud.irm.v1alpha2.Incident} request.incident
-   *   Required. The incident to create.
-   * @param {string} request.parent
-   *   Required. The resource name of the hosting Stackdriver project which the incident
-   *   belongs to.
-   *   The name is of the form `projects/{project_id_or_number}`
-   *   .
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Incident]{@link google.cloud.irm.v1alpha2.Incident}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  createIncident(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.IIncident,
-          | protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncident,
-      protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncident,
-      protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Creates a new incident.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {google.cloud.irm.v1alpha2.Incident} request.incident
+ *   Required. The incident to create.
+ * @param {string} request.parent
+ *   Required. The resource name of the hosting Stackdriver project which the incident
+ *   belongs to.
+ *   The name is of the form `projects/{project_id_or_number}`
+ *   .
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Incident]{@link google.cloud.irm.v1alpha2.Incident}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  createIncident(
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncident,
+          protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncident,
+          protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncident,
+        protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -462,71 +371,59 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this._innerApiCalls.createIncident(request, options, callback);
   }
   getIncident(
-    request: protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncident,
-      protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncident,
+        protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest|undefined, {}|undefined
+      ]>;
   getIncident(
-    request: protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncident,
-      protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Returns an incident by name.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Resource name of the incident, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Incident]{@link google.cloud.irm.v1alpha2.Incident}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  getIncident(
-    request: protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.IIncident,
-          protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncident,
-      protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncident,
-      protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Returns an incident by name.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Incident]{@link google.cloud.irm.v1alpha2.Incident}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  getIncident(
+      request: protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncident,
+          protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncident,
+          protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncident,
+        protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -535,73 +432,60 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      name: request.name || '',
+      'name': request.name || '',
     });
     this.initialize();
     return this._innerApiCalls.getIncident(request, options, callback);
   }
   updateIncident(
-    request: protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncident,
-      protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncident,
+        protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest|undefined, {}|undefined
+      ]>;
   updateIncident(
-    request: protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncident,
-      protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Updates an existing incident.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {google.cloud.irm.v1alpha2.Incident} request.incident
-   *   Required. The incident to update with the new values.
-   * @param {google.protobuf.FieldMask} request.updateMask
-   *   List of fields that should be updated.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Incident]{@link google.cloud.irm.v1alpha2.Incident}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  updateIncident(
-    request: protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.IIncident,
-          | protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncident,
-      protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncident,
-      protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Updates an existing incident.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {google.cloud.irm.v1alpha2.Incident} request.incident
+ *   Required. The incident to update with the new values.
+ * @param {google.protobuf.FieldMask} request.updateMask
+ *   List of fields that should be updated.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Incident]{@link google.cloud.irm.v1alpha2.Incident}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  updateIncident(
+      request: protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncident,
+          protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncident,
+          protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncident,
+        protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -616,77 +500,56 @@ export class IncidentServiceClient {
     return this._innerApiCalls.updateIncident(request, options, callback);
   }
   createAnnotation(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IAnnotation,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IAnnotation,
+        protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest|undefined, {}|undefined
+      ]>;
   createAnnotation(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IAnnotation,
-      | protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest
-      | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Creates an annotation on an existing incident. Only 'text/plain' and
-   * 'text/markdown' annotations can be created via this method.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource name of the incident, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {google.cloud.irm.v1alpha2.Annotation} request.annotation
-   *   Required. Only annotation.content is an input argument.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Annotation]{@link google.cloud.irm.v1alpha2.Annotation}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  createAnnotation(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.IAnnotation,
-          | protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IAnnotation,
-      | protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest
-      | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IAnnotation,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Creates an annotation on an existing incident. Only 'text/plain' and
+ * 'text/markdown' annotations can be created via this method.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {google.cloud.irm.v1alpha2.Annotation} request.annotation
+ *   Required. Only annotation.content is an input argument.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Annotation]{@link google.cloud.irm.v1alpha2.Annotation}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  createAnnotation(
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IAnnotation,
+          protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IAnnotation,
+          protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IAnnotation,
+        protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -695,73 +558,61 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this._innerApiCalls.createAnnotation(request, options, callback);
   }
   createTag(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ITag,
-      protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ITag,
+        protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest|undefined, {}|undefined
+      ]>;
   createTag(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ITag,
-      protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Creates a tag on an existing incident.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource name of the incident, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {google.cloud.irm.v1alpha2.Tag} request.tag
-   *   Required. Tag to create. Only tag.display_name is an input argument.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Tag]{@link google.cloud.irm.v1alpha2.Tag}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  createTag(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.ITag,
-          protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ITag,
-      protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ITag,
-      protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Creates a tag on an existing incident.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {google.cloud.irm.v1alpha2.Tag} request.tag
+ *   Required. Tag to create. Only tag.display_name is an input argument.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Tag]{@link google.cloud.irm.v1alpha2.Tag}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  createTag(
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.ITag,
+          protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.ITag,
+          protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ITag,
+        protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -770,70 +621,58 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this._innerApiCalls.createTag(request, options, callback);
   }
   deleteTag(
-    request: protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.protobuf.IEmpty,
-      protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.protobuf.IEmpty,
+        protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest|undefined, {}|undefined
+      ]>;
   deleteTag(
-    request: protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.protobuf.IEmpty,
-      protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Deletes an existing tag.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Resource name of the tag.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Empty]{@link google.protobuf.Empty}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  deleteTag(
-    request: protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.protobuf.IEmpty,
-          protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.protobuf.IEmpty,
-      protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.protobuf.IEmpty,
-      protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Deletes an existing tag.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Resource name of the tag.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Empty]{@link google.protobuf.Empty}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  deleteTag(
+      request: protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.protobuf.IEmpty,
+          protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.protobuf.IEmpty,
+          protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.protobuf.IEmpty,
+        protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -842,74 +681,61 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      name: request.name || '',
+      'name': request.name || '',
     });
     this.initialize();
     return this._innerApiCalls.deleteTag(request, options, callback);
   }
   createSignal(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISignal,
-      protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISignal,
+        protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest|undefined, {}|undefined
+      ]>;
   createSignal(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISignal,
-      protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Creates a new signal.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The resource name of the hosting Stackdriver project which requested
-   *   signal belongs to.
-   * @param {google.cloud.irm.v1alpha2.Signal} request.signal
-   *   Required. The signal to create.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Signal]{@link google.cloud.irm.v1alpha2.Signal}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  createSignal(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.ISignal,
-          | protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISignal,
-      protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISignal,
-      protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Creates a new signal.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The resource name of the hosting Stackdriver project which requested
+ *   signal belongs to.
+ * @param {google.cloud.irm.v1alpha2.Signal} request.signal
+ *   Required. The signal to create.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Signal]{@link google.cloud.irm.v1alpha2.Signal}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  createSignal(
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.ISignal,
+          protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.ISignal,
+          protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISignal,
+        protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -918,74 +744,61 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this._innerApiCalls.createSignal(request, options, callback);
   }
   lookupSignal(
-    request: protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISignal,
-      protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISignal,
+        protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest|undefined, {}|undefined
+      ]>;
   lookupSignal(
-    request: protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISignal,
-      protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Finds a signal by other unique IDs.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.csccFinding
-   *   Required. Full resource name of the CSCC finding id this signal refers to (e.g.
-   *   "organizations/abc/sources/123/findings/xyz")
-   * @param {string} request.stackdriverNotificationId
-   *   The ID from the Stackdriver Alerting notification.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Signal]{@link google.cloud.irm.v1alpha2.Signal}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  lookupSignal(
-    request: protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.ISignal,
-          | protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISignal,
-      protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISignal,
-      protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Finds a signal by other unique IDs.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.csccFinding
+ *   Required. Full resource name of the CSCC finding id this signal refers to (e.g.
+ *   "organizations/abc/sources/123/findings/xyz")
+ * @param {string} request.stackdriverNotificationId
+ *   The ID from the Stackdriver Alerting notification.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Signal]{@link google.cloud.irm.v1alpha2.Signal}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  lookupSignal(
+      request: protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.ISignal,
+          protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.ISignal,
+          protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISignal,
+        protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -993,65 +806,53 @@ export class IncidentServiceClient {
     return this._innerApiCalls.lookupSignal(request, options, callback);
   }
   getSignal(
-    request: protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISignal,
-      protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISignal,
+        protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest|undefined, {}|undefined
+      ]>;
   getSignal(
-    request: protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISignal,
-      protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Returns a signal by name.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Resource name of the Signal resource, for example,
-   *   "projects/{project_id_or_number}/signals/{signal_id}".
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Signal]{@link google.cloud.irm.v1alpha2.Signal}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  getSignal(
-    request: protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.ISignal,
-          protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISignal,
-      protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISignal,
-      protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Returns a signal by name.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Resource name of the Signal resource, for example,
+ *   "projects/{project_id_or_number}/signals/{signal_id}".
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Signal]{@link google.cloud.irm.v1alpha2.Signal}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  getSignal(
+      request: protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.ISignal,
+          protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.ISignal,
+          protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISignal,
+        protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -1060,74 +861,61 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      name: request.name || '',
+      'name': request.name || '',
     });
     this.initialize();
     return this._innerApiCalls.getSignal(request, options, callback);
   }
   updateSignal(
-    request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISignal,
-      protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISignal,
+        protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest|undefined, {}|undefined
+      ]>;
   updateSignal(
-    request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISignal,
-      protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Updates an existing signal (for example, to assign/unassign it to an
-   * incident).
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {google.cloud.irm.v1alpha2.Signal} request.signal
-   *   Required. The signal to update with the new values.
-   * @param {google.protobuf.FieldMask} request.updateMask
-   *   List of fields that should be updated.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Signal]{@link google.cloud.irm.v1alpha2.Signal}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  updateSignal(
-    request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.ISignal,
-          | protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISignal,
-      protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISignal,
-      protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Updates an existing signal (for example, to assign/unassign it to an
+ * incident).
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {google.cloud.irm.v1alpha2.Signal} request.signal
+ *   Required. The signal to update with the new values.
+ * @param {google.protobuf.FieldMask} request.updateMask
+ *   List of fields that should be updated.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Signal]{@link google.cloud.irm.v1alpha2.Signal}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  updateSignal(
+      request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.ISignal,
+          protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.ISignal,
+          protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISignal,
+        protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -1142,85 +930,64 @@ export class IncidentServiceClient {
     return this._innerApiCalls.updateSignal(request, options, callback);
   }
   escalateIncident(
-    request: protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentResponse,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentResponse,
+        protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest|undefined, {}|undefined
+      ]>;
   escalateIncident(
-    request: protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentResponse,
-      | protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest
-      | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Escalates an incident.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {google.cloud.irm.v1alpha2.Incident} request.incident
-   *   Required. The incident to escalate with the new values.
-   * @param {google.protobuf.FieldMask} request.updateMask
-   *   List of fields that should be updated.
-   * @param {number[]} request.subscriptions
-   *   Subscriptions to add or update. Existing subscriptions with the same
-   *   channel and address as a subscription in the list will be updated.
-   * @param {number[]} request.tags
-   *   Tags to add. Tags identical to existing tags will be ignored.
-   * @param {number[]} request.roles
-   *   Roles to add or update. Existing roles with the same type (and title, for
-   *   TYPE_OTHER roles) will be updated.
-   * @param {number[]} request.artifacts
-   *   Artifacts to add. All artifacts are added without checking for duplicates.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [EscalateIncidentResponse]{@link google.cloud.irm.v1alpha2.EscalateIncidentResponse}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  escalateIncident(
-    request: protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentResponse,
-          | protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentResponse,
-      | protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest
-      | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentResponse,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Escalates an incident.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {google.cloud.irm.v1alpha2.Incident} request.incident
+ *   Required. The incident to escalate with the new values.
+ * @param {google.protobuf.FieldMask} request.updateMask
+ *   List of fields that should be updated.
+ * @param {number[]} request.subscriptions
+ *   Subscriptions to add or update. Existing subscriptions with the same
+ *   channel and address as a subscription in the list will be updated.
+ * @param {number[]} request.tags
+ *   Tags to add. Tags identical to existing tags will be ignored.
+ * @param {number[]} request.roles
+ *   Roles to add or update. Existing roles with the same type (and title, for
+ *   TYPE_OTHER roles) will be updated.
+ * @param {number[]} request.artifacts
+ *   Artifacts to add. All artifacts are added without checking for duplicates.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [EscalateIncidentResponse]{@link google.cloud.irm.v1alpha2.EscalateIncidentResponse}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  escalateIncident(
+      request: protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentResponse,
+          protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentResponse,
+          protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentResponse,
+        protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -1235,68 +1002,55 @@ export class IncidentServiceClient {
     return this._innerApiCalls.escalateIncident(request, options, callback);
   }
   createArtifact(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IArtifact,
-      protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IArtifact,
+        protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest|undefined, {}|undefined
+      ]>;
   createArtifact(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IArtifact,
-      protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Creates a new artifact.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource name of the incident, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {google.cloud.irm.v1alpha2.Artifact} request.artifact
-   *   Required. The artifact to create.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Artifact]{@link google.cloud.irm.v1alpha2.Artifact}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  createArtifact(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.IArtifact,
-          | protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IArtifact,
-      protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IArtifact,
-      protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Creates a new artifact.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {google.cloud.irm.v1alpha2.Artifact} request.artifact
+ *   Required. The artifact to create.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Artifact]{@link google.cloud.irm.v1alpha2.Artifact}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  createArtifact(
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IArtifact,
+          protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IArtifact,
+          protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IArtifact,
+        protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -1305,73 +1059,60 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this._innerApiCalls.createArtifact(request, options, callback);
   }
   updateArtifact(
-    request: protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IArtifact,
-      protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IArtifact,
+        protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest|undefined, {}|undefined
+      ]>;
   updateArtifact(
-    request: protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IArtifact,
-      protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Updates an existing artifact.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {google.cloud.irm.v1alpha2.Artifact} request.artifact
-   *   Required. The artifact to update with the new values.
-   * @param {google.protobuf.FieldMask} request.updateMask
-   *   List of fields that should be updated.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Artifact]{@link google.cloud.irm.v1alpha2.Artifact}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  updateArtifact(
-    request: protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.IArtifact,
-          | protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IArtifact,
-      protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IArtifact,
-      protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Updates an existing artifact.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {google.cloud.irm.v1alpha2.Artifact} request.artifact
+ *   Required. The artifact to update with the new values.
+ * @param {google.protobuf.FieldMask} request.updateMask
+ *   List of fields that should be updated.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Artifact]{@link google.cloud.irm.v1alpha2.Artifact}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  updateArtifact(
+      request: protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IArtifact,
+          protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IArtifact,
+          protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IArtifact,
+        protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -1386,65 +1127,52 @@ export class IncidentServiceClient {
     return this._innerApiCalls.updateArtifact(request, options, callback);
   }
   deleteArtifact(
-    request: protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.protobuf.IEmpty,
-      protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.protobuf.IEmpty,
+        protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest|undefined, {}|undefined
+      ]>;
   deleteArtifact(
-    request: protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.protobuf.IEmpty,
-      protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Deletes an existing artifact.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Resource name of the artifact.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Empty]{@link google.protobuf.Empty}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  deleteArtifact(
-    request: protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.protobuf.IEmpty,
-          | protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.protobuf.IEmpty,
-      protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.protobuf.IEmpty,
-      protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Deletes an existing artifact.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Resource name of the artifact.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Empty]{@link google.protobuf.Empty}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  deleteArtifact(
+      request: protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.protobuf.IEmpty,
+          protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.protobuf.IEmpty,
+          protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.protobuf.IEmpty,
+        protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -1453,96 +1181,75 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      name: request.name || '',
+      'name': request.name || '',
     });
     this.initialize();
     return this._innerApiCalls.deleteArtifact(request, options, callback);
   }
   sendShiftHandoff(
-    request: protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffResponse,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffResponse,
+        protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest|undefined, {}|undefined
+      ]>;
   sendShiftHandoff(
-    request: protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffResponse,
-      | protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest
-      | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Sends a summary of the shift for oncall handoff.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The resource name of the Stackdriver project that the handoff is being sent
-   *   from. for example, `projects/{project_id_or_number}`
-   * @param {string[]} request.recipients
-   *   Required. Email addresses of the recipients of the handoff, for example,
-   *   "user@example.com". Must contain at least one entry.
-   * @param {string[]} [request.cc]
-   *   Optional. Email addresses that should be CC'd on the handoff.
-   * @param {string} request.subject
-   *   Required. The subject of the email.
-   * @param {string} request.notesContentType
-   *   Content type string, for example, 'text/plain' or 'text/html'.
-   * @param {string} [request.notesContent]
-   *   Optional. Additional notes to be included in the handoff.
-   * @param {number[]} [request.incidents]
-   *   Optional. The set of incidents that should be included in the handoff.
-   * @param {boolean} request.previewOnly
-   *   If set to true a ShiftHandoffResponse will be returned but the handoff
-   *   will not actually be sent.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [SendShiftHandoffResponse]{@link google.cloud.irm.v1alpha2.SendShiftHandoffResponse}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  sendShiftHandoff(
-    request: protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffResponse,
-          | protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffResponse,
-      | protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest
-      | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffResponse,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Sends a summary of the shift for oncall handoff.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The resource name of the Stackdriver project that the handoff is being sent
+ *   from. for example, `projects/{project_id_or_number}`
+ * @param {string[]} request.recipients
+ *   Required. Email addresses of the recipients of the handoff, for example,
+ *   "user@example.com". Must contain at least one entry.
+ * @param {string[]} [request.cc]
+ *   Optional. Email addresses that should be CC'd on the handoff.
+ * @param {string} request.subject
+ *   Required. The subject of the email.
+ * @param {string} request.notesContentType
+ *   Content type string, for example, 'text/plain' or 'text/html'.
+ * @param {string} [request.notesContent]
+ *   Optional. Additional notes to be included in the handoff.
+ * @param {number[]} [request.incidents]
+ *   Optional. The set of incidents that should be included in the handoff.
+ * @param {boolean} request.previewOnly
+ *   If set to true a ShiftHandoffResponse will be returned but the handoff
+ *   will not actually be sent.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [SendShiftHandoffResponse]{@link google.cloud.irm.v1alpha2.SendShiftHandoffResponse}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  sendShiftHandoff(
+      request: protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffResponse,
+          protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffResponse,
+          protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffResponse,
+        protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -1551,85 +1258,64 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this._innerApiCalls.sendShiftHandoff(request, options, callback);
   }
   createSubscription(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISubscription,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISubscription,
+        protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest|undefined, {}|undefined
+      ]>;
   createSubscription(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISubscription,
-      | protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest
-      | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Creates a new subscription.
-   * This will fail if:
-   *    a. there are too many (50) subscriptions in the incident already
-   *    b. a subscription using the given channel already exists
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource name of the incident, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {google.cloud.irm.v1alpha2.Subscription} request.subscription
-   *   Required. The subscription to create.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Subscription]{@link google.cloud.irm.v1alpha2.Subscription}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  createSubscription(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.ISubscription,
-          | protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISubscription,
-      | protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest
-      | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISubscription,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Creates a new subscription.
+ * This will fail if:
+ *    a. there are too many (50) subscriptions in the incident already
+ *    b. a subscription using the given channel already exists
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {google.cloud.irm.v1alpha2.Subscription} request.subscription
+ *   Required. The subscription to create.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Subscription]{@link google.cloud.irm.v1alpha2.Subscription}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  createSubscription(
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.ISubscription,
+          protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.ISubscription,
+          protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISubscription,
+        protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -1638,81 +1324,60 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this._innerApiCalls.createSubscription(request, options, callback);
   }
   updateSubscription(
-    request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISubscription,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISubscription,
+        protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest|undefined, {}|undefined
+      ]>;
   updateSubscription(
-    request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISubscription,
-      | protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest
-      | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Updates a subscription.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {google.cloud.irm.v1alpha2.Subscription} request.subscription
-   *   Required. The subscription to update, with new values.
-   * @param {google.protobuf.FieldMask} request.updateMask
-   *   List of fields that should be updated.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Subscription]{@link google.cloud.irm.v1alpha2.Subscription}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  updateSubscription(
-    request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.ISubscription,
-          | protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISubscription,
-      | protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest
-      | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISubscription,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Updates a subscription.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {google.cloud.irm.v1alpha2.Subscription} request.subscription
+ *   Required. The subscription to update, with new values.
+ * @param {google.protobuf.FieldMask} request.updateMask
+ *   List of fields that should be updated.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Subscription]{@link google.cloud.irm.v1alpha2.Subscription}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  updateSubscription(
+      request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.ISubscription,
+          protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.ISubscription,
+          protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISubscription,
+        protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -1727,73 +1392,52 @@ export class IncidentServiceClient {
     return this._innerApiCalls.updateSubscription(request, options, callback);
   }
   deleteSubscription(
-    request: protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.protobuf.IEmpty,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.protobuf.IEmpty,
+        protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest|undefined, {}|undefined
+      ]>;
   deleteSubscription(
-    request: protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.protobuf.IEmpty,
-      | protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest
-      | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Deletes an existing subscription.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Resource name of the subscription.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Empty]{@link google.protobuf.Empty}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  deleteSubscription(
-    request: protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.protobuf.IEmpty,
-          | protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.protobuf.IEmpty,
-      | protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest
-      | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.protobuf.IEmpty,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Deletes an existing subscription.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Resource name of the subscription.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Empty]{@link google.protobuf.Empty}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  deleteSubscription(
+      request: protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.protobuf.IEmpty,
+          protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.protobuf.IEmpty,
+          protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.protobuf.IEmpty,
+        protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -1802,86 +1446,65 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      name: request.name || '',
+      'name': request.name || '',
     });
     this.initialize();
     return this._innerApiCalls.deleteSubscription(request, options, callback);
   }
   createIncidentRoleAssignment(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+        protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest|undefined, {}|undefined
+      ]>;
   createIncidentRoleAssignment(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      | protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest
-      | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Creates a role assignment on an existing incident. Normally, the user field
-   * will be set when assigning a role to oneself, and the next field will be
-   * set when proposing another user as the assignee. Setting the next field
-   * directly to a user other than oneself is equivalent to proposing and
-   * force-assigning the role to the user.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource name of the incident, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {google.cloud.irm.v1alpha2.IncidentRoleAssignment} request.incidentRoleAssignment
-   *   Required. Role assignment to create.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  createIncidentRoleAssignment(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-          | protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      | protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest
-      | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Creates a role assignment on an existing incident. Normally, the user field
+ * will be set when assigning a role to oneself, and the next field will be
+ * set when proposing another user as the assignee. Setting the next field
+ * directly to a user other than oneself is equivalent to proposing and
+ * force-assigning the role to the user.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {google.cloud.irm.v1alpha2.IncidentRoleAssignment} request.incidentRoleAssignment
+ *   Required. Role assignment to create.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  createIncidentRoleAssignment(
+      request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+          protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+          protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+        protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -1890,83 +1513,58 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
-    return this._innerApiCalls.createIncidentRoleAssignment(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.createIncidentRoleAssignment(request, options, callback);
   }
   deleteIncidentRoleAssignment(
-    request: protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.protobuf.IEmpty,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.protobuf.IEmpty,
+        protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest|undefined, {}|undefined
+      ]>;
   deleteIncidentRoleAssignment(
-    request: protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.protobuf.IEmpty,
-      | protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest
-      | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Deletes an existing role assignment.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Resource name of the role assignment.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Empty]{@link google.protobuf.Empty}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  deleteIncidentRoleAssignment(
-    request: protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.protobuf.IEmpty,
-          | protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.protobuf.IEmpty,
-      | protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest
-      | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.protobuf.IEmpty,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Deletes an existing role assignment.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Resource name of the role assignment.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Empty]{@link google.protobuf.Empty}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  deleteIncidentRoleAssignment(
+      request: protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.protobuf.IEmpty,
+          protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.protobuf.IEmpty,
+          protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.protobuf.IEmpty,
+        protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -1975,89 +1573,64 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      name: request.name || '',
+      'name': request.name || '',
     });
     this.initialize();
-    return this._innerApiCalls.deleteIncidentRoleAssignment(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.deleteIncidentRoleAssignment(request, options, callback);
   }
   requestIncidentRoleHandover(
-    request: protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+        protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest|undefined, {}|undefined
+      ]>;
   requestIncidentRoleHandover(
-    request: protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      | protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest
-      | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Starts a role handover. The proposed assignee will receive an email
-   * notifying them of the assignment. This will fail if a role handover is
-   * already pending.
-   * Handover to an oncall ladder is not permitted. Use
-   * CreateIncidentRoleAssignment instead.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Resource name of the role assignment.
-   * @param {google.cloud.irm.v1alpha2.User} request.newAssignee
-   *   Required. The proposed assignee.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
+      request: protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest,
+      options: gax.CallOptions,
+      callback: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+          protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Starts a role handover. The proposed assignee will receive an email
+ * notifying them of the assignment. This will fail if a role handover is
+ * already pending.
+ * Handover to an oncall ladder is not permitted. Use
+ * CreateIncidentRoleAssignment instead.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Resource name of the role assignment.
+ * @param {google.cloud.irm.v1alpha2.User} request.newAssignee
+ *   Required. The proposed assignee.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
   requestIncidentRoleHandover(
-    request: protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
           protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-          | protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      | protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest
-      | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+          protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+        protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -2066,89 +1639,64 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      name: request.name || '',
+      'name': request.name || '',
     });
     this.initialize();
-    return this._innerApiCalls.requestIncidentRoleHandover(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.requestIncidentRoleHandover(request, options, callback);
   }
   confirmIncidentRoleHandover(
-    request: protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+        protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest|undefined, {}|undefined
+      ]>;
   confirmIncidentRoleHandover(
-    request: protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      | protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest
-      | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Confirms a role handover. This will fail if the 'proposed_assignee' field
-   * of the IncidentRoleAssignment is not equal to the 'new_assignee' field of
-   * the request. If the caller is not the new_assignee,
-   * ForceIncidentRoleHandover should be used instead.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Resource name of the role assignment.
-   * @param {google.cloud.irm.v1alpha2.User} request.newAssignee
-   *   Required. The proposed assignee, who will now be the assignee. This should be the
-   *   current user; otherwise ForceRoleHandover should be called.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  confirmIncidentRoleHandover(
-    request: protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-          | protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      | protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest
-      | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Confirms a role handover. This will fail if the 'proposed_assignee' field
+ * of the IncidentRoleAssignment is not equal to the 'new_assignee' field of
+ * the request. If the caller is not the new_assignee,
+ * ForceIncidentRoleHandover should be used instead.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Resource name of the role assignment.
+ * @param {google.cloud.irm.v1alpha2.User} request.newAssignee
+ *   Required. The proposed assignee, who will now be the assignee. This should be the
+ *   current user; otherwise ForceRoleHandover should be called.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  confirmIncidentRoleHandover(
+      request: protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+          protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+          protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+        protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -2157,89 +1705,64 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      name: request.name || '',
+      'name': request.name || '',
     });
     this.initialize();
-    return this._innerApiCalls.confirmIncidentRoleHandover(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.confirmIncidentRoleHandover(request, options, callback);
   }
   forceIncidentRoleHandover(
-    request: protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+        protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest|undefined, {}|undefined
+      ]>;
   forceIncidentRoleHandover(
-    request: protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      | protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest
-      | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Forces a role handover. This will fail if the 'proposed_assignee' field of
-   * the IncidentRoleAssignment is not equal to the 'new_assignee' field of the
-   * request. If the caller is the new_assignee, ConfirmIncidentRoleHandover
-   * should be used instead.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Resource name of the role assignment.
-   * @param {google.cloud.irm.v1alpha2.User} request.newAssignee
-   *   Required. The proposed assignee, who will now be the assignee. This should not be
-   *   the current user; otherwise ConfirmRoleHandover should be called.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  forceIncidentRoleHandover(
-    request: protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-          | protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      | protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest
-      | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Forces a role handover. This will fail if the 'proposed_assignee' field of
+ * the IncidentRoleAssignment is not equal to the 'new_assignee' field of the
+ * request. If the caller is the new_assignee, ConfirmIncidentRoleHandover
+ * should be used instead.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Resource name of the role assignment.
+ * @param {google.cloud.irm.v1alpha2.User} request.newAssignee
+ *   Required. The proposed assignee, who will now be the assignee. This should not be
+ *   the current user; otherwise ConfirmRoleHandover should be called.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  forceIncidentRoleHandover(
+      request: protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+          protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+          protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+        protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -2248,89 +1771,64 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      name: request.name || '',
+      'name': request.name || '',
     });
     this.initialize();
-    return this._innerApiCalls.forceIncidentRoleHandover(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.forceIncidentRoleHandover(request, options, callback);
   }
   cancelIncidentRoleHandover(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+        protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest|undefined, {}|undefined
+      ]>;
   cancelIncidentRoleHandover(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      | protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest
-      | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Cancels a role handover. This will fail if the 'proposed_assignee' field of
-   * the IncidentRoleAssignment is not equal to the 'new_assignee' field of the
-   * request.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Resource name of the role assignment.
-   * @param {google.cloud.irm.v1alpha2.User} request.newAssignee
-   *   Required. Person who was proposed as the next assignee (i.e.
-   *   IncidentRoleAssignment.proposed_assignee) and whose proposal is being
-   *   cancelled.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  cancelIncidentRoleHandover(
-    request: protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-          | protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      | protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest
-      | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
-      (
-        | protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Cancels a role handover. This will fail if the 'proposed_assignee' field of
+ * the IncidentRoleAssignment is not equal to the 'new_assignee' field of the
+ * request.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Resource name of the role assignment.
+ * @param {google.cloud.irm.v1alpha2.User} request.newAssignee
+ *   Required. Person who was proposed as the next assignee (i.e.
+ *   IncidentRoleAssignment.proposed_assignee) and whose proposal is being
+ *   cancelled.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  cancelIncidentRoleHandover(
+      request: protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+          protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+          protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment,
+        protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -2339,150 +1837,137 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      name: request.name || '',
+      'name': request.name || '',
     });
     this.initialize();
-    return this._innerApiCalls.cancelIncidentRoleHandover(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.cancelIncidentRoleHandover(request, options, callback);
   }
 
   searchIncidents(
-    request: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncident[],
-      protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsResponse
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncident[],
+        protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest|null,
+        protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsResponse
+      ]>;
   searchIncidents(
-    request: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncident[],
-      protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsResponse
-    >
-  ): void;
-  /**
-   * Returns a list of incidents.
-   * Incidents are ordered by start time, with the most recent incidents first.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The resource name of the hosting Stackdriver project which requested
-   *   incidents belong to.
-   * @param {string} request.query
-   *   An expression that defines which incidents to return.
-   *
-   *   Search atoms can be used to match certain specific fields.  Otherwise,
-   *   plain text will match text fields in the incident.
-   *
-   *   Search atoms:
-   *   * `start` - (timestamp) The time the incident started.
-   *   * `stage` - The stage of the incident, one of detected, triaged, mitigated,
-   *     resolved, documented, or duplicate (which correspond to values in the
-   *     Incident.Stage enum). These are ordered, so `stage<resolved` is
-   *     equivalent to `stage:detected OR stage:triaged OR stage:mitigated`.
-   *   * `severity` - (Incident.Severity) The severity of the incident.
-   *      + Supports matching on a specific severity (for example,
-   *      `severity:major`) or on a range (for example, `severity>medium`,
-   *      `severity<=minor`, etc.).
-   *
-   *   Timestamp formats:
-   *   * yyyy-MM-dd - an absolute date, treated as a calendar-day-wide window.
-   *     In other words, the "<" operator will match dates before that date, the
-   *     ">" operator will match dates after that date, and the ":" or "="
-   *     operators will match the entire day.
-   *   * Nd (for example, 7d) - a relative number of days ago, treated as a moment
-   *     in time (as opposed to a day-wide span). A multiple of 24 hours ago (as
-   *     opposed to calendar days).  In the case of daylight savings time, it will
-   *     apply the current timezone to both ends of the range.  Note that exact
-   *     matching (for example, `start:7d`) is unlikely to be useful because that
-   *     would only match incidents created precisely at a particular instant in
-   *     time.
-   *
-   *   Examples:
-   *
-   *   * `foo` - matches incidents containing the word "foo"
-   *   * `"foo bar"` - matches incidents containing the phrase "foo bar"
-   *   * `foo bar` or `foo AND bar` - matches incidents containing the words "foo"
-   *     and "bar"
-   *   * `foo -bar` or `foo AND NOT bar` - matches incidents containing the word
-   *     "foo" but not the word "bar"
-   *   * `foo OR bar` - matches incidents containing the word "foo" or the word
-   *     "bar"
-   *   * `start>2018-11-28` - matches incidents which started after November 11,
-   *     2018.
-   *   * `start<=2018-11-28` - matches incidents which started on or before
-   *     November 11, 2018.
-   *   * `start:2018-11-28` - matches incidents which started on November 11,
-   *     2018.
-   *   * `start>7d` - matches incidents which started after the point in time 7*24
-   *     hours ago
-   *   * `start>180d` - similar to 7d, but likely to cross the daylight savings
-   *     time boundary, so the end time will be 1 hour different from "now."
-   *   * `foo AND start>90d AND stage<resolved` - unresolved incidents from the
-   *     past 90 days containing the word "foo"
-   * @param {number} request.pageSize
-   *   Number of incidents to return.
-   * @param {string} request.pageToken
-   *   Page token from an earlier query, as returned in `next_page_token`.
-   * @param {string} request.timeZone
-   *   The time zone name. It should be an IANA TZ name, such as
-   *   "America/Los_Angeles". For more information,
-   *   see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.
-   *   If no time zone is specified, the default is UTC.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is Array of [Incident]{@link google.cloud.irm.v1alpha2.Incident}.
-   *   The client library support auto-pagination by default: it will call the API as many
-   *   times as needed and will merge results from all the pages into this array.
-   *
-   *   When autoPaginate: false is specified through options, the array has three elements.
-   *   The first element is Array of [Incident]{@link google.cloud.irm.v1alpha2.Incident} that corresponds to
-   *   the one page received from the API server.
-   *   If the second element is not null it contains the request object of type [SearchIncidentsRequest]{@link google.cloud.irm.v1alpha2.SearchIncidentsRequest}
-   *   that can be used to obtain the next page of the results.
-   *   If it is null, the next page does not exist.
-   *   The third element contains the raw response received from the API server. Its type is
-   *   [SearchIncidentsResponse]{@link google.cloud.irm.v1alpha2.SearchIncidentsResponse}.
-   *
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  searchIncidents(
-    request: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest,
+      options: gax.CallOptions,
+      callback: PaginationCallback<
           protosTypes.google.cloud.irm.v1alpha2.IIncident[],
-          protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest | null,
-          protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsResponse
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncident[],
-      protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsResponse
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncident[],
-      protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsResponse
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsResponse>): void;
+/**
+ * Returns a list of incidents.
+ * Incidents are ordered by start time, with the most recent incidents first.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The resource name of the hosting Stackdriver project which requested
+ *   incidents belong to.
+ * @param {string} request.query
+ *   An expression that defines which incidents to return.
+ *
+ *   Search atoms can be used to match certain specific fields.  Otherwise,
+ *   plain text will match text fields in the incident.
+ *
+ *   Search atoms:
+ *   * `start` - (timestamp) The time the incident started.
+ *   * `stage` - The stage of the incident, one of detected, triaged, mitigated,
+ *     resolved, documented, or duplicate (which correspond to values in the
+ *     Incident.Stage enum). These are ordered, so `stage<resolved` is
+ *     equivalent to `stage:detected OR stage:triaged OR stage:mitigated`.
+ *   * `severity` - (Incident.Severity) The severity of the incident.
+ *      + Supports matching on a specific severity (for example,
+ *      `severity:major`) or on a range (for example, `severity>medium`,
+ *      `severity<=minor`, etc.).
+ *
+ *   Timestamp formats:
+ *   * yyyy-MM-dd - an absolute date, treated as a calendar-day-wide window.
+ *     In other words, the "<" operator will match dates before that date, the
+ *     ">" operator will match dates after that date, and the ":" or "="
+ *     operators will match the entire day.
+ *   * Nd (for example, 7d) - a relative number of days ago, treated as a moment
+ *     in time (as opposed to a day-wide span). A multiple of 24 hours ago (as
+ *     opposed to calendar days).  In the case of daylight savings time, it will
+ *     apply the current timezone to both ends of the range.  Note that exact
+ *     matching (for example, `start:7d`) is unlikely to be useful because that
+ *     would only match incidents created precisely at a particular instant in
+ *     time.
+ *
+ *   Examples:
+ *
+ *   * `foo` - matches incidents containing the word "foo"
+ *   * `"foo bar"` - matches incidents containing the phrase "foo bar"
+ *   * `foo bar` or `foo AND bar` - matches incidents containing the words "foo"
+ *     and "bar"
+ *   * `foo -bar` or `foo AND NOT bar` - matches incidents containing the word
+ *     "foo" but not the word "bar"
+ *   * `foo OR bar` - matches incidents containing the word "foo" or the word
+ *     "bar"
+ *   * `start>2018-11-28` - matches incidents which started after November 11,
+ *     2018.
+ *   * `start<=2018-11-28` - matches incidents which started on or before
+ *     November 11, 2018.
+ *   * `start:2018-11-28` - matches incidents which started on November 11,
+ *     2018.
+ *   * `start>7d` - matches incidents which started after the point in time 7*24
+ *     hours ago
+ *   * `start>180d` - similar to 7d, but likely to cross the daylight savings
+ *     time boundary, so the end time will be 1 hour different from "now."
+ *   * `foo AND start>90d AND stage<resolved` - unresolved incidents from the
+ *     past 90 days containing the word "foo"
+ * @param {number} request.pageSize
+ *   Number of incidents to return.
+ * @param {string} request.pageToken
+ *   Page token from an earlier query, as returned in `next_page_token`.
+ * @param {string} request.timeZone
+ *   The time zone name. It should be an IANA TZ name, such as
+ *   "America/Los_Angeles". For more information,
+ *   see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.
+ *   If no time zone is specified, the default is UTC.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of [Incident]{@link google.cloud.irm.v1alpha2.Incident}.
+ *   The client library support auto-pagination by default: it will call the API as many
+ *   times as needed and will merge results from all the pages into this array.
+ *
+ *   When autoPaginate: false is specified through options, the array has three elements.
+ *   The first element is Array of [Incident]{@link google.cloud.irm.v1alpha2.Incident} that corresponds to
+ *   the one page received from the API server.
+ *   If the second element is not null it contains the request object of type [SearchIncidentsRequest]{@link google.cloud.irm.v1alpha2.SearchIncidentsRequest}
+ *   that can be used to obtain the next page of the results.
+ *   If it is null, the next page does not exist.
+ *   The third element contains the raw response received from the API server. Its type is
+ *   [SearchIncidentsResponse]{@link google.cloud.irm.v1alpha2.SearchIncidentsResponse}.
+ *
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  searchIncidents(
+      request: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest,
+      optionsOrCallback?: gax.CallOptions|PaginationCallback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncident[],
+          protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsResponse>,
+      callback?: PaginationCallback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncident[],
+          protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsResponse>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncident[],
+        protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest|null,
+        protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsResponse
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -2491,100 +1976,100 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this._innerApiCalls.searchIncidents(request, options, callback);
   }
 
-  /**
-   * Equivalent to {@link searchIncidents}, but returns a NodeJS Stream object.
-   *
-   * This fetches the paged responses for {@link searchIncidents} continuously
-   * and invokes the callback registered for 'data' event for each element in the
-   * responses.
-   *
-   * The returned object has 'end' method when no more elements are required.
-   *
-   * autoPaginate option will be ignored.
-   *
-   * @see {@link https://nodejs.org/api/stream.html}
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The resource name of the hosting Stackdriver project which requested
-   *   incidents belong to.
-   * @param {string} request.query
-   *   An expression that defines which incidents to return.
-   *
-   *   Search atoms can be used to match certain specific fields.  Otherwise,
-   *   plain text will match text fields in the incident.
-   *
-   *   Search atoms:
-   *   * `start` - (timestamp) The time the incident started.
-   *   * `stage` - The stage of the incident, one of detected, triaged, mitigated,
-   *     resolved, documented, or duplicate (which correspond to values in the
-   *     Incident.Stage enum). These are ordered, so `stage<resolved` is
-   *     equivalent to `stage:detected OR stage:triaged OR stage:mitigated`.
-   *   * `severity` - (Incident.Severity) The severity of the incident.
-   *      + Supports matching on a specific severity (for example,
-   *      `severity:major`) or on a range (for example, `severity>medium`,
-   *      `severity<=minor`, etc.).
-   *
-   *   Timestamp formats:
-   *   * yyyy-MM-dd - an absolute date, treated as a calendar-day-wide window.
-   *     In other words, the "<" operator will match dates before that date, the
-   *     ">" operator will match dates after that date, and the ":" or "="
-   *     operators will match the entire day.
-   *   * Nd (for example, 7d) - a relative number of days ago, treated as a moment
-   *     in time (as opposed to a day-wide span). A multiple of 24 hours ago (as
-   *     opposed to calendar days).  In the case of daylight savings time, it will
-   *     apply the current timezone to both ends of the range.  Note that exact
-   *     matching (for example, `start:7d`) is unlikely to be useful because that
-   *     would only match incidents created precisely at a particular instant in
-   *     time.
-   *
-   *   Examples:
-   *
-   *   * `foo` - matches incidents containing the word "foo"
-   *   * `"foo bar"` - matches incidents containing the phrase "foo bar"
-   *   * `foo bar` or `foo AND bar` - matches incidents containing the words "foo"
-   *     and "bar"
-   *   * `foo -bar` or `foo AND NOT bar` - matches incidents containing the word
-   *     "foo" but not the word "bar"
-   *   * `foo OR bar` - matches incidents containing the word "foo" or the word
-   *     "bar"
-   *   * `start>2018-11-28` - matches incidents which started after November 11,
-   *     2018.
-   *   * `start<=2018-11-28` - matches incidents which started on or before
-   *     November 11, 2018.
-   *   * `start:2018-11-28` - matches incidents which started on November 11,
-   *     2018.
-   *   * `start>7d` - matches incidents which started after the point in time 7*24
-   *     hours ago
-   *   * `start>180d` - similar to 7d, but likely to cross the daylight savings
-   *     time boundary, so the end time will be 1 hour different from "now."
-   *   * `foo AND start>90d AND stage<resolved` - unresolved incidents from the
-   *     past 90 days containing the word "foo"
-   * @param {number} request.pageSize
-   *   Number of incidents to return.
-   * @param {string} request.pageToken
-   *   Page token from an earlier query, as returned in `next_page_token`.
-   * @param {string} request.timeZone
-   *   The time zone name. It should be an IANA TZ name, such as
-   *   "America/Los_Angeles". For more information,
-   *   see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.
-   *   If no time zone is specified, the default is UTC.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Stream}
-   *   An object stream which emits an object representing [Incident]{@link google.cloud.irm.v1alpha2.Incident} on 'data' event.
-   */
+/**
+ * Equivalent to {@link searchIncidents}, but returns a NodeJS Stream object.
+ *
+ * This fetches the paged responses for {@link searchIncidents} continuously
+ * and invokes the callback registered for 'data' event for each element in the
+ * responses.
+ *
+ * The returned object has 'end' method when no more elements are required.
+ *
+ * autoPaginate option will be ignored.
+ *
+ * @see {@link https://nodejs.org/api/stream.html}
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The resource name of the hosting Stackdriver project which requested
+ *   incidents belong to.
+ * @param {string} request.query
+ *   An expression that defines which incidents to return.
+ *
+ *   Search atoms can be used to match certain specific fields.  Otherwise,
+ *   plain text will match text fields in the incident.
+ *
+ *   Search atoms:
+ *   * `start` - (timestamp) The time the incident started.
+ *   * `stage` - The stage of the incident, one of detected, triaged, mitigated,
+ *     resolved, documented, or duplicate (which correspond to values in the
+ *     Incident.Stage enum). These are ordered, so `stage<resolved` is
+ *     equivalent to `stage:detected OR stage:triaged OR stage:mitigated`.
+ *   * `severity` - (Incident.Severity) The severity of the incident.
+ *      + Supports matching on a specific severity (for example,
+ *      `severity:major`) or on a range (for example, `severity>medium`,
+ *      `severity<=minor`, etc.).
+ *
+ *   Timestamp formats:
+ *   * yyyy-MM-dd - an absolute date, treated as a calendar-day-wide window.
+ *     In other words, the "<" operator will match dates before that date, the
+ *     ">" operator will match dates after that date, and the ":" or "="
+ *     operators will match the entire day.
+ *   * Nd (for example, 7d) - a relative number of days ago, treated as a moment
+ *     in time (as opposed to a day-wide span). A multiple of 24 hours ago (as
+ *     opposed to calendar days).  In the case of daylight savings time, it will
+ *     apply the current timezone to both ends of the range.  Note that exact
+ *     matching (for example, `start:7d`) is unlikely to be useful because that
+ *     would only match incidents created precisely at a particular instant in
+ *     time.
+ *
+ *   Examples:
+ *
+ *   * `foo` - matches incidents containing the word "foo"
+ *   * `"foo bar"` - matches incidents containing the phrase "foo bar"
+ *   * `foo bar` or `foo AND bar` - matches incidents containing the words "foo"
+ *     and "bar"
+ *   * `foo -bar` or `foo AND NOT bar` - matches incidents containing the word
+ *     "foo" but not the word "bar"
+ *   * `foo OR bar` - matches incidents containing the word "foo" or the word
+ *     "bar"
+ *   * `start>2018-11-28` - matches incidents which started after November 11,
+ *     2018.
+ *   * `start<=2018-11-28` - matches incidents which started on or before
+ *     November 11, 2018.
+ *   * `start:2018-11-28` - matches incidents which started on November 11,
+ *     2018.
+ *   * `start>7d` - matches incidents which started after the point in time 7*24
+ *     hours ago
+ *   * `start>180d` - similar to 7d, but likely to cross the daylight savings
+ *     time boundary, so the end time will be 1 hour different from "now."
+ *   * `foo AND start>90d AND stage<resolved` - unresolved incidents from the
+ *     past 90 days containing the word "foo"
+ * @param {number} request.pageSize
+ *   Number of incidents to return.
+ * @param {string} request.pageToken
+ *   Page token from an earlier query, as returned in `next_page_token`.
+ * @param {string} request.timeZone
+ *   The time zone name. It should be an IANA TZ name, such as
+ *   "America/Los_Angeles". For more information,
+ *   see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.
+ *   If no time zone is specified, the default is UTC.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits an object representing [Incident]{@link google.cloud.irm.v1alpha2.Incident} on 'data' event.
+ */
   searchIncidentsStream(
-    request?: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest,
-    options?: gax.CallOptions
-  ): Transform {
+      request?: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest,
+      options?: gax.CallOptions):
+    Transform{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
@@ -2592,7 +2077,7 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     const callSettings = new gax.CallSettings(options);
     this.initialize();
@@ -2603,83 +2088,74 @@ export class IncidentServiceClient {
     );
   }
   searchSimilarIncidents(
-    request: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse.IResult[],
-      protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsResponse
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse.IResult[],
+        protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest|null,
+        protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsResponse
+      ]>;
   searchSimilarIncidents(
-    request: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse.IResult[],
-      protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsResponse
-    >
-  ): void;
-  /**
-   * Returns a list of incidents that are "similar" to the specified incident
-   * or signal. This functionality is provided on a best-effort basis and the
-   * definition of "similar" is subject to change.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Resource name of the incident or signal, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {number} request.pageSize
-   *   Number of similar incidents to return.
-   * @param {string} request.pageToken
-   *   Page token from an earlier query, as returned in 'next_page_token'.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is Array of [Result]{@link google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse.Result}.
-   *   The client library support auto-pagination by default: it will call the API as many
-   *   times as needed and will merge results from all the pages into this array.
-   *
-   *   When autoPaginate: false is specified through options, the array has three elements.
-   *   The first element is Array of [Result]{@link google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse.Result} that corresponds to
-   *   the one page received from the API server.
-   *   If the second element is not null it contains the request object of type [SearchSimilarIncidentsRequest]{@link google.cloud.irm.v1alpha2.SearchSimilarIncidentsRequest}
-   *   that can be used to obtain the next page of the results.
-   *   If it is null, the next page does not exist.
-   *   The third element contains the raw response received from the API server. Its type is
-   *   [SearchSimilarIncidentsResponse]{@link google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse}.
-   *
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  searchSimilarIncidents(
-    request: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest,
+      options: gax.CallOptions,
+      callback: PaginationCallback<
           protosTypes.google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse.IResult[],
-          protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest | null,
-          protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsResponse
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse.IResult[],
-      protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsResponse
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse.IResult[],
-      protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsResponse
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsResponse>): void;
+/**
+ * Returns a list of incidents that are "similar" to the specified incident
+ * or signal. This functionality is provided on a best-effort basis and the
+ * definition of "similar" is subject to change.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Resource name of the incident or signal, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {number} request.pageSize
+ *   Number of similar incidents to return.
+ * @param {string} request.pageToken
+ *   Page token from an earlier query, as returned in 'next_page_token'.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of [Result]{@link google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse.Result}.
+ *   The client library support auto-pagination by default: it will call the API as many
+ *   times as needed and will merge results from all the pages into this array.
+ *
+ *   When autoPaginate: false is specified through options, the array has three elements.
+ *   The first element is Array of [Result]{@link google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse.Result} that corresponds to
+ *   the one page received from the API server.
+ *   If the second element is not null it contains the request object of type [SearchSimilarIncidentsRequest]{@link google.cloud.irm.v1alpha2.SearchSimilarIncidentsRequest}
+ *   that can be used to obtain the next page of the results.
+ *   If it is null, the next page does not exist.
+ *   The third element contains the raw response received from the API server. Its type is
+ *   [SearchSimilarIncidentsResponse]{@link google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse}.
+ *
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  searchSimilarIncidents(
+      request: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest,
+      optionsOrCallback?: gax.CallOptions|PaginationCallback<
+          protosTypes.google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse.IResult[],
+          protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsResponse>,
+      callback?: PaginationCallback<
+          protosTypes.google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse.IResult[],
+          protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsResponse>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse.IResult[],
+        protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest|null,
+        protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsResponse
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -2688,47 +2164,43 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      name: request.name || '',
+      'name': request.name || '',
     });
     this.initialize();
-    return this._innerApiCalls.searchSimilarIncidents(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.searchSimilarIncidents(request, options, callback);
   }
 
-  /**
-   * Equivalent to {@link searchSimilarIncidents}, but returns a NodeJS Stream object.
-   *
-   * This fetches the paged responses for {@link searchSimilarIncidents} continuously
-   * and invokes the callback registered for 'data' event for each element in the
-   * responses.
-   *
-   * The returned object has 'end' method when no more elements are required.
-   *
-   * autoPaginate option will be ignored.
-   *
-   * @see {@link https://nodejs.org/api/stream.html}
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. Resource name of the incident or signal, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {number} request.pageSize
-   *   Number of similar incidents to return.
-   * @param {string} request.pageToken
-   *   Page token from an earlier query, as returned in 'next_page_token'.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Stream}
-   *   An object stream which emits an object representing [Result]{@link google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse.Result} on 'data' event.
-   */
+/**
+ * Equivalent to {@link searchSimilarIncidents}, but returns a NodeJS Stream object.
+ *
+ * This fetches the paged responses for {@link searchSimilarIncidents} continuously
+ * and invokes the callback registered for 'data' event for each element in the
+ * responses.
+ *
+ * The returned object has 'end' method when no more elements are required.
+ *
+ * autoPaginate option will be ignored.
+ *
+ * @see {@link https://nodejs.org/api/stream.html}
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. Resource name of the incident or signal, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {number} request.pageSize
+ *   Number of similar incidents to return.
+ * @param {string} request.pageToken
+ *   Page token from an earlier query, as returned in 'next_page_token'.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits an object representing [Result]{@link google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse.Result} on 'data' event.
+ */
   searchSimilarIncidentsStream(
-    request?: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest,
-    options?: gax.CallOptions
-  ): Transform {
+      request?: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest,
+      options?: gax.CallOptions):
+    Transform{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
@@ -2736,7 +2208,7 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      name: request.name || '',
+      'name': request.name || '',
     });
     const callSettings = new gax.CallSettings(options);
     this.initialize();
@@ -2747,82 +2219,73 @@ export class IncidentServiceClient {
     );
   }
   listAnnotations(
-    request: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IAnnotation[],
-      protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsResponse
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IAnnotation[],
+        protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest|null,
+        protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsResponse
+      ]>;
   listAnnotations(
-    request: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IAnnotation[],
-      protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsResponse
-    >
-  ): void;
-  /**
-   * Lists annotations that are part of an incident. No assumptions should be
-   * made on the content-type of the annotation returned.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource name of the incident, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {number} request.pageSize
-   *   Number of annotations to return.
-   * @param {string} request.pageToken
-   *   Page token from an earlier query, as returned in `next_page_token`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is Array of [Annotation]{@link google.cloud.irm.v1alpha2.Annotation}.
-   *   The client library support auto-pagination by default: it will call the API as many
-   *   times as needed and will merge results from all the pages into this array.
-   *
-   *   When autoPaginate: false is specified through options, the array has three elements.
-   *   The first element is Array of [Annotation]{@link google.cloud.irm.v1alpha2.Annotation} that corresponds to
-   *   the one page received from the API server.
-   *   If the second element is not null it contains the request object of type [ListAnnotationsRequest]{@link google.cloud.irm.v1alpha2.ListAnnotationsRequest}
-   *   that can be used to obtain the next page of the results.
-   *   If it is null, the next page does not exist.
-   *   The third element contains the raw response received from the API server. Its type is
-   *   [ListAnnotationsResponse]{@link google.cloud.irm.v1alpha2.ListAnnotationsResponse}.
-   *
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  listAnnotations(
-    request: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest,
+      options: gax.CallOptions,
+      callback: PaginationCallback<
           protosTypes.google.cloud.irm.v1alpha2.IAnnotation[],
-          protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest | null,
-          protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsResponse
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IAnnotation[],
-      protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsResponse
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IAnnotation[],
-      protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsResponse
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsResponse>): void;
+/**
+ * Lists annotations that are part of an incident. No assumptions should be
+ * made on the content-type of the annotation returned.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {number} request.pageSize
+ *   Number of annotations to return.
+ * @param {string} request.pageToken
+ *   Page token from an earlier query, as returned in `next_page_token`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of [Annotation]{@link google.cloud.irm.v1alpha2.Annotation}.
+ *   The client library support auto-pagination by default: it will call the API as many
+ *   times as needed and will merge results from all the pages into this array.
+ *
+ *   When autoPaginate: false is specified through options, the array has three elements.
+ *   The first element is Array of [Annotation]{@link google.cloud.irm.v1alpha2.Annotation} that corresponds to
+ *   the one page received from the API server.
+ *   If the second element is not null it contains the request object of type [ListAnnotationsRequest]{@link google.cloud.irm.v1alpha2.ListAnnotationsRequest}
+ *   that can be used to obtain the next page of the results.
+ *   If it is null, the next page does not exist.
+ *   The third element contains the raw response received from the API server. Its type is
+ *   [ListAnnotationsResponse]{@link google.cloud.irm.v1alpha2.ListAnnotationsResponse}.
+ *
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  listAnnotations(
+      request: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest,
+      optionsOrCallback?: gax.CallOptions|PaginationCallback<
+          protosTypes.google.cloud.irm.v1alpha2.IAnnotation[],
+          protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsResponse>,
+      callback?: PaginationCallback<
+          protosTypes.google.cloud.irm.v1alpha2.IAnnotation[],
+          protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsResponse>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IAnnotation[],
+        protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest|null,
+        protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsResponse
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -2831,43 +2294,43 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this._innerApiCalls.listAnnotations(request, options, callback);
   }
 
-  /**
-   * Equivalent to {@link listAnnotations}, but returns a NodeJS Stream object.
-   *
-   * This fetches the paged responses for {@link listAnnotations} continuously
-   * and invokes the callback registered for 'data' event for each element in the
-   * responses.
-   *
-   * The returned object has 'end' method when no more elements are required.
-   *
-   * autoPaginate option will be ignored.
-   *
-   * @see {@link https://nodejs.org/api/stream.html}
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource name of the incident, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {number} request.pageSize
-   *   Number of annotations to return.
-   * @param {string} request.pageToken
-   *   Page token from an earlier query, as returned in `next_page_token`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Stream}
-   *   An object stream which emits an object representing [Annotation]{@link google.cloud.irm.v1alpha2.Annotation} on 'data' event.
-   */
+/**
+ * Equivalent to {@link listAnnotations}, but returns a NodeJS Stream object.
+ *
+ * This fetches the paged responses for {@link listAnnotations} continuously
+ * and invokes the callback registered for 'data' event for each element in the
+ * responses.
+ *
+ * The returned object has 'end' method when no more elements are required.
+ *
+ * autoPaginate option will be ignored.
+ *
+ * @see {@link https://nodejs.org/api/stream.html}
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {number} request.pageSize
+ *   Number of annotations to return.
+ * @param {string} request.pageToken
+ *   Page token from an earlier query, as returned in `next_page_token`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits an object representing [Annotation]{@link google.cloud.irm.v1alpha2.Annotation} on 'data' event.
+ */
   listAnnotationsStream(
-    request?: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest,
-    options?: gax.CallOptions
-  ): Transform {
+      request?: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest,
+      options?: gax.CallOptions):
+    Transform{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
@@ -2875,7 +2338,7 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     const callSettings = new gax.CallSettings(options);
     this.initialize();
@@ -2886,81 +2349,72 @@ export class IncidentServiceClient {
     );
   }
   listTags(
-    request: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ITag[],
-      protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListTagsResponse
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ITag[],
+        protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest|null,
+        protosTypes.google.cloud.irm.v1alpha2.IListTagsResponse
+      ]>;
   listTags(
-    request: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ITag[],
-      protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListTagsResponse
-    >
-  ): void;
-  /**
-   * Lists tags that are part of an incident.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource name of the incident, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {number} request.pageSize
-   *   Number of tags to return.
-   * @param {string} request.pageToken
-   *   Page token from an earlier query, as returned in `next_page_token`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is Array of [Tag]{@link google.cloud.irm.v1alpha2.Tag}.
-   *   The client library support auto-pagination by default: it will call the API as many
-   *   times as needed and will merge results from all the pages into this array.
-   *
-   *   When autoPaginate: false is specified through options, the array has three elements.
-   *   The first element is Array of [Tag]{@link google.cloud.irm.v1alpha2.Tag} that corresponds to
-   *   the one page received from the API server.
-   *   If the second element is not null it contains the request object of type [ListTagsRequest]{@link google.cloud.irm.v1alpha2.ListTagsRequest}
-   *   that can be used to obtain the next page of the results.
-   *   If it is null, the next page does not exist.
-   *   The third element contains the raw response received from the API server. Its type is
-   *   [ListTagsResponse]{@link google.cloud.irm.v1alpha2.ListTagsResponse}.
-   *
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  listTags(
-    request: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest,
+      options: gax.CallOptions,
+      callback: PaginationCallback<
           protosTypes.google.cloud.irm.v1alpha2.ITag[],
-          protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest | null,
-          protosTypes.google.cloud.irm.v1alpha2.IListTagsResponse
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ITag[],
-      protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListTagsResponse
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ITag[],
-      protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListTagsResponse
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.IListTagsResponse>): void;
+/**
+ * Lists tags that are part of an incident.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {number} request.pageSize
+ *   Number of tags to return.
+ * @param {string} request.pageToken
+ *   Page token from an earlier query, as returned in `next_page_token`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of [Tag]{@link google.cloud.irm.v1alpha2.Tag}.
+ *   The client library support auto-pagination by default: it will call the API as many
+ *   times as needed and will merge results from all the pages into this array.
+ *
+ *   When autoPaginate: false is specified through options, the array has three elements.
+ *   The first element is Array of [Tag]{@link google.cloud.irm.v1alpha2.Tag} that corresponds to
+ *   the one page received from the API server.
+ *   If the second element is not null it contains the request object of type [ListTagsRequest]{@link google.cloud.irm.v1alpha2.ListTagsRequest}
+ *   that can be used to obtain the next page of the results.
+ *   If it is null, the next page does not exist.
+ *   The third element contains the raw response received from the API server. Its type is
+ *   [ListTagsResponse]{@link google.cloud.irm.v1alpha2.ListTagsResponse}.
+ *
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  listTags(
+      request: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest,
+      optionsOrCallback?: gax.CallOptions|PaginationCallback<
+          protosTypes.google.cloud.irm.v1alpha2.ITag[],
+          protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.IListTagsResponse>,
+      callback?: PaginationCallback<
+          protosTypes.google.cloud.irm.v1alpha2.ITag[],
+          protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.IListTagsResponse>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ITag[],
+        protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest|null,
+        protosTypes.google.cloud.irm.v1alpha2.IListTagsResponse
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -2969,43 +2423,43 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this._innerApiCalls.listTags(request, options, callback);
   }
 
-  /**
-   * Equivalent to {@link listTags}, but returns a NodeJS Stream object.
-   *
-   * This fetches the paged responses for {@link listTags} continuously
-   * and invokes the callback registered for 'data' event for each element in the
-   * responses.
-   *
-   * The returned object has 'end' method when no more elements are required.
-   *
-   * autoPaginate option will be ignored.
-   *
-   * @see {@link https://nodejs.org/api/stream.html}
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource name of the incident, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {number} request.pageSize
-   *   Number of tags to return.
-   * @param {string} request.pageToken
-   *   Page token from an earlier query, as returned in `next_page_token`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Stream}
-   *   An object stream which emits an object representing [Tag]{@link google.cloud.irm.v1alpha2.Tag} on 'data' event.
-   */
+/**
+ * Equivalent to {@link listTags}, but returns a NodeJS Stream object.
+ *
+ * This fetches the paged responses for {@link listTags} continuously
+ * and invokes the callback registered for 'data' event for each element in the
+ * responses.
+ *
+ * The returned object has 'end' method when no more elements are required.
+ *
+ * autoPaginate option will be ignored.
+ *
+ * @see {@link https://nodejs.org/api/stream.html}
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {number} request.pageSize
+ *   Number of tags to return.
+ * @param {string} request.pageToken
+ *   Page token from an earlier query, as returned in `next_page_token`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits an object representing [Tag]{@link google.cloud.irm.v1alpha2.Tag} on 'data' event.
+ */
   listTagsStream(
-    request?: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest,
-    options?: gax.CallOptions
-  ): Transform {
+      request?: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest,
+      options?: gax.CallOptions):
+    Transform{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
@@ -3013,7 +2467,7 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     const callSettings = new gax.CallSettings(options);
     this.initialize();
@@ -3024,146 +2478,137 @@ export class IncidentServiceClient {
     );
   }
   searchSignals(
-    request: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISignal[],
-      protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsResponse
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISignal[],
+        protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest|null,
+        protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsResponse
+      ]>;
   searchSignals(
-    request: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISignal[],
-      protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsResponse
-    >
-  ): void;
-  /**
-   * Lists signals that are part of an incident.
-   * Signals are returned in reverse chronological order.
-   * Note that search should not be relied on for critical functionality.  It
-   * has lower availability guarantees and might fail to return valid results.
-   * Returned results might include stale or extraneous entries.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The resource name of the hosting Stackdriver project which requested
-   *   incidents belong to.
-   * @param {string} request.query
-   *   An expression that defines which signals to return.
-   *
-   *   Search atoms can be used to match certain specific fields.  Otherwise,
-   *   plain text will match text fields in the signal.
-   *
-   *   Search atoms:
-   *
-   *   * `start` - (timestamp) The time the signal was created.
-   *   * `title` - The title of the signal.
-   *   * `signal_state` - `open` or `closed`. State of the signal.
-   *     (e.g., `signal_state:open`)
-   *
-   *   Timestamp formats:
-   *
-   *   * yyyy-MM-dd - an absolute date, treated as a calendar-day-wide window.
-   *     In other words, the "<" operator will match dates before that date, the
-   *     ">" operator will match dates after that date, and the ":" operator will
-   *     match the entire day.
-   *   * yyyy-MM-ddTHH:mm - Same as above, but with minute resolution.
-   *   * yyyy-MM-ddTHH:mm:ss - Same as above, but with second resolution.
-   *   * Nd (e.g. 7d) - a relative number of days ago, treated as a moment in time
-   *     (as opposed to a day-wide span) a multiple of 24 hours ago (as opposed to
-   *     calendar days).  In the case of daylight savings time, it will apply the
-   *     current timezone to both ends of the range.  Note that exact matching
-   *     (e.g. `start:7d`) is unlikely to be useful because that would only match
-   *     signals created precisely at a particular instant in time.
-   *
-   *   The absolute timestamp formats (everything starting with a year) can
-   *   optionally be followed with a UTC offset in +/-hh:mm format.  Also, the 'T'
-   *   separating dates and times can optionally be replaced with a space. Note
-   *   that any timestamp containing a space or colon will need to be quoted.
-   *
-   *   Examples:
-   *
-   *   * `foo` - matches signals containing the word "foo"
-   *   * `"foo bar"` - matches signals containing the phrase "foo bar"
-   *   * `foo bar` or `foo AND bar` - matches signals containing the words
-   *     "foo" and "bar"
-   *   * `foo -bar` or `foo AND NOT bar` - matches signals containing the
-   *     word
-   *     "foo" but not the word "bar"
-   *   * `foo OR bar` - matches signals containing the word "foo" or the
-   *     word "bar"
-   *   * `start>2018-11-28` - matches signals which started after November
-   *     11, 2018.
-   *   * `start<=2018-11-28` - matches signals which started on or before
-   *     November 11, 2018.
-   *   * `start:2018-11-28` - matches signals which started on November 11,
-   *     2018.
-   *   * `start>"2018-11-28 01:02:03+04:00"` - matches signals which started
-   *     after November 11, 2018 at 1:02:03 AM according to the UTC+04 time
-   *     zone.
-   *   * `start>7d` - matches signals which started after the point in time
-   *     7*24 hours ago
-   *   * `start>180d` - similar to 7d, but likely to cross the daylight savings
-   *     time boundary, so the end time will be 1 hour different from "now."
-   *   * `foo AND start>90d AND stage<resolved` - unresolved signals from
-   *     the past 90 days containing the word "foo"
-   * @param {number} request.pageSize
-   *   Maximum number of `signals` to return in the response.
-   * @param {string} request.pageToken
-   *   Page token from an earlier query, as returned in `next_page_token`. All
-   *   field values except for page_size and page_token should be the same as the
-   *   original query (may return an error or unexpected data otherwise).
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is Array of [Signal]{@link google.cloud.irm.v1alpha2.Signal}.
-   *   The client library support auto-pagination by default: it will call the API as many
-   *   times as needed and will merge results from all the pages into this array.
-   *
-   *   When autoPaginate: false is specified through options, the array has three elements.
-   *   The first element is Array of [Signal]{@link google.cloud.irm.v1alpha2.Signal} that corresponds to
-   *   the one page received from the API server.
-   *   If the second element is not null it contains the request object of type [SearchSignalsRequest]{@link google.cloud.irm.v1alpha2.SearchSignalsRequest}
-   *   that can be used to obtain the next page of the results.
-   *   If it is null, the next page does not exist.
-   *   The third element contains the raw response received from the API server. Its type is
-   *   [SearchSignalsResponse]{@link google.cloud.irm.v1alpha2.SearchSignalsResponse}.
-   *
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  searchSignals(
-    request: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest,
+      options: gax.CallOptions,
+      callback: PaginationCallback<
           protosTypes.google.cloud.irm.v1alpha2.ISignal[],
-          protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest | null,
-          protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsResponse
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISignal[],
-      protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsResponse
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISignal[],
-      protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsResponse
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsResponse>): void;
+/**
+ * Lists signals that are part of an incident.
+ * Signals are returned in reverse chronological order.
+ * Note that search should not be relied on for critical functionality.  It
+ * has lower availability guarantees and might fail to return valid results.
+ * Returned results might include stale or extraneous entries.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The resource name of the hosting Stackdriver project which requested
+ *   incidents belong to.
+ * @param {string} request.query
+ *   An expression that defines which signals to return.
+ *
+ *   Search atoms can be used to match certain specific fields.  Otherwise,
+ *   plain text will match text fields in the signal.
+ *
+ *   Search atoms:
+ *
+ *   * `start` - (timestamp) The time the signal was created.
+ *   * `title` - The title of the signal.
+ *   * `signal_state` - `open` or `closed`. State of the signal.
+ *     (e.g., `signal_state:open`)
+ *
+ *   Timestamp formats:
+ *
+ *   * yyyy-MM-dd - an absolute date, treated as a calendar-day-wide window.
+ *     In other words, the "<" operator will match dates before that date, the
+ *     ">" operator will match dates after that date, and the ":" operator will
+ *     match the entire day.
+ *   * yyyy-MM-ddTHH:mm - Same as above, but with minute resolution.
+ *   * yyyy-MM-ddTHH:mm:ss - Same as above, but with second resolution.
+ *   * Nd (e.g. 7d) - a relative number of days ago, treated as a moment in time
+ *     (as opposed to a day-wide span) a multiple of 24 hours ago (as opposed to
+ *     calendar days).  In the case of daylight savings time, it will apply the
+ *     current timezone to both ends of the range.  Note that exact matching
+ *     (e.g. `start:7d`) is unlikely to be useful because that would only match
+ *     signals created precisely at a particular instant in time.
+ *
+ *   The absolute timestamp formats (everything starting with a year) can
+ *   optionally be followed with a UTC offset in +/-hh:mm format.  Also, the 'T'
+ *   separating dates and times can optionally be replaced with a space. Note
+ *   that any timestamp containing a space or colon will need to be quoted.
+ *
+ *   Examples:
+ *
+ *   * `foo` - matches signals containing the word "foo"
+ *   * `"foo bar"` - matches signals containing the phrase "foo bar"
+ *   * `foo bar` or `foo AND bar` - matches signals containing the words
+ *     "foo" and "bar"
+ *   * `foo -bar` or `foo AND NOT bar` - matches signals containing the
+ *     word
+ *     "foo" but not the word "bar"
+ *   * `foo OR bar` - matches signals containing the word "foo" or the
+ *     word "bar"
+ *   * `start>2018-11-28` - matches signals which started after November
+ *     11, 2018.
+ *   * `start<=2018-11-28` - matches signals which started on or before
+ *     November 11, 2018.
+ *   * `start:2018-11-28` - matches signals which started on November 11,
+ *     2018.
+ *   * `start>"2018-11-28 01:02:03+04:00"` - matches signals which started
+ *     after November 11, 2018 at 1:02:03 AM according to the UTC+04 time
+ *     zone.
+ *   * `start>7d` - matches signals which started after the point in time
+ *     7*24 hours ago
+ *   * `start>180d` - similar to 7d, but likely to cross the daylight savings
+ *     time boundary, so the end time will be 1 hour different from "now."
+ *   * `foo AND start>90d AND stage<resolved` - unresolved signals from
+ *     the past 90 days containing the word "foo"
+ * @param {number} request.pageSize
+ *   Maximum number of `signals` to return in the response.
+ * @param {string} request.pageToken
+ *   Page token from an earlier query, as returned in `next_page_token`. All
+ *   field values except for page_size and page_token should be the same as the
+ *   original query (may return an error or unexpected data otherwise).
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of [Signal]{@link google.cloud.irm.v1alpha2.Signal}.
+ *   The client library support auto-pagination by default: it will call the API as many
+ *   times as needed and will merge results from all the pages into this array.
+ *
+ *   When autoPaginate: false is specified through options, the array has three elements.
+ *   The first element is Array of [Signal]{@link google.cloud.irm.v1alpha2.Signal} that corresponds to
+ *   the one page received from the API server.
+ *   If the second element is not null it contains the request object of type [SearchSignalsRequest]{@link google.cloud.irm.v1alpha2.SearchSignalsRequest}
+ *   that can be used to obtain the next page of the results.
+ *   If it is null, the next page does not exist.
+ *   The third element contains the raw response received from the API server. Its type is
+ *   [SearchSignalsResponse]{@link google.cloud.irm.v1alpha2.SearchSignalsResponse}.
+ *
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  searchSignals(
+      request: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest,
+      optionsOrCallback?: gax.CallOptions|PaginationCallback<
+          protosTypes.google.cloud.irm.v1alpha2.ISignal[],
+          protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsResponse>,
+      callback?: PaginationCallback<
+          protosTypes.google.cloud.irm.v1alpha2.ISignal[],
+          protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsResponse>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISignal[],
+        protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest|null,
+        protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsResponse
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -3172,104 +2617,104 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this._innerApiCalls.searchSignals(request, options, callback);
   }
 
-  /**
-   * Equivalent to {@link searchSignals}, but returns a NodeJS Stream object.
-   *
-   * This fetches the paged responses for {@link searchSignals} continuously
-   * and invokes the callback registered for 'data' event for each element in the
-   * responses.
-   *
-   * The returned object has 'end' method when no more elements are required.
-   *
-   * autoPaginate option will be ignored.
-   *
-   * @see {@link https://nodejs.org/api/stream.html}
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The resource name of the hosting Stackdriver project which requested
-   *   incidents belong to.
-   * @param {string} request.query
-   *   An expression that defines which signals to return.
-   *
-   *   Search atoms can be used to match certain specific fields.  Otherwise,
-   *   plain text will match text fields in the signal.
-   *
-   *   Search atoms:
-   *
-   *   * `start` - (timestamp) The time the signal was created.
-   *   * `title` - The title of the signal.
-   *   * `signal_state` - `open` or `closed`. State of the signal.
-   *     (e.g., `signal_state:open`)
-   *
-   *   Timestamp formats:
-   *
-   *   * yyyy-MM-dd - an absolute date, treated as a calendar-day-wide window.
-   *     In other words, the "<" operator will match dates before that date, the
-   *     ">" operator will match dates after that date, and the ":" operator will
-   *     match the entire day.
-   *   * yyyy-MM-ddTHH:mm - Same as above, but with minute resolution.
-   *   * yyyy-MM-ddTHH:mm:ss - Same as above, but with second resolution.
-   *   * Nd (e.g. 7d) - a relative number of days ago, treated as a moment in time
-   *     (as opposed to a day-wide span) a multiple of 24 hours ago (as opposed to
-   *     calendar days).  In the case of daylight savings time, it will apply the
-   *     current timezone to both ends of the range.  Note that exact matching
-   *     (e.g. `start:7d`) is unlikely to be useful because that would only match
-   *     signals created precisely at a particular instant in time.
-   *
-   *   The absolute timestamp formats (everything starting with a year) can
-   *   optionally be followed with a UTC offset in +/-hh:mm format.  Also, the 'T'
-   *   separating dates and times can optionally be replaced with a space. Note
-   *   that any timestamp containing a space or colon will need to be quoted.
-   *
-   *   Examples:
-   *
-   *   * `foo` - matches signals containing the word "foo"
-   *   * `"foo bar"` - matches signals containing the phrase "foo bar"
-   *   * `foo bar` or `foo AND bar` - matches signals containing the words
-   *     "foo" and "bar"
-   *   * `foo -bar` or `foo AND NOT bar` - matches signals containing the
-   *     word
-   *     "foo" but not the word "bar"
-   *   * `foo OR bar` - matches signals containing the word "foo" or the
-   *     word "bar"
-   *   * `start>2018-11-28` - matches signals which started after November
-   *     11, 2018.
-   *   * `start<=2018-11-28` - matches signals which started on or before
-   *     November 11, 2018.
-   *   * `start:2018-11-28` - matches signals which started on November 11,
-   *     2018.
-   *   * `start>"2018-11-28 01:02:03+04:00"` - matches signals which started
-   *     after November 11, 2018 at 1:02:03 AM according to the UTC+04 time
-   *     zone.
-   *   * `start>7d` - matches signals which started after the point in time
-   *     7*24 hours ago
-   *   * `start>180d` - similar to 7d, but likely to cross the daylight savings
-   *     time boundary, so the end time will be 1 hour different from "now."
-   *   * `foo AND start>90d AND stage<resolved` - unresolved signals from
-   *     the past 90 days containing the word "foo"
-   * @param {number} request.pageSize
-   *   Maximum number of `signals` to return in the response.
-   * @param {string} request.pageToken
-   *   Page token from an earlier query, as returned in `next_page_token`. All
-   *   field values except for page_size and page_token should be the same as the
-   *   original query (may return an error or unexpected data otherwise).
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Stream}
-   *   An object stream which emits an object representing [Signal]{@link google.cloud.irm.v1alpha2.Signal} on 'data' event.
-   */
+/**
+ * Equivalent to {@link searchSignals}, but returns a NodeJS Stream object.
+ *
+ * This fetches the paged responses for {@link searchSignals} continuously
+ * and invokes the callback registered for 'data' event for each element in the
+ * responses.
+ *
+ * The returned object has 'end' method when no more elements are required.
+ *
+ * autoPaginate option will be ignored.
+ *
+ * @see {@link https://nodejs.org/api/stream.html}
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The resource name of the hosting Stackdriver project which requested
+ *   incidents belong to.
+ * @param {string} request.query
+ *   An expression that defines which signals to return.
+ *
+ *   Search atoms can be used to match certain specific fields.  Otherwise,
+ *   plain text will match text fields in the signal.
+ *
+ *   Search atoms:
+ *
+ *   * `start` - (timestamp) The time the signal was created.
+ *   * `title` - The title of the signal.
+ *   * `signal_state` - `open` or `closed`. State of the signal.
+ *     (e.g., `signal_state:open`)
+ *
+ *   Timestamp formats:
+ *
+ *   * yyyy-MM-dd - an absolute date, treated as a calendar-day-wide window.
+ *     In other words, the "<" operator will match dates before that date, the
+ *     ">" operator will match dates after that date, and the ":" operator will
+ *     match the entire day.
+ *   * yyyy-MM-ddTHH:mm - Same as above, but with minute resolution.
+ *   * yyyy-MM-ddTHH:mm:ss - Same as above, but with second resolution.
+ *   * Nd (e.g. 7d) - a relative number of days ago, treated as a moment in time
+ *     (as opposed to a day-wide span) a multiple of 24 hours ago (as opposed to
+ *     calendar days).  In the case of daylight savings time, it will apply the
+ *     current timezone to both ends of the range.  Note that exact matching
+ *     (e.g. `start:7d`) is unlikely to be useful because that would only match
+ *     signals created precisely at a particular instant in time.
+ *
+ *   The absolute timestamp formats (everything starting with a year) can
+ *   optionally be followed with a UTC offset in +/-hh:mm format.  Also, the 'T'
+ *   separating dates and times can optionally be replaced with a space. Note
+ *   that any timestamp containing a space or colon will need to be quoted.
+ *
+ *   Examples:
+ *
+ *   * `foo` - matches signals containing the word "foo"
+ *   * `"foo bar"` - matches signals containing the phrase "foo bar"
+ *   * `foo bar` or `foo AND bar` - matches signals containing the words
+ *     "foo" and "bar"
+ *   * `foo -bar` or `foo AND NOT bar` - matches signals containing the
+ *     word
+ *     "foo" but not the word "bar"
+ *   * `foo OR bar` - matches signals containing the word "foo" or the
+ *     word "bar"
+ *   * `start>2018-11-28` - matches signals which started after November
+ *     11, 2018.
+ *   * `start<=2018-11-28` - matches signals which started on or before
+ *     November 11, 2018.
+ *   * `start:2018-11-28` - matches signals which started on November 11,
+ *     2018.
+ *   * `start>"2018-11-28 01:02:03+04:00"` - matches signals which started
+ *     after November 11, 2018 at 1:02:03 AM according to the UTC+04 time
+ *     zone.
+ *   * `start>7d` - matches signals which started after the point in time
+ *     7*24 hours ago
+ *   * `start>180d` - similar to 7d, but likely to cross the daylight savings
+ *     time boundary, so the end time will be 1 hour different from "now."
+ *   * `foo AND start>90d AND stage<resolved` - unresolved signals from
+ *     the past 90 days containing the word "foo"
+ * @param {number} request.pageSize
+ *   Maximum number of `signals` to return in the response.
+ * @param {string} request.pageToken
+ *   Page token from an earlier query, as returned in `next_page_token`. All
+ *   field values except for page_size and page_token should be the same as the
+ *   original query (may return an error or unexpected data otherwise).
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits an object representing [Signal]{@link google.cloud.irm.v1alpha2.Signal} on 'data' event.
+ */
   searchSignalsStream(
-    request?: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest,
-    options?: gax.CallOptions
-  ): Transform {
+      request?: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest,
+      options?: gax.CallOptions):
+    Transform{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
@@ -3277,7 +2722,7 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     const callSettings = new gax.CallSettings(options);
     this.initialize();
@@ -3288,81 +2733,72 @@ export class IncidentServiceClient {
     );
   }
   listArtifacts(
-    request: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IArtifact[],
-      protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListArtifactsResponse
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IArtifact[],
+        protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest|null,
+        protosTypes.google.cloud.irm.v1alpha2.IListArtifactsResponse
+      ]>;
   listArtifacts(
-    request: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IArtifact[],
-      protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListArtifactsResponse
-    >
-  ): void;
-  /**
-   * Returns a list of artifacts for an incident.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource name of the incident, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {number} request.pageSize
-   *   Number of artifacts to return.
-   * @param {string} request.pageToken
-   *   Page token from an earlier query, as returned in `next_page_token`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is Array of [Artifact]{@link google.cloud.irm.v1alpha2.Artifact}.
-   *   The client library support auto-pagination by default: it will call the API as many
-   *   times as needed and will merge results from all the pages into this array.
-   *
-   *   When autoPaginate: false is specified through options, the array has three elements.
-   *   The first element is Array of [Artifact]{@link google.cloud.irm.v1alpha2.Artifact} that corresponds to
-   *   the one page received from the API server.
-   *   If the second element is not null it contains the request object of type [ListArtifactsRequest]{@link google.cloud.irm.v1alpha2.ListArtifactsRequest}
-   *   that can be used to obtain the next page of the results.
-   *   If it is null, the next page does not exist.
-   *   The third element contains the raw response received from the API server. Its type is
-   *   [ListArtifactsResponse]{@link google.cloud.irm.v1alpha2.ListArtifactsResponse}.
-   *
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  listArtifacts(
-    request: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest,
+      options: gax.CallOptions,
+      callback: PaginationCallback<
           protosTypes.google.cloud.irm.v1alpha2.IArtifact[],
-          protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest | null,
-          protosTypes.google.cloud.irm.v1alpha2.IListArtifactsResponse
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IArtifact[],
-      protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListArtifactsResponse
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IArtifact[],
-      protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListArtifactsResponse
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.IListArtifactsResponse>): void;
+/**
+ * Returns a list of artifacts for an incident.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {number} request.pageSize
+ *   Number of artifacts to return.
+ * @param {string} request.pageToken
+ *   Page token from an earlier query, as returned in `next_page_token`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of [Artifact]{@link google.cloud.irm.v1alpha2.Artifact}.
+ *   The client library support auto-pagination by default: it will call the API as many
+ *   times as needed and will merge results from all the pages into this array.
+ *
+ *   When autoPaginate: false is specified through options, the array has three elements.
+ *   The first element is Array of [Artifact]{@link google.cloud.irm.v1alpha2.Artifact} that corresponds to
+ *   the one page received from the API server.
+ *   If the second element is not null it contains the request object of type [ListArtifactsRequest]{@link google.cloud.irm.v1alpha2.ListArtifactsRequest}
+ *   that can be used to obtain the next page of the results.
+ *   If it is null, the next page does not exist.
+ *   The third element contains the raw response received from the API server. Its type is
+ *   [ListArtifactsResponse]{@link google.cloud.irm.v1alpha2.ListArtifactsResponse}.
+ *
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  listArtifacts(
+      request: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest,
+      optionsOrCallback?: gax.CallOptions|PaginationCallback<
+          protosTypes.google.cloud.irm.v1alpha2.IArtifact[],
+          protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.IListArtifactsResponse>,
+      callback?: PaginationCallback<
+          protosTypes.google.cloud.irm.v1alpha2.IArtifact[],
+          protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.IListArtifactsResponse>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IArtifact[],
+        protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest|null,
+        protosTypes.google.cloud.irm.v1alpha2.IListArtifactsResponse
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -3371,43 +2807,43 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this._innerApiCalls.listArtifacts(request, options, callback);
   }
 
-  /**
-   * Equivalent to {@link listArtifacts}, but returns a NodeJS Stream object.
-   *
-   * This fetches the paged responses for {@link listArtifacts} continuously
-   * and invokes the callback registered for 'data' event for each element in the
-   * responses.
-   *
-   * The returned object has 'end' method when no more elements are required.
-   *
-   * autoPaginate option will be ignored.
-   *
-   * @see {@link https://nodejs.org/api/stream.html}
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource name of the incident, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {number} request.pageSize
-   *   Number of artifacts to return.
-   * @param {string} request.pageToken
-   *   Page token from an earlier query, as returned in `next_page_token`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Stream}
-   *   An object stream which emits an object representing [Artifact]{@link google.cloud.irm.v1alpha2.Artifact} on 'data' event.
-   */
+/**
+ * Equivalent to {@link listArtifacts}, but returns a NodeJS Stream object.
+ *
+ * This fetches the paged responses for {@link listArtifacts} continuously
+ * and invokes the callback registered for 'data' event for each element in the
+ * responses.
+ *
+ * The returned object has 'end' method when no more elements are required.
+ *
+ * autoPaginate option will be ignored.
+ *
+ * @see {@link https://nodejs.org/api/stream.html}
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {number} request.pageSize
+ *   Number of artifacts to return.
+ * @param {string} request.pageToken
+ *   Page token from an earlier query, as returned in `next_page_token`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits an object representing [Artifact]{@link google.cloud.irm.v1alpha2.Artifact} on 'data' event.
+ */
   listArtifactsStream(
-    request?: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest,
-    options?: gax.CallOptions
-  ): Transform {
+      request?: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest,
+      options?: gax.CallOptions):
+    Transform{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
@@ -3415,7 +2851,7 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     const callSettings = new gax.CallSettings(options);
     this.initialize();
@@ -3426,81 +2862,72 @@ export class IncidentServiceClient {
     );
   }
   listSubscriptions(
-    request: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISubscription[],
-      protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsResponse
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISubscription[],
+        protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest|null,
+        protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsResponse
+      ]>;
   listSubscriptions(
-    request: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISubscription[],
-      protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsResponse
-    >
-  ): void;
-  /**
-   * Returns a list of subscriptions for an incident.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource name of the incident, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {number} request.pageSize
-   *   Number of subscriptions to return.
-   * @param {string} request.pageToken
-   *   Page token from an earlier query, as returned in `next_page_token`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is Array of [Subscription]{@link google.cloud.irm.v1alpha2.Subscription}.
-   *   The client library support auto-pagination by default: it will call the API as many
-   *   times as needed and will merge results from all the pages into this array.
-   *
-   *   When autoPaginate: false is specified through options, the array has three elements.
-   *   The first element is Array of [Subscription]{@link google.cloud.irm.v1alpha2.Subscription} that corresponds to
-   *   the one page received from the API server.
-   *   If the second element is not null it contains the request object of type [ListSubscriptionsRequest]{@link google.cloud.irm.v1alpha2.ListSubscriptionsRequest}
-   *   that can be used to obtain the next page of the results.
-   *   If it is null, the next page does not exist.
-   *   The third element contains the raw response received from the API server. Its type is
-   *   [ListSubscriptionsResponse]{@link google.cloud.irm.v1alpha2.ListSubscriptionsResponse}.
-   *
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  listSubscriptions(
-    request: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest,
+      options: gax.CallOptions,
+      callback: PaginationCallback<
           protosTypes.google.cloud.irm.v1alpha2.ISubscription[],
-          protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest | null,
-          protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsResponse
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.ISubscription[],
-      protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsResponse
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.ISubscription[],
-      protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsResponse
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsResponse>): void;
+/**
+ * Returns a list of subscriptions for an incident.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {number} request.pageSize
+ *   Number of subscriptions to return.
+ * @param {string} request.pageToken
+ *   Page token from an earlier query, as returned in `next_page_token`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of [Subscription]{@link google.cloud.irm.v1alpha2.Subscription}.
+ *   The client library support auto-pagination by default: it will call the API as many
+ *   times as needed and will merge results from all the pages into this array.
+ *
+ *   When autoPaginate: false is specified through options, the array has three elements.
+ *   The first element is Array of [Subscription]{@link google.cloud.irm.v1alpha2.Subscription} that corresponds to
+ *   the one page received from the API server.
+ *   If the second element is not null it contains the request object of type [ListSubscriptionsRequest]{@link google.cloud.irm.v1alpha2.ListSubscriptionsRequest}
+ *   that can be used to obtain the next page of the results.
+ *   If it is null, the next page does not exist.
+ *   The third element contains the raw response received from the API server. Its type is
+ *   [ListSubscriptionsResponse]{@link google.cloud.irm.v1alpha2.ListSubscriptionsResponse}.
+ *
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  listSubscriptions(
+      request: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest,
+      optionsOrCallback?: gax.CallOptions|PaginationCallback<
+          protosTypes.google.cloud.irm.v1alpha2.ISubscription[],
+          protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsResponse>,
+      callback?: PaginationCallback<
+          protosTypes.google.cloud.irm.v1alpha2.ISubscription[],
+          protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsResponse>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.ISubscription[],
+        protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest|null,
+        protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsResponse
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -3509,43 +2936,43 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this._innerApiCalls.listSubscriptions(request, options, callback);
   }
 
-  /**
-   * Equivalent to {@link listSubscriptions}, but returns a NodeJS Stream object.
-   *
-   * This fetches the paged responses for {@link listSubscriptions} continuously
-   * and invokes the callback registered for 'data' event for each element in the
-   * responses.
-   *
-   * The returned object has 'end' method when no more elements are required.
-   *
-   * autoPaginate option will be ignored.
-   *
-   * @see {@link https://nodejs.org/api/stream.html}
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource name of the incident, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {number} request.pageSize
-   *   Number of subscriptions to return.
-   * @param {string} request.pageToken
-   *   Page token from an earlier query, as returned in `next_page_token`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Stream}
-   *   An object stream which emits an object representing [Subscription]{@link google.cloud.irm.v1alpha2.Subscription} on 'data' event.
-   */
+/**
+ * Equivalent to {@link listSubscriptions}, but returns a NodeJS Stream object.
+ *
+ * This fetches the paged responses for {@link listSubscriptions} continuously
+ * and invokes the callback registered for 'data' event for each element in the
+ * responses.
+ *
+ * The returned object has 'end' method when no more elements are required.
+ *
+ * autoPaginate option will be ignored.
+ *
+ * @see {@link https://nodejs.org/api/stream.html}
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {number} request.pageSize
+ *   Number of subscriptions to return.
+ * @param {string} request.pageToken
+ *   Page token from an earlier query, as returned in `next_page_token`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits an object representing [Subscription]{@link google.cloud.irm.v1alpha2.Subscription} on 'data' event.
+ */
   listSubscriptionsStream(
-    request?: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest,
-    options?: gax.CallOptions
-  ): Transform {
+      request?: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest,
+      options?: gax.CallOptions):
+    Transform{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
@@ -3553,7 +2980,7 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     const callSettings = new gax.CallSettings(options);
     this.initialize();
@@ -3564,81 +2991,72 @@ export class IncidentServiceClient {
     );
   }
   listIncidentRoleAssignments(
-    request: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment[],
-      protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsResponse
-    ]
-  >;
+      request: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment[],
+        protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest|null,
+        protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsResponse
+      ]>;
   listIncidentRoleAssignments(
-    request: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment[],
-      protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsResponse
-    >
-  ): void;
-  /**
-   * Lists role assignments that are part of an incident.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource name of the incident, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {number} request.pageSize
-   *   Number of assignments to return.
-   * @param {string} request.pageToken
-   *   Page token from an earlier query, as returned in `next_page_token`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is Array of [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
-   *   The client library support auto-pagination by default: it will call the API as many
-   *   times as needed and will merge results from all the pages into this array.
-   *
-   *   When autoPaginate: false is specified through options, the array has three elements.
-   *   The first element is Array of [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment} that corresponds to
-   *   the one page received from the API server.
-   *   If the second element is not null it contains the request object of type [ListIncidentRoleAssignmentsRequest]{@link google.cloud.irm.v1alpha2.ListIncidentRoleAssignmentsRequest}
-   *   that can be used to obtain the next page of the results.
-   *   If it is null, the next page does not exist.
-   *   The third element contains the raw response received from the API server. Its type is
-   *   [ListIncidentRoleAssignmentsResponse]{@link google.cloud.irm.v1alpha2.ListIncidentRoleAssignmentsResponse}.
-   *
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  listIncidentRoleAssignments(
-    request: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest,
+      options: gax.CallOptions,
+      callback: PaginationCallback<
           protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment[],
-          protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest | null,
-          protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsResponse
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment[],
-      protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsResponse
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment[],
-      protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest | null,
-      protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsResponse
-    ]
-  > | void {
+          protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsResponse>): void;
+/**
+ * Lists role assignments that are part of an incident.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {number} request.pageSize
+ *   Number of assignments to return.
+ * @param {string} request.pageToken
+ *   Page token from an earlier query, as returned in `next_page_token`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment}.
+ *   The client library support auto-pagination by default: it will call the API as many
+ *   times as needed and will merge results from all the pages into this array.
+ *
+ *   When autoPaginate: false is specified through options, the array has three elements.
+ *   The first element is Array of [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment} that corresponds to
+ *   the one page received from the API server.
+ *   If the second element is not null it contains the request object of type [ListIncidentRoleAssignmentsRequest]{@link google.cloud.irm.v1alpha2.ListIncidentRoleAssignmentsRequest}
+ *   that can be used to obtain the next page of the results.
+ *   If it is null, the next page does not exist.
+ *   The third element contains the raw response received from the API server. Its type is
+ *   [ListIncidentRoleAssignmentsResponse]{@link google.cloud.irm.v1alpha2.ListIncidentRoleAssignmentsResponse}.
+ *
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  listIncidentRoleAssignments(
+      request: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest,
+      optionsOrCallback?: gax.CallOptions|PaginationCallback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment[],
+          protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsResponse>,
+      callback?: PaginationCallback<
+          protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment[],
+          protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest|null,
+          protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsResponse>):
+      Promise<[
+        protosTypes.google.cloud.irm.v1alpha2.IIncidentRoleAssignment[],
+        protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest|null,
+        protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsResponse
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -3647,47 +3065,43 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
-    return this._innerApiCalls.listIncidentRoleAssignments(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.listIncidentRoleAssignments(request, options, callback);
   }
 
-  /**
-   * Equivalent to {@link listIncidentRoleAssignments}, but returns a NodeJS Stream object.
-   *
-   * This fetches the paged responses for {@link listIncidentRoleAssignments} continuously
-   * and invokes the callback registered for 'data' event for each element in the
-   * responses.
-   *
-   * The returned object has 'end' method when no more elements are required.
-   *
-   * autoPaginate option will be ignored.
-   *
-   * @see {@link https://nodejs.org/api/stream.html}
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. Resource name of the incident, for example,
-   *   "projects/{project_id_or_number}/incidents/{incident_id}".
-   * @param {number} request.pageSize
-   *   Number of assignments to return.
-   * @param {string} request.pageToken
-   *   Page token from an earlier query, as returned in `next_page_token`.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Stream}
-   *   An object stream which emits an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment} on 'data' event.
-   */
+/**
+ * Equivalent to {@link listIncidentRoleAssignments}, but returns a NodeJS Stream object.
+ *
+ * This fetches the paged responses for {@link listIncidentRoleAssignments} continuously
+ * and invokes the callback registered for 'data' event for each element in the
+ * responses.
+ *
+ * The returned object has 'end' method when no more elements are required.
+ *
+ * autoPaginate option will be ignored.
+ *
+ * @see {@link https://nodejs.org/api/stream.html}
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. Resource name of the incident, for example,
+ *   "projects/{project_id_or_number}/incidents/{incident_id}".
+ * @param {number} request.pageSize
+ *   Number of assignments to return.
+ * @param {string} request.pageToken
+ *   Page token from an earlier query, as returned in `next_page_token`.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits an object representing [IncidentRoleAssignment]{@link google.cloud.irm.v1alpha2.IncidentRoleAssignment} on 'data' event.
+ */
   listIncidentRoleAssignmentsStream(
-    request?: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest,
-    options?: gax.CallOptions
-  ): Transform {
+      request?: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest,
+      options?: gax.CallOptions):
+    Transform{
     request = request || {};
     options = options || {};
     options.otherArgs = options.otherArgs || {};
@@ -3695,7 +3109,7 @@ export class IncidentServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     const callSettings = new gax.CallSettings(options);
     this.initialize();
@@ -3717,7 +3131,7 @@ export class IncidentServiceClient {
    * @param {string} annotation
    * @returns {string} Resource name string.
    */
-  annotationPath(project: string, incident: string, annotation: string) {
+  annotationPath(project:string,incident:string,annotation:string) {
     return this._pathTemplates.annotationPathTemplate.render({
       project,
       incident,
@@ -3733,8 +3147,7 @@ export class IncidentServiceClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromAnnotationName(annotationName: string) {
-    return this._pathTemplates.annotationPathTemplate.match(annotationName)
-      .project;
+    return this._pathTemplates.annotationPathTemplate.match(annotationName).project;
   }
 
   /**
@@ -3745,8 +3158,7 @@ export class IncidentServiceClient {
    * @returns {string} A string representing the incident.
    */
   matchIncidentFromAnnotationName(annotationName: string) {
-    return this._pathTemplates.annotationPathTemplate.match(annotationName)
-      .incident;
+    return this._pathTemplates.annotationPathTemplate.match(annotationName).incident;
   }
 
   /**
@@ -3757,8 +3169,7 @@ export class IncidentServiceClient {
    * @returns {string} A string representing the annotation.
    */
   matchAnnotationFromAnnotationName(annotationName: string) {
-    return this._pathTemplates.annotationPathTemplate.match(annotationName)
-      .annotation;
+    return this._pathTemplates.annotationPathTemplate.match(annotationName).annotation;
   }
 
   /**
@@ -3769,7 +3180,7 @@ export class IncidentServiceClient {
    * @param {string} artifact
    * @returns {string} Resource name string.
    */
-  artifactPath(project: string, incident: string, artifact: string) {
+  artifactPath(project:string,incident:string,artifact:string) {
     return this._pathTemplates.artifactPathTemplate.render({
       project,
       incident,
@@ -3796,8 +3207,7 @@ export class IncidentServiceClient {
    * @returns {string} A string representing the incident.
    */
   matchIncidentFromArtifactName(artifactName: string) {
-    return this._pathTemplates.artifactPathTemplate.match(artifactName)
-      .incident;
+    return this._pathTemplates.artifactPathTemplate.match(artifactName).incident;
   }
 
   /**
@@ -3808,8 +3218,7 @@ export class IncidentServiceClient {
    * @returns {string} A string representing the artifact.
    */
   matchArtifactFromArtifactName(artifactName: string) {
-    return this._pathTemplates.artifactPathTemplate.match(artifactName)
-      .artifact;
+    return this._pathTemplates.artifactPathTemplate.match(artifactName).artifact;
   }
 
   /**
@@ -3819,7 +3228,7 @@ export class IncidentServiceClient {
    * @param {string} incident
    * @returns {string} Resource name string.
    */
-  incidentPath(project: string, incident: string) {
+  incidentPath(project:string,incident:string) {
     return this._pathTemplates.incidentPathTemplate.render({
       project,
       incident,
@@ -3845,8 +3254,7 @@ export class IncidentServiceClient {
    * @returns {string} A string representing the incident.
    */
   matchIncidentFromIncidentName(incidentName: string) {
-    return this._pathTemplates.incidentPathTemplate.match(incidentName)
-      .incident;
+    return this._pathTemplates.incidentPathTemplate.match(incidentName).incident;
   }
 
   /**
@@ -3857,11 +3265,7 @@ export class IncidentServiceClient {
    * @param {string} role_id
    * @returns {string} Resource name string.
    */
-  incidentRoleAssignmentPath(
-    projectIdOrNumber: string,
-    incidentId: string,
-    roleId: string
-  ) {
+  incidentRoleAssignmentPath(projectIdOrNumber:string,incidentId:string,roleId:string) {
     return this._pathTemplates.incidentRoleAssignmentPathTemplate.render({
       project_id_or_number: projectIdOrNumber,
       incident_id: incidentId,
@@ -3876,12 +3280,8 @@ export class IncidentServiceClient {
    *   A fully-qualified path representing IncidentRoleAssignment resource.
    * @returns {string} A string representing the project_id_or_number.
    */
-  matchProjectIdOrNumberFromIncidentRoleAssignmentName(
-    incidentRoleAssignmentName: string
-  ) {
-    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(
-      incidentRoleAssignmentName
-    ).project_id_or_number;
+  matchProjectIdOrNumberFromIncidentRoleAssignmentName(incidentRoleAssignmentName: string) {
+    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(incidentRoleAssignmentName).project_id_or_number;
   }
 
   /**
@@ -3891,12 +3291,8 @@ export class IncidentServiceClient {
    *   A fully-qualified path representing IncidentRoleAssignment resource.
    * @returns {string} A string representing the incident_id.
    */
-  matchIncidentIdFromIncidentRoleAssignmentName(
-    incidentRoleAssignmentName: string
-  ) {
-    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(
-      incidentRoleAssignmentName
-    ).incident_id;
+  matchIncidentIdFromIncidentRoleAssignmentName(incidentRoleAssignmentName: string) {
+    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(incidentRoleAssignmentName).incident_id;
   }
 
   /**
@@ -3906,12 +3302,8 @@ export class IncidentServiceClient {
    *   A fully-qualified path representing IncidentRoleAssignment resource.
    * @returns {string} A string representing the role_id.
    */
-  matchRoleIdFromIncidentRoleAssignmentName(
-    incidentRoleAssignmentName: string
-  ) {
-    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(
-      incidentRoleAssignmentName
-    ).role_id;
+  matchRoleIdFromIncidentRoleAssignmentName(incidentRoleAssignmentName: string) {
+    return this._pathTemplates.incidentRoleAssignmentPathTemplate.match(incidentRoleAssignmentName).role_id;
   }
 
   /**
@@ -3920,7 +3312,7 @@ export class IncidentServiceClient {
    * @param {string} project
    * @returns {string} Resource name string.
    */
-  projectPath(project: string) {
+  projectPath(project:string) {
     return this._pathTemplates.projectPathTemplate.render({
       project,
     });
@@ -3944,7 +3336,7 @@ export class IncidentServiceClient {
    * @param {string} signal
    * @returns {string} Resource name string.
    */
-  signalPath(project: string, signal: string) {
+  signalPath(project:string,signal:string) {
     return this._pathTemplates.signalPathTemplate.render({
       project,
       signal,
@@ -3981,7 +3373,7 @@ export class IncidentServiceClient {
    * @param {string} subscription
    * @returns {string} Resource name string.
    */
-  subscriptionPath(project: string, incident: string, subscription: string) {
+  subscriptionPath(project:string,incident:string,subscription:string) {
     return this._pathTemplates.subscriptionPathTemplate.render({
       project,
       incident,
@@ -3997,8 +3389,7 @@ export class IncidentServiceClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromSubscriptionName(subscriptionName: string) {
-    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName)
-      .project;
+    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName).project;
   }
 
   /**
@@ -4009,8 +3400,7 @@ export class IncidentServiceClient {
    * @returns {string} A string representing the incident.
    */
   matchIncidentFromSubscriptionName(subscriptionName: string) {
-    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName)
-      .incident;
+    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName).incident;
   }
 
   /**
@@ -4021,8 +3411,7 @@ export class IncidentServiceClient {
    * @returns {string} A string representing the subscription.
    */
   matchSubscriptionFromSubscriptionName(subscriptionName: string) {
-    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName)
-      .subscription;
+    return this._pathTemplates.subscriptionPathTemplate.match(subscriptionName).subscription;
   }
 
   /**
@@ -4033,7 +3422,7 @@ export class IncidentServiceClient {
    * @param {string} tag
    * @returns {string} Resource name string.
    */
-  tagPath(project: string, incident: string, tag: string) {
+  tagPath(project:string,incident:string,tag:string) {
     return this._pathTemplates.tagPathTemplate.render({
       project,
       incident,

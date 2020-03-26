@@ -14,879 +14,6 @@
                     "java_package": "com.google.irm.service.v1alpha2.api"
                   },
                   "nested": {
-                    "IncidentService": {
-                      "options": {
-                        "(google.api.default_host)": "irm.googleapis.com",
-                        "(google.api.oauth_scopes)": "https://www.googleapis.com/auth/cloud-platform"
-                      },
-                      "methods": {
-                        "CreateIncident": {
-                          "requestType": "CreateIncidentRequest",
-                          "responseType": "Incident",
-                          "options": {
-                            "(google.api.http).post": "/v1alpha2/{parent=projects/*}/incidents",
-                            "(google.api.http).body": "incident"
-                          }
-                        },
-                        "GetIncident": {
-                          "requestType": "GetIncidentRequest",
-                          "responseType": "Incident",
-                          "options": {
-                            "(google.api.http).get": "/v1alpha2/{name=projects/*/incidents/*}"
-                          }
-                        },
-                        "SearchIncidents": {
-                          "requestType": "SearchIncidentsRequest",
-                          "responseType": "SearchIncidentsResponse",
-                          "options": {
-                            "(google.api.http).get": "/v1alpha2/{parent=projects/*}/incidents:search"
-                          }
-                        },
-                        "UpdateIncident": {
-                          "requestType": "UpdateIncidentRequest",
-                          "responseType": "Incident",
-                          "options": {
-                            "(google.api.http).patch": "/v1alpha2/{incident.name=projects/*/incidents/*}",
-                            "(google.api.http).body": "incident"
-                          }
-                        },
-                        "SearchSimilarIncidents": {
-                          "requestType": "SearchSimilarIncidentsRequest",
-                          "responseType": "SearchSimilarIncidentsResponse",
-                          "options": {
-                            "(google.api.http).get": "/v1alpha2/{name=projects/*/incidents/*}:searchSimilar",
-                            "(google.api.http).additional_bindings.get": "/v1alpha2/{name=projects/*/signals/*}:searchSimilarIncidents"
-                          }
-                        },
-                        "CreateAnnotation": {
-                          "requestType": "CreateAnnotationRequest",
-                          "responseType": "Annotation",
-                          "options": {
-                            "(google.api.http).post": "/v1alpha2/{parent=projects/*/incidents/*}/annotations",
-                            "(google.api.http).body": "annotation"
-                          }
-                        },
-                        "ListAnnotations": {
-                          "requestType": "ListAnnotationsRequest",
-                          "responseType": "ListAnnotationsResponse",
-                          "options": {
-                            "(google.api.http).get": "/v1alpha2/{parent=projects/*/incidents/*}/annotations"
-                          }
-                        },
-                        "CreateTag": {
-                          "requestType": "CreateTagRequest",
-                          "responseType": "Tag",
-                          "options": {
-                            "(google.api.http).post": "/v1alpha2/{parent=projects/*/incidents/*}/tags",
-                            "(google.api.http).body": "tag"
-                          }
-                        },
-                        "DeleteTag": {
-                          "requestType": "DeleteTagRequest",
-                          "responseType": "google.protobuf.Empty",
-                          "options": {
-                            "(google.api.http).delete": "/v1alpha2/{name=projects/*/incidents/*/tags/*}"
-                          }
-                        },
-                        "ListTags": {
-                          "requestType": "ListTagsRequest",
-                          "responseType": "ListTagsResponse",
-                          "options": {
-                            "(google.api.http).get": "/v1alpha2/{parent=projects/*/incidents/*}/tags"
-                          }
-                        },
-                        "CreateSignal": {
-                          "requestType": "CreateSignalRequest",
-                          "responseType": "Signal",
-                          "options": {
-                            "(google.api.http).post": "/v1alpha2/{parent=projects/*}/signals",
-                            "(google.api.http).body": "signal"
-                          }
-                        },
-                        "SearchSignals": {
-                          "requestType": "SearchSignalsRequest",
-                          "responseType": "SearchSignalsResponse",
-                          "options": {
-                            "(google.api.http).get": "/v1alpha2/{parent=projects/*}/signals:search"
-                          }
-                        },
-                        "LookupSignal": {
-                          "requestType": "LookupSignalRequest",
-                          "responseType": "Signal",
-                          "options": {
-                            "(google.api.http).get": "/v1alpha2/signals:lookup"
-                          }
-                        },
-                        "GetSignal": {
-                          "requestType": "GetSignalRequest",
-                          "responseType": "Signal",
-                          "options": {
-                            "(google.api.http).get": "/v1alpha2/{name=projects/*/signals/*}"
-                          }
-                        },
-                        "UpdateSignal": {
-                          "requestType": "UpdateSignalRequest",
-                          "responseType": "Signal",
-                          "options": {
-                            "(google.api.http).patch": "/v1alpha2/{signal.name=projects/*/signals/*}",
-                            "(google.api.http).body": "signal"
-                          }
-                        },
-                        "EscalateIncident": {
-                          "requestType": "EscalateIncidentRequest",
-                          "responseType": "EscalateIncidentResponse",
-                          "options": {
-                            "(google.api.http).post": "/v1alpha2/{incident.name=projects/*/incidents/*}:escalate",
-                            "(google.api.http).body": "*"
-                          }
-                        },
-                        "CreateArtifact": {
-                          "requestType": "CreateArtifactRequest",
-                          "responseType": "Artifact",
-                          "options": {
-                            "(google.api.http).post": "/v1alpha2/{parent=projects/*/incidents/*}/artifacts",
-                            "(google.api.http).body": "artifact"
-                          }
-                        },
-                        "ListArtifacts": {
-                          "requestType": "ListArtifactsRequest",
-                          "responseType": "ListArtifactsResponse",
-                          "options": {
-                            "(google.api.http).get": "/v1alpha2/{parent=projects/*/incidents/*}/artifacts"
-                          }
-                        },
-                        "UpdateArtifact": {
-                          "requestType": "UpdateArtifactRequest",
-                          "responseType": "Artifact",
-                          "options": {
-                            "(google.api.http).patch": "/v1alpha2/{artifact.name=projects/*/incidents/*/artifacts/*}",
-                            "(google.api.http).body": "artifact"
-                          }
-                        },
-                        "DeleteArtifact": {
-                          "requestType": "DeleteArtifactRequest",
-                          "responseType": "google.protobuf.Empty",
-                          "options": {
-                            "(google.api.http).delete": "/v1alpha2/{name=projects/*/incidents/*/artifacts/*}"
-                          }
-                        },
-                        "SendShiftHandoff": {
-                          "requestType": "SendShiftHandoffRequest",
-                          "responseType": "SendShiftHandoffResponse",
-                          "options": {
-                            "(google.api.http).post": "/v1alpha2/{parent=projects/*}/shiftHandoff:send",
-                            "(google.api.http).body": "*"
-                          }
-                        },
-                        "CreateSubscription": {
-                          "requestType": "CreateSubscriptionRequest",
-                          "responseType": "Subscription",
-                          "options": {
-                            "(google.api.http).post": "/v1alpha2/{parent=projects/*/incidents/*}/subscriptions",
-                            "(google.api.http).body": "subscription"
-                          }
-                        },
-                        "UpdateSubscription": {
-                          "requestType": "UpdateSubscriptionRequest",
-                          "responseType": "Subscription",
-                          "options": {
-                            "(google.api.http).patch": "/v1alpha2/{subscription.name=projects/*/incidents/*/subscriptions/*}",
-                            "(google.api.http).body": "subscription"
-                          }
-                        },
-                        "ListSubscriptions": {
-                          "requestType": "ListSubscriptionsRequest",
-                          "responseType": "ListSubscriptionsResponse",
-                          "options": {
-                            "(google.api.http).get": "/v1alpha2/{parent=projects/*/incidents/*}/subscriptions"
-                          }
-                        },
-                        "DeleteSubscription": {
-                          "requestType": "DeleteSubscriptionRequest",
-                          "responseType": "google.protobuf.Empty",
-                          "options": {
-                            "(google.api.http).delete": "/v1alpha2/{name=projects/*/incidents/*/subscriptions/*}"
-                          }
-                        },
-                        "CreateIncidentRoleAssignment": {
-                          "requestType": "CreateIncidentRoleAssignmentRequest",
-                          "responseType": "IncidentRoleAssignment",
-                          "options": {
-                            "(google.api.http).post": "/v1alpha2/{parent=projects/*/incidents/*}/roleAssignments",
-                            "(google.api.http).body": "*"
-                          }
-                        },
-                        "DeleteIncidentRoleAssignment": {
-                          "requestType": "DeleteIncidentRoleAssignmentRequest",
-                          "responseType": "google.protobuf.Empty",
-                          "options": {
-                            "(google.api.http).delete": "/v1alpha2/{name=projects/*/incidents/*/roleAssignments/*}"
-                          }
-                        },
-                        "ListIncidentRoleAssignments": {
-                          "requestType": "ListIncidentRoleAssignmentsRequest",
-                          "responseType": "ListIncidentRoleAssignmentsResponse",
-                          "options": {
-                            "(google.api.http).get": "/v1alpha2/{parent=projects/*/incidents/*}/roleAssignments"
-                          }
-                        },
-                        "RequestIncidentRoleHandover": {
-                          "requestType": "RequestIncidentRoleHandoverRequest",
-                          "responseType": "IncidentRoleAssignment",
-                          "options": {
-                            "(google.api.http).post": "/v1alpha2/{name=projects/*/incidents/*/roleAssignments/*}:requestHandover",
-                            "(google.api.http).body": "*"
-                          }
-                        },
-                        "ConfirmIncidentRoleHandover": {
-                          "requestType": "ConfirmIncidentRoleHandoverRequest",
-                          "responseType": "IncidentRoleAssignment",
-                          "options": {
-                            "(google.api.http).post": "/v1alpha2/{name=projects/*/incidents/*/roleAssignments/*}:confirmHandover",
-                            "(google.api.http).body": "*"
-                          }
-                        },
-                        "ForceIncidentRoleHandover": {
-                          "requestType": "ForceIncidentRoleHandoverRequest",
-                          "responseType": "IncidentRoleAssignment",
-                          "options": {
-                            "(google.api.http).post": "/v1alpha2/{name=projects/*/incidents/*/roleAssignments/*}:forceHandover",
-                            "(google.api.http).body": "*"
-                          }
-                        },
-                        "CancelIncidentRoleHandover": {
-                          "requestType": "CancelIncidentRoleHandoverRequest",
-                          "responseType": "IncidentRoleAssignment",
-                          "options": {
-                            "(google.api.http).post": "/v1alpha2/{name=projects/*/incidents/*/roleAssignments/*}:cancelHandover",
-                            "(google.api.http).body": "*"
-                          }
-                        }
-                      }
-                    },
-                    "CreateIncidentRequest": {
-                      "fields": {
-                        "incident": {
-                          "type": "Incident",
-                          "id": 1
-                        },
-                        "parent": {
-                          "type": "string",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "GetIncidentRequest": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        }
-                      }
-                    },
-                    "UpdateIncidentRequest": {
-                      "fields": {
-                        "incident": {
-                          "type": "Incident",
-                          "id": 1
-                        },
-                        "updateMask": {
-                          "type": "google.protobuf.FieldMask",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "SearchSimilarIncidentsRequest": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "pageSize": {
-                          "type": "int32",
-                          "id": 2
-                        },
-                        "pageToken": {
-                          "type": "string",
-                          "id": 3
-                        }
-                      }
-                    },
-                    "SearchSimilarIncidentsResponse": {
-                      "fields": {
-                        "results": {
-                          "rule": "repeated",
-                          "type": "Result",
-                          "id": 1
-                        },
-                        "nextPageToken": {
-                          "type": "string",
-                          "id": 2
-                        }
-                      },
-                      "nested": {
-                        "Result": {
-                          "fields": {
-                            "incident": {
-                              "type": "Incident",
-                              "id": 1
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "CreateAnnotationRequest": {
-                      "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "annotation": {
-                          "type": "Annotation",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "ListAnnotationsRequest": {
-                      "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "pageSize": {
-                          "type": "int32",
-                          "id": 2
-                        },
-                        "pageToken": {
-                          "type": "string",
-                          "id": 3
-                        }
-                      }
-                    },
-                    "ListAnnotationsResponse": {
-                      "fields": {
-                        "annotations": {
-                          "rule": "repeated",
-                          "type": "Annotation",
-                          "id": 1
-                        },
-                        "nextPageToken": {
-                          "type": "string",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "CreateTagRequest": {
-                      "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "tag": {
-                          "type": "Tag",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "DeleteTagRequest": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        }
-                      }
-                    },
-                    "ListTagsRequest": {
-                      "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "pageSize": {
-                          "type": "int32",
-                          "id": 2
-                        },
-                        "pageToken": {
-                          "type": "string",
-                          "id": 3
-                        }
-                      }
-                    },
-                    "ListTagsResponse": {
-                      "fields": {
-                        "tags": {
-                          "rule": "repeated",
-                          "type": "Tag",
-                          "id": 1
-                        },
-                        "nextPageToken": {
-                          "type": "string",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "CreateSignalRequest": {
-                      "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "signal": {
-                          "type": "Signal",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "SearchSignalsRequest": {
-                      "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "query": {
-                          "type": "string",
-                          "id": 2
-                        },
-                        "pageSize": {
-                          "type": "int32",
-                          "id": 3
-                        },
-                        "pageToken": {
-                          "type": "string",
-                          "id": 4
-                        }
-                      }
-                    },
-                    "SearchSignalsResponse": {
-                      "fields": {
-                        "signals": {
-                          "rule": "repeated",
-                          "type": "Signal",
-                          "id": 1
-                        },
-                        "nextPageToken": {
-                          "type": "string",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "GetSignalRequest": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        }
-                      }
-                    },
-                    "LookupSignalRequest": {
-                      "oneofs": {
-                        "alternateId": {
-                          "oneof": [
-                            "csccFinding",
-                            "stackdriverNotificationId"
-                          ]
-                        }
-                      },
-                      "fields": {
-                        "csccFinding": {
-                          "type": "string",
-                          "id": 2
-                        },
-                        "stackdriverNotificationId": {
-                          "type": "string",
-                          "id": 3
-                        }
-                      }
-                    },
-                    "UpdateSignalRequest": {
-                      "fields": {
-                        "signal": {
-                          "type": "Signal",
-                          "id": 1
-                        },
-                        "updateMask": {
-                          "type": "google.protobuf.FieldMask",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "SearchIncidentsRequest": {
-                      "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "query": {
-                          "type": "string",
-                          "id": 2
-                        },
-                        "pageSize": {
-                          "type": "int32",
-                          "id": 3
-                        },
-                        "pageToken": {
-                          "type": "string",
-                          "id": 4
-                        },
-                        "timeZone": {
-                          "type": "string",
-                          "id": 5
-                        }
-                      }
-                    },
-                    "SearchIncidentsResponse": {
-                      "fields": {
-                        "incidents": {
-                          "rule": "repeated",
-                          "type": "Incident",
-                          "id": 1
-                        },
-                        "nextPageToken": {
-                          "type": "string",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "EscalateIncidentRequest": {
-                      "fields": {
-                        "incident": {
-                          "type": "Incident",
-                          "id": 1
-                        },
-                        "updateMask": {
-                          "type": "google.protobuf.FieldMask",
-                          "id": 2
-                        },
-                        "subscriptions": {
-                          "rule": "repeated",
-                          "type": "Subscription",
-                          "id": 3
-                        },
-                        "tags": {
-                          "rule": "repeated",
-                          "type": "Tag",
-                          "id": 4
-                        },
-                        "roles": {
-                          "rule": "repeated",
-                          "type": "IncidentRoleAssignment",
-                          "id": 5
-                        },
-                        "artifacts": {
-                          "rule": "repeated",
-                          "type": "Artifact",
-                          "id": 6
-                        }
-                      }
-                    },
-                    "EscalateIncidentResponse": {
-                      "fields": {
-                        "incident": {
-                          "type": "Incident",
-                          "id": 1
-                        },
-                        "subscriptions": {
-                          "rule": "repeated",
-                          "type": "Subscription",
-                          "id": 2
-                        },
-                        "tags": {
-                          "rule": "repeated",
-                          "type": "Tag",
-                          "id": 3
-                        },
-                        "roles": {
-                          "rule": "repeated",
-                          "type": "IncidentRole",
-                          "id": 4
-                        },
-                        "artifacts": {
-                          "rule": "repeated",
-                          "type": "Artifact",
-                          "id": 5
-                        }
-                      }
-                    },
-                    "CreateArtifactRequest": {
-                      "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "artifact": {
-                          "type": "Artifact",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "ListArtifactsRequest": {
-                      "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "pageSize": {
-                          "type": "int32",
-                          "id": 2
-                        },
-                        "pageToken": {
-                          "type": "string",
-                          "id": 3
-                        }
-                      }
-                    },
-                    "ListArtifactsResponse": {
-                      "fields": {
-                        "artifacts": {
-                          "rule": "repeated",
-                          "type": "Artifact",
-                          "id": 1
-                        },
-                        "nextPageToken": {
-                          "type": "string",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "UpdateArtifactRequest": {
-                      "fields": {
-                        "artifact": {
-                          "type": "Artifact",
-                          "id": 1
-                        },
-                        "updateMask": {
-                          "type": "google.protobuf.FieldMask",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "DeleteArtifactRequest": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        }
-                      }
-                    },
-                    "SendShiftHandoffRequest": {
-                      "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "recipients": {
-                          "rule": "repeated",
-                          "type": "string",
-                          "id": 2
-                        },
-                        "cc": {
-                          "rule": "repeated",
-                          "type": "string",
-                          "id": 3
-                        },
-                        "subject": {
-                          "type": "string",
-                          "id": 4
-                        },
-                        "notesContentType": {
-                          "type": "string",
-                          "id": 5
-                        },
-                        "notesContent": {
-                          "type": "string",
-                          "id": 6
-                        },
-                        "incidents": {
-                          "rule": "repeated",
-                          "type": "Incident",
-                          "id": 7
-                        },
-                        "previewOnly": {
-                          "type": "bool",
-                          "id": 8
-                        }
-                      },
-                      "nested": {
-                        "Incident": {
-                          "fields": {
-                            "name": {
-                              "type": "string",
-                              "id": 1
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "SendShiftHandoffResponse": {
-                      "fields": {
-                        "contentType": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "content": {
-                          "type": "string",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "CreateSubscriptionRequest": {
-                      "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "subscription": {
-                          "type": "Subscription",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "UpdateSubscriptionRequest": {
-                      "fields": {
-                        "subscription": {
-                          "type": "Subscription",
-                          "id": 1
-                        },
-                        "updateMask": {
-                          "type": "google.protobuf.FieldMask",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "ListSubscriptionsRequest": {
-                      "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "pageSize": {
-                          "type": "int32",
-                          "id": 2
-                        },
-                        "pageToken": {
-                          "type": "string",
-                          "id": 3
-                        }
-                      }
-                    },
-                    "ListSubscriptionsResponse": {
-                      "fields": {
-                        "subscriptions": {
-                          "rule": "repeated",
-                          "type": "Subscription",
-                          "id": 1
-                        },
-                        "nextPageToken": {
-                          "type": "string",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "DeleteSubscriptionRequest": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        }
-                      }
-                    },
-                    "CreateIncidentRoleAssignmentRequest": {
-                      "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "incidentRoleAssignment": {
-                          "type": "IncidentRoleAssignment",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "DeleteIncidentRoleAssignmentRequest": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        }
-                      }
-                    },
-                    "ListIncidentRoleAssignmentsRequest": {
-                      "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "pageSize": {
-                          "type": "int32",
-                          "id": 2
-                        },
-                        "pageToken": {
-                          "type": "string",
-                          "id": 3
-                        }
-                      }
-                    },
-                    "ListIncidentRoleAssignmentsResponse": {
-                      "fields": {
-                        "incidentRoleAssignments": {
-                          "rule": "repeated",
-                          "type": "IncidentRoleAssignment",
-                          "id": 1
-                        },
-                        "nextPageToken": {
-                          "type": "string",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "RequestIncidentRoleHandoverRequest": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "newAssignee": {
-                          "type": "User",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "ConfirmIncidentRoleHandoverRequest": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "newAssignee": {
-                          "type": "User",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "ForceIncidentRoleHandoverRequest": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "newAssignee": {
-                          "type": "User",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "CancelIncidentRoleHandoverRequest": {
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "newAssignee": {
-                          "type": "User",
-                          "id": 2
-                        }
-                      }
-                    },
                     "User": {
                       "oneofs": {
                         "user": {
@@ -908,6 +35,10 @@
                       }
                     },
                     "Signal": {
+                      "options": {
+                        "(google.api.resource).type": "irm.googleapis.com/Signal",
+                        "(google.api.resource).pattern": "projects/{project}/signals/{signal}"
+                      },
                       "fields": {
                         "name": {
                           "type": "string",
@@ -989,6 +120,10 @@
                       }
                     },
                     "Annotation": {
+                      "options": {
+                        "(google.api.resource).type": "irm.googleapis.com/Annotation",
+                        "(google.api.resource).pattern": "projects/{project}/incidents/{incident}/annotations/{annotation}"
+                      },
                       "fields": {
                         "name": {
                           "type": "string",
@@ -1013,6 +148,10 @@
                       }
                     },
                     "Tag": {
+                      "options": {
+                        "(google.api.resource).type": "irm.googleapis.com/Tag",
+                        "(google.api.resource).pattern": "projects/{project}/incidents/{incident}/tags/{tag}"
+                      },
                       "fields": {
                         "name": {
                           "type": "string",
@@ -1045,10 +184,17 @@
                       }
                     },
                     "Incident": {
+                      "options": {
+                        "(google.api.resource).type": "irm.googleapis.com/Incident",
+                        "(google.api.resource).pattern": "projects/{project}/incidents/{incident}"
+                      },
                       "fields": {
                         "name": {
                           "type": "string",
-                          "id": 1
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "OUTPUT_ONLY"
+                          }
                         },
                         "title": {
                           "type": "string",
@@ -1173,6 +319,10 @@
                       }
                     },
                     "IncidentRoleAssignment": {
+                      "options": {
+                        "(google.api.resource).type": "irm.googleapis.com/IncidentRoleAssignment",
+                        "(google.api.resource).pattern": "projects/{project_id_or_number}/incidents/{incident_id}/role_assignments/{role_id}"
+                      },
                       "fields": {
                         "name": {
                           "type": "string",
@@ -1197,6 +347,10 @@
                       }
                     },
                     "Artifact": {
+                      "options": {
+                        "(google.api.resource).type": "irm.googleapis.com/Artifact",
+                        "(google.api.resource).pattern": "projects/{project}/incidents/{incident}/artifacts/{artifact}"
+                      },
                       "fields": {
                         "name": {
                           "type": "string",
@@ -1268,6 +422,10 @@
                       }
                     },
                     "Subscription": {
+                      "options": {
+                        "(google.api.resource).type": "irm.googleapis.com/Subscription",
+                        "(google.api.resource).pattern": "projects/{project}/incidents/{incident}/subscriptions/{subscription}"
+                      },
                       "fields": {
                         "name": {
                           "type": "string",
@@ -1297,6 +455,1077 @@
                             "EVENT_TYPE_SEVERITY_CHANGE": 4,
                             "EVENT_TYPE_ANNOTATION_ADD": 5,
                             "EVENT_TYPE_ANNOTATION_CHANGE": 6
+                          }
+                        }
+                      }
+                    },
+                    "IncidentService": {
+                      "options": {
+                        "(google.api.default_host)": "irm.googleapis.com",
+                        "(google.api.oauth_scopes)": "https://www.googleapis.com/auth/cloud-platform"
+                      },
+                      "methods": {
+                        "CreateIncident": {
+                          "requestType": "CreateIncidentRequest",
+                          "responseType": "Incident",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha2/{parent=projects/*}/incidents",
+                            "(google.api.http).body": "incident",
+                            "(google.api.method_signature)": "incident,parent"
+                          }
+                        },
+                        "GetIncident": {
+                          "requestType": "GetIncidentRequest",
+                          "responseType": "Incident",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha2/{name=projects/*/incidents/*}",
+                            "(google.api.method_signature)": "name"
+                          }
+                        },
+                        "SearchIncidents": {
+                          "requestType": "SearchIncidentsRequest",
+                          "responseType": "SearchIncidentsResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha2/{parent=projects/*}/incidents:search",
+                            "(google.api.method_signature)": "parent,query,time_zone"
+                          }
+                        },
+                        "UpdateIncident": {
+                          "requestType": "UpdateIncidentRequest",
+                          "responseType": "Incident",
+                          "options": {
+                            "(google.api.http).patch": "/v1alpha2/{incident.name=projects/*/incidents/*}",
+                            "(google.api.http).body": "incident",
+                            "(google.api.method_signature)": "incident,update_mask"
+                          }
+                        },
+                        "SearchSimilarIncidents": {
+                          "requestType": "SearchSimilarIncidentsRequest",
+                          "responseType": "SearchSimilarIncidentsResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha2/{name=projects/*/incidents/*}:searchSimilar",
+                            "(google.api.http).additional_bindings.get": "/v1alpha2/{name=projects/*/signals/*}:searchSimilarIncidents",
+                            "(google.api.method_signature)": "name"
+                          }
+                        },
+                        "CreateAnnotation": {
+                          "requestType": "CreateAnnotationRequest",
+                          "responseType": "Annotation",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha2/{parent=projects/*/incidents/*}/annotations",
+                            "(google.api.http).body": "annotation",
+                            "(google.api.method_signature)": "parent,annotation"
+                          }
+                        },
+                        "ListAnnotations": {
+                          "requestType": "ListAnnotationsRequest",
+                          "responseType": "ListAnnotationsResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha2/{parent=projects/*/incidents/*}/annotations",
+                            "(google.api.method_signature)": "parent"
+                          }
+                        },
+                        "CreateTag": {
+                          "requestType": "CreateTagRequest",
+                          "responseType": "Tag",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha2/{parent=projects/*/incidents/*}/tags",
+                            "(google.api.http).body": "tag",
+                            "(google.api.method_signature)": "parent,tag"
+                          }
+                        },
+                        "DeleteTag": {
+                          "requestType": "DeleteTagRequest",
+                          "responseType": "google.protobuf.Empty",
+                          "options": {
+                            "(google.api.http).delete": "/v1alpha2/{name=projects/*/incidents/*/tags/*}",
+                            "(google.api.method_signature)": "name"
+                          }
+                        },
+                        "ListTags": {
+                          "requestType": "ListTagsRequest",
+                          "responseType": "ListTagsResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha2/{parent=projects/*/incidents/*}/tags",
+                            "(google.api.method_signature)": "parent"
+                          }
+                        },
+                        "CreateSignal": {
+                          "requestType": "CreateSignalRequest",
+                          "responseType": "Signal",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha2/{parent=projects/*}/signals",
+                            "(google.api.http).body": "signal",
+                            "(google.api.method_signature)": "parent,signal"
+                          }
+                        },
+                        "SearchSignals": {
+                          "requestType": "SearchSignalsRequest",
+                          "responseType": "SearchSignalsResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha2/{parent=projects/*}/signals:search",
+                            "(google.api.method_signature)": "parent,query"
+                          }
+                        },
+                        "LookupSignal": {
+                          "requestType": "LookupSignalRequest",
+                          "responseType": "Signal",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha2/signals:lookup"
+                          }
+                        },
+                        "GetSignal": {
+                          "requestType": "GetSignalRequest",
+                          "responseType": "Signal",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha2/{name=projects/*/signals/*}",
+                            "(google.api.method_signature)": "name"
+                          }
+                        },
+                        "UpdateSignal": {
+                          "requestType": "UpdateSignalRequest",
+                          "responseType": "Signal",
+                          "options": {
+                            "(google.api.http).patch": "/v1alpha2/{signal.name=projects/*/signals/*}",
+                            "(google.api.http).body": "signal",
+                            "(google.api.method_signature)": "signal,update_mask"
+                          }
+                        },
+                        "EscalateIncident": {
+                          "requestType": "EscalateIncidentRequest",
+                          "responseType": "EscalateIncidentResponse",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha2/{incident.name=projects/*/incidents/*}:escalate",
+                            "(google.api.http).body": "*"
+                          }
+                        },
+                        "CreateArtifact": {
+                          "requestType": "CreateArtifactRequest",
+                          "responseType": "Artifact",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha2/{parent=projects/*/incidents/*}/artifacts",
+                            "(google.api.http).body": "artifact",
+                            "(google.api.method_signature)": "parent,artifact"
+                          }
+                        },
+                        "ListArtifacts": {
+                          "requestType": "ListArtifactsRequest",
+                          "responseType": "ListArtifactsResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha2/{parent=projects/*/incidents/*}/artifacts",
+                            "(google.api.method_signature)": "parent"
+                          }
+                        },
+                        "UpdateArtifact": {
+                          "requestType": "UpdateArtifactRequest",
+                          "responseType": "Artifact",
+                          "options": {
+                            "(google.api.http).patch": "/v1alpha2/{artifact.name=projects/*/incidents/*/artifacts/*}",
+                            "(google.api.http).body": "artifact",
+                            "(google.api.method_signature)": "artifact,update_mask"
+                          }
+                        },
+                        "DeleteArtifact": {
+                          "requestType": "DeleteArtifactRequest",
+                          "responseType": "google.protobuf.Empty",
+                          "options": {
+                            "(google.api.http).delete": "/v1alpha2/{name=projects/*/incidents/*/artifacts/*}",
+                            "(google.api.method_signature)": "name"
+                          }
+                        },
+                        "SendShiftHandoff": {
+                          "requestType": "SendShiftHandoffRequest",
+                          "responseType": "SendShiftHandoffResponse",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha2/{parent=projects/*}/shiftHandoff:send",
+                            "(google.api.http).body": "*"
+                          }
+                        },
+                        "CreateSubscription": {
+                          "requestType": "CreateSubscriptionRequest",
+                          "responseType": "Subscription",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha2/{parent=projects/*/incidents/*}/subscriptions",
+                            "(google.api.http).body": "subscription",
+                            "(google.api.method_signature)": "parent,subscription"
+                          }
+                        },
+                        "UpdateSubscription": {
+                          "requestType": "UpdateSubscriptionRequest",
+                          "responseType": "Subscription",
+                          "options": {
+                            "(google.api.http).patch": "/v1alpha2/{subscription.name=projects/*/incidents/*/subscriptions/*}",
+                            "(google.api.http).body": "subscription",
+                            "(google.api.method_signature)": "subscription,update_mask"
+                          }
+                        },
+                        "ListSubscriptions": {
+                          "requestType": "ListSubscriptionsRequest",
+                          "responseType": "ListSubscriptionsResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha2/{parent=projects/*/incidents/*}/subscriptions",
+                            "(google.api.method_signature)": "parent"
+                          }
+                        },
+                        "DeleteSubscription": {
+                          "requestType": "DeleteSubscriptionRequest",
+                          "responseType": "google.protobuf.Empty",
+                          "options": {
+                            "(google.api.http).delete": "/v1alpha2/{name=projects/*/incidents/*/subscriptions/*}",
+                            "(google.api.method_signature)": "name"
+                          }
+                        },
+                        "CreateIncidentRoleAssignment": {
+                          "requestType": "CreateIncidentRoleAssignmentRequest",
+                          "responseType": "IncidentRoleAssignment",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha2/{parent=projects/*/incidents/*}/roleAssignments",
+                            "(google.api.http).body": "*",
+                            "(google.api.method_signature)": "parent,incident_role_assignment"
+                          }
+                        },
+                        "DeleteIncidentRoleAssignment": {
+                          "requestType": "DeleteIncidentRoleAssignmentRequest",
+                          "responseType": "google.protobuf.Empty",
+                          "options": {
+                            "(google.api.http).delete": "/v1alpha2/{name=projects/*/incidents/*/roleAssignments/*}",
+                            "(google.api.method_signature)": "name"
+                          }
+                        },
+                        "ListIncidentRoleAssignments": {
+                          "requestType": "ListIncidentRoleAssignmentsRequest",
+                          "responseType": "ListIncidentRoleAssignmentsResponse",
+                          "options": {
+                            "(google.api.http).get": "/v1alpha2/{parent=projects/*/incidents/*}/roleAssignments",
+                            "(google.api.method_signature)": "parent"
+                          }
+                        },
+                        "RequestIncidentRoleHandover": {
+                          "requestType": "RequestIncidentRoleHandoverRequest",
+                          "responseType": "IncidentRoleAssignment",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha2/{name=projects/*/incidents/*/roleAssignments/*}:requestHandover",
+                            "(google.api.http).body": "*",
+                            "(google.api.method_signature)": "name,new_assignee"
+                          }
+                        },
+                        "ConfirmIncidentRoleHandover": {
+                          "requestType": "ConfirmIncidentRoleHandoverRequest",
+                          "responseType": "IncidentRoleAssignment",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha2/{name=projects/*/incidents/*/roleAssignments/*}:confirmHandover",
+                            "(google.api.http).body": "*",
+                            "(google.api.method_signature)": "name,new_assignee"
+                          }
+                        },
+                        "ForceIncidentRoleHandover": {
+                          "requestType": "ForceIncidentRoleHandoverRequest",
+                          "responseType": "IncidentRoleAssignment",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha2/{name=projects/*/incidents/*/roleAssignments/*}:forceHandover",
+                            "(google.api.http).body": "*",
+                            "(google.api.method_signature)": "name,new_assignee"
+                          }
+                        },
+                        "CancelIncidentRoleHandover": {
+                          "requestType": "CancelIncidentRoleHandoverRequest",
+                          "responseType": "IncidentRoleAssignment",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha2/{name=projects/*/incidents/*/roleAssignments/*}:cancelHandover",
+                            "(google.api.http).body": "*",
+                            "(google.api.method_signature)": "name,new_assignee"
+                          }
+                        }
+                      }
+                    },
+                    "CreateIncidentRequest": {
+                      "fields": {
+                        "incident": {
+                          "type": "Incident",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "parent": {
+                          "type": "string",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "cloudresourcemanager.googleapis.com/Project"
+                          }
+                        }
+                      }
+                    },
+                    "GetIncidentRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Incident"
+                          }
+                        }
+                      }
+                    },
+                    "UpdateIncidentRequest": {
+                      "fields": {
+                        "incident": {
+                          "type": "Incident",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "updateMask": {
+                          "type": "google.protobuf.FieldMask",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "SearchSimilarIncidentsRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Incident"
+                          }
+                        },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "SearchSimilarIncidentsResponse": {
+                      "fields": {
+                        "results": {
+                          "rule": "repeated",
+                          "type": "Result",
+                          "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      },
+                      "nested": {
+                        "Result": {
+                          "fields": {
+                            "incident": {
+                              "type": "Incident",
+                              "id": 1
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "CreateAnnotationRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Incident"
+                          }
+                        },
+                        "annotation": {
+                          "type": "Annotation",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "ListAnnotationsRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Incident"
+                          }
+                        },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "ListAnnotationsResponse": {
+                      "fields": {
+                        "annotations": {
+                          "rule": "repeated",
+                          "type": "Annotation",
+                          "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "CreateTagRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Incident"
+                          }
+                        },
+                        "tag": {
+                          "type": "Tag",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "DeleteTagRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Tag"
+                          }
+                        }
+                      }
+                    },
+                    "ListTagsRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Incident"
+                          }
+                        },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "ListTagsResponse": {
+                      "fields": {
+                        "tags": {
+                          "rule": "repeated",
+                          "type": "Tag",
+                          "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "CreateSignalRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "cloudresourcemanager.googleapis.com/Project"
+                          }
+                        },
+                        "signal": {
+                          "type": "Signal",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "SearchSignalsRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "cloudresourcemanager.googleapis.com/Project"
+                          }
+                        },
+                        "query": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 3
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 4
+                        }
+                      }
+                    },
+                    "SearchSignalsResponse": {
+                      "fields": {
+                        "signals": {
+                          "rule": "repeated",
+                          "type": "Signal",
+                          "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "GetSignalRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Signal"
+                          }
+                        }
+                      }
+                    },
+                    "LookupSignalRequest": {
+                      "oneofs": {
+                        "alternateId": {
+                          "oneof": [
+                            "csccFinding",
+                            "stackdriverNotificationId"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "csccFinding": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "stackdriverNotificationId": {
+                          "type": "string",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "UpdateSignalRequest": {
+                      "fields": {
+                        "signal": {
+                          "type": "Signal",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "updateMask": {
+                          "type": "google.protobuf.FieldMask",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "SearchIncidentsRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "cloudresourcemanager.googleapis.com/Project"
+                          }
+                        },
+                        "query": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 3
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 4
+                        },
+                        "timeZone": {
+                          "type": "string",
+                          "id": 5
+                        }
+                      }
+                    },
+                    "SearchIncidentsResponse": {
+                      "fields": {
+                        "incidents": {
+                          "rule": "repeated",
+                          "type": "Incident",
+                          "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "EscalateIncidentRequest": {
+                      "fields": {
+                        "incident": {
+                          "type": "Incident",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "updateMask": {
+                          "type": "google.protobuf.FieldMask",
+                          "id": 2
+                        },
+                        "subscriptions": {
+                          "rule": "repeated",
+                          "type": "Subscription",
+                          "id": 3
+                        },
+                        "tags": {
+                          "rule": "repeated",
+                          "type": "Tag",
+                          "id": 4
+                        },
+                        "roles": {
+                          "rule": "repeated",
+                          "type": "IncidentRoleAssignment",
+                          "id": 5
+                        },
+                        "artifacts": {
+                          "rule": "repeated",
+                          "type": "Artifact",
+                          "id": 6
+                        }
+                      }
+                    },
+                    "EscalateIncidentResponse": {
+                      "fields": {
+                        "incident": {
+                          "type": "Incident",
+                          "id": 1
+                        },
+                        "subscriptions": {
+                          "rule": "repeated",
+                          "type": "Subscription",
+                          "id": 2
+                        },
+                        "tags": {
+                          "rule": "repeated",
+                          "type": "Tag",
+                          "id": 3
+                        },
+                        "roles": {
+                          "rule": "repeated",
+                          "type": "IncidentRole",
+                          "id": 4
+                        },
+                        "artifacts": {
+                          "rule": "repeated",
+                          "type": "Artifact",
+                          "id": 5
+                        }
+                      }
+                    },
+                    "CreateArtifactRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Incident"
+                          }
+                        },
+                        "artifact": {
+                          "type": "Artifact",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "ListArtifactsRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Incident"
+                          }
+                        },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "ListArtifactsResponse": {
+                      "fields": {
+                        "artifacts": {
+                          "rule": "repeated",
+                          "type": "Artifact",
+                          "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "UpdateArtifactRequest": {
+                      "fields": {
+                        "artifact": {
+                          "type": "Artifact",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "updateMask": {
+                          "type": "google.protobuf.FieldMask",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "DeleteArtifactRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Artifact"
+                          }
+                        }
+                      }
+                    },
+                    "SendShiftHandoffRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "cloudresourcemanager.googleapis.com/Project"
+                          }
+                        },
+                        "recipients": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "cc": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "subject": {
+                          "type": "string",
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "notesContentType": {
+                          "type": "string",
+                          "id": 5
+                        },
+                        "notesContent": {
+                          "type": "string",
+                          "id": 6,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "incidents": {
+                          "rule": "repeated",
+                          "type": "Incident",
+                          "id": 7,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
+                        },
+                        "previewOnly": {
+                          "type": "bool",
+                          "id": 8
+                        }
+                      },
+                      "nested": {
+                        "Incident": {
+                          "fields": {
+                            "name": {
+                              "type": "string",
+                              "id": 1,
+                              "options": {
+                                "(google.api.resource_reference).type": "irm.googleapis.com/Incident"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "SendShiftHandoffResponse": {
+                      "fields": {
+                        "contentType": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "content": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "CreateSubscriptionRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Incident"
+                          }
+                        },
+                        "subscription": {
+                          "type": "Subscription",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "UpdateSubscriptionRequest": {
+                      "fields": {
+                        "subscription": {
+                          "type": "Subscription",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "updateMask": {
+                          "type": "google.protobuf.FieldMask",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "ListSubscriptionsRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Incident"
+                          }
+                        },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "ListSubscriptionsResponse": {
+                      "fields": {
+                        "subscriptions": {
+                          "rule": "repeated",
+                          "type": "Subscription",
+                          "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "DeleteSubscriptionRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Subscription"
+                          }
+                        }
+                      }
+                    },
+                    "CreateIncidentRoleAssignmentRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Incident"
+                          }
+                        },
+                        "incidentRoleAssignment": {
+                          "type": "IncidentRoleAssignment",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "DeleteIncidentRoleAssignmentRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Incident"
+                          }
+                        }
+                      }
+                    },
+                    "ListIncidentRoleAssignmentsRequest": {
+                      "fields": {
+                        "parent": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/Incident"
+                          }
+                        },
+                        "pageSize": {
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "pageToken": {
+                          "type": "string",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "ListIncidentRoleAssignmentsResponse": {
+                      "fields": {
+                        "incidentRoleAssignments": {
+                          "rule": "repeated",
+                          "type": "IncidentRoleAssignment",
+                          "id": 1
+                        },
+                        "nextPageToken": {
+                          "type": "string",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "RequestIncidentRoleHandoverRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        },
+                        "newAssignee": {
+                          "type": "User",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "ConfirmIncidentRoleHandoverRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/IncidentRoleAssignment"
+                          }
+                        },
+                        "newAssignee": {
+                          "type": "User",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "ForceIncidentRoleHandoverRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/IncidentRoleAssignment"
+                          }
+                        },
+                        "newAssignee": {
+                          "type": "User",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
+                        }
+                      }
+                    },
+                    "CancelIncidentRoleHandoverRequest": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "irm.googleapis.com/IncidentRoleAssignment"
+                          }
+                        },
+                        "newAssignee": {
+                          "type": "User",
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
                           }
                         }
                       }
@@ -1399,6 +1628,88 @@
                   "id": 1
                 },
                 "path": {
+                  "type": "string",
+                  "id": 2
+                }
+              }
+            },
+            "fieldBehavior": {
+              "rule": "repeated",
+              "type": "google.api.FieldBehavior",
+              "id": 1052,
+              "extend": "google.protobuf.FieldOptions"
+            },
+            "FieldBehavior": {
+              "values": {
+                "FIELD_BEHAVIOR_UNSPECIFIED": 0,
+                "OPTIONAL": 1,
+                "REQUIRED": 2,
+                "OUTPUT_ONLY": 3,
+                "INPUT_ONLY": 4,
+                "IMMUTABLE": 5
+              }
+            },
+            "resourceReference": {
+              "type": "google.api.ResourceReference",
+              "id": 1055,
+              "extend": "google.protobuf.FieldOptions"
+            },
+            "resourceDefinition": {
+              "rule": "repeated",
+              "type": "google.api.ResourceDescriptor",
+              "id": 1053,
+              "extend": "google.protobuf.FileOptions"
+            },
+            "resource": {
+              "type": "google.api.ResourceDescriptor",
+              "id": 1053,
+              "extend": "google.protobuf.MessageOptions"
+            },
+            "ResourceDescriptor": {
+              "fields": {
+                "type": {
+                  "type": "string",
+                  "id": 1
+                },
+                "pattern": {
+                  "rule": "repeated",
+                  "type": "string",
+                  "id": 2
+                },
+                "nameField": {
+                  "type": "string",
+                  "id": 3
+                },
+                "history": {
+                  "type": "History",
+                  "id": 4
+                },
+                "plural": {
+                  "type": "string",
+                  "id": 5
+                },
+                "singular": {
+                  "type": "string",
+                  "id": 6
+                }
+              },
+              "nested": {
+                "History": {
+                  "values": {
+                    "HISTORY_UNSPECIFIED": 0,
+                    "ORIGINALLY_SINGLE_PATTERN": 1,
+                    "FUTURE_MULTI_PATTERN": 2
+                  }
+                }
+              }
+            },
+            "ResourceReference": {
+              "fields": {
+                "type": {
+                  "type": "string",
+                  "id": 1
+                },
+                "childType": {
                   "type": "string",
                   "id": 2
                 }

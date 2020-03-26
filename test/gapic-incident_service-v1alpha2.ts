@@ -18,1866 +18,1705 @@
 
 import * as protosTypes from '../protos/protos';
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import { describe, it } from 'mocha';
+/* eslint-disable @typescript-eslint/no-var-requires */
 const incidentserviceModule = require('../src');
 
+
 const FAKE_STATUS_CODE = 1;
-class FakeError {
-  name: string;
-  message: string;
-  code: number;
-  constructor(n: number) {
-    this.name = 'fakeName';
-    this.message = 'fake message';
-    this.code = n;
-  }
+class FakeError{
+    name: string;
+    message: string;
+    code: number;
+    constructor(n: number){
+        this.name = 'fakeName';
+        this.message = 'fake message';
+        this.code = n;
+    }
 }
 const error = new FakeError(FAKE_STATUS_CODE);
 export interface Callback {
-  (err: FakeError | null, response?: {} | null): void;
+  (err: FakeError|null, response?: {} | null): void;
 }
 
-export class Operation {
-  constructor() {}
-  promise() {}
+export class Operation{
+    constructor(){};
+    promise() {};
 }
-function mockSimpleGrpcMethod(
-  expectedRequest: {},
-  response: {} | null,
-  error: FakeError | null
-) {
-  return (actualRequest: {}, options: {}, callback: Callback) => {
-    assert.deepStrictEqual(actualRequest, expectedRequest);
-    if (error) {
-      callback(error);
-    } else if (response) {
-      callback(null, response);
-    } else {
-      callback(null);
-    }
-  };
+function mockSimpleGrpcMethod(expectedRequest: {}, response: {} | null, error: FakeError | null) {
+    return (actualRequest: {}, options: {}, callback: Callback) => {
+        assert.deepStrictEqual(actualRequest, expectedRequest);
+        if (error) {
+            callback(error);
+        } else if (response) {
+            callback(null, response);
+        } else {
+            callback(null);
+        }
+    };
 }
 describe('v1alpha2.IncidentServiceClient', () => {
-  it('has servicePath', () => {
-    const servicePath =
-      incidentserviceModule.v1alpha2.IncidentServiceClient.servicePath;
-    assert(servicePath);
-  });
-  it('has apiEndpoint', () => {
-    const apiEndpoint =
-      incidentserviceModule.v1alpha2.IncidentServiceClient.apiEndpoint;
-    assert(apiEndpoint);
-  });
-  it('has port', () => {
-    const port = incidentserviceModule.v1alpha2.IncidentServiceClient.port;
-    assert(port);
-    assert(typeof port === 'number');
-  });
-  it('should create a client with no option', () => {
-    const client = new incidentserviceModule.v1alpha2.IncidentServiceClient();
-    assert(client);
-  });
-  it('should create a client with gRPC fallback', () => {
-    const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-      fallback: true,
+    it('has servicePath', () => {
+        const servicePath = incidentserviceModule.v1alpha2.IncidentServiceClient.servicePath;
+        assert(servicePath);
     });
-    assert(client);
-  });
-  it('has initialize method and supports deferred initialization', async () => {
-    const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-      credentials: {client_email: 'bogus', private_key: 'bogus'},
-      projectId: 'bogus',
+    it('has apiEndpoint', () => {
+        const apiEndpoint = incidentserviceModule.v1alpha2.IncidentServiceClient.apiEndpoint;
+        assert(apiEndpoint);
     });
-    assert.strictEqual(client.incidentServiceStub, undefined);
-    await client.initialize();
-    assert(client.incidentServiceStub);
-  });
-  it('has close method', () => {
-    const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-      credentials: {client_email: 'bogus', private_key: 'bogus'},
-      projectId: 'bogus',
+    it('has port', () => {
+        const port = incidentserviceModule.v1alpha2.IncidentServiceClient.port;
+        assert(port);
+        assert(typeof port === 'number');
     });
-    client.close();
-  });
-  describe('createIncident', () => {
-    it('invokes createIncident without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.createIncident = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.createIncident(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
+    it('should create a client with no option', () => {
+        const client = new incidentserviceModule.v1alpha2.IncidentServiceClient();
+        assert(client);
     });
-
-    it('invokes createIncident with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.createIncident = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.createIncident(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('getIncident', () => {
-    it('invokes getIncident without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.getIncident = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.getIncident(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes getIncident with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.getIncident = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.getIncident(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('updateIncident', () => {
-    it('invokes updateIncident without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest = {};
-      request.incident = {};
-      request.incident.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.updateIncident = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.updateIncident(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes updateIncident with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest = {};
-      request.incident = {};
-      request.incident.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.updateIncident = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.updateIncident(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('createAnnotation', () => {
-    it('invokes createAnnotation without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.createAnnotation = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.createAnnotation(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes createAnnotation with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.createAnnotation = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.createAnnotation(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('createTag', () => {
-    it('invokes createTag without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.createTag = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.createTag(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes createTag with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.createTag = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.createTag(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('deleteTag', () => {
-    it('invokes deleteTag without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.deleteTag = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.deleteTag(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes deleteTag with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.deleteTag = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.deleteTag(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('createSignal', () => {
-    it('invokes createSignal without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.createSignal = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.createSignal(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes createSignal with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.createSignal = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.createSignal(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('lookupSignal', () => {
-    it('invokes lookupSignal without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest = {};
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.lookupSignal = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.lookupSignal(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes lookupSignal with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest = {};
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.lookupSignal = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.lookupSignal(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('getSignal', () => {
-    it('invokes getSignal without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.getSignal = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.getSignal(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes getSignal with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.getSignal = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.getSignal(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('updateSignal', () => {
-    it('invokes updateSignal without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest = {};
-      request.signal = {};
-      request.signal.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.updateSignal = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.updateSignal(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes updateSignal with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest = {};
-      request.signal = {};
-      request.signal.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.updateSignal = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.updateSignal(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('escalateIncident', () => {
-    it('invokes escalateIncident without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest = {};
-      request.incident = {};
-      request.incident.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.escalateIncident = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.escalateIncident(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes escalateIncident with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest = {};
-      request.incident = {};
-      request.incident.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.escalateIncident = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.escalateIncident(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('createArtifact', () => {
-    it('invokes createArtifact without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.createArtifact = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.createArtifact(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes createArtifact with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.createArtifact = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.createArtifact(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('updateArtifact', () => {
-    it('invokes updateArtifact without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest = {};
-      request.artifact = {};
-      request.artifact.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.updateArtifact = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.updateArtifact(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes updateArtifact with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest = {};
-      request.artifact = {};
-      request.artifact.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.updateArtifact = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.updateArtifact(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('deleteArtifact', () => {
-    it('invokes deleteArtifact without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.deleteArtifact = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.deleteArtifact(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes deleteArtifact with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.deleteArtifact = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.deleteArtifact(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('sendShiftHandoff', () => {
-    it('invokes sendShiftHandoff without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.sendShiftHandoff = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.sendShiftHandoff(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes sendShiftHandoff with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.sendShiftHandoff = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.sendShiftHandoff(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('createSubscription', () => {
-    it('invokes createSubscription without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.createSubscription = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.createSubscription(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes createSubscription with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.createSubscription = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.createSubscription(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('updateSubscription', () => {
-    it('invokes updateSubscription without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest = {};
-      request.subscription = {};
-      request.subscription.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.updateSubscription = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.updateSubscription(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes updateSubscription with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest = {};
-      request.subscription = {};
-      request.subscription.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.updateSubscription = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.updateSubscription(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('deleteSubscription', () => {
-    it('invokes deleteSubscription without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.deleteSubscription = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.deleteSubscription(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes deleteSubscription with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.deleteSubscription = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.deleteSubscription(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('createIncidentRoleAssignment', () => {
-    it('invokes createIncidentRoleAssignment without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.createIncidentRoleAssignment = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.createIncidentRoleAssignment(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes createIncidentRoleAssignment with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.createIncidentRoleAssignment = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.createIncidentRoleAssignment(
-        request,
-        (err: FakeError, response: {}) => {
-          assert(err instanceof FakeError);
-          assert.strictEqual(err.code, FAKE_STATUS_CODE);
-          assert(typeof response === 'undefined');
-          done();
-        }
-      );
-    });
-  });
-  describe('deleteIncidentRoleAssignment', () => {
-    it('invokes deleteIncidentRoleAssignment without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.deleteIncidentRoleAssignment = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.deleteIncidentRoleAssignment(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes deleteIncidentRoleAssignment with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.deleteIncidentRoleAssignment = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.deleteIncidentRoleAssignment(
-        request,
-        (err: FakeError, response: {}) => {
-          assert(err instanceof FakeError);
-          assert.strictEqual(err.code, FAKE_STATUS_CODE);
-          assert(typeof response === 'undefined');
-          done();
-        }
-      );
-    });
-  });
-  describe('requestIncidentRoleHandover', () => {
-    it('invokes requestIncidentRoleHandover without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.requestIncidentRoleHandover = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.requestIncidentRoleHandover(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes requestIncidentRoleHandover with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.requestIncidentRoleHandover = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.requestIncidentRoleHandover(
-        request,
-        (err: FakeError, response: {}) => {
-          assert(err instanceof FakeError);
-          assert.strictEqual(err.code, FAKE_STATUS_CODE);
-          assert(typeof response === 'undefined');
-          done();
-        }
-      );
-    });
-  });
-  describe('confirmIncidentRoleHandover', () => {
-    it('invokes confirmIncidentRoleHandover without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.confirmIncidentRoleHandover = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.confirmIncidentRoleHandover(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes confirmIncidentRoleHandover with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.confirmIncidentRoleHandover = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.confirmIncidentRoleHandover(
-        request,
-        (err: FakeError, response: {}) => {
-          assert(err instanceof FakeError);
-          assert.strictEqual(err.code, FAKE_STATUS_CODE);
-          assert(typeof response === 'undefined');
-          done();
-        }
-      );
-    });
-  });
-  describe('forceIncidentRoleHandover', () => {
-    it('invokes forceIncidentRoleHandover without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.forceIncidentRoleHandover = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.forceIncidentRoleHandover(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes forceIncidentRoleHandover with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.forceIncidentRoleHandover = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.forceIncidentRoleHandover(
-        request,
-        (err: FakeError, response: {}) => {
-          assert(err instanceof FakeError);
-          assert.strictEqual(err.code, FAKE_STATUS_CODE);
-          assert(typeof response === 'undefined');
-          done();
-        }
-      );
-    });
-  });
-  describe('cancelIncidentRoleHandover', () => {
-    it('invokes cancelIncidentRoleHandover without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.cancelIncidentRoleHandover = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.cancelIncidentRoleHandover(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes cancelIncidentRoleHandover with error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.cancelIncidentRoleHandover = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.cancelIncidentRoleHandover(
-        request,
-        (err: FakeError, response: {}) => {
-          assert(err instanceof FakeError);
-          assert.strictEqual(err.code, FAKE_STATUS_CODE);
-          assert(typeof response === 'undefined');
-          done();
-        }
-      );
-    });
-  });
-  describe('searchIncidents', () => {
-    it('invokes searchIncidents without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock Grpc layer
-      client._innerApiCalls.searchIncidents = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      client.searchIncidents(request, (err: FakeError, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-  });
-  describe('searchIncidentsStream', () => {
-    it('invokes searchIncidentsStream without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {response: 'data'};
-      // Mock Grpc layer
-      client._innerApiCalls.searchIncidents = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      const stream = client
-        .searchIncidentsStream(request, {})
-        .on('data', (response: {}) => {
-          assert.deepStrictEqual(response, expectedResponse);
-          done();
-        })
-        .on('error', (err: FakeError) => {
-          done(err);
+    it('should create a client with gRPC fallback', () => {
+        const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+            fallback: true,
         });
-      stream.write(expectedResponse);
+        assert(client);
     });
-  });
-  describe('searchSimilarIncidents', () => {
-    it('invokes searchSimilarIncidents without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock Grpc layer
-      client._innerApiCalls.searchSimilarIncidents = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      client.searchSimilarIncidents(request, (err: FakeError, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-  });
-  describe('searchSimilarIncidentsStream', () => {
-    it('invokes searchSimilarIncidentsStream without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {response: 'data'};
-      // Mock Grpc layer
-      client._innerApiCalls.searchSimilarIncidents = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      const stream = client
-        .searchSimilarIncidentsStream(request, {})
-        .on('data', (response: {}) => {
-          assert.deepStrictEqual(response, expectedResponse);
-          done();
-        })
-        .on('error', (err: FakeError) => {
-          done(err);
+    it('has initialize method and supports deferred initialization', async () => {
+        const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+            credentials: { client_email: 'bogus', private_key: 'bogus' },
+            projectId: 'bogus',
         });
-      stream.write(expectedResponse);
+        assert.strictEqual(client.incidentServiceStub, undefined);
+        await client.initialize();
+        assert(client.incidentServiceStub);
     });
-  });
-  describe('listAnnotations', () => {
-    it('invokes listAnnotations without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock Grpc layer
-      client._innerApiCalls.listAnnotations = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      client.listAnnotations(request, (err: FakeError, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-  });
-  describe('listAnnotationsStream', () => {
-    it('invokes listAnnotationsStream without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {response: 'data'};
-      // Mock Grpc layer
-      client._innerApiCalls.listAnnotations = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      const stream = client
-        .listAnnotationsStream(request, {})
-        .on('data', (response: {}) => {
-          assert.deepStrictEqual(response, expectedResponse);
-          done();
-        })
-        .on('error', (err: FakeError) => {
-          done(err);
+    it('has close method', () => {
+        const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+            credentials: { client_email: 'bogus', private_key: 'bogus' },
+            projectId: 'bogus',
         });
-      stream.write(expectedResponse);
+        client.close();
     });
-  });
-  describe('listTags', () => {
-    it('invokes listTags without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock Grpc layer
-      client._innerApiCalls.listTags = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      client.listTags(request, (err: FakeError, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-  });
-  describe('listTagsStream', () => {
-    it('invokes listTagsStream without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {response: 'data'};
-      // Mock Grpc layer
-      client._innerApiCalls.listTags = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      const stream = client
-        .listTagsStream(request, {})
-        .on('data', (response: {}) => {
-          assert.deepStrictEqual(response, expectedResponse);
-          done();
-        })
-        .on('error', (err: FakeError) => {
-          done(err);
+    describe('createIncident', () => {
+        it('invokes createIncident without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.createIncident = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.createIncident(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
         });
-      stream.write(expectedResponse);
-    });
-  });
-  describe('searchSignals', () => {
-    it('invokes searchSignals without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock Grpc layer
-      client._innerApiCalls.searchSignals = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      client.searchSignals(request, (err: FakeError, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-  });
-  describe('searchSignalsStream', () => {
-    it('invokes searchSignalsStream without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {response: 'data'};
-      // Mock Grpc layer
-      client._innerApiCalls.searchSignals = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      const stream = client
-        .searchSignalsStream(request, {})
-        .on('data', (response: {}) => {
-          assert.deepStrictEqual(response, expectedResponse);
-          done();
-        })
-        .on('error', (err: FakeError) => {
-          done(err);
+
+        it('invokes createIncident with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRequest = {};
+            request.parent = '';
+            // Mock gRPC layer
+            client._innerApiCalls.createIncident = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.createIncident(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
         });
-      stream.write(expectedResponse);
     });
-  });
-  describe('listArtifacts', () => {
-    it('invokes listArtifacts without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock Grpc layer
-      client._innerApiCalls.listArtifacts = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      client.listArtifacts(request, (err: FakeError, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-  });
-  describe('listArtifactsStream', () => {
-    it('invokes listArtifactsStream without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {response: 'data'};
-      // Mock Grpc layer
-      client._innerApiCalls.listArtifacts = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      const stream = client
-        .listArtifactsStream(request, {})
-        .on('data', (response: {}) => {
-          assert.deepStrictEqual(response, expectedResponse);
-          done();
-        })
-        .on('error', (err: FakeError) => {
-          done(err);
+    describe('getIncident', () => {
+        it('invokes getIncident without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.getIncident = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.getIncident(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
         });
-      stream.write(expectedResponse);
-    });
-  });
-  describe('listSubscriptions', () => {
-    it('invokes listSubscriptions without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock Grpc layer
-      client._innerApiCalls.listSubscriptions = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      client.listSubscriptions(request, (err: FakeError, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-  });
-  describe('listSubscriptionsStream', () => {
-    it('invokes listSubscriptionsStream without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {response: 'data'};
-      // Mock Grpc layer
-      client._innerApiCalls.listSubscriptions = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      const stream = client
-        .listSubscriptionsStream(request, {})
-        .on('data', (response: {}) => {
-          assert.deepStrictEqual(response, expectedResponse);
-          done();
-        })
-        .on('error', (err: FakeError) => {
-          done(err);
+
+        it('invokes getIncident with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IGetIncidentRequest = {};
+            request.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.getIncident = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.getIncident(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
         });
-      stream.write(expectedResponse);
     });
-  });
-  describe('listIncidentRoleAssignments', () => {
-    it('invokes listIncidentRoleAssignments without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock Grpc layer
-      client._innerApiCalls.listIncidentRoleAssignments = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      client.listIncidentRoleAssignments(
-        request,
-        (err: FakeError, response: {}) => {
-          assert.ifError(err);
-          assert.deepStrictEqual(response, expectedResponse);
-          done();
-        }
-      );
-    });
-  });
-  describe('listIncidentRoleAssignmentsStream', () => {
-    it('invokes listIncidentRoleAssignmentsStream without error', done => {
-      const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {response: 'data'};
-      // Mock Grpc layer
-      client._innerApiCalls.listIncidentRoleAssignments = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      const stream = client
-        .listIncidentRoleAssignmentsStream(request, {})
-        .on('data', (response: {}) => {
-          assert.deepStrictEqual(response, expectedResponse);
-          done();
-        })
-        .on('error', (err: FakeError) => {
-          done(err);
+    describe('updateIncident', () => {
+        it('invokes updateIncident without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest = {};
+            request.incident = {};
+            request.incident.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.updateIncident = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.updateIncident(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
         });
-      stream.write(expectedResponse);
+
+        it('invokes updateIncident with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateIncidentRequest = {};
+            request.incident = {};
+            request.incident.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.updateIncident = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.updateIncident(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
     });
-  });
+    describe('createAnnotation', () => {
+        it('invokes createAnnotation without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.createAnnotation = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.createAnnotation(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes createAnnotation with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ICreateAnnotationRequest = {};
+            request.parent = '';
+            // Mock gRPC layer
+            client._innerApiCalls.createAnnotation = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.createAnnotation(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('createTag', () => {
+        it('invokes createTag without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.createTag = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.createTag(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes createTag with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ICreateTagRequest = {};
+            request.parent = '';
+            // Mock gRPC layer
+            client._innerApiCalls.createTag = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.createTag(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('deleteTag', () => {
+        it('invokes deleteTag without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.deleteTag = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.deleteTag(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes deleteTag with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteTagRequest = {};
+            request.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.deleteTag = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.deleteTag(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('createSignal', () => {
+        it('invokes createSignal without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.createSignal = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.createSignal(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes createSignal with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ICreateSignalRequest = {};
+            request.parent = '';
+            // Mock gRPC layer
+            client._innerApiCalls.createSignal = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.createSignal(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('lookupSignal', () => {
+        it('invokes lookupSignal without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest = {};
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.lookupSignal = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.lookupSignal(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes lookupSignal with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ILookupSignalRequest = {};
+            // Mock gRPC layer
+            client._innerApiCalls.lookupSignal = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.lookupSignal(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('getSignal', () => {
+        it('invokes getSignal without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.getSignal = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.getSignal(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes getSignal with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IGetSignalRequest = {};
+            request.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.getSignal = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.getSignal(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('updateSignal', () => {
+        it('invokes updateSignal without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest = {};
+            request.signal = {};
+            request.signal.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.updateSignal = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.updateSignal(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes updateSignal with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSignalRequest = {};
+            request.signal = {};
+            request.signal.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.updateSignal = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.updateSignal(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('escalateIncident', () => {
+        it('invokes escalateIncident without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest = {};
+            request.incident = {};
+            request.incident.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.escalateIncident = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.escalateIncident(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes escalateIncident with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IEscalateIncidentRequest = {};
+            request.incident = {};
+            request.incident.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.escalateIncident = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.escalateIncident(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('createArtifact', () => {
+        it('invokes createArtifact without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.createArtifact = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.createArtifact(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes createArtifact with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ICreateArtifactRequest = {};
+            request.parent = '';
+            // Mock gRPC layer
+            client._innerApiCalls.createArtifact = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.createArtifact(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('updateArtifact', () => {
+        it('invokes updateArtifact without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest = {};
+            request.artifact = {};
+            request.artifact.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.updateArtifact = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.updateArtifact(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes updateArtifact with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateArtifactRequest = {};
+            request.artifact = {};
+            request.artifact.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.updateArtifact = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.updateArtifact(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('deleteArtifact', () => {
+        it('invokes deleteArtifact without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.deleteArtifact = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.deleteArtifact(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes deleteArtifact with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteArtifactRequest = {};
+            request.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.deleteArtifact = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.deleteArtifact(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('sendShiftHandoff', () => {
+        it('invokes sendShiftHandoff without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.sendShiftHandoff = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.sendShiftHandoff(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes sendShiftHandoff with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ISendShiftHandoffRequest = {};
+            request.parent = '';
+            // Mock gRPC layer
+            client._innerApiCalls.sendShiftHandoff = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.sendShiftHandoff(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('createSubscription', () => {
+        it('invokes createSubscription without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.createSubscription = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.createSubscription(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes createSubscription with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ICreateSubscriptionRequest = {};
+            request.parent = '';
+            // Mock gRPC layer
+            client._innerApiCalls.createSubscription = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.createSubscription(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('updateSubscription', () => {
+        it('invokes updateSubscription without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest = {};
+            request.subscription = {};
+            request.subscription.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.updateSubscription = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.updateSubscription(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes updateSubscription with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IUpdateSubscriptionRequest = {};
+            request.subscription = {};
+            request.subscription.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.updateSubscription = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.updateSubscription(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('deleteSubscription', () => {
+        it('invokes deleteSubscription without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.deleteSubscription = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.deleteSubscription(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes deleteSubscription with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteSubscriptionRequest = {};
+            request.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.deleteSubscription = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.deleteSubscription(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('createIncidentRoleAssignment', () => {
+        it('invokes createIncidentRoleAssignment without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.createIncidentRoleAssignment = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.createIncidentRoleAssignment(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes createIncidentRoleAssignment with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ICreateIncidentRoleAssignmentRequest = {};
+            request.parent = '';
+            // Mock gRPC layer
+            client._innerApiCalls.createIncidentRoleAssignment = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.createIncidentRoleAssignment(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('deleteIncidentRoleAssignment', () => {
+        it('invokes deleteIncidentRoleAssignment without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.deleteIncidentRoleAssignment = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.deleteIncidentRoleAssignment(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes deleteIncidentRoleAssignment with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IDeleteIncidentRoleAssignmentRequest = {};
+            request.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.deleteIncidentRoleAssignment = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.deleteIncidentRoleAssignment(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('requestIncidentRoleHandover', () => {
+        it('invokes requestIncidentRoleHandover without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.requestIncidentRoleHandover = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.requestIncidentRoleHandover(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes requestIncidentRoleHandover with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IRequestIncidentRoleHandoverRequest = {};
+            request.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.requestIncidentRoleHandover = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.requestIncidentRoleHandover(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('confirmIncidentRoleHandover', () => {
+        it('invokes confirmIncidentRoleHandover without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.confirmIncidentRoleHandover = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.confirmIncidentRoleHandover(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes confirmIncidentRoleHandover with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IConfirmIncidentRoleHandoverRequest = {};
+            request.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.confirmIncidentRoleHandover = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.confirmIncidentRoleHandover(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('forceIncidentRoleHandover', () => {
+        it('invokes forceIncidentRoleHandover without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.forceIncidentRoleHandover = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.forceIncidentRoleHandover(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes forceIncidentRoleHandover with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IForceIncidentRoleHandoverRequest = {};
+            request.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.forceIncidentRoleHandover = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.forceIncidentRoleHandover(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('cancelIncidentRoleHandover', () => {
+        it('invokes cancelIncidentRoleHandover without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.cancelIncidentRoleHandover = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.cancelIncidentRoleHandover(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes cancelIncidentRoleHandover with error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ICancelIncidentRoleHandoverRequest = {};
+            request.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.cancelIncidentRoleHandover = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.cancelIncidentRoleHandover(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('searchIncidents', () => {
+        it('invokes searchIncidents without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock Grpc layer
+            client._innerApiCalls.searchIncidents = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            client.searchIncidents(request, (err: FakeError, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            });
+        });
+    });
+    describe('searchIncidentsStream', () => {
+        it('invokes searchIncidentsStream without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ISearchIncidentsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {response: 'data'};
+            // Mock Grpc layer
+            client._innerApiCalls.searchIncidents = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            const stream = client.searchIncidentsStream(request, {}).on('data', (response: {}) =>{
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            }).on('error', (err: FakeError) => {
+                done(err);
+            });
+            stream.write(expectedResponse);
+        });
+    });
+    describe('searchSimilarIncidents', () => {
+        it('invokes searchSimilarIncidents without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock Grpc layer
+            client._innerApiCalls.searchSimilarIncidents = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            client.searchSimilarIncidents(request, (err: FakeError, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            });
+        });
+    });
+    describe('searchSimilarIncidentsStream', () => {
+        it('invokes searchSimilarIncidentsStream without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ISearchSimilarIncidentsRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {response: 'data'};
+            // Mock Grpc layer
+            client._innerApiCalls.searchSimilarIncidents = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            const stream = client.searchSimilarIncidentsStream(request, {}).on('data', (response: {}) =>{
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            }).on('error', (err: FakeError) => {
+                done(err);
+            });
+            stream.write(expectedResponse);
+        });
+    });
+    describe('listAnnotations', () => {
+        it('invokes listAnnotations without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock Grpc layer
+            client._innerApiCalls.listAnnotations = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            client.listAnnotations(request, (err: FakeError, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            });
+        });
+    });
+    describe('listAnnotationsStream', () => {
+        it('invokes listAnnotationsStream without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IListAnnotationsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {response: 'data'};
+            // Mock Grpc layer
+            client._innerApiCalls.listAnnotations = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            const stream = client.listAnnotationsStream(request, {}).on('data', (response: {}) =>{
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            }).on('error', (err: FakeError) => {
+                done(err);
+            });
+            stream.write(expectedResponse);
+        });
+    });
+    describe('listTags', () => {
+        it('invokes listTags without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock Grpc layer
+            client._innerApiCalls.listTags = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            client.listTags(request, (err: FakeError, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            });
+        });
+    });
+    describe('listTagsStream', () => {
+        it('invokes listTagsStream without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IListTagsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {response: 'data'};
+            // Mock Grpc layer
+            client._innerApiCalls.listTags = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            const stream = client.listTagsStream(request, {}).on('data', (response: {}) =>{
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            }).on('error', (err: FakeError) => {
+                done(err);
+            });
+            stream.write(expectedResponse);
+        });
+    });
+    describe('searchSignals', () => {
+        it('invokes searchSignals without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock Grpc layer
+            client._innerApiCalls.searchSignals = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            client.searchSignals(request, (err: FakeError, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            });
+        });
+    });
+    describe('searchSignalsStream', () => {
+        it('invokes searchSignalsStream without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.ISearchSignalsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {response: 'data'};
+            // Mock Grpc layer
+            client._innerApiCalls.searchSignals = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            const stream = client.searchSignalsStream(request, {}).on('data', (response: {}) =>{
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            }).on('error', (err: FakeError) => {
+                done(err);
+            });
+            stream.write(expectedResponse);
+        });
+    });
+    describe('listArtifacts', () => {
+        it('invokes listArtifacts without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock Grpc layer
+            client._innerApiCalls.listArtifacts = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            client.listArtifacts(request, (err: FakeError, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            });
+        });
+    });
+    describe('listArtifactsStream', () => {
+        it('invokes listArtifactsStream without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IListArtifactsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {response: 'data'};
+            // Mock Grpc layer
+            client._innerApiCalls.listArtifacts = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            const stream = client.listArtifactsStream(request, {}).on('data', (response: {}) =>{
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            }).on('error', (err: FakeError) => {
+                done(err);
+            });
+            stream.write(expectedResponse);
+        });
+    });
+    describe('listSubscriptions', () => {
+        it('invokes listSubscriptions without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock Grpc layer
+            client._innerApiCalls.listSubscriptions = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            client.listSubscriptions(request, (err: FakeError, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            });
+        });
+    });
+    describe('listSubscriptionsStream', () => {
+        it('invokes listSubscriptionsStream without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IListSubscriptionsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {response: 'data'};
+            // Mock Grpc layer
+            client._innerApiCalls.listSubscriptions = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            const stream = client.listSubscriptionsStream(request, {}).on('data', (response: {}) =>{
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            }).on('error', (err: FakeError) => {
+                done(err);
+            });
+            stream.write(expectedResponse);
+        });
+    });
+    describe('listIncidentRoleAssignments', () => {
+        it('invokes listIncidentRoleAssignments without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock Grpc layer
+            client._innerApiCalls.listIncidentRoleAssignments = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            client.listIncidentRoleAssignments(request, (err: FakeError, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            });
+        });
+    });
+    describe('listIncidentRoleAssignmentsStream', () => {
+        it('invokes listIncidentRoleAssignmentsStream without error', done => {
+            const client = new incidentserviceModule.v1alpha2.IncidentServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.irm.v1alpha2.IListIncidentRoleAssignmentsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {response: 'data'};
+            // Mock Grpc layer
+            client._innerApiCalls.listIncidentRoleAssignments = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            const stream = client.listIncidentRoleAssignmentsStream(request, {}).on('data', (response: {}) =>{
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            }).on('error', (err: FakeError) => {
+                done(err);
+            });
+            stream.write(expectedResponse);
+        });
+    });
 });
