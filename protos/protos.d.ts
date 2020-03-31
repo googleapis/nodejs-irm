@@ -26,6 +26,1733 @@ export namespace google {
             /** Namespace v1alpha2. */
             namespace v1alpha2 {
 
+                /** Properties of a User. */
+                interface IUser {
+
+                    /** User userId */
+                    userId?: (string|null);
+
+                    /** User email */
+                    email?: (string|null);
+                }
+
+                /** Represents a User. */
+                class User implements IUser {
+
+                    /**
+                     * Constructs a new User.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.irm.v1alpha2.IUser);
+
+                    /** User userId. */
+                    public userId: string;
+
+                    /** User email. */
+                    public email: string;
+
+                    /** User user. */
+                    public user?: ("userId"|"email");
+
+                    /**
+                     * Creates a new User instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns User instance
+                     */
+                    public static create(properties?: google.cloud.irm.v1alpha2.IUser): google.cloud.irm.v1alpha2.User;
+
+                    /**
+                     * Encodes the specified User message. Does not implicitly {@link google.cloud.irm.v1alpha2.User.verify|verify} messages.
+                     * @param message User message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.irm.v1alpha2.IUser, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified User message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.User.verify|verify} messages.
+                     * @param message User message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.IUser, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a User message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns User
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.User;
+
+                    /**
+                     * Decodes a User message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns User
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.User;
+
+                    /**
+                     * Verifies a User message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a User message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns User
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.User;
+
+                    /**
+                     * Creates a plain object from a User message. Also converts values to other types if specified.
+                     * @param message User
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.irm.v1alpha2.User, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this User to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a Signal. */
+                interface ISignal {
+
+                    /** Signal name */
+                    name?: (string|null);
+
+                    /** Signal etag */
+                    etag?: (string|null);
+
+                    /** Signal incident */
+                    incident?: (string|null);
+
+                    /** Signal createTime */
+                    createTime?: (google.protobuf.ITimestamp|null);
+
+                    /** Signal closeTime */
+                    closeTime?: (google.protobuf.ITimestamp|null);
+
+                    /** Signal detectTime */
+                    detectTime?: (google.protobuf.ITimestamp|null);
+
+                    /** Signal creator */
+                    creator?: (google.cloud.irm.v1alpha2.IUser|null);
+
+                    /** Signal title */
+                    title?: (string|null);
+
+                    /** Signal contentType */
+                    contentType?: (string|null);
+
+                    /** Signal content */
+                    content?: (string|null);
+
+                    /** Signal signalState */
+                    signalState?: (google.cloud.irm.v1alpha2.Signal.State|keyof typeof google.cloud.irm.v1alpha2.Signal.State|null);
+
+                    /** Signal signalArtifacts */
+                    signalArtifacts?: (google.cloud.irm.v1alpha2.Signal.ISignalArtifact[]|null);
+                }
+
+                /** Represents a Signal. */
+                class Signal implements ISignal {
+
+                    /**
+                     * Constructs a new Signal.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.irm.v1alpha2.ISignal);
+
+                    /** Signal name. */
+                    public name: string;
+
+                    /** Signal etag. */
+                    public etag: string;
+
+                    /** Signal incident. */
+                    public incident: string;
+
+                    /** Signal createTime. */
+                    public createTime?: (google.protobuf.ITimestamp|null);
+
+                    /** Signal closeTime. */
+                    public closeTime?: (google.protobuf.ITimestamp|null);
+
+                    /** Signal detectTime. */
+                    public detectTime?: (google.protobuf.ITimestamp|null);
+
+                    /** Signal creator. */
+                    public creator?: (google.cloud.irm.v1alpha2.IUser|null);
+
+                    /** Signal title. */
+                    public title: string;
+
+                    /** Signal contentType. */
+                    public contentType: string;
+
+                    /** Signal content. */
+                    public content: string;
+
+                    /** Signal signalState. */
+                    public signalState: (google.cloud.irm.v1alpha2.Signal.State|keyof typeof google.cloud.irm.v1alpha2.Signal.State);
+
+                    /** Signal signalArtifacts. */
+                    public signalArtifacts: google.cloud.irm.v1alpha2.Signal.ISignalArtifact[];
+
+                    /**
+                     * Creates a new Signal instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Signal instance
+                     */
+                    public static create(properties?: google.cloud.irm.v1alpha2.ISignal): google.cloud.irm.v1alpha2.Signal;
+
+                    /**
+                     * Encodes the specified Signal message. Does not implicitly {@link google.cloud.irm.v1alpha2.Signal.verify|verify} messages.
+                     * @param message Signal message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.irm.v1alpha2.ISignal, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Signal message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Signal.verify|verify} messages.
+                     * @param message Signal message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.ISignal, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Signal message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Signal
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Signal;
+
+                    /**
+                     * Decodes a Signal message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Signal
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Signal;
+
+                    /**
+                     * Verifies a Signal message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Signal message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Signal
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Signal;
+
+                    /**
+                     * Creates a plain object from a Signal message. Also converts values to other types if specified.
+                     * @param message Signal
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.irm.v1alpha2.Signal, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Signal to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                namespace Signal {
+
+                    /** Properties of a SignalArtifact. */
+                    interface ISignalArtifact {
+
+                        /** SignalArtifact userType */
+                        userType?: (string|null);
+
+                        /** SignalArtifact uri */
+                        uri?: (string|null);
+                    }
+
+                    /** Represents a SignalArtifact. */
+                    class SignalArtifact implements ISignalArtifact {
+
+                        /**
+                         * Constructs a new SignalArtifact.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.irm.v1alpha2.Signal.ISignalArtifact);
+
+                        /** SignalArtifact userType. */
+                        public userType: string;
+
+                        /** SignalArtifact uri. */
+                        public uri: string;
+
+                        /** SignalArtifact artifactType. */
+                        public artifactType?: "userType";
+
+                        /**
+                         * Creates a new SignalArtifact instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns SignalArtifact instance
+                         */
+                        public static create(properties?: google.cloud.irm.v1alpha2.Signal.ISignalArtifact): google.cloud.irm.v1alpha2.Signal.SignalArtifact;
+
+                        /**
+                         * Encodes the specified SignalArtifact message. Does not implicitly {@link google.cloud.irm.v1alpha2.Signal.SignalArtifact.verify|verify} messages.
+                         * @param message SignalArtifact message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.irm.v1alpha2.Signal.ISignalArtifact, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified SignalArtifact message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Signal.SignalArtifact.verify|verify} messages.
+                         * @param message SignalArtifact message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.irm.v1alpha2.Signal.ISignalArtifact, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a SignalArtifact message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns SignalArtifact
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Signal.SignalArtifact;
+
+                        /**
+                         * Decodes a SignalArtifact message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns SignalArtifact
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Signal.SignalArtifact;
+
+                        /**
+                         * Verifies a SignalArtifact message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a SignalArtifact message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns SignalArtifact
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Signal.SignalArtifact;
+
+                        /**
+                         * Creates a plain object from a SignalArtifact message. Also converts values to other types if specified.
+                         * @param message SignalArtifact
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.irm.v1alpha2.Signal.SignalArtifact, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this SignalArtifact to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+                    }
+
+                    /** State enum. */
+                    enum State {
+                        STATE_UNSPECIFIED = 0,
+                        STATE_OPEN = 1,
+                        STATE_CLOSED = 2
+                    }
+                }
+
+                /** Properties of an Annotation. */
+                interface IAnnotation {
+
+                    /** Annotation name */
+                    name?: (string|null);
+
+                    /** Annotation author */
+                    author?: (google.cloud.irm.v1alpha2.IUser|null);
+
+                    /** Annotation createTime */
+                    createTime?: (google.protobuf.ITimestamp|null);
+
+                    /** Annotation content */
+                    content?: (string|null);
+
+                    /** Annotation contentType */
+                    contentType?: (string|null);
+                }
+
+                /** Represents an Annotation. */
+                class Annotation implements IAnnotation {
+
+                    /**
+                     * Constructs a new Annotation.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.irm.v1alpha2.IAnnotation);
+
+                    /** Annotation name. */
+                    public name: string;
+
+                    /** Annotation author. */
+                    public author?: (google.cloud.irm.v1alpha2.IUser|null);
+
+                    /** Annotation createTime. */
+                    public createTime?: (google.protobuf.ITimestamp|null);
+
+                    /** Annotation content. */
+                    public content: string;
+
+                    /** Annotation contentType. */
+                    public contentType: string;
+
+                    /**
+                     * Creates a new Annotation instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Annotation instance
+                     */
+                    public static create(properties?: google.cloud.irm.v1alpha2.IAnnotation): google.cloud.irm.v1alpha2.Annotation;
+
+                    /**
+                     * Encodes the specified Annotation message. Does not implicitly {@link google.cloud.irm.v1alpha2.Annotation.verify|verify} messages.
+                     * @param message Annotation message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.irm.v1alpha2.IAnnotation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Annotation message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Annotation.verify|verify} messages.
+                     * @param message Annotation message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.IAnnotation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an Annotation message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Annotation
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Annotation;
+
+                    /**
+                     * Decodes an Annotation message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Annotation
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Annotation;
+
+                    /**
+                     * Verifies an Annotation message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an Annotation message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Annotation
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Annotation;
+
+                    /**
+                     * Creates a plain object from an Annotation message. Also converts values to other types if specified.
+                     * @param message Annotation
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.irm.v1alpha2.Annotation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Annotation to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a Tag. */
+                interface ITag {
+
+                    /** Tag name */
+                    name?: (string|null);
+
+                    /** Tag displayName */
+                    displayName?: (string|null);
+                }
+
+                /** Represents a Tag. */
+                class Tag implements ITag {
+
+                    /**
+                     * Constructs a new Tag.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.irm.v1alpha2.ITag);
+
+                    /** Tag name. */
+                    public name: string;
+
+                    /** Tag displayName. */
+                    public displayName: string;
+
+                    /**
+                     * Creates a new Tag instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Tag instance
+                     */
+                    public static create(properties?: google.cloud.irm.v1alpha2.ITag): google.cloud.irm.v1alpha2.Tag;
+
+                    /**
+                     * Encodes the specified Tag message. Does not implicitly {@link google.cloud.irm.v1alpha2.Tag.verify|verify} messages.
+                     * @param message Tag message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.irm.v1alpha2.ITag, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Tag message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Tag.verify|verify} messages.
+                     * @param message Tag message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.ITag, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Tag message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Tag
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Tag;
+
+                    /**
+                     * Decodes a Tag message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Tag
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Tag;
+
+                    /**
+                     * Verifies a Tag message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Tag message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Tag
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Tag;
+
+                    /**
+                     * Creates a plain object from a Tag message. Also converts values to other types if specified.
+                     * @param message Tag
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.irm.v1alpha2.Tag, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Tag to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a Synopsis. */
+                interface ISynopsis {
+
+                    /** Synopsis contentType */
+                    contentType?: (string|null);
+
+                    /** Synopsis content */
+                    content?: (string|null);
+
+                    /** Synopsis updateTime */
+                    updateTime?: (google.protobuf.ITimestamp|null);
+
+                    /** Synopsis author */
+                    author?: (google.cloud.irm.v1alpha2.IUser|null);
+                }
+
+                /** Represents a Synopsis. */
+                class Synopsis implements ISynopsis {
+
+                    /**
+                     * Constructs a new Synopsis.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.irm.v1alpha2.ISynopsis);
+
+                    /** Synopsis contentType. */
+                    public contentType: string;
+
+                    /** Synopsis content. */
+                    public content: string;
+
+                    /** Synopsis updateTime. */
+                    public updateTime?: (google.protobuf.ITimestamp|null);
+
+                    /** Synopsis author. */
+                    public author?: (google.cloud.irm.v1alpha2.IUser|null);
+
+                    /**
+                     * Creates a new Synopsis instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Synopsis instance
+                     */
+                    public static create(properties?: google.cloud.irm.v1alpha2.ISynopsis): google.cloud.irm.v1alpha2.Synopsis;
+
+                    /**
+                     * Encodes the specified Synopsis message. Does not implicitly {@link google.cloud.irm.v1alpha2.Synopsis.verify|verify} messages.
+                     * @param message Synopsis message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.irm.v1alpha2.ISynopsis, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Synopsis message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Synopsis.verify|verify} messages.
+                     * @param message Synopsis message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.ISynopsis, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Synopsis message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Synopsis
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Synopsis;
+
+                    /**
+                     * Decodes a Synopsis message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Synopsis
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Synopsis;
+
+                    /**
+                     * Verifies a Synopsis message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Synopsis message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Synopsis
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Synopsis;
+
+                    /**
+                     * Creates a plain object from a Synopsis message. Also converts values to other types if specified.
+                     * @param message Synopsis
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.irm.v1alpha2.Synopsis, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Synopsis to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of an Incident. */
+                interface IIncident {
+
+                    /** Incident name */
+                    name?: (string|null);
+
+                    /** Incident title */
+                    title?: (string|null);
+
+                    /** Incident escalationLevel */
+                    escalationLevel?: (google.cloud.irm.v1alpha2.Incident.EscalationLevel|keyof typeof google.cloud.irm.v1alpha2.Incident.EscalationLevel|null);
+
+                    /** Incident etag */
+                    etag?: (string|null);
+
+                    /** Incident severity */
+                    severity?: (google.cloud.irm.v1alpha2.Incident.Severity|keyof typeof google.cloud.irm.v1alpha2.Incident.Severity|null);
+
+                    /** Incident stage */
+                    stage?: (google.cloud.irm.v1alpha2.Incident.Stage|keyof typeof google.cloud.irm.v1alpha2.Incident.Stage|null);
+
+                    /** Incident duplicateIncident */
+                    duplicateIncident?: (string|null);
+
+                    /** Incident startTime */
+                    startTime?: (google.protobuf.ITimestamp|null);
+
+                    /** Incident synopsis */
+                    synopsis?: (google.cloud.irm.v1alpha2.ISynopsis|null);
+
+                    /** Incident communicationVenue */
+                    communicationVenue?: (google.cloud.irm.v1alpha2.Incident.ICommunicationVenue|null);
+                }
+
+                /** Represents an Incident. */
+                class Incident implements IIncident {
+
+                    /**
+                     * Constructs a new Incident.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.irm.v1alpha2.IIncident);
+
+                    /** Incident name. */
+                    public name: string;
+
+                    /** Incident title. */
+                    public title: string;
+
+                    /** Incident escalationLevel. */
+                    public escalationLevel: (google.cloud.irm.v1alpha2.Incident.EscalationLevel|keyof typeof google.cloud.irm.v1alpha2.Incident.EscalationLevel);
+
+                    /** Incident etag. */
+                    public etag: string;
+
+                    /** Incident severity. */
+                    public severity: (google.cloud.irm.v1alpha2.Incident.Severity|keyof typeof google.cloud.irm.v1alpha2.Incident.Severity);
+
+                    /** Incident stage. */
+                    public stage: (google.cloud.irm.v1alpha2.Incident.Stage|keyof typeof google.cloud.irm.v1alpha2.Incident.Stage);
+
+                    /** Incident duplicateIncident. */
+                    public duplicateIncident: string;
+
+                    /** Incident startTime. */
+                    public startTime?: (google.protobuf.ITimestamp|null);
+
+                    /** Incident synopsis. */
+                    public synopsis?: (google.cloud.irm.v1alpha2.ISynopsis|null);
+
+                    /** Incident communicationVenue. */
+                    public communicationVenue?: (google.cloud.irm.v1alpha2.Incident.ICommunicationVenue|null);
+
+                    /**
+                     * Creates a new Incident instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Incident instance
+                     */
+                    public static create(properties?: google.cloud.irm.v1alpha2.IIncident): google.cloud.irm.v1alpha2.Incident;
+
+                    /**
+                     * Encodes the specified Incident message. Does not implicitly {@link google.cloud.irm.v1alpha2.Incident.verify|verify} messages.
+                     * @param message Incident message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.irm.v1alpha2.IIncident, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Incident message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Incident.verify|verify} messages.
+                     * @param message Incident message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.IIncident, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an Incident message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Incident
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Incident;
+
+                    /**
+                     * Decodes an Incident message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Incident
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Incident;
+
+                    /**
+                     * Verifies an Incident message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an Incident message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Incident
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Incident;
+
+                    /**
+                     * Creates a plain object from an Incident message. Also converts values to other types if specified.
+                     * @param message Incident
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.irm.v1alpha2.Incident, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Incident to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                namespace Incident {
+
+                    /** Properties of a CommunicationVenue. */
+                    interface ICommunicationVenue {
+
+                        /** CommunicationVenue uri */
+                        uri?: (string|null);
+
+                        /** CommunicationVenue displayName */
+                        displayName?: (string|null);
+
+                        /** CommunicationVenue channelType */
+                        channelType?: (google.cloud.irm.v1alpha2.Incident.CommunicationVenue.ChannelType|keyof typeof google.cloud.irm.v1alpha2.Incident.CommunicationVenue.ChannelType|null);
+                    }
+
+                    /** Represents a CommunicationVenue. */
+                    class CommunicationVenue implements ICommunicationVenue {
+
+                        /**
+                         * Constructs a new CommunicationVenue.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.irm.v1alpha2.Incident.ICommunicationVenue);
+
+                        /** CommunicationVenue uri. */
+                        public uri: string;
+
+                        /** CommunicationVenue displayName. */
+                        public displayName: string;
+
+                        /** CommunicationVenue channelType. */
+                        public channelType: (google.cloud.irm.v1alpha2.Incident.CommunicationVenue.ChannelType|keyof typeof google.cloud.irm.v1alpha2.Incident.CommunicationVenue.ChannelType);
+
+                        /**
+                         * Creates a new CommunicationVenue instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns CommunicationVenue instance
+                         */
+                        public static create(properties?: google.cloud.irm.v1alpha2.Incident.ICommunicationVenue): google.cloud.irm.v1alpha2.Incident.CommunicationVenue;
+
+                        /**
+                         * Encodes the specified CommunicationVenue message. Does not implicitly {@link google.cloud.irm.v1alpha2.Incident.CommunicationVenue.verify|verify} messages.
+                         * @param message CommunicationVenue message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.irm.v1alpha2.Incident.ICommunicationVenue, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified CommunicationVenue message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Incident.CommunicationVenue.verify|verify} messages.
+                         * @param message CommunicationVenue message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.irm.v1alpha2.Incident.ICommunicationVenue, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a CommunicationVenue message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns CommunicationVenue
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Incident.CommunicationVenue;
+
+                        /**
+                         * Decodes a CommunicationVenue message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns CommunicationVenue
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Incident.CommunicationVenue;
+
+                        /**
+                         * Verifies a CommunicationVenue message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a CommunicationVenue message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns CommunicationVenue
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Incident.CommunicationVenue;
+
+                        /**
+                         * Creates a plain object from a CommunicationVenue message. Also converts values to other types if specified.
+                         * @param message CommunicationVenue
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.irm.v1alpha2.Incident.CommunicationVenue, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this CommunicationVenue to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+                    }
+
+                    namespace CommunicationVenue {
+
+                        /** ChannelType enum. */
+                        enum ChannelType {
+                            CHANNEL_TYPE_UNSPECIFIED = 0,
+                            CHANNEL_TYPE_URI = 1,
+                            CHANNEL_TYPE_SLACK = 5
+                        }
+                    }
+
+                    /** EscalationLevel enum. */
+                    enum EscalationLevel {
+                        ESCALATION_LEVEL_UNSPECIFIED = 0,
+                        ESCALATION_LEVEL_ORGANIZATION = 1
+                    }
+
+                    /** Severity enum. */
+                    enum Severity {
+                        SEVERITY_UNSPECIFIED = 0,
+                        SEVERITY_HUGE = 1,
+                        SEVERITY_MAJOR = 2,
+                        SEVERITY_MEDIUM = 3,
+                        SEVERITY_MINOR = 4,
+                        SEVERITY_NEGLIGIBLE = 5
+                    }
+
+                    /** Stage enum. */
+                    enum Stage {
+                        STAGE_UNSPECIFIED = 0,
+                        STAGE_DETECTED = 4,
+                        STAGE_TRIAGED = 1,
+                        STAGE_MITIGATED = 2,
+                        STAGE_RESOLVED = 3,
+                        STAGE_DOCUMENTED = 5,
+                        STAGE_DUPLICATE = 6
+                    }
+                }
+
+                /** Properties of an IncidentRole. */
+                interface IIncidentRole {
+
+                    /** IncidentRole type */
+                    type?: (google.cloud.irm.v1alpha2.IncidentRole.Type|keyof typeof google.cloud.irm.v1alpha2.IncidentRole.Type|null);
+
+                    /** IncidentRole title */
+                    title?: (string|null);
+
+                    /** IncidentRole description */
+                    description?: (string|null);
+                }
+
+                /** Represents an IncidentRole. */
+                class IncidentRole implements IIncidentRole {
+
+                    /**
+                     * Constructs a new IncidentRole.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.irm.v1alpha2.IIncidentRole);
+
+                    /** IncidentRole type. */
+                    public type: (google.cloud.irm.v1alpha2.IncidentRole.Type|keyof typeof google.cloud.irm.v1alpha2.IncidentRole.Type);
+
+                    /** IncidentRole title. */
+                    public title: string;
+
+                    /** IncidentRole description. */
+                    public description: string;
+
+                    /**
+                     * Creates a new IncidentRole instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns IncidentRole instance
+                     */
+                    public static create(properties?: google.cloud.irm.v1alpha2.IIncidentRole): google.cloud.irm.v1alpha2.IncidentRole;
+
+                    /**
+                     * Encodes the specified IncidentRole message. Does not implicitly {@link google.cloud.irm.v1alpha2.IncidentRole.verify|verify} messages.
+                     * @param message IncidentRole message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.irm.v1alpha2.IIncidentRole, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified IncidentRole message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.IncidentRole.verify|verify} messages.
+                     * @param message IncidentRole message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.IIncidentRole, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an IncidentRole message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns IncidentRole
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.IncidentRole;
+
+                    /**
+                     * Decodes an IncidentRole message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns IncidentRole
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.IncidentRole;
+
+                    /**
+                     * Verifies an IncidentRole message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an IncidentRole message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns IncidentRole
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.IncidentRole;
+
+                    /**
+                     * Creates a plain object from an IncidentRole message. Also converts values to other types if specified.
+                     * @param message IncidentRole
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.irm.v1alpha2.IncidentRole, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this IncidentRole to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                namespace IncidentRole {
+
+                    /** Type enum. */
+                    enum Type {
+                        TYPE_UNSPECIFIED = 0,
+                        TYPE_INCIDENT_COMMANDER = 1,
+                        TYPE_COMMUNICATIONS_LEAD = 2,
+                        TYPE_OPERATIONS_LEAD = 3,
+                        TYPE_EXTERNAL_CUSTOMER_COMMUNICATIONS_LEAD = 4,
+                        TYPE_PRIMARY_ONCALL = 5,
+                        TYPE_SECONDARY_ONCALL = 6,
+                        TYPE_OTHER = 7
+                    }
+                }
+
+                /** Properties of an IncidentRoleAssignment. */
+                interface IIncidentRoleAssignment {
+
+                    /** IncidentRoleAssignment name */
+                    name?: (string|null);
+
+                    /** IncidentRoleAssignment etag */
+                    etag?: (string|null);
+
+                    /** IncidentRoleAssignment role */
+                    role?: (google.cloud.irm.v1alpha2.IIncidentRole|null);
+
+                    /** IncidentRoleAssignment assignee */
+                    assignee?: (google.cloud.irm.v1alpha2.IUser|null);
+
+                    /** IncidentRoleAssignment proposedAssignee */
+                    proposedAssignee?: (google.cloud.irm.v1alpha2.IUser|null);
+                }
+
+                /** Represents an IncidentRoleAssignment. */
+                class IncidentRoleAssignment implements IIncidentRoleAssignment {
+
+                    /**
+                     * Constructs a new IncidentRoleAssignment.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.irm.v1alpha2.IIncidentRoleAssignment);
+
+                    /** IncidentRoleAssignment name. */
+                    public name: string;
+
+                    /** IncidentRoleAssignment etag. */
+                    public etag: string;
+
+                    /** IncidentRoleAssignment role. */
+                    public role?: (google.cloud.irm.v1alpha2.IIncidentRole|null);
+
+                    /** IncidentRoleAssignment assignee. */
+                    public assignee?: (google.cloud.irm.v1alpha2.IUser|null);
+
+                    /** IncidentRoleAssignment proposedAssignee. */
+                    public proposedAssignee?: (google.cloud.irm.v1alpha2.IUser|null);
+
+                    /**
+                     * Creates a new IncidentRoleAssignment instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns IncidentRoleAssignment instance
+                     */
+                    public static create(properties?: google.cloud.irm.v1alpha2.IIncidentRoleAssignment): google.cloud.irm.v1alpha2.IncidentRoleAssignment;
+
+                    /**
+                     * Encodes the specified IncidentRoleAssignment message. Does not implicitly {@link google.cloud.irm.v1alpha2.IncidentRoleAssignment.verify|verify} messages.
+                     * @param message IncidentRoleAssignment message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.irm.v1alpha2.IIncidentRoleAssignment, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified IncidentRoleAssignment message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.IncidentRoleAssignment.verify|verify} messages.
+                     * @param message IncidentRoleAssignment message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.IIncidentRoleAssignment, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an IncidentRoleAssignment message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns IncidentRoleAssignment
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.IncidentRoleAssignment;
+
+                    /**
+                     * Decodes an IncidentRoleAssignment message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns IncidentRoleAssignment
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.IncidentRoleAssignment;
+
+                    /**
+                     * Verifies an IncidentRoleAssignment message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an IncidentRoleAssignment message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns IncidentRoleAssignment
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.IncidentRoleAssignment;
+
+                    /**
+                     * Creates a plain object from an IncidentRoleAssignment message. Also converts values to other types if specified.
+                     * @param message IncidentRoleAssignment
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.irm.v1alpha2.IncidentRoleAssignment, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this IncidentRoleAssignment to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of an Artifact. */
+                interface IArtifact {
+
+                    /** Artifact name */
+                    name?: (string|null);
+
+                    /** Artifact displayName */
+                    displayName?: (string|null);
+
+                    /** Artifact etag */
+                    etag?: (string|null);
+
+                    /** Artifact url */
+                    url?: (string|null);
+
+                    /** Artifact type */
+                    type?: (google.cloud.irm.v1alpha2.Artifact.Type|keyof typeof google.cloud.irm.v1alpha2.Artifact.Type|null);
+                }
+
+                /** Represents an Artifact. */
+                class Artifact implements IArtifact {
+
+                    /**
+                     * Constructs a new Artifact.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.irm.v1alpha2.IArtifact);
+
+                    /** Artifact name. */
+                    public name: string;
+
+                    /** Artifact displayName. */
+                    public displayName: string;
+
+                    /** Artifact etag. */
+                    public etag: string;
+
+                    /** Artifact url. */
+                    public url: string;
+
+                    /** Artifact type. */
+                    public type: (google.cloud.irm.v1alpha2.Artifact.Type|keyof typeof google.cloud.irm.v1alpha2.Artifact.Type);
+
+                    /**
+                     * Creates a new Artifact instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Artifact instance
+                     */
+                    public static create(properties?: google.cloud.irm.v1alpha2.IArtifact): google.cloud.irm.v1alpha2.Artifact;
+
+                    /**
+                     * Encodes the specified Artifact message. Does not implicitly {@link google.cloud.irm.v1alpha2.Artifact.verify|verify} messages.
+                     * @param message Artifact message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.irm.v1alpha2.IArtifact, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Artifact message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Artifact.verify|verify} messages.
+                     * @param message Artifact message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.IArtifact, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an Artifact message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Artifact
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Artifact;
+
+                    /**
+                     * Decodes an Artifact message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Artifact
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Artifact;
+
+                    /**
+                     * Verifies an Artifact message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an Artifact message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Artifact
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Artifact;
+
+                    /**
+                     * Creates a plain object from an Artifact message. Also converts values to other types if specified.
+                     * @param message Artifact
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.irm.v1alpha2.Artifact, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Artifact to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                namespace Artifact {
+
+                    /** Type enum. */
+                    enum Type {
+                        TYPE_UNSPECIFIED = 0,
+                        TYPE_URL = 1,
+                        TYPE_JIRA_ISSUE = 4
+                    }
+                }
+
+                /** Properties of a CommunicationChannel. */
+                interface ICommunicationChannel {
+
+                    /** CommunicationChannel email */
+                    email?: (google.cloud.irm.v1alpha2.CommunicationChannel.IEmail|null);
+
+                    /** CommunicationChannel notificationChannel */
+                    notificationChannel?: (google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel|null);
+                }
+
+                /** Represents a CommunicationChannel. */
+                class CommunicationChannel implements ICommunicationChannel {
+
+                    /**
+                     * Constructs a new CommunicationChannel.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.irm.v1alpha2.ICommunicationChannel);
+
+                    /** CommunicationChannel email. */
+                    public email?: (google.cloud.irm.v1alpha2.CommunicationChannel.IEmail|null);
+
+                    /** CommunicationChannel notificationChannel. */
+                    public notificationChannel?: (google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel|null);
+
+                    /** CommunicationChannel endpoint. */
+                    public endpoint?: ("email"|"notificationChannel");
+
+                    /**
+                     * Creates a new CommunicationChannel instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns CommunicationChannel instance
+                     */
+                    public static create(properties?: google.cloud.irm.v1alpha2.ICommunicationChannel): google.cloud.irm.v1alpha2.CommunicationChannel;
+
+                    /**
+                     * Encodes the specified CommunicationChannel message. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.verify|verify} messages.
+                     * @param message CommunicationChannel message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.irm.v1alpha2.ICommunicationChannel, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified CommunicationChannel message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.verify|verify} messages.
+                     * @param message CommunicationChannel message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.ICommunicationChannel, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a CommunicationChannel message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns CommunicationChannel
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.CommunicationChannel;
+
+                    /**
+                     * Decodes a CommunicationChannel message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns CommunicationChannel
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.CommunicationChannel;
+
+                    /**
+                     * Verifies a CommunicationChannel message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a CommunicationChannel message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns CommunicationChannel
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.CommunicationChannel;
+
+                    /**
+                     * Creates a plain object from a CommunicationChannel message. Also converts values to other types if specified.
+                     * @param message CommunicationChannel
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.irm.v1alpha2.CommunicationChannel, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this CommunicationChannel to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                namespace CommunicationChannel {
+
+                    /** Properties of an Email. */
+                    interface IEmail {
+
+                        /** Email address */
+                        address?: (string|null);
+                    }
+
+                    /** Represents an Email. */
+                    class Email implements IEmail {
+
+                        /**
+                         * Constructs a new Email.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.irm.v1alpha2.CommunicationChannel.IEmail);
+
+                        /** Email address. */
+                        public address: string;
+
+                        /**
+                         * Creates a new Email instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns Email instance
+                         */
+                        public static create(properties?: google.cloud.irm.v1alpha2.CommunicationChannel.IEmail): google.cloud.irm.v1alpha2.CommunicationChannel.Email;
+
+                        /**
+                         * Encodes the specified Email message. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.Email.verify|verify} messages.
+                         * @param message Email message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.irm.v1alpha2.CommunicationChannel.IEmail, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified Email message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.Email.verify|verify} messages.
+                         * @param message Email message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.irm.v1alpha2.CommunicationChannel.IEmail, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an Email message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns Email
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.CommunicationChannel.Email;
+
+                        /**
+                         * Decodes an Email message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns Email
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.CommunicationChannel.Email;
+
+                        /**
+                         * Verifies an Email message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an Email message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns Email
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.CommunicationChannel.Email;
+
+                        /**
+                         * Creates a plain object from an Email message. Also converts values to other types if specified.
+                         * @param message Email
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.irm.v1alpha2.CommunicationChannel.Email, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this Email to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+                    }
+
+                    /** Properties of a NotificationChannel. */
+                    interface INotificationChannel {
+
+                        /** NotificationChannel name */
+                        name?: (string|null);
+                    }
+
+                    /** Represents a NotificationChannel. */
+                    class NotificationChannel implements INotificationChannel {
+
+                        /**
+                         * Constructs a new NotificationChannel.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel);
+
+                        /** NotificationChannel name. */
+                        public name: string;
+
+                        /**
+                         * Creates a new NotificationChannel instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns NotificationChannel instance
+                         */
+                        public static create(properties?: google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel): google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel;
+
+                        /**
+                         * Encodes the specified NotificationChannel message. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.verify|verify} messages.
+                         * @param message NotificationChannel message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified NotificationChannel message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.verify|verify} messages.
+                         * @param message NotificationChannel message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a NotificationChannel message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns NotificationChannel
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel;
+
+                        /**
+                         * Decodes a NotificationChannel message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns NotificationChannel
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel;
+
+                        /**
+                         * Verifies a NotificationChannel message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a NotificationChannel message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns NotificationChannel
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel;
+
+                        /**
+                         * Creates a plain object from a NotificationChannel message. Also converts values to other types if specified.
+                         * @param message NotificationChannel
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this NotificationChannel to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+                    }
+                }
+
+                /** Properties of a Subscription. */
+                interface ISubscription {
+
+                    /** Subscription name */
+                    name?: (string|null);
+
+                    /** Subscription etag */
+                    etag?: (string|null);
+
+                    /** Subscription subscriptionChannel */
+                    subscriptionChannel?: (google.cloud.irm.v1alpha2.ICommunicationChannel|null);
+
+                    /** Subscription eventTypes */
+                    eventTypes?: (google.cloud.irm.v1alpha2.Subscription.EventType[]|null);
+                }
+
+                /** Represents a Subscription. */
+                class Subscription implements ISubscription {
+
+                    /**
+                     * Constructs a new Subscription.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.irm.v1alpha2.ISubscription);
+
+                    /** Subscription name. */
+                    public name: string;
+
+                    /** Subscription etag. */
+                    public etag: string;
+
+                    /** Subscription subscriptionChannel. */
+                    public subscriptionChannel?: (google.cloud.irm.v1alpha2.ICommunicationChannel|null);
+
+                    /** Subscription eventTypes. */
+                    public eventTypes: google.cloud.irm.v1alpha2.Subscription.EventType[];
+
+                    /**
+                     * Creates a new Subscription instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Subscription instance
+                     */
+                    public static create(properties?: google.cloud.irm.v1alpha2.ISubscription): google.cloud.irm.v1alpha2.Subscription;
+
+                    /**
+                     * Encodes the specified Subscription message. Does not implicitly {@link google.cloud.irm.v1alpha2.Subscription.verify|verify} messages.
+                     * @param message Subscription message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.irm.v1alpha2.ISubscription, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Subscription message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Subscription.verify|verify} messages.
+                     * @param message Subscription message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.ISubscription, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Subscription message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Subscription
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Subscription;
+
+                    /**
+                     * Decodes a Subscription message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Subscription
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Subscription;
+
+                    /**
+                     * Verifies a Subscription message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Subscription message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Subscription
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Subscription;
+
+                    /**
+                     * Creates a plain object from a Subscription message. Also converts values to other types if specified.
+                     * @param message Subscription
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.irm.v1alpha2.Subscription, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Subscription to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                namespace Subscription {
+
+                    /** EventType enum. */
+                    enum EventType {
+                        EVENT_TYPE_UNSPECIFIED = 0,
+                        EVENT_TYPE_TITLE_CHANGE = 1,
+                        EVENT_TYPE_SYNOPSIS_CHANGE = 2,
+                        EVENT_TYPE_STAGE_CHANGE = 3,
+                        EVENT_TYPE_SEVERITY_CHANGE = 4,
+                        EVENT_TYPE_ANNOTATION_ADD = 5,
+                        EVENT_TYPE_ANNOTATION_CHANGE = 6
+                    }
+                }
+
                 /** Represents an IncidentService */
                 class IncidentService extends $protobuf.rpc.Service {
 
@@ -5050,1733 +6777,6 @@ export namespace google {
                      */
                     public toJSON(): { [k: string]: any };
                 }
-
-                /** Properties of a User. */
-                interface IUser {
-
-                    /** User userId */
-                    userId?: (string|null);
-
-                    /** User email */
-                    email?: (string|null);
-                }
-
-                /** Represents a User. */
-                class User implements IUser {
-
-                    /**
-                     * Constructs a new User.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.irm.v1alpha2.IUser);
-
-                    /** User userId. */
-                    public userId: string;
-
-                    /** User email. */
-                    public email: string;
-
-                    /** User user. */
-                    public user?: ("userId"|"email");
-
-                    /**
-                     * Creates a new User instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns User instance
-                     */
-                    public static create(properties?: google.cloud.irm.v1alpha2.IUser): google.cloud.irm.v1alpha2.User;
-
-                    /**
-                     * Encodes the specified User message. Does not implicitly {@link google.cloud.irm.v1alpha2.User.verify|verify} messages.
-                     * @param message User message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.irm.v1alpha2.IUser, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified User message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.User.verify|verify} messages.
-                     * @param message User message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.IUser, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a User message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns User
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.User;
-
-                    /**
-                     * Decodes a User message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns User
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.User;
-
-                    /**
-                     * Verifies a User message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a User message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns User
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.User;
-
-                    /**
-                     * Creates a plain object from a User message. Also converts values to other types if specified.
-                     * @param message User
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.irm.v1alpha2.User, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this User to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                /** Properties of a Signal. */
-                interface ISignal {
-
-                    /** Signal name */
-                    name?: (string|null);
-
-                    /** Signal etag */
-                    etag?: (string|null);
-
-                    /** Signal incident */
-                    incident?: (string|null);
-
-                    /** Signal createTime */
-                    createTime?: (google.protobuf.ITimestamp|null);
-
-                    /** Signal closeTime */
-                    closeTime?: (google.protobuf.ITimestamp|null);
-
-                    /** Signal detectTime */
-                    detectTime?: (google.protobuf.ITimestamp|null);
-
-                    /** Signal creator */
-                    creator?: (google.cloud.irm.v1alpha2.IUser|null);
-
-                    /** Signal title */
-                    title?: (string|null);
-
-                    /** Signal contentType */
-                    contentType?: (string|null);
-
-                    /** Signal content */
-                    content?: (string|null);
-
-                    /** Signal signalState */
-                    signalState?: (google.cloud.irm.v1alpha2.Signal.State|null);
-
-                    /** Signal signalArtifacts */
-                    signalArtifacts?: (google.cloud.irm.v1alpha2.Signal.ISignalArtifact[]|null);
-                }
-
-                /** Represents a Signal. */
-                class Signal implements ISignal {
-
-                    /**
-                     * Constructs a new Signal.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.irm.v1alpha2.ISignal);
-
-                    /** Signal name. */
-                    public name: string;
-
-                    /** Signal etag. */
-                    public etag: string;
-
-                    /** Signal incident. */
-                    public incident: string;
-
-                    /** Signal createTime. */
-                    public createTime?: (google.protobuf.ITimestamp|null);
-
-                    /** Signal closeTime. */
-                    public closeTime?: (google.protobuf.ITimestamp|null);
-
-                    /** Signal detectTime. */
-                    public detectTime?: (google.protobuf.ITimestamp|null);
-
-                    /** Signal creator. */
-                    public creator?: (google.cloud.irm.v1alpha2.IUser|null);
-
-                    /** Signal title. */
-                    public title: string;
-
-                    /** Signal contentType. */
-                    public contentType: string;
-
-                    /** Signal content. */
-                    public content: string;
-
-                    /** Signal signalState. */
-                    public signalState: google.cloud.irm.v1alpha2.Signal.State;
-
-                    /** Signal signalArtifacts. */
-                    public signalArtifacts: google.cloud.irm.v1alpha2.Signal.ISignalArtifact[];
-
-                    /**
-                     * Creates a new Signal instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns Signal instance
-                     */
-                    public static create(properties?: google.cloud.irm.v1alpha2.ISignal): google.cloud.irm.v1alpha2.Signal;
-
-                    /**
-                     * Encodes the specified Signal message. Does not implicitly {@link google.cloud.irm.v1alpha2.Signal.verify|verify} messages.
-                     * @param message Signal message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.irm.v1alpha2.ISignal, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified Signal message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Signal.verify|verify} messages.
-                     * @param message Signal message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.ISignal, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a Signal message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns Signal
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Signal;
-
-                    /**
-                     * Decodes a Signal message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns Signal
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Signal;
-
-                    /**
-                     * Verifies a Signal message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a Signal message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns Signal
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Signal;
-
-                    /**
-                     * Creates a plain object from a Signal message. Also converts values to other types if specified.
-                     * @param message Signal
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.irm.v1alpha2.Signal, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this Signal to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                namespace Signal {
-
-                    /** Properties of a SignalArtifact. */
-                    interface ISignalArtifact {
-
-                        /** SignalArtifact userType */
-                        userType?: (string|null);
-
-                        /** SignalArtifact uri */
-                        uri?: (string|null);
-                    }
-
-                    /** Represents a SignalArtifact. */
-                    class SignalArtifact implements ISignalArtifact {
-
-                        /**
-                         * Constructs a new SignalArtifact.
-                         * @param [properties] Properties to set
-                         */
-                        constructor(properties?: google.cloud.irm.v1alpha2.Signal.ISignalArtifact);
-
-                        /** SignalArtifact userType. */
-                        public userType: string;
-
-                        /** SignalArtifact uri. */
-                        public uri: string;
-
-                        /** SignalArtifact artifactType. */
-                        public artifactType?: "userType";
-
-                        /**
-                         * Creates a new SignalArtifact instance using the specified properties.
-                         * @param [properties] Properties to set
-                         * @returns SignalArtifact instance
-                         */
-                        public static create(properties?: google.cloud.irm.v1alpha2.Signal.ISignalArtifact): google.cloud.irm.v1alpha2.Signal.SignalArtifact;
-
-                        /**
-                         * Encodes the specified SignalArtifact message. Does not implicitly {@link google.cloud.irm.v1alpha2.Signal.SignalArtifact.verify|verify} messages.
-                         * @param message SignalArtifact message or plain object to encode
-                         * @param [writer] Writer to encode to
-                         * @returns Writer
-                         */
-                        public static encode(message: google.cloud.irm.v1alpha2.Signal.ISignalArtifact, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                        /**
-                         * Encodes the specified SignalArtifact message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Signal.SignalArtifact.verify|verify} messages.
-                         * @param message SignalArtifact message or plain object to encode
-                         * @param [writer] Writer to encode to
-                         * @returns Writer
-                         */
-                        public static encodeDelimited(message: google.cloud.irm.v1alpha2.Signal.ISignalArtifact, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                        /**
-                         * Decodes a SignalArtifact message from the specified reader or buffer.
-                         * @param reader Reader or buffer to decode from
-                         * @param [length] Message length if known beforehand
-                         * @returns SignalArtifact
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Signal.SignalArtifact;
-
-                        /**
-                         * Decodes a SignalArtifact message from the specified reader or buffer, length delimited.
-                         * @param reader Reader or buffer to decode from
-                         * @returns SignalArtifact
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Signal.SignalArtifact;
-
-                        /**
-                         * Verifies a SignalArtifact message.
-                         * @param message Plain object to verify
-                         * @returns `null` if valid, otherwise the reason why it is not
-                         */
-                        public static verify(message: { [k: string]: any }): (string|null);
-
-                        /**
-                         * Creates a SignalArtifact message from a plain object. Also converts values to their respective internal types.
-                         * @param object Plain object
-                         * @returns SignalArtifact
-                         */
-                        public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Signal.SignalArtifact;
-
-                        /**
-                         * Creates a plain object from a SignalArtifact message. Also converts values to other types if specified.
-                         * @param message SignalArtifact
-                         * @param [options] Conversion options
-                         * @returns Plain object
-                         */
-                        public static toObject(message: google.cloud.irm.v1alpha2.Signal.SignalArtifact, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                        /**
-                         * Converts this SignalArtifact to JSON.
-                         * @returns JSON object
-                         */
-                        public toJSON(): { [k: string]: any };
-                    }
-
-                    /** State enum. */
-                    enum State {
-                        STATE_UNSPECIFIED = 0,
-                        STATE_OPEN = 1,
-                        STATE_CLOSED = 2
-                    }
-                }
-
-                /** Properties of an Annotation. */
-                interface IAnnotation {
-
-                    /** Annotation name */
-                    name?: (string|null);
-
-                    /** Annotation author */
-                    author?: (google.cloud.irm.v1alpha2.IUser|null);
-
-                    /** Annotation createTime */
-                    createTime?: (google.protobuf.ITimestamp|null);
-
-                    /** Annotation content */
-                    content?: (string|null);
-
-                    /** Annotation contentType */
-                    contentType?: (string|null);
-                }
-
-                /** Represents an Annotation. */
-                class Annotation implements IAnnotation {
-
-                    /**
-                     * Constructs a new Annotation.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.irm.v1alpha2.IAnnotation);
-
-                    /** Annotation name. */
-                    public name: string;
-
-                    /** Annotation author. */
-                    public author?: (google.cloud.irm.v1alpha2.IUser|null);
-
-                    /** Annotation createTime. */
-                    public createTime?: (google.protobuf.ITimestamp|null);
-
-                    /** Annotation content. */
-                    public content: string;
-
-                    /** Annotation contentType. */
-                    public contentType: string;
-
-                    /**
-                     * Creates a new Annotation instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns Annotation instance
-                     */
-                    public static create(properties?: google.cloud.irm.v1alpha2.IAnnotation): google.cloud.irm.v1alpha2.Annotation;
-
-                    /**
-                     * Encodes the specified Annotation message. Does not implicitly {@link google.cloud.irm.v1alpha2.Annotation.verify|verify} messages.
-                     * @param message Annotation message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.irm.v1alpha2.IAnnotation, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified Annotation message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Annotation.verify|verify} messages.
-                     * @param message Annotation message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.IAnnotation, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes an Annotation message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns Annotation
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Annotation;
-
-                    /**
-                     * Decodes an Annotation message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns Annotation
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Annotation;
-
-                    /**
-                     * Verifies an Annotation message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates an Annotation message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns Annotation
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Annotation;
-
-                    /**
-                     * Creates a plain object from an Annotation message. Also converts values to other types if specified.
-                     * @param message Annotation
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.irm.v1alpha2.Annotation, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this Annotation to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                /** Properties of a Tag. */
-                interface ITag {
-
-                    /** Tag name */
-                    name?: (string|null);
-
-                    /** Tag displayName */
-                    displayName?: (string|null);
-                }
-
-                /** Represents a Tag. */
-                class Tag implements ITag {
-
-                    /**
-                     * Constructs a new Tag.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.irm.v1alpha2.ITag);
-
-                    /** Tag name. */
-                    public name: string;
-
-                    /** Tag displayName. */
-                    public displayName: string;
-
-                    /**
-                     * Creates a new Tag instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns Tag instance
-                     */
-                    public static create(properties?: google.cloud.irm.v1alpha2.ITag): google.cloud.irm.v1alpha2.Tag;
-
-                    /**
-                     * Encodes the specified Tag message. Does not implicitly {@link google.cloud.irm.v1alpha2.Tag.verify|verify} messages.
-                     * @param message Tag message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.irm.v1alpha2.ITag, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified Tag message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Tag.verify|verify} messages.
-                     * @param message Tag message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.ITag, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a Tag message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns Tag
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Tag;
-
-                    /**
-                     * Decodes a Tag message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns Tag
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Tag;
-
-                    /**
-                     * Verifies a Tag message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a Tag message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns Tag
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Tag;
-
-                    /**
-                     * Creates a plain object from a Tag message. Also converts values to other types if specified.
-                     * @param message Tag
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.irm.v1alpha2.Tag, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this Tag to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                /** Properties of a Synopsis. */
-                interface ISynopsis {
-
-                    /** Synopsis contentType */
-                    contentType?: (string|null);
-
-                    /** Synopsis content */
-                    content?: (string|null);
-
-                    /** Synopsis updateTime */
-                    updateTime?: (google.protobuf.ITimestamp|null);
-
-                    /** Synopsis author */
-                    author?: (google.cloud.irm.v1alpha2.IUser|null);
-                }
-
-                /** Represents a Synopsis. */
-                class Synopsis implements ISynopsis {
-
-                    /**
-                     * Constructs a new Synopsis.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.irm.v1alpha2.ISynopsis);
-
-                    /** Synopsis contentType. */
-                    public contentType: string;
-
-                    /** Synopsis content. */
-                    public content: string;
-
-                    /** Synopsis updateTime. */
-                    public updateTime?: (google.protobuf.ITimestamp|null);
-
-                    /** Synopsis author. */
-                    public author?: (google.cloud.irm.v1alpha2.IUser|null);
-
-                    /**
-                     * Creates a new Synopsis instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns Synopsis instance
-                     */
-                    public static create(properties?: google.cloud.irm.v1alpha2.ISynopsis): google.cloud.irm.v1alpha2.Synopsis;
-
-                    /**
-                     * Encodes the specified Synopsis message. Does not implicitly {@link google.cloud.irm.v1alpha2.Synopsis.verify|verify} messages.
-                     * @param message Synopsis message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.irm.v1alpha2.ISynopsis, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified Synopsis message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Synopsis.verify|verify} messages.
-                     * @param message Synopsis message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.ISynopsis, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a Synopsis message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns Synopsis
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Synopsis;
-
-                    /**
-                     * Decodes a Synopsis message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns Synopsis
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Synopsis;
-
-                    /**
-                     * Verifies a Synopsis message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a Synopsis message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns Synopsis
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Synopsis;
-
-                    /**
-                     * Creates a plain object from a Synopsis message. Also converts values to other types if specified.
-                     * @param message Synopsis
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.irm.v1alpha2.Synopsis, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this Synopsis to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                /** Properties of an Incident. */
-                interface IIncident {
-
-                    /** Incident name */
-                    name?: (string|null);
-
-                    /** Incident title */
-                    title?: (string|null);
-
-                    /** Incident escalationLevel */
-                    escalationLevel?: (google.cloud.irm.v1alpha2.Incident.EscalationLevel|null);
-
-                    /** Incident etag */
-                    etag?: (string|null);
-
-                    /** Incident severity */
-                    severity?: (google.cloud.irm.v1alpha2.Incident.Severity|null);
-
-                    /** Incident stage */
-                    stage?: (google.cloud.irm.v1alpha2.Incident.Stage|null);
-
-                    /** Incident duplicateIncident */
-                    duplicateIncident?: (string|null);
-
-                    /** Incident startTime */
-                    startTime?: (google.protobuf.ITimestamp|null);
-
-                    /** Incident synopsis */
-                    synopsis?: (google.cloud.irm.v1alpha2.ISynopsis|null);
-
-                    /** Incident communicationVenue */
-                    communicationVenue?: (google.cloud.irm.v1alpha2.Incident.ICommunicationVenue|null);
-                }
-
-                /** Represents an Incident. */
-                class Incident implements IIncident {
-
-                    /**
-                     * Constructs a new Incident.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.irm.v1alpha2.IIncident);
-
-                    /** Incident name. */
-                    public name: string;
-
-                    /** Incident title. */
-                    public title: string;
-
-                    /** Incident escalationLevel. */
-                    public escalationLevel: google.cloud.irm.v1alpha2.Incident.EscalationLevel;
-
-                    /** Incident etag. */
-                    public etag: string;
-
-                    /** Incident severity. */
-                    public severity: google.cloud.irm.v1alpha2.Incident.Severity;
-
-                    /** Incident stage. */
-                    public stage: google.cloud.irm.v1alpha2.Incident.Stage;
-
-                    /** Incident duplicateIncident. */
-                    public duplicateIncident: string;
-
-                    /** Incident startTime. */
-                    public startTime?: (google.protobuf.ITimestamp|null);
-
-                    /** Incident synopsis. */
-                    public synopsis?: (google.cloud.irm.v1alpha2.ISynopsis|null);
-
-                    /** Incident communicationVenue. */
-                    public communicationVenue?: (google.cloud.irm.v1alpha2.Incident.ICommunicationVenue|null);
-
-                    /**
-                     * Creates a new Incident instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns Incident instance
-                     */
-                    public static create(properties?: google.cloud.irm.v1alpha2.IIncident): google.cloud.irm.v1alpha2.Incident;
-
-                    /**
-                     * Encodes the specified Incident message. Does not implicitly {@link google.cloud.irm.v1alpha2.Incident.verify|verify} messages.
-                     * @param message Incident message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.irm.v1alpha2.IIncident, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified Incident message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Incident.verify|verify} messages.
-                     * @param message Incident message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.IIncident, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes an Incident message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns Incident
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Incident;
-
-                    /**
-                     * Decodes an Incident message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns Incident
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Incident;
-
-                    /**
-                     * Verifies an Incident message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates an Incident message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns Incident
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Incident;
-
-                    /**
-                     * Creates a plain object from an Incident message. Also converts values to other types if specified.
-                     * @param message Incident
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.irm.v1alpha2.Incident, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this Incident to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                namespace Incident {
-
-                    /** Properties of a CommunicationVenue. */
-                    interface ICommunicationVenue {
-
-                        /** CommunicationVenue uri */
-                        uri?: (string|null);
-
-                        /** CommunicationVenue displayName */
-                        displayName?: (string|null);
-
-                        /** CommunicationVenue channelType */
-                        channelType?: (google.cloud.irm.v1alpha2.Incident.CommunicationVenue.ChannelType|null);
-                    }
-
-                    /** Represents a CommunicationVenue. */
-                    class CommunicationVenue implements ICommunicationVenue {
-
-                        /**
-                         * Constructs a new CommunicationVenue.
-                         * @param [properties] Properties to set
-                         */
-                        constructor(properties?: google.cloud.irm.v1alpha2.Incident.ICommunicationVenue);
-
-                        /** CommunicationVenue uri. */
-                        public uri: string;
-
-                        /** CommunicationVenue displayName. */
-                        public displayName: string;
-
-                        /** CommunicationVenue channelType. */
-                        public channelType: google.cloud.irm.v1alpha2.Incident.CommunicationVenue.ChannelType;
-
-                        /**
-                         * Creates a new CommunicationVenue instance using the specified properties.
-                         * @param [properties] Properties to set
-                         * @returns CommunicationVenue instance
-                         */
-                        public static create(properties?: google.cloud.irm.v1alpha2.Incident.ICommunicationVenue): google.cloud.irm.v1alpha2.Incident.CommunicationVenue;
-
-                        /**
-                         * Encodes the specified CommunicationVenue message. Does not implicitly {@link google.cloud.irm.v1alpha2.Incident.CommunicationVenue.verify|verify} messages.
-                         * @param message CommunicationVenue message or plain object to encode
-                         * @param [writer] Writer to encode to
-                         * @returns Writer
-                         */
-                        public static encode(message: google.cloud.irm.v1alpha2.Incident.ICommunicationVenue, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                        /**
-                         * Encodes the specified CommunicationVenue message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Incident.CommunicationVenue.verify|verify} messages.
-                         * @param message CommunicationVenue message or plain object to encode
-                         * @param [writer] Writer to encode to
-                         * @returns Writer
-                         */
-                        public static encodeDelimited(message: google.cloud.irm.v1alpha2.Incident.ICommunicationVenue, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                        /**
-                         * Decodes a CommunicationVenue message from the specified reader or buffer.
-                         * @param reader Reader or buffer to decode from
-                         * @param [length] Message length if known beforehand
-                         * @returns CommunicationVenue
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Incident.CommunicationVenue;
-
-                        /**
-                         * Decodes a CommunicationVenue message from the specified reader or buffer, length delimited.
-                         * @param reader Reader or buffer to decode from
-                         * @returns CommunicationVenue
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Incident.CommunicationVenue;
-
-                        /**
-                         * Verifies a CommunicationVenue message.
-                         * @param message Plain object to verify
-                         * @returns `null` if valid, otherwise the reason why it is not
-                         */
-                        public static verify(message: { [k: string]: any }): (string|null);
-
-                        /**
-                         * Creates a CommunicationVenue message from a plain object. Also converts values to their respective internal types.
-                         * @param object Plain object
-                         * @returns CommunicationVenue
-                         */
-                        public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Incident.CommunicationVenue;
-
-                        /**
-                         * Creates a plain object from a CommunicationVenue message. Also converts values to other types if specified.
-                         * @param message CommunicationVenue
-                         * @param [options] Conversion options
-                         * @returns Plain object
-                         */
-                        public static toObject(message: google.cloud.irm.v1alpha2.Incident.CommunicationVenue, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                        /**
-                         * Converts this CommunicationVenue to JSON.
-                         * @returns JSON object
-                         */
-                        public toJSON(): { [k: string]: any };
-                    }
-
-                    namespace CommunicationVenue {
-
-                        /** ChannelType enum. */
-                        enum ChannelType {
-                            CHANNEL_TYPE_UNSPECIFIED = 0,
-                            CHANNEL_TYPE_URI = 1,
-                            CHANNEL_TYPE_SLACK = 5
-                        }
-                    }
-
-                    /** EscalationLevel enum. */
-                    enum EscalationLevel {
-                        ESCALATION_LEVEL_UNSPECIFIED = 0,
-                        ESCALATION_LEVEL_ORGANIZATION = 1
-                    }
-
-                    /** Severity enum. */
-                    enum Severity {
-                        SEVERITY_UNSPECIFIED = 0,
-                        SEVERITY_HUGE = 1,
-                        SEVERITY_MAJOR = 2,
-                        SEVERITY_MEDIUM = 3,
-                        SEVERITY_MINOR = 4,
-                        SEVERITY_NEGLIGIBLE = 5
-                    }
-
-                    /** Stage enum. */
-                    enum Stage {
-                        STAGE_UNSPECIFIED = 0,
-                        STAGE_DETECTED = 4,
-                        STAGE_TRIAGED = 1,
-                        STAGE_MITIGATED = 2,
-                        STAGE_RESOLVED = 3,
-                        STAGE_DOCUMENTED = 5,
-                        STAGE_DUPLICATE = 6
-                    }
-                }
-
-                /** Properties of an IncidentRole. */
-                interface IIncidentRole {
-
-                    /** IncidentRole type */
-                    type?: (google.cloud.irm.v1alpha2.IncidentRole.Type|null);
-
-                    /** IncidentRole title */
-                    title?: (string|null);
-
-                    /** IncidentRole description */
-                    description?: (string|null);
-                }
-
-                /** Represents an IncidentRole. */
-                class IncidentRole implements IIncidentRole {
-
-                    /**
-                     * Constructs a new IncidentRole.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.irm.v1alpha2.IIncidentRole);
-
-                    /** IncidentRole type. */
-                    public type: google.cloud.irm.v1alpha2.IncidentRole.Type;
-
-                    /** IncidentRole title. */
-                    public title: string;
-
-                    /** IncidentRole description. */
-                    public description: string;
-
-                    /**
-                     * Creates a new IncidentRole instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns IncidentRole instance
-                     */
-                    public static create(properties?: google.cloud.irm.v1alpha2.IIncidentRole): google.cloud.irm.v1alpha2.IncidentRole;
-
-                    /**
-                     * Encodes the specified IncidentRole message. Does not implicitly {@link google.cloud.irm.v1alpha2.IncidentRole.verify|verify} messages.
-                     * @param message IncidentRole message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.irm.v1alpha2.IIncidentRole, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified IncidentRole message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.IncidentRole.verify|verify} messages.
-                     * @param message IncidentRole message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.IIncidentRole, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes an IncidentRole message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns IncidentRole
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.IncidentRole;
-
-                    /**
-                     * Decodes an IncidentRole message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns IncidentRole
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.IncidentRole;
-
-                    /**
-                     * Verifies an IncidentRole message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates an IncidentRole message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns IncidentRole
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.IncidentRole;
-
-                    /**
-                     * Creates a plain object from an IncidentRole message. Also converts values to other types if specified.
-                     * @param message IncidentRole
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.irm.v1alpha2.IncidentRole, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this IncidentRole to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                namespace IncidentRole {
-
-                    /** Type enum. */
-                    enum Type {
-                        TYPE_UNSPECIFIED = 0,
-                        TYPE_INCIDENT_COMMANDER = 1,
-                        TYPE_COMMUNICATIONS_LEAD = 2,
-                        TYPE_OPERATIONS_LEAD = 3,
-                        TYPE_EXTERNAL_CUSTOMER_COMMUNICATIONS_LEAD = 4,
-                        TYPE_PRIMARY_ONCALL = 5,
-                        TYPE_SECONDARY_ONCALL = 6,
-                        TYPE_OTHER = 7
-                    }
-                }
-
-                /** Properties of an IncidentRoleAssignment. */
-                interface IIncidentRoleAssignment {
-
-                    /** IncidentRoleAssignment name */
-                    name?: (string|null);
-
-                    /** IncidentRoleAssignment etag */
-                    etag?: (string|null);
-
-                    /** IncidentRoleAssignment role */
-                    role?: (google.cloud.irm.v1alpha2.IIncidentRole|null);
-
-                    /** IncidentRoleAssignment assignee */
-                    assignee?: (google.cloud.irm.v1alpha2.IUser|null);
-
-                    /** IncidentRoleAssignment proposedAssignee */
-                    proposedAssignee?: (google.cloud.irm.v1alpha2.IUser|null);
-                }
-
-                /** Represents an IncidentRoleAssignment. */
-                class IncidentRoleAssignment implements IIncidentRoleAssignment {
-
-                    /**
-                     * Constructs a new IncidentRoleAssignment.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.irm.v1alpha2.IIncidentRoleAssignment);
-
-                    /** IncidentRoleAssignment name. */
-                    public name: string;
-
-                    /** IncidentRoleAssignment etag. */
-                    public etag: string;
-
-                    /** IncidentRoleAssignment role. */
-                    public role?: (google.cloud.irm.v1alpha2.IIncidentRole|null);
-
-                    /** IncidentRoleAssignment assignee. */
-                    public assignee?: (google.cloud.irm.v1alpha2.IUser|null);
-
-                    /** IncidentRoleAssignment proposedAssignee. */
-                    public proposedAssignee?: (google.cloud.irm.v1alpha2.IUser|null);
-
-                    /**
-                     * Creates a new IncidentRoleAssignment instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns IncidentRoleAssignment instance
-                     */
-                    public static create(properties?: google.cloud.irm.v1alpha2.IIncidentRoleAssignment): google.cloud.irm.v1alpha2.IncidentRoleAssignment;
-
-                    /**
-                     * Encodes the specified IncidentRoleAssignment message. Does not implicitly {@link google.cloud.irm.v1alpha2.IncidentRoleAssignment.verify|verify} messages.
-                     * @param message IncidentRoleAssignment message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.irm.v1alpha2.IIncidentRoleAssignment, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified IncidentRoleAssignment message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.IncidentRoleAssignment.verify|verify} messages.
-                     * @param message IncidentRoleAssignment message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.IIncidentRoleAssignment, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes an IncidentRoleAssignment message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns IncidentRoleAssignment
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.IncidentRoleAssignment;
-
-                    /**
-                     * Decodes an IncidentRoleAssignment message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns IncidentRoleAssignment
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.IncidentRoleAssignment;
-
-                    /**
-                     * Verifies an IncidentRoleAssignment message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates an IncidentRoleAssignment message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns IncidentRoleAssignment
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.IncidentRoleAssignment;
-
-                    /**
-                     * Creates a plain object from an IncidentRoleAssignment message. Also converts values to other types if specified.
-                     * @param message IncidentRoleAssignment
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.irm.v1alpha2.IncidentRoleAssignment, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this IncidentRoleAssignment to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                /** Properties of an Artifact. */
-                interface IArtifact {
-
-                    /** Artifact name */
-                    name?: (string|null);
-
-                    /** Artifact displayName */
-                    displayName?: (string|null);
-
-                    /** Artifact etag */
-                    etag?: (string|null);
-
-                    /** Artifact url */
-                    url?: (string|null);
-
-                    /** Artifact type */
-                    type?: (google.cloud.irm.v1alpha2.Artifact.Type|null);
-                }
-
-                /** Represents an Artifact. */
-                class Artifact implements IArtifact {
-
-                    /**
-                     * Constructs a new Artifact.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.irm.v1alpha2.IArtifact);
-
-                    /** Artifact name. */
-                    public name: string;
-
-                    /** Artifact displayName. */
-                    public displayName: string;
-
-                    /** Artifact etag. */
-                    public etag: string;
-
-                    /** Artifact url. */
-                    public url: string;
-
-                    /** Artifact type. */
-                    public type: google.cloud.irm.v1alpha2.Artifact.Type;
-
-                    /**
-                     * Creates a new Artifact instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns Artifact instance
-                     */
-                    public static create(properties?: google.cloud.irm.v1alpha2.IArtifact): google.cloud.irm.v1alpha2.Artifact;
-
-                    /**
-                     * Encodes the specified Artifact message. Does not implicitly {@link google.cloud.irm.v1alpha2.Artifact.verify|verify} messages.
-                     * @param message Artifact message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.irm.v1alpha2.IArtifact, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified Artifact message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Artifact.verify|verify} messages.
-                     * @param message Artifact message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.IArtifact, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes an Artifact message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns Artifact
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Artifact;
-
-                    /**
-                     * Decodes an Artifact message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns Artifact
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Artifact;
-
-                    /**
-                     * Verifies an Artifact message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates an Artifact message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns Artifact
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Artifact;
-
-                    /**
-                     * Creates a plain object from an Artifact message. Also converts values to other types if specified.
-                     * @param message Artifact
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.irm.v1alpha2.Artifact, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this Artifact to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                namespace Artifact {
-
-                    /** Type enum. */
-                    enum Type {
-                        TYPE_UNSPECIFIED = 0,
-                        TYPE_URL = 1,
-                        TYPE_JIRA_ISSUE = 4
-                    }
-                }
-
-                /** Properties of a CommunicationChannel. */
-                interface ICommunicationChannel {
-
-                    /** CommunicationChannel email */
-                    email?: (google.cloud.irm.v1alpha2.CommunicationChannel.IEmail|null);
-
-                    /** CommunicationChannel notificationChannel */
-                    notificationChannel?: (google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel|null);
-                }
-
-                /** Represents a CommunicationChannel. */
-                class CommunicationChannel implements ICommunicationChannel {
-
-                    /**
-                     * Constructs a new CommunicationChannel.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.irm.v1alpha2.ICommunicationChannel);
-
-                    /** CommunicationChannel email. */
-                    public email?: (google.cloud.irm.v1alpha2.CommunicationChannel.IEmail|null);
-
-                    /** CommunicationChannel notificationChannel. */
-                    public notificationChannel?: (google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel|null);
-
-                    /** CommunicationChannel endpoint. */
-                    public endpoint?: ("email"|"notificationChannel");
-
-                    /**
-                     * Creates a new CommunicationChannel instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns CommunicationChannel instance
-                     */
-                    public static create(properties?: google.cloud.irm.v1alpha2.ICommunicationChannel): google.cloud.irm.v1alpha2.CommunicationChannel;
-
-                    /**
-                     * Encodes the specified CommunicationChannel message. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.verify|verify} messages.
-                     * @param message CommunicationChannel message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.irm.v1alpha2.ICommunicationChannel, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified CommunicationChannel message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.verify|verify} messages.
-                     * @param message CommunicationChannel message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.ICommunicationChannel, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a CommunicationChannel message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns CommunicationChannel
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.CommunicationChannel;
-
-                    /**
-                     * Decodes a CommunicationChannel message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns CommunicationChannel
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.CommunicationChannel;
-
-                    /**
-                     * Verifies a CommunicationChannel message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a CommunicationChannel message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns CommunicationChannel
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.CommunicationChannel;
-
-                    /**
-                     * Creates a plain object from a CommunicationChannel message. Also converts values to other types if specified.
-                     * @param message CommunicationChannel
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.irm.v1alpha2.CommunicationChannel, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this CommunicationChannel to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                namespace CommunicationChannel {
-
-                    /** Properties of an Email. */
-                    interface IEmail {
-
-                        /** Email address */
-                        address?: (string|null);
-                    }
-
-                    /** Represents an Email. */
-                    class Email implements IEmail {
-
-                        /**
-                         * Constructs a new Email.
-                         * @param [properties] Properties to set
-                         */
-                        constructor(properties?: google.cloud.irm.v1alpha2.CommunicationChannel.IEmail);
-
-                        /** Email address. */
-                        public address: string;
-
-                        /**
-                         * Creates a new Email instance using the specified properties.
-                         * @param [properties] Properties to set
-                         * @returns Email instance
-                         */
-                        public static create(properties?: google.cloud.irm.v1alpha2.CommunicationChannel.IEmail): google.cloud.irm.v1alpha2.CommunicationChannel.Email;
-
-                        /**
-                         * Encodes the specified Email message. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.Email.verify|verify} messages.
-                         * @param message Email message or plain object to encode
-                         * @param [writer] Writer to encode to
-                         * @returns Writer
-                         */
-                        public static encode(message: google.cloud.irm.v1alpha2.CommunicationChannel.IEmail, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                        /**
-                         * Encodes the specified Email message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.Email.verify|verify} messages.
-                         * @param message Email message or plain object to encode
-                         * @param [writer] Writer to encode to
-                         * @returns Writer
-                         */
-                        public static encodeDelimited(message: google.cloud.irm.v1alpha2.CommunicationChannel.IEmail, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                        /**
-                         * Decodes an Email message from the specified reader or buffer.
-                         * @param reader Reader or buffer to decode from
-                         * @param [length] Message length if known beforehand
-                         * @returns Email
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.CommunicationChannel.Email;
-
-                        /**
-                         * Decodes an Email message from the specified reader or buffer, length delimited.
-                         * @param reader Reader or buffer to decode from
-                         * @returns Email
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.CommunicationChannel.Email;
-
-                        /**
-                         * Verifies an Email message.
-                         * @param message Plain object to verify
-                         * @returns `null` if valid, otherwise the reason why it is not
-                         */
-                        public static verify(message: { [k: string]: any }): (string|null);
-
-                        /**
-                         * Creates an Email message from a plain object. Also converts values to their respective internal types.
-                         * @param object Plain object
-                         * @returns Email
-                         */
-                        public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.CommunicationChannel.Email;
-
-                        /**
-                         * Creates a plain object from an Email message. Also converts values to other types if specified.
-                         * @param message Email
-                         * @param [options] Conversion options
-                         * @returns Plain object
-                         */
-                        public static toObject(message: google.cloud.irm.v1alpha2.CommunicationChannel.Email, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                        /**
-                         * Converts this Email to JSON.
-                         * @returns JSON object
-                         */
-                        public toJSON(): { [k: string]: any };
-                    }
-
-                    /** Properties of a NotificationChannel. */
-                    interface INotificationChannel {
-
-                        /** NotificationChannel name */
-                        name?: (string|null);
-                    }
-
-                    /** Represents a NotificationChannel. */
-                    class NotificationChannel implements INotificationChannel {
-
-                        /**
-                         * Constructs a new NotificationChannel.
-                         * @param [properties] Properties to set
-                         */
-                        constructor(properties?: google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel);
-
-                        /** NotificationChannel name. */
-                        public name: string;
-
-                        /**
-                         * Creates a new NotificationChannel instance using the specified properties.
-                         * @param [properties] Properties to set
-                         * @returns NotificationChannel instance
-                         */
-                        public static create(properties?: google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel): google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel;
-
-                        /**
-                         * Encodes the specified NotificationChannel message. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.verify|verify} messages.
-                         * @param message NotificationChannel message or plain object to encode
-                         * @param [writer] Writer to encode to
-                         * @returns Writer
-                         */
-                        public static encode(message: google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                        /**
-                         * Encodes the specified NotificationChannel message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.verify|verify} messages.
-                         * @param message NotificationChannel message or plain object to encode
-                         * @param [writer] Writer to encode to
-                         * @returns Writer
-                         */
-                        public static encodeDelimited(message: google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                        /**
-                         * Decodes a NotificationChannel message from the specified reader or buffer.
-                         * @param reader Reader or buffer to decode from
-                         * @param [length] Message length if known beforehand
-                         * @returns NotificationChannel
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel;
-
-                        /**
-                         * Decodes a NotificationChannel message from the specified reader or buffer, length delimited.
-                         * @param reader Reader or buffer to decode from
-                         * @returns NotificationChannel
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel;
-
-                        /**
-                         * Verifies a NotificationChannel message.
-                         * @param message Plain object to verify
-                         * @returns `null` if valid, otherwise the reason why it is not
-                         */
-                        public static verify(message: { [k: string]: any }): (string|null);
-
-                        /**
-                         * Creates a NotificationChannel message from a plain object. Also converts values to their respective internal types.
-                         * @param object Plain object
-                         * @returns NotificationChannel
-                         */
-                        public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel;
-
-                        /**
-                         * Creates a plain object from a NotificationChannel message. Also converts values to other types if specified.
-                         * @param message NotificationChannel
-                         * @param [options] Conversion options
-                         * @returns Plain object
-                         */
-                        public static toObject(message: google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                        /**
-                         * Converts this NotificationChannel to JSON.
-                         * @returns JSON object
-                         */
-                        public toJSON(): { [k: string]: any };
-                    }
-                }
-
-                /** Properties of a Subscription. */
-                interface ISubscription {
-
-                    /** Subscription name */
-                    name?: (string|null);
-
-                    /** Subscription etag */
-                    etag?: (string|null);
-
-                    /** Subscription subscriptionChannel */
-                    subscriptionChannel?: (google.cloud.irm.v1alpha2.ICommunicationChannel|null);
-
-                    /** Subscription eventTypes */
-                    eventTypes?: (google.cloud.irm.v1alpha2.Subscription.EventType[]|null);
-                }
-
-                /** Represents a Subscription. */
-                class Subscription implements ISubscription {
-
-                    /**
-                     * Constructs a new Subscription.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.irm.v1alpha2.ISubscription);
-
-                    /** Subscription name. */
-                    public name: string;
-
-                    /** Subscription etag. */
-                    public etag: string;
-
-                    /** Subscription subscriptionChannel. */
-                    public subscriptionChannel?: (google.cloud.irm.v1alpha2.ICommunicationChannel|null);
-
-                    /** Subscription eventTypes. */
-                    public eventTypes: google.cloud.irm.v1alpha2.Subscription.EventType[];
-
-                    /**
-                     * Creates a new Subscription instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns Subscription instance
-                     */
-                    public static create(properties?: google.cloud.irm.v1alpha2.ISubscription): google.cloud.irm.v1alpha2.Subscription;
-
-                    /**
-                     * Encodes the specified Subscription message. Does not implicitly {@link google.cloud.irm.v1alpha2.Subscription.verify|verify} messages.
-                     * @param message Subscription message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.irm.v1alpha2.ISubscription, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified Subscription message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Subscription.verify|verify} messages.
-                     * @param message Subscription message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.irm.v1alpha2.ISubscription, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a Subscription message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns Subscription
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.irm.v1alpha2.Subscription;
-
-                    /**
-                     * Decodes a Subscription message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns Subscription
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.irm.v1alpha2.Subscription;
-
-                    /**
-                     * Verifies a Subscription message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a Subscription message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns Subscription
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.irm.v1alpha2.Subscription;
-
-                    /**
-                     * Creates a plain object from a Subscription message. Also converts values to other types if specified.
-                     * @param message Subscription
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.irm.v1alpha2.Subscription, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this Subscription to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                namespace Subscription {
-
-                    /** EventType enum. */
-                    enum EventType {
-                        EVENT_TYPE_UNSPECIFIED = 0,
-                        EVENT_TYPE_TITLE_CHANGE = 1,
-                        EVENT_TYPE_SYNOPSIS_CHANGE = 2,
-                        EVENT_TYPE_STAGE_CHANGE = 3,
-                        EVENT_TYPE_SEVERITY_CHANGE = 4,
-                        EVENT_TYPE_ANNOTATION_ADD = 5,
-                        EVENT_TYPE_ANNOTATION_CHANGE = 6
-                    }
-                }
             }
         }
     }
@@ -7118,6 +7118,242 @@ export namespace google {
 
             /**
              * Converts this CustomHttpPattern to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
+
+        /** FieldBehavior enum. */
+        enum FieldBehavior {
+            FIELD_BEHAVIOR_UNSPECIFIED = 0,
+            OPTIONAL = 1,
+            REQUIRED = 2,
+            OUTPUT_ONLY = 3,
+            INPUT_ONLY = 4,
+            IMMUTABLE = 5
+        }
+
+        /** Properties of a ResourceDescriptor. */
+        interface IResourceDescriptor {
+
+            /** ResourceDescriptor type */
+            type?: (string|null);
+
+            /** ResourceDescriptor pattern */
+            pattern?: (string[]|null);
+
+            /** ResourceDescriptor nameField */
+            nameField?: (string|null);
+
+            /** ResourceDescriptor history */
+            history?: (google.api.ResourceDescriptor.History|keyof typeof google.api.ResourceDescriptor.History|null);
+
+            /** ResourceDescriptor plural */
+            plural?: (string|null);
+
+            /** ResourceDescriptor singular */
+            singular?: (string|null);
+        }
+
+        /** Represents a ResourceDescriptor. */
+        class ResourceDescriptor implements IResourceDescriptor {
+
+            /**
+             * Constructs a new ResourceDescriptor.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: google.api.IResourceDescriptor);
+
+            /** ResourceDescriptor type. */
+            public type: string;
+
+            /** ResourceDescriptor pattern. */
+            public pattern: string[];
+
+            /** ResourceDescriptor nameField. */
+            public nameField: string;
+
+            /** ResourceDescriptor history. */
+            public history: (google.api.ResourceDescriptor.History|keyof typeof google.api.ResourceDescriptor.History);
+
+            /** ResourceDescriptor plural. */
+            public plural: string;
+
+            /** ResourceDescriptor singular. */
+            public singular: string;
+
+            /**
+             * Creates a new ResourceDescriptor instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns ResourceDescriptor instance
+             */
+            public static create(properties?: google.api.IResourceDescriptor): google.api.ResourceDescriptor;
+
+            /**
+             * Encodes the specified ResourceDescriptor message. Does not implicitly {@link google.api.ResourceDescriptor.verify|verify} messages.
+             * @param message ResourceDescriptor message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: google.api.IResourceDescriptor, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified ResourceDescriptor message, length delimited. Does not implicitly {@link google.api.ResourceDescriptor.verify|verify} messages.
+             * @param message ResourceDescriptor message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: google.api.IResourceDescriptor, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a ResourceDescriptor message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns ResourceDescriptor
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.api.ResourceDescriptor;
+
+            /**
+             * Decodes a ResourceDescriptor message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns ResourceDescriptor
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.api.ResourceDescriptor;
+
+            /**
+             * Verifies a ResourceDescriptor message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a ResourceDescriptor message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns ResourceDescriptor
+             */
+            public static fromObject(object: { [k: string]: any }): google.api.ResourceDescriptor;
+
+            /**
+             * Creates a plain object from a ResourceDescriptor message. Also converts values to other types if specified.
+             * @param message ResourceDescriptor
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: google.api.ResourceDescriptor, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this ResourceDescriptor to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
+
+        namespace ResourceDescriptor {
+
+            /** History enum. */
+            enum History {
+                HISTORY_UNSPECIFIED = 0,
+                ORIGINALLY_SINGLE_PATTERN = 1,
+                FUTURE_MULTI_PATTERN = 2
+            }
+        }
+
+        /** Properties of a ResourceReference. */
+        interface IResourceReference {
+
+            /** ResourceReference type */
+            type?: (string|null);
+
+            /** ResourceReference childType */
+            childType?: (string|null);
+        }
+
+        /** Represents a ResourceReference. */
+        class ResourceReference implements IResourceReference {
+
+            /**
+             * Constructs a new ResourceReference.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: google.api.IResourceReference);
+
+            /** ResourceReference type. */
+            public type: string;
+
+            /** ResourceReference childType. */
+            public childType: string;
+
+            /**
+             * Creates a new ResourceReference instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns ResourceReference instance
+             */
+            public static create(properties?: google.api.IResourceReference): google.api.ResourceReference;
+
+            /**
+             * Encodes the specified ResourceReference message. Does not implicitly {@link google.api.ResourceReference.verify|verify} messages.
+             * @param message ResourceReference message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: google.api.IResourceReference, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified ResourceReference message, length delimited. Does not implicitly {@link google.api.ResourceReference.verify|verify} messages.
+             * @param message ResourceReference message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: google.api.IResourceReference, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a ResourceReference message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns ResourceReference
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.api.ResourceReference;
+
+            /**
+             * Decodes a ResourceReference message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns ResourceReference
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.api.ResourceReference;
+
+            /**
+             * Verifies a ResourceReference message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a ResourceReference message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns ResourceReference
+             */
+            public static fromObject(object: { [k: string]: any }): google.api.ResourceReference;
+
+            /**
+             * Creates a plain object from a ResourceReference message. Also converts values to other types if specified.
+             * @param message ResourceReference
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: google.api.ResourceReference, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this ResourceReference to JSON.
              * @returns JSON object
              */
             public toJSON(): { [k: string]: any };
@@ -7818,10 +8054,10 @@ export namespace google {
             number?: (number|null);
 
             /** FieldDescriptorProto label */
-            label?: (google.protobuf.FieldDescriptorProto.Label|null);
+            label?: (google.protobuf.FieldDescriptorProto.Label|keyof typeof google.protobuf.FieldDescriptorProto.Label|null);
 
             /** FieldDescriptorProto type */
-            type?: (google.protobuf.FieldDescriptorProto.Type|null);
+            type?: (google.protobuf.FieldDescriptorProto.Type|keyof typeof google.protobuf.FieldDescriptorProto.Type|null);
 
             /** FieldDescriptorProto typeName */
             typeName?: (string|null);
@@ -7858,10 +8094,10 @@ export namespace google {
             public number: number;
 
             /** FieldDescriptorProto label. */
-            public label: google.protobuf.FieldDescriptorProto.Label;
+            public label: (google.protobuf.FieldDescriptorProto.Label|keyof typeof google.protobuf.FieldDescriptorProto.Label);
 
             /** FieldDescriptorProto type. */
-            public type: google.protobuf.FieldDescriptorProto.Type;
+            public type: (google.protobuf.FieldDescriptorProto.Type|keyof typeof google.protobuf.FieldDescriptorProto.Type);
 
             /** FieldDescriptorProto typeName. */
             public typeName: string;
@@ -8636,7 +8872,7 @@ export namespace google {
             javaStringCheckUtf8?: (boolean|null);
 
             /** FileOptions optimizeFor */
-            optimizeFor?: (google.protobuf.FileOptions.OptimizeMode|null);
+            optimizeFor?: (google.protobuf.FileOptions.OptimizeMode|keyof typeof google.protobuf.FileOptions.OptimizeMode|null);
 
             /** FileOptions goPackage */
             goPackage?: (string|null);
@@ -8682,6 +8918,9 @@ export namespace google {
 
             /** FileOptions uninterpretedOption */
             uninterpretedOption?: (google.protobuf.IUninterpretedOption[]|null);
+
+            /** FileOptions .google.api.resourceDefinition */
+            ".google.api.resourceDefinition"?: (google.api.IResourceDescriptor[]|null);
         }
 
         /** Represents a FileOptions. */
@@ -8709,7 +8948,7 @@ export namespace google {
             public javaStringCheckUtf8: boolean;
 
             /** FileOptions optimizeFor. */
-            public optimizeFor: google.protobuf.FileOptions.OptimizeMode;
+            public optimizeFor: (google.protobuf.FileOptions.OptimizeMode|keyof typeof google.protobuf.FileOptions.OptimizeMode);
 
             /** FileOptions goPackage. */
             public goPackage: string;
@@ -8854,6 +9093,9 @@ export namespace google {
 
             /** MessageOptions uninterpretedOption */
             uninterpretedOption?: (google.protobuf.IUninterpretedOption[]|null);
+
+            /** MessageOptions .google.api.resource */
+            ".google.api.resource"?: (google.api.IResourceDescriptor|null);
         }
 
         /** Represents a MessageOptions. */
@@ -8955,13 +9197,13 @@ export namespace google {
         interface IFieldOptions {
 
             /** FieldOptions ctype */
-            ctype?: (google.protobuf.FieldOptions.CType|null);
+            ctype?: (google.protobuf.FieldOptions.CType|keyof typeof google.protobuf.FieldOptions.CType|null);
 
             /** FieldOptions packed */
             packed?: (boolean|null);
 
             /** FieldOptions jstype */
-            jstype?: (google.protobuf.FieldOptions.JSType|null);
+            jstype?: (google.protobuf.FieldOptions.JSType|keyof typeof google.protobuf.FieldOptions.JSType|null);
 
             /** FieldOptions lazy */
             lazy?: (boolean|null);
@@ -8974,6 +9216,12 @@ export namespace google {
 
             /** FieldOptions uninterpretedOption */
             uninterpretedOption?: (google.protobuf.IUninterpretedOption[]|null);
+
+            /** FieldOptions .google.api.fieldBehavior */
+            ".google.api.fieldBehavior"?: (google.api.FieldBehavior[]|null);
+
+            /** FieldOptions .google.api.resourceReference */
+            ".google.api.resourceReference"?: (google.api.IResourceReference|null);
         }
 
         /** Represents a FieldOptions. */
@@ -8986,13 +9234,13 @@ export namespace google {
             constructor(properties?: google.protobuf.IFieldOptions);
 
             /** FieldOptions ctype. */
-            public ctype: google.protobuf.FieldOptions.CType;
+            public ctype: (google.protobuf.FieldOptions.CType|keyof typeof google.protobuf.FieldOptions.CType);
 
             /** FieldOptions packed. */
             public packed: boolean;
 
             /** FieldOptions jstype. */
-            public jstype: google.protobuf.FieldOptions.JSType;
+            public jstype: (google.protobuf.FieldOptions.JSType|keyof typeof google.protobuf.FieldOptions.JSType);
 
             /** FieldOptions lazy. */
             public lazy: boolean;
@@ -9491,7 +9739,7 @@ export namespace google {
             deprecated?: (boolean|null);
 
             /** MethodOptions idempotencyLevel */
-            idempotencyLevel?: (google.protobuf.MethodOptions.IdempotencyLevel|null);
+            idempotencyLevel?: (google.protobuf.MethodOptions.IdempotencyLevel|keyof typeof google.protobuf.MethodOptions.IdempotencyLevel|null);
 
             /** MethodOptions uninterpretedOption */
             uninterpretedOption?: (google.protobuf.IUninterpretedOption[]|null);
@@ -9516,7 +9764,7 @@ export namespace google {
             public deprecated: boolean;
 
             /** MethodOptions idempotencyLevel. */
-            public idempotencyLevel: google.protobuf.MethodOptions.IdempotencyLevel;
+            public idempotencyLevel: (google.protobuf.MethodOptions.IdempotencyLevel|keyof typeof google.protobuf.MethodOptions.IdempotencyLevel);
 
             /** MethodOptions uninterpretedOption. */
             public uninterpretedOption: google.protobuf.IUninterpretedOption[];
@@ -9612,16 +9860,16 @@ export namespace google {
             identifierValue?: (string|null);
 
             /** UninterpretedOption positiveIntValue */
-            positiveIntValue?: (number|Long|null);
+            positiveIntValue?: (number|Long|string|null);
 
             /** UninterpretedOption negativeIntValue */
-            negativeIntValue?: (number|Long|null);
+            negativeIntValue?: (number|Long|string|null);
 
             /** UninterpretedOption doubleValue */
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|null);
+            stringValue?: (Uint8Array|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -9643,16 +9891,16 @@ export namespace google {
             public identifierValue: string;
 
             /** UninterpretedOption positiveIntValue. */
-            public positiveIntValue: (number|Long);
+            public positiveIntValue: (number|Long|string);
 
             /** UninterpretedOption negativeIntValue. */
-            public negativeIntValue: (number|Long);
+            public negativeIntValue: (number|Long|string);
 
             /** UninterpretedOption doubleValue. */
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: Uint8Array;
+            public stringValue: (Uint8Array|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -10239,7 +10487,7 @@ export namespace google {
         interface ITimestamp {
 
             /** Timestamp seconds */
-            seconds?: (number|Long|null);
+            seconds?: (number|Long|string|null);
 
             /** Timestamp nanos */
             nanos?: (number|null);
@@ -10255,7 +10503,7 @@ export namespace google {
             constructor(properties?: google.protobuf.ITimestamp);
 
             /** Timestamp seconds. */
-            public seconds: (number|Long);
+            public seconds: (number|Long|string);
 
             /** Timestamp nanos. */
             public nanos: number;

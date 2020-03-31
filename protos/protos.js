@@ -66,6 +66,4413 @@
                      */
                     var v1alpha2 = {};
     
+                    v1alpha2.User = (function() {
+    
+                        /**
+                         * Properties of a User.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @interface IUser
+                         * @property {string|null} [userId] User userId
+                         * @property {string|null} [email] User email
+                         */
+    
+                        /**
+                         * Constructs a new User.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @classdesc Represents a User.
+                         * @implements IUser
+                         * @constructor
+                         * @param {google.cloud.irm.v1alpha2.IUser=} [properties] Properties to set
+                         */
+                        function User(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * User userId.
+                         * @member {string} userId
+                         * @memberof google.cloud.irm.v1alpha2.User
+                         * @instance
+                         */
+                        User.prototype.userId = "";
+    
+                        /**
+                         * User email.
+                         * @member {string} email
+                         * @memberof google.cloud.irm.v1alpha2.User
+                         * @instance
+                         */
+                        User.prototype.email = "";
+    
+                        // OneOf field names bound to virtual getters and setters
+                        var $oneOfFields;
+    
+                        /**
+                         * User user.
+                         * @member {"userId"|"email"|undefined} user
+                         * @memberof google.cloud.irm.v1alpha2.User
+                         * @instance
+                         */
+                        Object.defineProperty(User.prototype, "user", {
+                            get: $util.oneOfGetter($oneOfFields = ["userId", "email"]),
+                            set: $util.oneOfSetter($oneOfFields)
+                        });
+    
+                        /**
+                         * Creates a new User instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.irm.v1alpha2.User
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IUser=} [properties] Properties to set
+                         * @returns {google.cloud.irm.v1alpha2.User} User instance
+                         */
+                        User.create = function create(properties) {
+                            return new User(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified User message. Does not implicitly {@link google.cloud.irm.v1alpha2.User.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.irm.v1alpha2.User
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IUser} message User message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        User.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.userId != null && message.hasOwnProperty("userId"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.userId);
+                            if (message.email != null && message.hasOwnProperty("email"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.email);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified User message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.User.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.User
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IUser} message User message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        User.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a User message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.irm.v1alpha2.User
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.irm.v1alpha2.User} User
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        User.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.User();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.userId = reader.string();
+                                    break;
+                                case 2:
+                                    message.email = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a User message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.User
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.irm.v1alpha2.User} User
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        User.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a User message.
+                         * @function verify
+                         * @memberof google.cloud.irm.v1alpha2.User
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        User.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            var properties = {};
+                            if (message.userId != null && message.hasOwnProperty("userId")) {
+                                properties.user = 1;
+                                if (!$util.isString(message.userId))
+                                    return "userId: string expected";
+                            }
+                            if (message.email != null && message.hasOwnProperty("email")) {
+                                if (properties.user === 1)
+                                    return "user: multiple values";
+                                properties.user = 1;
+                                if (!$util.isString(message.email))
+                                    return "email: string expected";
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a User message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.irm.v1alpha2.User
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.irm.v1alpha2.User} User
+                         */
+                        User.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.irm.v1alpha2.User)
+                                return object;
+                            var message = new $root.google.cloud.irm.v1alpha2.User();
+                            if (object.userId != null)
+                                message.userId = String(object.userId);
+                            if (object.email != null)
+                                message.email = String(object.email);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a User message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.irm.v1alpha2.User
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.User} message User
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        User.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (message.userId != null && message.hasOwnProperty("userId")) {
+                                object.userId = message.userId;
+                                if (options.oneofs)
+                                    object.user = "userId";
+                            }
+                            if (message.email != null && message.hasOwnProperty("email")) {
+                                object.email = message.email;
+                                if (options.oneofs)
+                                    object.user = "email";
+                            }
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this User to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.irm.v1alpha2.User
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        User.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return User;
+                    })();
+    
+                    v1alpha2.Signal = (function() {
+    
+                        /**
+                         * Properties of a Signal.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @interface ISignal
+                         * @property {string|null} [name] Signal name
+                         * @property {string|null} [etag] Signal etag
+                         * @property {string|null} [incident] Signal incident
+                         * @property {google.protobuf.ITimestamp|null} [createTime] Signal createTime
+                         * @property {google.protobuf.ITimestamp|null} [closeTime] Signal closeTime
+                         * @property {google.protobuf.ITimestamp|null} [detectTime] Signal detectTime
+                         * @property {google.cloud.irm.v1alpha2.IUser|null} [creator] Signal creator
+                         * @property {string|null} [title] Signal title
+                         * @property {string|null} [contentType] Signal contentType
+                         * @property {string|null} [content] Signal content
+                         * @property {google.cloud.irm.v1alpha2.Signal.State|null} [signalState] Signal signalState
+                         * @property {Array.<google.cloud.irm.v1alpha2.Signal.ISignalArtifact>|null} [signalArtifacts] Signal signalArtifacts
+                         */
+    
+                        /**
+                         * Constructs a new Signal.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @classdesc Represents a Signal.
+                         * @implements ISignal
+                         * @constructor
+                         * @param {google.cloud.irm.v1alpha2.ISignal=} [properties] Properties to set
+                         */
+                        function Signal(properties) {
+                            this.signalArtifacts = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Signal name.
+                         * @member {string} name
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @instance
+                         */
+                        Signal.prototype.name = "";
+    
+                        /**
+                         * Signal etag.
+                         * @member {string} etag
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @instance
+                         */
+                        Signal.prototype.etag = "";
+    
+                        /**
+                         * Signal incident.
+                         * @member {string} incident
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @instance
+                         */
+                        Signal.prototype.incident = "";
+    
+                        /**
+                         * Signal createTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} createTime
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @instance
+                         */
+                        Signal.prototype.createTime = null;
+    
+                        /**
+                         * Signal closeTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} closeTime
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @instance
+                         */
+                        Signal.prototype.closeTime = null;
+    
+                        /**
+                         * Signal detectTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} detectTime
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @instance
+                         */
+                        Signal.prototype.detectTime = null;
+    
+                        /**
+                         * Signal creator.
+                         * @member {google.cloud.irm.v1alpha2.IUser|null|undefined} creator
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @instance
+                         */
+                        Signal.prototype.creator = null;
+    
+                        /**
+                         * Signal title.
+                         * @member {string} title
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @instance
+                         */
+                        Signal.prototype.title = "";
+    
+                        /**
+                         * Signal contentType.
+                         * @member {string} contentType
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @instance
+                         */
+                        Signal.prototype.contentType = "";
+    
+                        /**
+                         * Signal content.
+                         * @member {string} content
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @instance
+                         */
+                        Signal.prototype.content = "";
+    
+                        /**
+                         * Signal signalState.
+                         * @member {google.cloud.irm.v1alpha2.Signal.State} signalState
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @instance
+                         */
+                        Signal.prototype.signalState = 0;
+    
+                        /**
+                         * Signal signalArtifacts.
+                         * @member {Array.<google.cloud.irm.v1alpha2.Signal.ISignalArtifact>} signalArtifacts
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @instance
+                         */
+                        Signal.prototype.signalArtifacts = $util.emptyArray;
+    
+                        /**
+                         * Creates a new Signal instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.ISignal=} [properties] Properties to set
+                         * @returns {google.cloud.irm.v1alpha2.Signal} Signal instance
+                         */
+                        Signal.create = function create(properties) {
+                            return new Signal(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Signal message. Does not implicitly {@link google.cloud.irm.v1alpha2.Signal.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.ISignal} message Signal message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Signal.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.etag);
+                            if (message.incident != null && message.hasOwnProperty("incident"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.incident);
+                            if (message.createTime != null && message.hasOwnProperty("createTime"))
+                                $root.google.protobuf.Timestamp.encode(message.createTime, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            if (message.creator != null && message.hasOwnProperty("creator"))
+                                $root.google.cloud.irm.v1alpha2.User.encode(message.creator, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                            if (message.title != null && message.hasOwnProperty("title"))
+                                writer.uint32(/* id 6, wireType 2 =*/50).string(message.title);
+                            if (message.contentType != null && message.hasOwnProperty("contentType"))
+                                writer.uint32(/* id 7, wireType 2 =*/58).string(message.contentType);
+                            if (message.content != null && message.hasOwnProperty("content"))
+                                writer.uint32(/* id 8, wireType 2 =*/66).string(message.content);
+                            if (message.signalState != null && message.hasOwnProperty("signalState"))
+                                writer.uint32(/* id 9, wireType 0 =*/72).int32(message.signalState);
+                            if (message.closeTime != null && message.hasOwnProperty("closeTime"))
+                                $root.google.protobuf.Timestamp.encode(message.closeTime, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+                            if (message.detectTime != null && message.hasOwnProperty("detectTime"))
+                                $root.google.protobuf.Timestamp.encode(message.detectTime, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
+                            if (message.signalArtifacts != null && message.signalArtifacts.length)
+                                for (var i = 0; i < message.signalArtifacts.length; ++i)
+                                    $root.google.cloud.irm.v1alpha2.Signal.SignalArtifact.encode(message.signalArtifacts[i], writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Signal message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Signal.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.ISignal} message Signal message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Signal.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a Signal message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.irm.v1alpha2.Signal} Signal
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Signal.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Signal();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.name = reader.string();
+                                    break;
+                                case 2:
+                                    message.etag = reader.string();
+                                    break;
+                                case 3:
+                                    message.incident = reader.string();
+                                    break;
+                                case 4:
+                                    message.createTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                    break;
+                                case 10:
+                                    message.closeTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                    break;
+                                case 15:
+                                    message.detectTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                    break;
+                                case 5:
+                                    message.creator = $root.google.cloud.irm.v1alpha2.User.decode(reader, reader.uint32());
+                                    break;
+                                case 6:
+                                    message.title = reader.string();
+                                    break;
+                                case 7:
+                                    message.contentType = reader.string();
+                                    break;
+                                case 8:
+                                    message.content = reader.string();
+                                    break;
+                                case 9:
+                                    message.signalState = reader.int32();
+                                    break;
+                                case 16:
+                                    if (!(message.signalArtifacts && message.signalArtifacts.length))
+                                        message.signalArtifacts = [];
+                                    message.signalArtifacts.push($root.google.cloud.irm.v1alpha2.Signal.SignalArtifact.decode(reader, reader.uint32()));
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a Signal message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.irm.v1alpha2.Signal} Signal
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Signal.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a Signal message.
+                         * @function verify
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Signal.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                if (!$util.isString(message.etag))
+                                    return "etag: string expected";
+                            if (message.incident != null && message.hasOwnProperty("incident"))
+                                if (!$util.isString(message.incident))
+                                    return "incident: string expected";
+                            if (message.createTime != null && message.hasOwnProperty("createTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.createTime);
+                                if (error)
+                                    return "createTime." + error;
+                            }
+                            if (message.closeTime != null && message.hasOwnProperty("closeTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.closeTime);
+                                if (error)
+                                    return "closeTime." + error;
+                            }
+                            if (message.detectTime != null && message.hasOwnProperty("detectTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.detectTime);
+                                if (error)
+                                    return "detectTime." + error;
+                            }
+                            if (message.creator != null && message.hasOwnProperty("creator")) {
+                                var error = $root.google.cloud.irm.v1alpha2.User.verify(message.creator);
+                                if (error)
+                                    return "creator." + error;
+                            }
+                            if (message.title != null && message.hasOwnProperty("title"))
+                                if (!$util.isString(message.title))
+                                    return "title: string expected";
+                            if (message.contentType != null && message.hasOwnProperty("contentType"))
+                                if (!$util.isString(message.contentType))
+                                    return "contentType: string expected";
+                            if (message.content != null && message.hasOwnProperty("content"))
+                                if (!$util.isString(message.content))
+                                    return "content: string expected";
+                            if (message.signalState != null && message.hasOwnProperty("signalState"))
+                                switch (message.signalState) {
+                                default:
+                                    return "signalState: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                    break;
+                                }
+                            if (message.signalArtifacts != null && message.hasOwnProperty("signalArtifacts")) {
+                                if (!Array.isArray(message.signalArtifacts))
+                                    return "signalArtifacts: array expected";
+                                for (var i = 0; i < message.signalArtifacts.length; ++i) {
+                                    var error = $root.google.cloud.irm.v1alpha2.Signal.SignalArtifact.verify(message.signalArtifacts[i]);
+                                    if (error)
+                                        return "signalArtifacts." + error;
+                                }
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a Signal message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.irm.v1alpha2.Signal} Signal
+                         */
+                        Signal.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.irm.v1alpha2.Signal)
+                                return object;
+                            var message = new $root.google.cloud.irm.v1alpha2.Signal();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.etag != null)
+                                message.etag = String(object.etag);
+                            if (object.incident != null)
+                                message.incident = String(object.incident);
+                            if (object.createTime != null) {
+                                if (typeof object.createTime !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.Signal.createTime: object expected");
+                                message.createTime = $root.google.protobuf.Timestamp.fromObject(object.createTime);
+                            }
+                            if (object.closeTime != null) {
+                                if (typeof object.closeTime !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.Signal.closeTime: object expected");
+                                message.closeTime = $root.google.protobuf.Timestamp.fromObject(object.closeTime);
+                            }
+                            if (object.detectTime != null) {
+                                if (typeof object.detectTime !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.Signal.detectTime: object expected");
+                                message.detectTime = $root.google.protobuf.Timestamp.fromObject(object.detectTime);
+                            }
+                            if (object.creator != null) {
+                                if (typeof object.creator !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.Signal.creator: object expected");
+                                message.creator = $root.google.cloud.irm.v1alpha2.User.fromObject(object.creator);
+                            }
+                            if (object.title != null)
+                                message.title = String(object.title);
+                            if (object.contentType != null)
+                                message.contentType = String(object.contentType);
+                            if (object.content != null)
+                                message.content = String(object.content);
+                            switch (object.signalState) {
+                            case "STATE_UNSPECIFIED":
+                            case 0:
+                                message.signalState = 0;
+                                break;
+                            case "STATE_OPEN":
+                            case 1:
+                                message.signalState = 1;
+                                break;
+                            case "STATE_CLOSED":
+                            case 2:
+                                message.signalState = 2;
+                                break;
+                            }
+                            if (object.signalArtifacts) {
+                                if (!Array.isArray(object.signalArtifacts))
+                                    throw TypeError(".google.cloud.irm.v1alpha2.Signal.signalArtifacts: array expected");
+                                message.signalArtifacts = [];
+                                for (var i = 0; i < object.signalArtifacts.length; ++i) {
+                                    if (typeof object.signalArtifacts[i] !== "object")
+                                        throw TypeError(".google.cloud.irm.v1alpha2.Signal.signalArtifacts: object expected");
+                                    message.signalArtifacts[i] = $root.google.cloud.irm.v1alpha2.Signal.SignalArtifact.fromObject(object.signalArtifacts[i]);
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a Signal message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.Signal} message Signal
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Signal.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.signalArtifacts = [];
+                            if (options.defaults) {
+                                object.name = "";
+                                object.etag = "";
+                                object.incident = "";
+                                object.createTime = null;
+                                object.creator = null;
+                                object.title = "";
+                                object.contentType = "";
+                                object.content = "";
+                                object.signalState = options.enums === String ? "STATE_UNSPECIFIED" : 0;
+                                object.closeTime = null;
+                                object.detectTime = null;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                object.etag = message.etag;
+                            if (message.incident != null && message.hasOwnProperty("incident"))
+                                object.incident = message.incident;
+                            if (message.createTime != null && message.hasOwnProperty("createTime"))
+                                object.createTime = $root.google.protobuf.Timestamp.toObject(message.createTime, options);
+                            if (message.creator != null && message.hasOwnProperty("creator"))
+                                object.creator = $root.google.cloud.irm.v1alpha2.User.toObject(message.creator, options);
+                            if (message.title != null && message.hasOwnProperty("title"))
+                                object.title = message.title;
+                            if (message.contentType != null && message.hasOwnProperty("contentType"))
+                                object.contentType = message.contentType;
+                            if (message.content != null && message.hasOwnProperty("content"))
+                                object.content = message.content;
+                            if (message.signalState != null && message.hasOwnProperty("signalState"))
+                                object.signalState = options.enums === String ? $root.google.cloud.irm.v1alpha2.Signal.State[message.signalState] : message.signalState;
+                            if (message.closeTime != null && message.hasOwnProperty("closeTime"))
+                                object.closeTime = $root.google.protobuf.Timestamp.toObject(message.closeTime, options);
+                            if (message.detectTime != null && message.hasOwnProperty("detectTime"))
+                                object.detectTime = $root.google.protobuf.Timestamp.toObject(message.detectTime, options);
+                            if (message.signalArtifacts && message.signalArtifacts.length) {
+                                object.signalArtifacts = [];
+                                for (var j = 0; j < message.signalArtifacts.length; ++j)
+                                    object.signalArtifacts[j] = $root.google.cloud.irm.v1alpha2.Signal.SignalArtifact.toObject(message.signalArtifacts[j], options);
+                            }
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Signal to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.irm.v1alpha2.Signal
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Signal.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        Signal.SignalArtifact = (function() {
+    
+                            /**
+                             * Properties of a SignalArtifact.
+                             * @memberof google.cloud.irm.v1alpha2.Signal
+                             * @interface ISignalArtifact
+                             * @property {string|null} [userType] SignalArtifact userType
+                             * @property {string|null} [uri] SignalArtifact uri
+                             */
+    
+                            /**
+                             * Constructs a new SignalArtifact.
+                             * @memberof google.cloud.irm.v1alpha2.Signal
+                             * @classdesc Represents a SignalArtifact.
+                             * @implements ISignalArtifact
+                             * @constructor
+                             * @param {google.cloud.irm.v1alpha2.Signal.ISignalArtifact=} [properties] Properties to set
+                             */
+                            function SignalArtifact(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * SignalArtifact userType.
+                             * @member {string} userType
+                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
+                             * @instance
+                             */
+                            SignalArtifact.prototype.userType = "";
+    
+                            /**
+                             * SignalArtifact uri.
+                             * @member {string} uri
+                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
+                             * @instance
+                             */
+                            SignalArtifact.prototype.uri = "";
+    
+                            // OneOf field names bound to virtual getters and setters
+                            var $oneOfFields;
+    
+                            /**
+                             * SignalArtifact artifactType.
+                             * @member {"userType"|undefined} artifactType
+                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
+                             * @instance
+                             */
+                            Object.defineProperty(SignalArtifact.prototype, "artifactType", {
+                                get: $util.oneOfGetter($oneOfFields = ["userType"]),
+                                set: $util.oneOfSetter($oneOfFields)
+                            });
+    
+                            /**
+                             * Creates a new SignalArtifact instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
+                             * @static
+                             * @param {google.cloud.irm.v1alpha2.Signal.ISignalArtifact=} [properties] Properties to set
+                             * @returns {google.cloud.irm.v1alpha2.Signal.SignalArtifact} SignalArtifact instance
+                             */
+                            SignalArtifact.create = function create(properties) {
+                                return new SignalArtifact(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified SignalArtifact message. Does not implicitly {@link google.cloud.irm.v1alpha2.Signal.SignalArtifact.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
+                             * @static
+                             * @param {google.cloud.irm.v1alpha2.Signal.ISignalArtifact} message SignalArtifact message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            SignalArtifact.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.userType != null && message.hasOwnProperty("userType"))
+                                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.userType);
+                                if (message.uri != null && message.hasOwnProperty("uri"))
+                                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.uri);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified SignalArtifact message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Signal.SignalArtifact.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
+                             * @static
+                             * @param {google.cloud.irm.v1alpha2.Signal.ISignalArtifact} message SignalArtifact message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            SignalArtifact.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a SignalArtifact message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.irm.v1alpha2.Signal.SignalArtifact} SignalArtifact
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            SignalArtifact.decode = function decode(reader, length) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Signal.SignalArtifact();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    switch (tag >>> 3) {
+                                    case 2:
+                                        message.userType = reader.string();
+                                        break;
+                                    case 3:
+                                        message.uri = reader.string();
+                                        break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a SignalArtifact message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.irm.v1alpha2.Signal.SignalArtifact} SignalArtifact
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            SignalArtifact.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a SignalArtifact message.
+                             * @function verify
+                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            SignalArtifact.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                var properties = {};
+                                if (message.userType != null && message.hasOwnProperty("userType")) {
+                                    properties.artifactType = 1;
+                                    if (!$util.isString(message.userType))
+                                        return "userType: string expected";
+                                }
+                                if (message.uri != null && message.hasOwnProperty("uri"))
+                                    if (!$util.isString(message.uri))
+                                        return "uri: string expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a SignalArtifact message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.irm.v1alpha2.Signal.SignalArtifact} SignalArtifact
+                             */
+                            SignalArtifact.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.irm.v1alpha2.Signal.SignalArtifact)
+                                    return object;
+                                var message = new $root.google.cloud.irm.v1alpha2.Signal.SignalArtifact();
+                                if (object.userType != null)
+                                    message.userType = String(object.userType);
+                                if (object.uri != null)
+                                    message.uri = String(object.uri);
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a SignalArtifact message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
+                             * @static
+                             * @param {google.cloud.irm.v1alpha2.Signal.SignalArtifact} message SignalArtifact
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            SignalArtifact.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults)
+                                    object.uri = "";
+                                if (message.userType != null && message.hasOwnProperty("userType")) {
+                                    object.userType = message.userType;
+                                    if (options.oneofs)
+                                        object.artifactType = "userType";
+                                }
+                                if (message.uri != null && message.hasOwnProperty("uri"))
+                                    object.uri = message.uri;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this SignalArtifact to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            SignalArtifact.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            return SignalArtifact;
+                        })();
+    
+                        /**
+                         * State enum.
+                         * @name google.cloud.irm.v1alpha2.Signal.State
+                         * @enum {string}
+                         * @property {number} STATE_UNSPECIFIED=0 STATE_UNSPECIFIED value
+                         * @property {number} STATE_OPEN=1 STATE_OPEN value
+                         * @property {number} STATE_CLOSED=2 STATE_CLOSED value
+                         */
+                        Signal.State = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "STATE_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "STATE_OPEN"] = 1;
+                            values[valuesById[2] = "STATE_CLOSED"] = 2;
+                            return values;
+                        })();
+    
+                        return Signal;
+                    })();
+    
+                    v1alpha2.Annotation = (function() {
+    
+                        /**
+                         * Properties of an Annotation.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @interface IAnnotation
+                         * @property {string|null} [name] Annotation name
+                         * @property {google.cloud.irm.v1alpha2.IUser|null} [author] Annotation author
+                         * @property {google.protobuf.ITimestamp|null} [createTime] Annotation createTime
+                         * @property {string|null} [content] Annotation content
+                         * @property {string|null} [contentType] Annotation contentType
+                         */
+    
+                        /**
+                         * Constructs a new Annotation.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @classdesc Represents an Annotation.
+                         * @implements IAnnotation
+                         * @constructor
+                         * @param {google.cloud.irm.v1alpha2.IAnnotation=} [properties] Properties to set
+                         */
+                        function Annotation(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Annotation name.
+                         * @member {string} name
+                         * @memberof google.cloud.irm.v1alpha2.Annotation
+                         * @instance
+                         */
+                        Annotation.prototype.name = "";
+    
+                        /**
+                         * Annotation author.
+                         * @member {google.cloud.irm.v1alpha2.IUser|null|undefined} author
+                         * @memberof google.cloud.irm.v1alpha2.Annotation
+                         * @instance
+                         */
+                        Annotation.prototype.author = null;
+    
+                        /**
+                         * Annotation createTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} createTime
+                         * @memberof google.cloud.irm.v1alpha2.Annotation
+                         * @instance
+                         */
+                        Annotation.prototype.createTime = null;
+    
+                        /**
+                         * Annotation content.
+                         * @member {string} content
+                         * @memberof google.cloud.irm.v1alpha2.Annotation
+                         * @instance
+                         */
+                        Annotation.prototype.content = "";
+    
+                        /**
+                         * Annotation contentType.
+                         * @member {string} contentType
+                         * @memberof google.cloud.irm.v1alpha2.Annotation
+                         * @instance
+                         */
+                        Annotation.prototype.contentType = "";
+    
+                        /**
+                         * Creates a new Annotation instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.irm.v1alpha2.Annotation
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IAnnotation=} [properties] Properties to set
+                         * @returns {google.cloud.irm.v1alpha2.Annotation} Annotation instance
+                         */
+                        Annotation.create = function create(properties) {
+                            return new Annotation(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Annotation message. Does not implicitly {@link google.cloud.irm.v1alpha2.Annotation.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.irm.v1alpha2.Annotation
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IAnnotation} message Annotation message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Annotation.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.author != null && message.hasOwnProperty("author"))
+                                $root.google.cloud.irm.v1alpha2.User.encode(message.author, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            if (message.createTime != null && message.hasOwnProperty("createTime"))
+                                $root.google.protobuf.Timestamp.encode(message.createTime, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                            if (message.content != null && message.hasOwnProperty("content"))
+                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.content);
+                            if (message.contentType != null && message.hasOwnProperty("contentType"))
+                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.contentType);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Annotation message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Annotation.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.Annotation
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IAnnotation} message Annotation message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Annotation.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an Annotation message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.irm.v1alpha2.Annotation
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.irm.v1alpha2.Annotation} Annotation
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Annotation.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Annotation();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.name = reader.string();
+                                    break;
+                                case 2:
+                                    message.author = $root.google.cloud.irm.v1alpha2.User.decode(reader, reader.uint32());
+                                    break;
+                                case 3:
+                                    message.createTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                    break;
+                                case 4:
+                                    message.content = reader.string();
+                                    break;
+                                case 5:
+                                    message.contentType = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an Annotation message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.Annotation
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.irm.v1alpha2.Annotation} Annotation
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Annotation.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an Annotation message.
+                         * @function verify
+                         * @memberof google.cloud.irm.v1alpha2.Annotation
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Annotation.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.author != null && message.hasOwnProperty("author")) {
+                                var error = $root.google.cloud.irm.v1alpha2.User.verify(message.author);
+                                if (error)
+                                    return "author." + error;
+                            }
+                            if (message.createTime != null && message.hasOwnProperty("createTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.createTime);
+                                if (error)
+                                    return "createTime." + error;
+                            }
+                            if (message.content != null && message.hasOwnProperty("content"))
+                                if (!$util.isString(message.content))
+                                    return "content: string expected";
+                            if (message.contentType != null && message.hasOwnProperty("contentType"))
+                                if (!$util.isString(message.contentType))
+                                    return "contentType: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an Annotation message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.irm.v1alpha2.Annotation
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.irm.v1alpha2.Annotation} Annotation
+                         */
+                        Annotation.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.irm.v1alpha2.Annotation)
+                                return object;
+                            var message = new $root.google.cloud.irm.v1alpha2.Annotation();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.author != null) {
+                                if (typeof object.author !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.Annotation.author: object expected");
+                                message.author = $root.google.cloud.irm.v1alpha2.User.fromObject(object.author);
+                            }
+                            if (object.createTime != null) {
+                                if (typeof object.createTime !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.Annotation.createTime: object expected");
+                                message.createTime = $root.google.protobuf.Timestamp.fromObject(object.createTime);
+                            }
+                            if (object.content != null)
+                                message.content = String(object.content);
+                            if (object.contentType != null)
+                                message.contentType = String(object.contentType);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an Annotation message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.irm.v1alpha2.Annotation
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.Annotation} message Annotation
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Annotation.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.author = null;
+                                object.createTime = null;
+                                object.content = "";
+                                object.contentType = "";
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.author != null && message.hasOwnProperty("author"))
+                                object.author = $root.google.cloud.irm.v1alpha2.User.toObject(message.author, options);
+                            if (message.createTime != null && message.hasOwnProperty("createTime"))
+                                object.createTime = $root.google.protobuf.Timestamp.toObject(message.createTime, options);
+                            if (message.content != null && message.hasOwnProperty("content"))
+                                object.content = message.content;
+                            if (message.contentType != null && message.hasOwnProperty("contentType"))
+                                object.contentType = message.contentType;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Annotation to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.irm.v1alpha2.Annotation
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Annotation.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return Annotation;
+                    })();
+    
+                    v1alpha2.Tag = (function() {
+    
+                        /**
+                         * Properties of a Tag.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @interface ITag
+                         * @property {string|null} [name] Tag name
+                         * @property {string|null} [displayName] Tag displayName
+                         */
+    
+                        /**
+                         * Constructs a new Tag.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @classdesc Represents a Tag.
+                         * @implements ITag
+                         * @constructor
+                         * @param {google.cloud.irm.v1alpha2.ITag=} [properties] Properties to set
+                         */
+                        function Tag(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Tag name.
+                         * @member {string} name
+                         * @memberof google.cloud.irm.v1alpha2.Tag
+                         * @instance
+                         */
+                        Tag.prototype.name = "";
+    
+                        /**
+                         * Tag displayName.
+                         * @member {string} displayName
+                         * @memberof google.cloud.irm.v1alpha2.Tag
+                         * @instance
+                         */
+                        Tag.prototype.displayName = "";
+    
+                        /**
+                         * Creates a new Tag instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.irm.v1alpha2.Tag
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.ITag=} [properties] Properties to set
+                         * @returns {google.cloud.irm.v1alpha2.Tag} Tag instance
+                         */
+                        Tag.create = function create(properties) {
+                            return new Tag(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Tag message. Does not implicitly {@link google.cloud.irm.v1alpha2.Tag.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.irm.v1alpha2.Tag
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.ITag} message Tag message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Tag.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.displayName);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Tag message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Tag.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.Tag
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.ITag} message Tag message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Tag.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a Tag message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.irm.v1alpha2.Tag
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.irm.v1alpha2.Tag} Tag
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Tag.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Tag();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.name = reader.string();
+                                    break;
+                                case 2:
+                                    message.displayName = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a Tag message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.Tag
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.irm.v1alpha2.Tag} Tag
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Tag.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a Tag message.
+                         * @function verify
+                         * @memberof google.cloud.irm.v1alpha2.Tag
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Tag.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                if (!$util.isString(message.displayName))
+                                    return "displayName: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a Tag message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.irm.v1alpha2.Tag
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.irm.v1alpha2.Tag} Tag
+                         */
+                        Tag.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.irm.v1alpha2.Tag)
+                                return object;
+                            var message = new $root.google.cloud.irm.v1alpha2.Tag();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.displayName != null)
+                                message.displayName = String(object.displayName);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a Tag message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.irm.v1alpha2.Tag
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.Tag} message Tag
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Tag.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.displayName = "";
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                object.displayName = message.displayName;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Tag to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.irm.v1alpha2.Tag
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Tag.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return Tag;
+                    })();
+    
+                    v1alpha2.Synopsis = (function() {
+    
+                        /**
+                         * Properties of a Synopsis.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @interface ISynopsis
+                         * @property {string|null} [contentType] Synopsis contentType
+                         * @property {string|null} [content] Synopsis content
+                         * @property {google.protobuf.ITimestamp|null} [updateTime] Synopsis updateTime
+                         * @property {google.cloud.irm.v1alpha2.IUser|null} [author] Synopsis author
+                         */
+    
+                        /**
+                         * Constructs a new Synopsis.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @classdesc Represents a Synopsis.
+                         * @implements ISynopsis
+                         * @constructor
+                         * @param {google.cloud.irm.v1alpha2.ISynopsis=} [properties] Properties to set
+                         */
+                        function Synopsis(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Synopsis contentType.
+                         * @member {string} contentType
+                         * @memberof google.cloud.irm.v1alpha2.Synopsis
+                         * @instance
+                         */
+                        Synopsis.prototype.contentType = "";
+    
+                        /**
+                         * Synopsis content.
+                         * @member {string} content
+                         * @memberof google.cloud.irm.v1alpha2.Synopsis
+                         * @instance
+                         */
+                        Synopsis.prototype.content = "";
+    
+                        /**
+                         * Synopsis updateTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} updateTime
+                         * @memberof google.cloud.irm.v1alpha2.Synopsis
+                         * @instance
+                         */
+                        Synopsis.prototype.updateTime = null;
+    
+                        /**
+                         * Synopsis author.
+                         * @member {google.cloud.irm.v1alpha2.IUser|null|undefined} author
+                         * @memberof google.cloud.irm.v1alpha2.Synopsis
+                         * @instance
+                         */
+                        Synopsis.prototype.author = null;
+    
+                        /**
+                         * Creates a new Synopsis instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.irm.v1alpha2.Synopsis
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.ISynopsis=} [properties] Properties to set
+                         * @returns {google.cloud.irm.v1alpha2.Synopsis} Synopsis instance
+                         */
+                        Synopsis.create = function create(properties) {
+                            return new Synopsis(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Synopsis message. Does not implicitly {@link google.cloud.irm.v1alpha2.Synopsis.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.irm.v1alpha2.Synopsis
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.ISynopsis} message Synopsis message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Synopsis.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.contentType != null && message.hasOwnProperty("contentType"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.contentType);
+                            if (message.content != null && message.hasOwnProperty("content"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.content);
+                            if (message.updateTime != null && message.hasOwnProperty("updateTime"))
+                                $root.google.protobuf.Timestamp.encode(message.updateTime, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                            if (message.author != null && message.hasOwnProperty("author"))
+                                $root.google.cloud.irm.v1alpha2.User.encode(message.author, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Synopsis message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Synopsis.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.Synopsis
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.ISynopsis} message Synopsis message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Synopsis.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a Synopsis message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.irm.v1alpha2.Synopsis
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.irm.v1alpha2.Synopsis} Synopsis
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Synopsis.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Synopsis();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.contentType = reader.string();
+                                    break;
+                                case 2:
+                                    message.content = reader.string();
+                                    break;
+                                case 3:
+                                    message.updateTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                    break;
+                                case 4:
+                                    message.author = $root.google.cloud.irm.v1alpha2.User.decode(reader, reader.uint32());
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a Synopsis message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.Synopsis
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.irm.v1alpha2.Synopsis} Synopsis
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Synopsis.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a Synopsis message.
+                         * @function verify
+                         * @memberof google.cloud.irm.v1alpha2.Synopsis
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Synopsis.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.contentType != null && message.hasOwnProperty("contentType"))
+                                if (!$util.isString(message.contentType))
+                                    return "contentType: string expected";
+                            if (message.content != null && message.hasOwnProperty("content"))
+                                if (!$util.isString(message.content))
+                                    return "content: string expected";
+                            if (message.updateTime != null && message.hasOwnProperty("updateTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.updateTime);
+                                if (error)
+                                    return "updateTime." + error;
+                            }
+                            if (message.author != null && message.hasOwnProperty("author")) {
+                                var error = $root.google.cloud.irm.v1alpha2.User.verify(message.author);
+                                if (error)
+                                    return "author." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a Synopsis message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.irm.v1alpha2.Synopsis
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.irm.v1alpha2.Synopsis} Synopsis
+                         */
+                        Synopsis.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.irm.v1alpha2.Synopsis)
+                                return object;
+                            var message = new $root.google.cloud.irm.v1alpha2.Synopsis();
+                            if (object.contentType != null)
+                                message.contentType = String(object.contentType);
+                            if (object.content != null)
+                                message.content = String(object.content);
+                            if (object.updateTime != null) {
+                                if (typeof object.updateTime !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.Synopsis.updateTime: object expected");
+                                message.updateTime = $root.google.protobuf.Timestamp.fromObject(object.updateTime);
+                            }
+                            if (object.author != null) {
+                                if (typeof object.author !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.Synopsis.author: object expected");
+                                message.author = $root.google.cloud.irm.v1alpha2.User.fromObject(object.author);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a Synopsis message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.irm.v1alpha2.Synopsis
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.Synopsis} message Synopsis
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Synopsis.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.contentType = "";
+                                object.content = "";
+                                object.updateTime = null;
+                                object.author = null;
+                            }
+                            if (message.contentType != null && message.hasOwnProperty("contentType"))
+                                object.contentType = message.contentType;
+                            if (message.content != null && message.hasOwnProperty("content"))
+                                object.content = message.content;
+                            if (message.updateTime != null && message.hasOwnProperty("updateTime"))
+                                object.updateTime = $root.google.protobuf.Timestamp.toObject(message.updateTime, options);
+                            if (message.author != null && message.hasOwnProperty("author"))
+                                object.author = $root.google.cloud.irm.v1alpha2.User.toObject(message.author, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Synopsis to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.irm.v1alpha2.Synopsis
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Synopsis.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return Synopsis;
+                    })();
+    
+                    v1alpha2.Incident = (function() {
+    
+                        /**
+                         * Properties of an Incident.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @interface IIncident
+                         * @property {string|null} [name] Incident name
+                         * @property {string|null} [title] Incident title
+                         * @property {google.cloud.irm.v1alpha2.Incident.EscalationLevel|null} [escalationLevel] Incident escalationLevel
+                         * @property {string|null} [etag] Incident etag
+                         * @property {google.cloud.irm.v1alpha2.Incident.Severity|null} [severity] Incident severity
+                         * @property {google.cloud.irm.v1alpha2.Incident.Stage|null} [stage] Incident stage
+                         * @property {string|null} [duplicateIncident] Incident duplicateIncident
+                         * @property {google.protobuf.ITimestamp|null} [startTime] Incident startTime
+                         * @property {google.cloud.irm.v1alpha2.ISynopsis|null} [synopsis] Incident synopsis
+                         * @property {google.cloud.irm.v1alpha2.Incident.ICommunicationVenue|null} [communicationVenue] Incident communicationVenue
+                         */
+    
+                        /**
+                         * Constructs a new Incident.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @classdesc Represents an Incident.
+                         * @implements IIncident
+                         * @constructor
+                         * @param {google.cloud.irm.v1alpha2.IIncident=} [properties] Properties to set
+                         */
+                        function Incident(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Incident name.
+                         * @member {string} name
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @instance
+                         */
+                        Incident.prototype.name = "";
+    
+                        /**
+                         * Incident title.
+                         * @member {string} title
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @instance
+                         */
+                        Incident.prototype.title = "";
+    
+                        /**
+                         * Incident escalationLevel.
+                         * @member {google.cloud.irm.v1alpha2.Incident.EscalationLevel} escalationLevel
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @instance
+                         */
+                        Incident.prototype.escalationLevel = 0;
+    
+                        /**
+                         * Incident etag.
+                         * @member {string} etag
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @instance
+                         */
+                        Incident.prototype.etag = "";
+    
+                        /**
+                         * Incident severity.
+                         * @member {google.cloud.irm.v1alpha2.Incident.Severity} severity
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @instance
+                         */
+                        Incident.prototype.severity = 0;
+    
+                        /**
+                         * Incident stage.
+                         * @member {google.cloud.irm.v1alpha2.Incident.Stage} stage
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @instance
+                         */
+                        Incident.prototype.stage = 0;
+    
+                        /**
+                         * Incident duplicateIncident.
+                         * @member {string} duplicateIncident
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @instance
+                         */
+                        Incident.prototype.duplicateIncident = "";
+    
+                        /**
+                         * Incident startTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} startTime
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @instance
+                         */
+                        Incident.prototype.startTime = null;
+    
+                        /**
+                         * Incident synopsis.
+                         * @member {google.cloud.irm.v1alpha2.ISynopsis|null|undefined} synopsis
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @instance
+                         */
+                        Incident.prototype.synopsis = null;
+    
+                        /**
+                         * Incident communicationVenue.
+                         * @member {google.cloud.irm.v1alpha2.Incident.ICommunicationVenue|null|undefined} communicationVenue
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @instance
+                         */
+                        Incident.prototype.communicationVenue = null;
+    
+                        /**
+                         * Creates a new Incident instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IIncident=} [properties] Properties to set
+                         * @returns {google.cloud.irm.v1alpha2.Incident} Incident instance
+                         */
+                        Incident.create = function create(properties) {
+                            return new Incident(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Incident message. Does not implicitly {@link google.cloud.irm.v1alpha2.Incident.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IIncident} message Incident message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Incident.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.title != null && message.hasOwnProperty("title"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.title);
+                            if (message.escalationLevel != null && message.hasOwnProperty("escalationLevel"))
+                                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.escalationLevel);
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.etag);
+                            if (message.severity != null && message.hasOwnProperty("severity"))
+                                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.severity);
+                            if (message.stage != null && message.hasOwnProperty("stage"))
+                                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.stage);
+                            if (message.startTime != null && message.hasOwnProperty("startTime"))
+                                $root.google.protobuf.Timestamp.encode(message.startTime, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                            if (message.synopsis != null && message.hasOwnProperty("synopsis"))
+                                $root.google.cloud.irm.v1alpha2.Synopsis.encode(message.synopsis, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                            if (message.duplicateIncident != null && message.hasOwnProperty("duplicateIncident"))
+                                writer.uint32(/* id 9, wireType 2 =*/74).string(message.duplicateIncident);
+                            if (message.communicationVenue != null && message.hasOwnProperty("communicationVenue"))
+                                $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue.encode(message.communicationVenue, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Incident message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Incident.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IIncident} message Incident message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Incident.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an Incident message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.irm.v1alpha2.Incident} Incident
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Incident.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Incident();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.name = reader.string();
+                                    break;
+                                case 2:
+                                    message.title = reader.string();
+                                    break;
+                                case 3:
+                                    message.escalationLevel = reader.int32();
+                                    break;
+                                case 4:
+                                    message.etag = reader.string();
+                                    break;
+                                case 5:
+                                    message.severity = reader.int32();
+                                    break;
+                                case 6:
+                                    message.stage = reader.int32();
+                                    break;
+                                case 9:
+                                    message.duplicateIncident = reader.string();
+                                    break;
+                                case 7:
+                                    message.startTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                    break;
+                                case 8:
+                                    message.synopsis = $root.google.cloud.irm.v1alpha2.Synopsis.decode(reader, reader.uint32());
+                                    break;
+                                case 10:
+                                    message.communicationVenue = $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue.decode(reader, reader.uint32());
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an Incident message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.irm.v1alpha2.Incident} Incident
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Incident.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an Incident message.
+                         * @function verify
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Incident.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.title != null && message.hasOwnProperty("title"))
+                                if (!$util.isString(message.title))
+                                    return "title: string expected";
+                            if (message.escalationLevel != null && message.hasOwnProperty("escalationLevel"))
+                                switch (message.escalationLevel) {
+                                default:
+                                    return "escalationLevel: enum value expected";
+                                case 0:
+                                case 1:
+                                    break;
+                                }
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                if (!$util.isString(message.etag))
+                                    return "etag: string expected";
+                            if (message.severity != null && message.hasOwnProperty("severity"))
+                                switch (message.severity) {
+                                default:
+                                    return "severity: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                case 3:
+                                case 4:
+                                case 5:
+                                    break;
+                                }
+                            if (message.stage != null && message.hasOwnProperty("stage"))
+                                switch (message.stage) {
+                                default:
+                                    return "stage: enum value expected";
+                                case 0:
+                                case 4:
+                                case 1:
+                                case 2:
+                                case 3:
+                                case 5:
+                                case 6:
+                                    break;
+                                }
+                            if (message.duplicateIncident != null && message.hasOwnProperty("duplicateIncident"))
+                                if (!$util.isString(message.duplicateIncident))
+                                    return "duplicateIncident: string expected";
+                            if (message.startTime != null && message.hasOwnProperty("startTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.startTime);
+                                if (error)
+                                    return "startTime." + error;
+                            }
+                            if (message.synopsis != null && message.hasOwnProperty("synopsis")) {
+                                var error = $root.google.cloud.irm.v1alpha2.Synopsis.verify(message.synopsis);
+                                if (error)
+                                    return "synopsis." + error;
+                            }
+                            if (message.communicationVenue != null && message.hasOwnProperty("communicationVenue")) {
+                                var error = $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue.verify(message.communicationVenue);
+                                if (error)
+                                    return "communicationVenue." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an Incident message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.irm.v1alpha2.Incident} Incident
+                         */
+                        Incident.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.irm.v1alpha2.Incident)
+                                return object;
+                            var message = new $root.google.cloud.irm.v1alpha2.Incident();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.title != null)
+                                message.title = String(object.title);
+                            switch (object.escalationLevel) {
+                            case "ESCALATION_LEVEL_UNSPECIFIED":
+                            case 0:
+                                message.escalationLevel = 0;
+                                break;
+                            case "ESCALATION_LEVEL_ORGANIZATION":
+                            case 1:
+                                message.escalationLevel = 1;
+                                break;
+                            }
+                            if (object.etag != null)
+                                message.etag = String(object.etag);
+                            switch (object.severity) {
+                            case "SEVERITY_UNSPECIFIED":
+                            case 0:
+                                message.severity = 0;
+                                break;
+                            case "SEVERITY_HUGE":
+                            case 1:
+                                message.severity = 1;
+                                break;
+                            case "SEVERITY_MAJOR":
+                            case 2:
+                                message.severity = 2;
+                                break;
+                            case "SEVERITY_MEDIUM":
+                            case 3:
+                                message.severity = 3;
+                                break;
+                            case "SEVERITY_MINOR":
+                            case 4:
+                                message.severity = 4;
+                                break;
+                            case "SEVERITY_NEGLIGIBLE":
+                            case 5:
+                                message.severity = 5;
+                                break;
+                            }
+                            switch (object.stage) {
+                            case "STAGE_UNSPECIFIED":
+                            case 0:
+                                message.stage = 0;
+                                break;
+                            case "STAGE_DETECTED":
+                            case 4:
+                                message.stage = 4;
+                                break;
+                            case "STAGE_TRIAGED":
+                            case 1:
+                                message.stage = 1;
+                                break;
+                            case "STAGE_MITIGATED":
+                            case 2:
+                                message.stage = 2;
+                                break;
+                            case "STAGE_RESOLVED":
+                            case 3:
+                                message.stage = 3;
+                                break;
+                            case "STAGE_DOCUMENTED":
+                            case 5:
+                                message.stage = 5;
+                                break;
+                            case "STAGE_DUPLICATE":
+                            case 6:
+                                message.stage = 6;
+                                break;
+                            }
+                            if (object.duplicateIncident != null)
+                                message.duplicateIncident = String(object.duplicateIncident);
+                            if (object.startTime != null) {
+                                if (typeof object.startTime !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.Incident.startTime: object expected");
+                                message.startTime = $root.google.protobuf.Timestamp.fromObject(object.startTime);
+                            }
+                            if (object.synopsis != null) {
+                                if (typeof object.synopsis !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.Incident.synopsis: object expected");
+                                message.synopsis = $root.google.cloud.irm.v1alpha2.Synopsis.fromObject(object.synopsis);
+                            }
+                            if (object.communicationVenue != null) {
+                                if (typeof object.communicationVenue !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.Incident.communicationVenue: object expected");
+                                message.communicationVenue = $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue.fromObject(object.communicationVenue);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an Incident message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.Incident} message Incident
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Incident.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.title = "";
+                                object.escalationLevel = options.enums === String ? "ESCALATION_LEVEL_UNSPECIFIED" : 0;
+                                object.etag = "";
+                                object.severity = options.enums === String ? "SEVERITY_UNSPECIFIED" : 0;
+                                object.stage = options.enums === String ? "STAGE_UNSPECIFIED" : 0;
+                                object.startTime = null;
+                                object.synopsis = null;
+                                object.duplicateIncident = "";
+                                object.communicationVenue = null;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.title != null && message.hasOwnProperty("title"))
+                                object.title = message.title;
+                            if (message.escalationLevel != null && message.hasOwnProperty("escalationLevel"))
+                                object.escalationLevel = options.enums === String ? $root.google.cloud.irm.v1alpha2.Incident.EscalationLevel[message.escalationLevel] : message.escalationLevel;
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                object.etag = message.etag;
+                            if (message.severity != null && message.hasOwnProperty("severity"))
+                                object.severity = options.enums === String ? $root.google.cloud.irm.v1alpha2.Incident.Severity[message.severity] : message.severity;
+                            if (message.stage != null && message.hasOwnProperty("stage"))
+                                object.stage = options.enums === String ? $root.google.cloud.irm.v1alpha2.Incident.Stage[message.stage] : message.stage;
+                            if (message.startTime != null && message.hasOwnProperty("startTime"))
+                                object.startTime = $root.google.protobuf.Timestamp.toObject(message.startTime, options);
+                            if (message.synopsis != null && message.hasOwnProperty("synopsis"))
+                                object.synopsis = $root.google.cloud.irm.v1alpha2.Synopsis.toObject(message.synopsis, options);
+                            if (message.duplicateIncident != null && message.hasOwnProperty("duplicateIncident"))
+                                object.duplicateIncident = message.duplicateIncident;
+                            if (message.communicationVenue != null && message.hasOwnProperty("communicationVenue"))
+                                object.communicationVenue = $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue.toObject(message.communicationVenue, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Incident to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.irm.v1alpha2.Incident
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Incident.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        Incident.CommunicationVenue = (function() {
+    
+                            /**
+                             * Properties of a CommunicationVenue.
+                             * @memberof google.cloud.irm.v1alpha2.Incident
+                             * @interface ICommunicationVenue
+                             * @property {string|null} [uri] CommunicationVenue uri
+                             * @property {string|null} [displayName] CommunicationVenue displayName
+                             * @property {google.cloud.irm.v1alpha2.Incident.CommunicationVenue.ChannelType|null} [channelType] CommunicationVenue channelType
+                             */
+    
+                            /**
+                             * Constructs a new CommunicationVenue.
+                             * @memberof google.cloud.irm.v1alpha2.Incident
+                             * @classdesc Represents a CommunicationVenue.
+                             * @implements ICommunicationVenue
+                             * @constructor
+                             * @param {google.cloud.irm.v1alpha2.Incident.ICommunicationVenue=} [properties] Properties to set
+                             */
+                            function CommunicationVenue(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * CommunicationVenue uri.
+                             * @member {string} uri
+                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
+                             * @instance
+                             */
+                            CommunicationVenue.prototype.uri = "";
+    
+                            /**
+                             * CommunicationVenue displayName.
+                             * @member {string} displayName
+                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
+                             * @instance
+                             */
+                            CommunicationVenue.prototype.displayName = "";
+    
+                            /**
+                             * CommunicationVenue channelType.
+                             * @member {google.cloud.irm.v1alpha2.Incident.CommunicationVenue.ChannelType} channelType
+                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
+                             * @instance
+                             */
+                            CommunicationVenue.prototype.channelType = 0;
+    
+                            /**
+                             * Creates a new CommunicationVenue instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
+                             * @static
+                             * @param {google.cloud.irm.v1alpha2.Incident.ICommunicationVenue=} [properties] Properties to set
+                             * @returns {google.cloud.irm.v1alpha2.Incident.CommunicationVenue} CommunicationVenue instance
+                             */
+                            CommunicationVenue.create = function create(properties) {
+                                return new CommunicationVenue(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified CommunicationVenue message. Does not implicitly {@link google.cloud.irm.v1alpha2.Incident.CommunicationVenue.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
+                             * @static
+                             * @param {google.cloud.irm.v1alpha2.Incident.ICommunicationVenue} message CommunicationVenue message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            CommunicationVenue.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.uri != null && message.hasOwnProperty("uri"))
+                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.uri);
+                                if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.displayName);
+                                if (message.channelType != null && message.hasOwnProperty("channelType"))
+                                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.channelType);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified CommunicationVenue message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Incident.CommunicationVenue.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
+                             * @static
+                             * @param {google.cloud.irm.v1alpha2.Incident.ICommunicationVenue} message CommunicationVenue message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            CommunicationVenue.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a CommunicationVenue message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.irm.v1alpha2.Incident.CommunicationVenue} CommunicationVenue
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            CommunicationVenue.decode = function decode(reader, length) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    switch (tag >>> 3) {
+                                    case 1:
+                                        message.uri = reader.string();
+                                        break;
+                                    case 2:
+                                        message.displayName = reader.string();
+                                        break;
+                                    case 3:
+                                        message.channelType = reader.int32();
+                                        break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a CommunicationVenue message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.irm.v1alpha2.Incident.CommunicationVenue} CommunicationVenue
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            CommunicationVenue.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a CommunicationVenue message.
+                             * @function verify
+                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            CommunicationVenue.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.uri != null && message.hasOwnProperty("uri"))
+                                    if (!$util.isString(message.uri))
+                                        return "uri: string expected";
+                                if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                    if (!$util.isString(message.displayName))
+                                        return "displayName: string expected";
+                                if (message.channelType != null && message.hasOwnProperty("channelType"))
+                                    switch (message.channelType) {
+                                    default:
+                                        return "channelType: enum value expected";
+                                    case 0:
+                                    case 1:
+                                    case 5:
+                                        break;
+                                    }
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a CommunicationVenue message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.irm.v1alpha2.Incident.CommunicationVenue} CommunicationVenue
+                             */
+                            CommunicationVenue.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue)
+                                    return object;
+                                var message = new $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue();
+                                if (object.uri != null)
+                                    message.uri = String(object.uri);
+                                if (object.displayName != null)
+                                    message.displayName = String(object.displayName);
+                                switch (object.channelType) {
+                                case "CHANNEL_TYPE_UNSPECIFIED":
+                                case 0:
+                                    message.channelType = 0;
+                                    break;
+                                case "CHANNEL_TYPE_URI":
+                                case 1:
+                                    message.channelType = 1;
+                                    break;
+                                case "CHANNEL_TYPE_SLACK":
+                                case 5:
+                                    message.channelType = 5;
+                                    break;
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a CommunicationVenue message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
+                             * @static
+                             * @param {google.cloud.irm.v1alpha2.Incident.CommunicationVenue} message CommunicationVenue
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            CommunicationVenue.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.uri = "";
+                                    object.displayName = "";
+                                    object.channelType = options.enums === String ? "CHANNEL_TYPE_UNSPECIFIED" : 0;
+                                }
+                                if (message.uri != null && message.hasOwnProperty("uri"))
+                                    object.uri = message.uri;
+                                if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                    object.displayName = message.displayName;
+                                if (message.channelType != null && message.hasOwnProperty("channelType"))
+                                    object.channelType = options.enums === String ? $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue.ChannelType[message.channelType] : message.channelType;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this CommunicationVenue to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            CommunicationVenue.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * ChannelType enum.
+                             * @name google.cloud.irm.v1alpha2.Incident.CommunicationVenue.ChannelType
+                             * @enum {string}
+                             * @property {number} CHANNEL_TYPE_UNSPECIFIED=0 CHANNEL_TYPE_UNSPECIFIED value
+                             * @property {number} CHANNEL_TYPE_URI=1 CHANNEL_TYPE_URI value
+                             * @property {number} CHANNEL_TYPE_SLACK=5 CHANNEL_TYPE_SLACK value
+                             */
+                            CommunicationVenue.ChannelType = (function() {
+                                var valuesById = {}, values = Object.create(valuesById);
+                                values[valuesById[0] = "CHANNEL_TYPE_UNSPECIFIED"] = 0;
+                                values[valuesById[1] = "CHANNEL_TYPE_URI"] = 1;
+                                values[valuesById[5] = "CHANNEL_TYPE_SLACK"] = 5;
+                                return values;
+                            })();
+    
+                            return CommunicationVenue;
+                        })();
+    
+                        /**
+                         * EscalationLevel enum.
+                         * @name google.cloud.irm.v1alpha2.Incident.EscalationLevel
+                         * @enum {string}
+                         * @property {number} ESCALATION_LEVEL_UNSPECIFIED=0 ESCALATION_LEVEL_UNSPECIFIED value
+                         * @property {number} ESCALATION_LEVEL_ORGANIZATION=1 ESCALATION_LEVEL_ORGANIZATION value
+                         */
+                        Incident.EscalationLevel = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "ESCALATION_LEVEL_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "ESCALATION_LEVEL_ORGANIZATION"] = 1;
+                            return values;
+                        })();
+    
+                        /**
+                         * Severity enum.
+                         * @name google.cloud.irm.v1alpha2.Incident.Severity
+                         * @enum {string}
+                         * @property {number} SEVERITY_UNSPECIFIED=0 SEVERITY_UNSPECIFIED value
+                         * @property {number} SEVERITY_HUGE=1 SEVERITY_HUGE value
+                         * @property {number} SEVERITY_MAJOR=2 SEVERITY_MAJOR value
+                         * @property {number} SEVERITY_MEDIUM=3 SEVERITY_MEDIUM value
+                         * @property {number} SEVERITY_MINOR=4 SEVERITY_MINOR value
+                         * @property {number} SEVERITY_NEGLIGIBLE=5 SEVERITY_NEGLIGIBLE value
+                         */
+                        Incident.Severity = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "SEVERITY_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "SEVERITY_HUGE"] = 1;
+                            values[valuesById[2] = "SEVERITY_MAJOR"] = 2;
+                            values[valuesById[3] = "SEVERITY_MEDIUM"] = 3;
+                            values[valuesById[4] = "SEVERITY_MINOR"] = 4;
+                            values[valuesById[5] = "SEVERITY_NEGLIGIBLE"] = 5;
+                            return values;
+                        })();
+    
+                        /**
+                         * Stage enum.
+                         * @name google.cloud.irm.v1alpha2.Incident.Stage
+                         * @enum {string}
+                         * @property {number} STAGE_UNSPECIFIED=0 STAGE_UNSPECIFIED value
+                         * @property {number} STAGE_DETECTED=4 STAGE_DETECTED value
+                         * @property {number} STAGE_TRIAGED=1 STAGE_TRIAGED value
+                         * @property {number} STAGE_MITIGATED=2 STAGE_MITIGATED value
+                         * @property {number} STAGE_RESOLVED=3 STAGE_RESOLVED value
+                         * @property {number} STAGE_DOCUMENTED=5 STAGE_DOCUMENTED value
+                         * @property {number} STAGE_DUPLICATE=6 STAGE_DUPLICATE value
+                         */
+                        Incident.Stage = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "STAGE_UNSPECIFIED"] = 0;
+                            values[valuesById[4] = "STAGE_DETECTED"] = 4;
+                            values[valuesById[1] = "STAGE_TRIAGED"] = 1;
+                            values[valuesById[2] = "STAGE_MITIGATED"] = 2;
+                            values[valuesById[3] = "STAGE_RESOLVED"] = 3;
+                            values[valuesById[5] = "STAGE_DOCUMENTED"] = 5;
+                            values[valuesById[6] = "STAGE_DUPLICATE"] = 6;
+                            return values;
+                        })();
+    
+                        return Incident;
+                    })();
+    
+                    v1alpha2.IncidentRole = (function() {
+    
+                        /**
+                         * Properties of an IncidentRole.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @interface IIncidentRole
+                         * @property {google.cloud.irm.v1alpha2.IncidentRole.Type|null} [type] IncidentRole type
+                         * @property {string|null} [title] IncidentRole title
+                         * @property {string|null} [description] IncidentRole description
+                         */
+    
+                        /**
+                         * Constructs a new IncidentRole.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @classdesc Represents an IncidentRole.
+                         * @implements IIncidentRole
+                         * @constructor
+                         * @param {google.cloud.irm.v1alpha2.IIncidentRole=} [properties] Properties to set
+                         */
+                        function IncidentRole(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * IncidentRole type.
+                         * @member {google.cloud.irm.v1alpha2.IncidentRole.Type} type
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
+                         * @instance
+                         */
+                        IncidentRole.prototype.type = 0;
+    
+                        /**
+                         * IncidentRole title.
+                         * @member {string} title
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
+                         * @instance
+                         */
+                        IncidentRole.prototype.title = "";
+    
+                        /**
+                         * IncidentRole description.
+                         * @member {string} description
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
+                         * @instance
+                         */
+                        IncidentRole.prototype.description = "";
+    
+                        /**
+                         * Creates a new IncidentRole instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IIncidentRole=} [properties] Properties to set
+                         * @returns {google.cloud.irm.v1alpha2.IncidentRole} IncidentRole instance
+                         */
+                        IncidentRole.create = function create(properties) {
+                            return new IncidentRole(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified IncidentRole message. Does not implicitly {@link google.cloud.irm.v1alpha2.IncidentRole.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IIncidentRole} message IncidentRole message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        IncidentRole.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.type != null && message.hasOwnProperty("type"))
+                                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
+                            if (message.title != null && message.hasOwnProperty("title"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.title);
+                            if (message.description != null && message.hasOwnProperty("description"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.description);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified IncidentRole message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.IncidentRole.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IIncidentRole} message IncidentRole message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        IncidentRole.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an IncidentRole message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.irm.v1alpha2.IncidentRole} IncidentRole
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        IncidentRole.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.IncidentRole();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.type = reader.int32();
+                                    break;
+                                case 2:
+                                    message.title = reader.string();
+                                    break;
+                                case 3:
+                                    message.description = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an IncidentRole message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.irm.v1alpha2.IncidentRole} IncidentRole
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        IncidentRole.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an IncidentRole message.
+                         * @function verify
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        IncidentRole.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.type != null && message.hasOwnProperty("type"))
+                                switch (message.type) {
+                                default:
+                                    return "type: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                case 3:
+                                case 4:
+                                case 5:
+                                case 6:
+                                case 7:
+                                    break;
+                                }
+                            if (message.title != null && message.hasOwnProperty("title"))
+                                if (!$util.isString(message.title))
+                                    return "title: string expected";
+                            if (message.description != null && message.hasOwnProperty("description"))
+                                if (!$util.isString(message.description))
+                                    return "description: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an IncidentRole message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.irm.v1alpha2.IncidentRole} IncidentRole
+                         */
+                        IncidentRole.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.irm.v1alpha2.IncidentRole)
+                                return object;
+                            var message = new $root.google.cloud.irm.v1alpha2.IncidentRole();
+                            switch (object.type) {
+                            case "TYPE_UNSPECIFIED":
+                            case 0:
+                                message.type = 0;
+                                break;
+                            case "TYPE_INCIDENT_COMMANDER":
+                            case 1:
+                                message.type = 1;
+                                break;
+                            case "TYPE_COMMUNICATIONS_LEAD":
+                            case 2:
+                                message.type = 2;
+                                break;
+                            case "TYPE_OPERATIONS_LEAD":
+                            case 3:
+                                message.type = 3;
+                                break;
+                            case "TYPE_EXTERNAL_CUSTOMER_COMMUNICATIONS_LEAD":
+                            case 4:
+                                message.type = 4;
+                                break;
+                            case "TYPE_PRIMARY_ONCALL":
+                            case 5:
+                                message.type = 5;
+                                break;
+                            case "TYPE_SECONDARY_ONCALL":
+                            case 6:
+                                message.type = 6;
+                                break;
+                            case "TYPE_OTHER":
+                            case 7:
+                                message.type = 7;
+                                break;
+                            }
+                            if (object.title != null)
+                                message.title = String(object.title);
+                            if (object.description != null)
+                                message.description = String(object.description);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an IncidentRole message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IncidentRole} message IncidentRole
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        IncidentRole.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.type = options.enums === String ? "TYPE_UNSPECIFIED" : 0;
+                                object.title = "";
+                                object.description = "";
+                            }
+                            if (message.type != null && message.hasOwnProperty("type"))
+                                object.type = options.enums === String ? $root.google.cloud.irm.v1alpha2.IncidentRole.Type[message.type] : message.type;
+                            if (message.title != null && message.hasOwnProperty("title"))
+                                object.title = message.title;
+                            if (message.description != null && message.hasOwnProperty("description"))
+                                object.description = message.description;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this IncidentRole to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        IncidentRole.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Type enum.
+                         * @name google.cloud.irm.v1alpha2.IncidentRole.Type
+                         * @enum {string}
+                         * @property {number} TYPE_UNSPECIFIED=0 TYPE_UNSPECIFIED value
+                         * @property {number} TYPE_INCIDENT_COMMANDER=1 TYPE_INCIDENT_COMMANDER value
+                         * @property {number} TYPE_COMMUNICATIONS_LEAD=2 TYPE_COMMUNICATIONS_LEAD value
+                         * @property {number} TYPE_OPERATIONS_LEAD=3 TYPE_OPERATIONS_LEAD value
+                         * @property {number} TYPE_EXTERNAL_CUSTOMER_COMMUNICATIONS_LEAD=4 TYPE_EXTERNAL_CUSTOMER_COMMUNICATIONS_LEAD value
+                         * @property {number} TYPE_PRIMARY_ONCALL=5 TYPE_PRIMARY_ONCALL value
+                         * @property {number} TYPE_SECONDARY_ONCALL=6 TYPE_SECONDARY_ONCALL value
+                         * @property {number} TYPE_OTHER=7 TYPE_OTHER value
+                         */
+                        IncidentRole.Type = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "TYPE_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "TYPE_INCIDENT_COMMANDER"] = 1;
+                            values[valuesById[2] = "TYPE_COMMUNICATIONS_LEAD"] = 2;
+                            values[valuesById[3] = "TYPE_OPERATIONS_LEAD"] = 3;
+                            values[valuesById[4] = "TYPE_EXTERNAL_CUSTOMER_COMMUNICATIONS_LEAD"] = 4;
+                            values[valuesById[5] = "TYPE_PRIMARY_ONCALL"] = 5;
+                            values[valuesById[6] = "TYPE_SECONDARY_ONCALL"] = 6;
+                            values[valuesById[7] = "TYPE_OTHER"] = 7;
+                            return values;
+                        })();
+    
+                        return IncidentRole;
+                    })();
+    
+                    v1alpha2.IncidentRoleAssignment = (function() {
+    
+                        /**
+                         * Properties of an IncidentRoleAssignment.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @interface IIncidentRoleAssignment
+                         * @property {string|null} [name] IncidentRoleAssignment name
+                         * @property {string|null} [etag] IncidentRoleAssignment etag
+                         * @property {google.cloud.irm.v1alpha2.IIncidentRole|null} [role] IncidentRoleAssignment role
+                         * @property {google.cloud.irm.v1alpha2.IUser|null} [assignee] IncidentRoleAssignment assignee
+                         * @property {google.cloud.irm.v1alpha2.IUser|null} [proposedAssignee] IncidentRoleAssignment proposedAssignee
+                         */
+    
+                        /**
+                         * Constructs a new IncidentRoleAssignment.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @classdesc Represents an IncidentRoleAssignment.
+                         * @implements IIncidentRoleAssignment
+                         * @constructor
+                         * @param {google.cloud.irm.v1alpha2.IIncidentRoleAssignment=} [properties] Properties to set
+                         */
+                        function IncidentRoleAssignment(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * IncidentRoleAssignment name.
+                         * @member {string} name
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
+                         * @instance
+                         */
+                        IncidentRoleAssignment.prototype.name = "";
+    
+                        /**
+                         * IncidentRoleAssignment etag.
+                         * @member {string} etag
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
+                         * @instance
+                         */
+                        IncidentRoleAssignment.prototype.etag = "";
+    
+                        /**
+                         * IncidentRoleAssignment role.
+                         * @member {google.cloud.irm.v1alpha2.IIncidentRole|null|undefined} role
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
+                         * @instance
+                         */
+                        IncidentRoleAssignment.prototype.role = null;
+    
+                        /**
+                         * IncidentRoleAssignment assignee.
+                         * @member {google.cloud.irm.v1alpha2.IUser|null|undefined} assignee
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
+                         * @instance
+                         */
+                        IncidentRoleAssignment.prototype.assignee = null;
+    
+                        /**
+                         * IncidentRoleAssignment proposedAssignee.
+                         * @member {google.cloud.irm.v1alpha2.IUser|null|undefined} proposedAssignee
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
+                         * @instance
+                         */
+                        IncidentRoleAssignment.prototype.proposedAssignee = null;
+    
+                        /**
+                         * Creates a new IncidentRoleAssignment instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IIncidentRoleAssignment=} [properties] Properties to set
+                         * @returns {google.cloud.irm.v1alpha2.IncidentRoleAssignment} IncidentRoleAssignment instance
+                         */
+                        IncidentRoleAssignment.create = function create(properties) {
+                            return new IncidentRoleAssignment(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified IncidentRoleAssignment message. Does not implicitly {@link google.cloud.irm.v1alpha2.IncidentRoleAssignment.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IIncidentRoleAssignment} message IncidentRoleAssignment message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        IncidentRoleAssignment.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.etag);
+                            if (message.role != null && message.hasOwnProperty("role"))
+                                $root.google.cloud.irm.v1alpha2.IncidentRole.encode(message.role, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                            if (message.assignee != null && message.hasOwnProperty("assignee"))
+                                $root.google.cloud.irm.v1alpha2.User.encode(message.assignee, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            if (message.proposedAssignee != null && message.hasOwnProperty("proposedAssignee"))
+                                $root.google.cloud.irm.v1alpha2.User.encode(message.proposedAssignee, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified IncidentRoleAssignment message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.IncidentRoleAssignment.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IIncidentRoleAssignment} message IncidentRoleAssignment message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        IncidentRoleAssignment.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an IncidentRoleAssignment message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.irm.v1alpha2.IncidentRoleAssignment} IncidentRoleAssignment
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        IncidentRoleAssignment.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.IncidentRoleAssignment();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.name = reader.string();
+                                    break;
+                                case 2:
+                                    message.etag = reader.string();
+                                    break;
+                                case 3:
+                                    message.role = $root.google.cloud.irm.v1alpha2.IncidentRole.decode(reader, reader.uint32());
+                                    break;
+                                case 4:
+                                    message.assignee = $root.google.cloud.irm.v1alpha2.User.decode(reader, reader.uint32());
+                                    break;
+                                case 5:
+                                    message.proposedAssignee = $root.google.cloud.irm.v1alpha2.User.decode(reader, reader.uint32());
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an IncidentRoleAssignment message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.irm.v1alpha2.IncidentRoleAssignment} IncidentRoleAssignment
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        IncidentRoleAssignment.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an IncidentRoleAssignment message.
+                         * @function verify
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        IncidentRoleAssignment.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                if (!$util.isString(message.etag))
+                                    return "etag: string expected";
+                            if (message.role != null && message.hasOwnProperty("role")) {
+                                var error = $root.google.cloud.irm.v1alpha2.IncidentRole.verify(message.role);
+                                if (error)
+                                    return "role." + error;
+                            }
+                            if (message.assignee != null && message.hasOwnProperty("assignee")) {
+                                var error = $root.google.cloud.irm.v1alpha2.User.verify(message.assignee);
+                                if (error)
+                                    return "assignee." + error;
+                            }
+                            if (message.proposedAssignee != null && message.hasOwnProperty("proposedAssignee")) {
+                                var error = $root.google.cloud.irm.v1alpha2.User.verify(message.proposedAssignee);
+                                if (error)
+                                    return "proposedAssignee." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an IncidentRoleAssignment message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.irm.v1alpha2.IncidentRoleAssignment} IncidentRoleAssignment
+                         */
+                        IncidentRoleAssignment.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.irm.v1alpha2.IncidentRoleAssignment)
+                                return object;
+                            var message = new $root.google.cloud.irm.v1alpha2.IncidentRoleAssignment();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.etag != null)
+                                message.etag = String(object.etag);
+                            if (object.role != null) {
+                                if (typeof object.role !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.IncidentRoleAssignment.role: object expected");
+                                message.role = $root.google.cloud.irm.v1alpha2.IncidentRole.fromObject(object.role);
+                            }
+                            if (object.assignee != null) {
+                                if (typeof object.assignee !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.IncidentRoleAssignment.assignee: object expected");
+                                message.assignee = $root.google.cloud.irm.v1alpha2.User.fromObject(object.assignee);
+                            }
+                            if (object.proposedAssignee != null) {
+                                if (typeof object.proposedAssignee !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.IncidentRoleAssignment.proposedAssignee: object expected");
+                                message.proposedAssignee = $root.google.cloud.irm.v1alpha2.User.fromObject(object.proposedAssignee);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an IncidentRoleAssignment message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IncidentRoleAssignment} message IncidentRoleAssignment
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        IncidentRoleAssignment.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.etag = "";
+                                object.role = null;
+                                object.assignee = null;
+                                object.proposedAssignee = null;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                object.etag = message.etag;
+                            if (message.role != null && message.hasOwnProperty("role"))
+                                object.role = $root.google.cloud.irm.v1alpha2.IncidentRole.toObject(message.role, options);
+                            if (message.assignee != null && message.hasOwnProperty("assignee"))
+                                object.assignee = $root.google.cloud.irm.v1alpha2.User.toObject(message.assignee, options);
+                            if (message.proposedAssignee != null && message.hasOwnProperty("proposedAssignee"))
+                                object.proposedAssignee = $root.google.cloud.irm.v1alpha2.User.toObject(message.proposedAssignee, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this IncidentRoleAssignment to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        IncidentRoleAssignment.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return IncidentRoleAssignment;
+                    })();
+    
+                    v1alpha2.Artifact = (function() {
+    
+                        /**
+                         * Properties of an Artifact.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @interface IArtifact
+                         * @property {string|null} [name] Artifact name
+                         * @property {string|null} [displayName] Artifact displayName
+                         * @property {string|null} [etag] Artifact etag
+                         * @property {string|null} [url] Artifact url
+                         * @property {google.cloud.irm.v1alpha2.Artifact.Type|null} [type] Artifact type
+                         */
+    
+                        /**
+                         * Constructs a new Artifact.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @classdesc Represents an Artifact.
+                         * @implements IArtifact
+                         * @constructor
+                         * @param {google.cloud.irm.v1alpha2.IArtifact=} [properties] Properties to set
+                         */
+                        function Artifact(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Artifact name.
+                         * @member {string} name
+                         * @memberof google.cloud.irm.v1alpha2.Artifact
+                         * @instance
+                         */
+                        Artifact.prototype.name = "";
+    
+                        /**
+                         * Artifact displayName.
+                         * @member {string} displayName
+                         * @memberof google.cloud.irm.v1alpha2.Artifact
+                         * @instance
+                         */
+                        Artifact.prototype.displayName = "";
+    
+                        /**
+                         * Artifact etag.
+                         * @member {string} etag
+                         * @memberof google.cloud.irm.v1alpha2.Artifact
+                         * @instance
+                         */
+                        Artifact.prototype.etag = "";
+    
+                        /**
+                         * Artifact url.
+                         * @member {string} url
+                         * @memberof google.cloud.irm.v1alpha2.Artifact
+                         * @instance
+                         */
+                        Artifact.prototype.url = "";
+    
+                        /**
+                         * Artifact type.
+                         * @member {google.cloud.irm.v1alpha2.Artifact.Type} type
+                         * @memberof google.cloud.irm.v1alpha2.Artifact
+                         * @instance
+                         */
+                        Artifact.prototype.type = 0;
+    
+                        /**
+                         * Creates a new Artifact instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.irm.v1alpha2.Artifact
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IArtifact=} [properties] Properties to set
+                         * @returns {google.cloud.irm.v1alpha2.Artifact} Artifact instance
+                         */
+                        Artifact.create = function create(properties) {
+                            return new Artifact(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Artifact message. Does not implicitly {@link google.cloud.irm.v1alpha2.Artifact.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.irm.v1alpha2.Artifact
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IArtifact} message Artifact message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Artifact.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.displayName);
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.etag);
+                            if (message.url != null && message.hasOwnProperty("url"))
+                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.url);
+                            if (message.type != null && message.hasOwnProperty("type"))
+                                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.type);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Artifact message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Artifact.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.Artifact
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.IArtifact} message Artifact message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Artifact.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an Artifact message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.irm.v1alpha2.Artifact
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.irm.v1alpha2.Artifact} Artifact
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Artifact.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Artifact();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.name = reader.string();
+                                    break;
+                                case 2:
+                                    message.displayName = reader.string();
+                                    break;
+                                case 3:
+                                    message.etag = reader.string();
+                                    break;
+                                case 4:
+                                    message.url = reader.string();
+                                    break;
+                                case 5:
+                                    message.type = reader.int32();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an Artifact message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.Artifact
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.irm.v1alpha2.Artifact} Artifact
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Artifact.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an Artifact message.
+                         * @function verify
+                         * @memberof google.cloud.irm.v1alpha2.Artifact
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Artifact.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                if (!$util.isString(message.displayName))
+                                    return "displayName: string expected";
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                if (!$util.isString(message.etag))
+                                    return "etag: string expected";
+                            if (message.url != null && message.hasOwnProperty("url"))
+                                if (!$util.isString(message.url))
+                                    return "url: string expected";
+                            if (message.type != null && message.hasOwnProperty("type"))
+                                switch (message.type) {
+                                default:
+                                    return "type: enum value expected";
+                                case 0:
+                                case 1:
+                                case 4:
+                                    break;
+                                }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an Artifact message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.irm.v1alpha2.Artifact
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.irm.v1alpha2.Artifact} Artifact
+                         */
+                        Artifact.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.irm.v1alpha2.Artifact)
+                                return object;
+                            var message = new $root.google.cloud.irm.v1alpha2.Artifact();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.displayName != null)
+                                message.displayName = String(object.displayName);
+                            if (object.etag != null)
+                                message.etag = String(object.etag);
+                            if (object.url != null)
+                                message.url = String(object.url);
+                            switch (object.type) {
+                            case "TYPE_UNSPECIFIED":
+                            case 0:
+                                message.type = 0;
+                                break;
+                            case "TYPE_URL":
+                            case 1:
+                                message.type = 1;
+                                break;
+                            case "TYPE_JIRA_ISSUE":
+                            case 4:
+                                message.type = 4;
+                                break;
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an Artifact message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.irm.v1alpha2.Artifact
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.Artifact} message Artifact
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Artifact.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.displayName = "";
+                                object.etag = "";
+                                object.url = "";
+                                object.type = options.enums === String ? "TYPE_UNSPECIFIED" : 0;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.displayName != null && message.hasOwnProperty("displayName"))
+                                object.displayName = message.displayName;
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                object.etag = message.etag;
+                            if (message.url != null && message.hasOwnProperty("url"))
+                                object.url = message.url;
+                            if (message.type != null && message.hasOwnProperty("type"))
+                                object.type = options.enums === String ? $root.google.cloud.irm.v1alpha2.Artifact.Type[message.type] : message.type;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Artifact to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.irm.v1alpha2.Artifact
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Artifact.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * Type enum.
+                         * @name google.cloud.irm.v1alpha2.Artifact.Type
+                         * @enum {string}
+                         * @property {number} TYPE_UNSPECIFIED=0 TYPE_UNSPECIFIED value
+                         * @property {number} TYPE_URL=1 TYPE_URL value
+                         * @property {number} TYPE_JIRA_ISSUE=4 TYPE_JIRA_ISSUE value
+                         */
+                        Artifact.Type = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "TYPE_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "TYPE_URL"] = 1;
+                            values[valuesById[4] = "TYPE_JIRA_ISSUE"] = 4;
+                            return values;
+                        })();
+    
+                        return Artifact;
+                    })();
+    
+                    v1alpha2.CommunicationChannel = (function() {
+    
+                        /**
+                         * Properties of a CommunicationChannel.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @interface ICommunicationChannel
+                         * @property {google.cloud.irm.v1alpha2.CommunicationChannel.IEmail|null} [email] CommunicationChannel email
+                         * @property {google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel|null} [notificationChannel] CommunicationChannel notificationChannel
+                         */
+    
+                        /**
+                         * Constructs a new CommunicationChannel.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @classdesc Represents a CommunicationChannel.
+                         * @implements ICommunicationChannel
+                         * @constructor
+                         * @param {google.cloud.irm.v1alpha2.ICommunicationChannel=} [properties] Properties to set
+                         */
+                        function CommunicationChannel(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * CommunicationChannel email.
+                         * @member {google.cloud.irm.v1alpha2.CommunicationChannel.IEmail|null|undefined} email
+                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
+                         * @instance
+                         */
+                        CommunicationChannel.prototype.email = null;
+    
+                        /**
+                         * CommunicationChannel notificationChannel.
+                         * @member {google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel|null|undefined} notificationChannel
+                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
+                         * @instance
+                         */
+                        CommunicationChannel.prototype.notificationChannel = null;
+    
+                        // OneOf field names bound to virtual getters and setters
+                        var $oneOfFields;
+    
+                        /**
+                         * CommunicationChannel endpoint.
+                         * @member {"email"|"notificationChannel"|undefined} endpoint
+                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
+                         * @instance
+                         */
+                        Object.defineProperty(CommunicationChannel.prototype, "endpoint", {
+                            get: $util.oneOfGetter($oneOfFields = ["email", "notificationChannel"]),
+                            set: $util.oneOfSetter($oneOfFields)
+                        });
+    
+                        /**
+                         * Creates a new CommunicationChannel instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.ICommunicationChannel=} [properties] Properties to set
+                         * @returns {google.cloud.irm.v1alpha2.CommunicationChannel} CommunicationChannel instance
+                         */
+                        CommunicationChannel.create = function create(properties) {
+                            return new CommunicationChannel(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified CommunicationChannel message. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.ICommunicationChannel} message CommunicationChannel message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        CommunicationChannel.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.email != null && message.hasOwnProperty("email"))
+                                $root.google.cloud.irm.v1alpha2.CommunicationChannel.Email.encode(message.email, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.notificationChannel != null && message.hasOwnProperty("notificationChannel"))
+                                $root.google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.encode(message.notificationChannel, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified CommunicationChannel message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.ICommunicationChannel} message CommunicationChannel message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        CommunicationChannel.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a CommunicationChannel message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.irm.v1alpha2.CommunicationChannel} CommunicationChannel
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        CommunicationChannel.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.CommunicationChannel();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.email = $root.google.cloud.irm.v1alpha2.CommunicationChannel.Email.decode(reader, reader.uint32());
+                                    break;
+                                case 2:
+                                    message.notificationChannel = $root.google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.decode(reader, reader.uint32());
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a CommunicationChannel message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.irm.v1alpha2.CommunicationChannel} CommunicationChannel
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        CommunicationChannel.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a CommunicationChannel message.
+                         * @function verify
+                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        CommunicationChannel.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            var properties = {};
+                            if (message.email != null && message.hasOwnProperty("email")) {
+                                properties.endpoint = 1;
+                                {
+                                    var error = $root.google.cloud.irm.v1alpha2.CommunicationChannel.Email.verify(message.email);
+                                    if (error)
+                                        return "email." + error;
+                                }
+                            }
+                            if (message.notificationChannel != null && message.hasOwnProperty("notificationChannel")) {
+                                if (properties.endpoint === 1)
+                                    return "endpoint: multiple values";
+                                properties.endpoint = 1;
+                                {
+                                    var error = $root.google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.verify(message.notificationChannel);
+                                    if (error)
+                                        return "notificationChannel." + error;
+                                }
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a CommunicationChannel message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.irm.v1alpha2.CommunicationChannel} CommunicationChannel
+                         */
+                        CommunicationChannel.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.irm.v1alpha2.CommunicationChannel)
+                                return object;
+                            var message = new $root.google.cloud.irm.v1alpha2.CommunicationChannel();
+                            if (object.email != null) {
+                                if (typeof object.email !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.CommunicationChannel.email: object expected");
+                                message.email = $root.google.cloud.irm.v1alpha2.CommunicationChannel.Email.fromObject(object.email);
+                            }
+                            if (object.notificationChannel != null) {
+                                if (typeof object.notificationChannel !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.CommunicationChannel.notificationChannel: object expected");
+                                message.notificationChannel = $root.google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.fromObject(object.notificationChannel);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a CommunicationChannel message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.CommunicationChannel} message CommunicationChannel
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        CommunicationChannel.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (message.email != null && message.hasOwnProperty("email")) {
+                                object.email = $root.google.cloud.irm.v1alpha2.CommunicationChannel.Email.toObject(message.email, options);
+                                if (options.oneofs)
+                                    object.endpoint = "email";
+                            }
+                            if (message.notificationChannel != null && message.hasOwnProperty("notificationChannel")) {
+                                object.notificationChannel = $root.google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.toObject(message.notificationChannel, options);
+                                if (options.oneofs)
+                                    object.endpoint = "notificationChannel";
+                            }
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this CommunicationChannel to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        CommunicationChannel.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        CommunicationChannel.Email = (function() {
+    
+                            /**
+                             * Properties of an Email.
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
+                             * @interface IEmail
+                             * @property {string|null} [address] Email address
+                             */
+    
+                            /**
+                             * Constructs a new Email.
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
+                             * @classdesc Represents an Email.
+                             * @implements IEmail
+                             * @constructor
+                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.IEmail=} [properties] Properties to set
+                             */
+                            function Email(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * Email address.
+                             * @member {string} address
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
+                             * @instance
+                             */
+                            Email.prototype.address = "";
+    
+                            /**
+                             * Creates a new Email instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
+                             * @static
+                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.IEmail=} [properties] Properties to set
+                             * @returns {google.cloud.irm.v1alpha2.CommunicationChannel.Email} Email instance
+                             */
+                            Email.create = function create(properties) {
+                                return new Email(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified Email message. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.Email.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
+                             * @static
+                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.IEmail} message Email message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            Email.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.address != null && message.hasOwnProperty("address"))
+                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.address);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified Email message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.Email.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
+                             * @static
+                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.IEmail} message Email message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            Email.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes an Email message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.irm.v1alpha2.CommunicationChannel.Email} Email
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            Email.decode = function decode(reader, length) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.CommunicationChannel.Email();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    switch (tag >>> 3) {
+                                    case 1:
+                                        message.address = reader.string();
+                                        break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes an Email message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.irm.v1alpha2.CommunicationChannel.Email} Email
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            Email.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies an Email message.
+                             * @function verify
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            Email.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.address != null && message.hasOwnProperty("address"))
+                                    if (!$util.isString(message.address))
+                                        return "address: string expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates an Email message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.irm.v1alpha2.CommunicationChannel.Email} Email
+                             */
+                            Email.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.irm.v1alpha2.CommunicationChannel.Email)
+                                    return object;
+                                var message = new $root.google.cloud.irm.v1alpha2.CommunicationChannel.Email();
+                                if (object.address != null)
+                                    message.address = String(object.address);
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from an Email message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
+                             * @static
+                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.Email} message Email
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            Email.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults)
+                                    object.address = "";
+                                if (message.address != null && message.hasOwnProperty("address"))
+                                    object.address = message.address;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this Email to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            Email.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            return Email;
+                        })();
+    
+                        CommunicationChannel.NotificationChannel = (function() {
+    
+                            /**
+                             * Properties of a NotificationChannel.
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
+                             * @interface INotificationChannel
+                             * @property {string|null} [name] NotificationChannel name
+                             */
+    
+                            /**
+                             * Constructs a new NotificationChannel.
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
+                             * @classdesc Represents a NotificationChannel.
+                             * @implements INotificationChannel
+                             * @constructor
+                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel=} [properties] Properties to set
+                             */
+                            function NotificationChannel(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * NotificationChannel name.
+                             * @member {string} name
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
+                             * @instance
+                             */
+                            NotificationChannel.prototype.name = "";
+    
+                            /**
+                             * Creates a new NotificationChannel instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
+                             * @static
+                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel=} [properties] Properties to set
+                             * @returns {google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel} NotificationChannel instance
+                             */
+                            NotificationChannel.create = function create(properties) {
+                                return new NotificationChannel(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified NotificationChannel message. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
+                             * @static
+                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel} message NotificationChannel message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            NotificationChannel.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.name != null && message.hasOwnProperty("name"))
+                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified NotificationChannel message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
+                             * @static
+                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel} message NotificationChannel message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            NotificationChannel.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a NotificationChannel message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel} NotificationChannel
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            NotificationChannel.decode = function decode(reader, length) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    switch (tag >>> 3) {
+                                    case 1:
+                                        message.name = reader.string();
+                                        break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a NotificationChannel message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel} NotificationChannel
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            NotificationChannel.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a NotificationChannel message.
+                             * @function verify
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            NotificationChannel.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.name != null && message.hasOwnProperty("name"))
+                                    if (!$util.isString(message.name))
+                                        return "name: string expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a NotificationChannel message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel} NotificationChannel
+                             */
+                            NotificationChannel.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel)
+                                    return object;
+                                var message = new $root.google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel();
+                                if (object.name != null)
+                                    message.name = String(object.name);
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a NotificationChannel message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
+                             * @static
+                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel} message NotificationChannel
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            NotificationChannel.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults)
+                                    object.name = "";
+                                if (message.name != null && message.hasOwnProperty("name"))
+                                    object.name = message.name;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this NotificationChannel to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            NotificationChannel.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            return NotificationChannel;
+                        })();
+    
+                        return CommunicationChannel;
+                    })();
+    
+                    v1alpha2.Subscription = (function() {
+    
+                        /**
+                         * Properties of a Subscription.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @interface ISubscription
+                         * @property {string|null} [name] Subscription name
+                         * @property {string|null} [etag] Subscription etag
+                         * @property {google.cloud.irm.v1alpha2.ICommunicationChannel|null} [subscriptionChannel] Subscription subscriptionChannel
+                         * @property {Array.<google.cloud.irm.v1alpha2.Subscription.EventType>|null} [eventTypes] Subscription eventTypes
+                         */
+    
+                        /**
+                         * Constructs a new Subscription.
+                         * @memberof google.cloud.irm.v1alpha2
+                         * @classdesc Represents a Subscription.
+                         * @implements ISubscription
+                         * @constructor
+                         * @param {google.cloud.irm.v1alpha2.ISubscription=} [properties] Properties to set
+                         */
+                        function Subscription(properties) {
+                            this.eventTypes = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Subscription name.
+                         * @member {string} name
+                         * @memberof google.cloud.irm.v1alpha2.Subscription
+                         * @instance
+                         */
+                        Subscription.prototype.name = "";
+    
+                        /**
+                         * Subscription etag.
+                         * @member {string} etag
+                         * @memberof google.cloud.irm.v1alpha2.Subscription
+                         * @instance
+                         */
+                        Subscription.prototype.etag = "";
+    
+                        /**
+                         * Subscription subscriptionChannel.
+                         * @member {google.cloud.irm.v1alpha2.ICommunicationChannel|null|undefined} subscriptionChannel
+                         * @memberof google.cloud.irm.v1alpha2.Subscription
+                         * @instance
+                         */
+                        Subscription.prototype.subscriptionChannel = null;
+    
+                        /**
+                         * Subscription eventTypes.
+                         * @member {Array.<google.cloud.irm.v1alpha2.Subscription.EventType>} eventTypes
+                         * @memberof google.cloud.irm.v1alpha2.Subscription
+                         * @instance
+                         */
+                        Subscription.prototype.eventTypes = $util.emptyArray;
+    
+                        /**
+                         * Creates a new Subscription instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.irm.v1alpha2.Subscription
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.ISubscription=} [properties] Properties to set
+                         * @returns {google.cloud.irm.v1alpha2.Subscription} Subscription instance
+                         */
+                        Subscription.create = function create(properties) {
+                            return new Subscription(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Subscription message. Does not implicitly {@link google.cloud.irm.v1alpha2.Subscription.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.irm.v1alpha2.Subscription
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.ISubscription} message Subscription message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Subscription.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.etag);
+                            if (message.subscriptionChannel != null && message.hasOwnProperty("subscriptionChannel"))
+                                $root.google.cloud.irm.v1alpha2.CommunicationChannel.encode(message.subscriptionChannel, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                            if (message.eventTypes != null && message.eventTypes.length) {
+                                writer.uint32(/* id 4, wireType 2 =*/34).fork();
+                                for (var i = 0; i < message.eventTypes.length; ++i)
+                                    writer.int32(message.eventTypes[i]);
+                                writer.ldelim();
+                            }
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Subscription message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Subscription.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.Subscription
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.ISubscription} message Subscription message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Subscription.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a Subscription message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.irm.v1alpha2.Subscription
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.irm.v1alpha2.Subscription} Subscription
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Subscription.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Subscription();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.name = reader.string();
+                                    break;
+                                case 2:
+                                    message.etag = reader.string();
+                                    break;
+                                case 3:
+                                    message.subscriptionChannel = $root.google.cloud.irm.v1alpha2.CommunicationChannel.decode(reader, reader.uint32());
+                                    break;
+                                case 4:
+                                    if (!(message.eventTypes && message.eventTypes.length))
+                                        message.eventTypes = [];
+                                    if ((tag & 7) === 2) {
+                                        var end2 = reader.uint32() + reader.pos;
+                                        while (reader.pos < end2)
+                                            message.eventTypes.push(reader.int32());
+                                    } else
+                                        message.eventTypes.push(reader.int32());
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a Subscription message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.irm.v1alpha2.Subscription
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.irm.v1alpha2.Subscription} Subscription
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Subscription.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a Subscription message.
+                         * @function verify
+                         * @memberof google.cloud.irm.v1alpha2.Subscription
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Subscription.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                if (!$util.isString(message.etag))
+                                    return "etag: string expected";
+                            if (message.subscriptionChannel != null && message.hasOwnProperty("subscriptionChannel")) {
+                                var error = $root.google.cloud.irm.v1alpha2.CommunicationChannel.verify(message.subscriptionChannel);
+                                if (error)
+                                    return "subscriptionChannel." + error;
+                            }
+                            if (message.eventTypes != null && message.hasOwnProperty("eventTypes")) {
+                                if (!Array.isArray(message.eventTypes))
+                                    return "eventTypes: array expected";
+                                for (var i = 0; i < message.eventTypes.length; ++i)
+                                    switch (message.eventTypes[i]) {
+                                    default:
+                                        return "eventTypes: enum value[] expected";
+                                    case 0:
+                                    case 1:
+                                    case 2:
+                                    case 3:
+                                    case 4:
+                                    case 5:
+                                    case 6:
+                                        break;
+                                    }
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a Subscription message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.irm.v1alpha2.Subscription
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.irm.v1alpha2.Subscription} Subscription
+                         */
+                        Subscription.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.irm.v1alpha2.Subscription)
+                                return object;
+                            var message = new $root.google.cloud.irm.v1alpha2.Subscription();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.etag != null)
+                                message.etag = String(object.etag);
+                            if (object.subscriptionChannel != null) {
+                                if (typeof object.subscriptionChannel !== "object")
+                                    throw TypeError(".google.cloud.irm.v1alpha2.Subscription.subscriptionChannel: object expected");
+                                message.subscriptionChannel = $root.google.cloud.irm.v1alpha2.CommunicationChannel.fromObject(object.subscriptionChannel);
+                            }
+                            if (object.eventTypes) {
+                                if (!Array.isArray(object.eventTypes))
+                                    throw TypeError(".google.cloud.irm.v1alpha2.Subscription.eventTypes: array expected");
+                                message.eventTypes = [];
+                                for (var i = 0; i < object.eventTypes.length; ++i)
+                                    switch (object.eventTypes[i]) {
+                                    default:
+                                    case "EVENT_TYPE_UNSPECIFIED":
+                                    case 0:
+                                        message.eventTypes[i] = 0;
+                                        break;
+                                    case "EVENT_TYPE_TITLE_CHANGE":
+                                    case 1:
+                                        message.eventTypes[i] = 1;
+                                        break;
+                                    case "EVENT_TYPE_SYNOPSIS_CHANGE":
+                                    case 2:
+                                        message.eventTypes[i] = 2;
+                                        break;
+                                    case "EVENT_TYPE_STAGE_CHANGE":
+                                    case 3:
+                                        message.eventTypes[i] = 3;
+                                        break;
+                                    case "EVENT_TYPE_SEVERITY_CHANGE":
+                                    case 4:
+                                        message.eventTypes[i] = 4;
+                                        break;
+                                    case "EVENT_TYPE_ANNOTATION_ADD":
+                                    case 5:
+                                        message.eventTypes[i] = 5;
+                                        break;
+                                    case "EVENT_TYPE_ANNOTATION_CHANGE":
+                                    case 6:
+                                        message.eventTypes[i] = 6;
+                                        break;
+                                    }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a Subscription message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.irm.v1alpha2.Subscription
+                         * @static
+                         * @param {google.cloud.irm.v1alpha2.Subscription} message Subscription
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Subscription.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.eventTypes = [];
+                            if (options.defaults) {
+                                object.name = "";
+                                object.etag = "";
+                                object.subscriptionChannel = null;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.etag != null && message.hasOwnProperty("etag"))
+                                object.etag = message.etag;
+                            if (message.subscriptionChannel != null && message.hasOwnProperty("subscriptionChannel"))
+                                object.subscriptionChannel = $root.google.cloud.irm.v1alpha2.CommunicationChannel.toObject(message.subscriptionChannel, options);
+                            if (message.eventTypes && message.eventTypes.length) {
+                                object.eventTypes = [];
+                                for (var j = 0; j < message.eventTypes.length; ++j)
+                                    object.eventTypes[j] = options.enums === String ? $root.google.cloud.irm.v1alpha2.Subscription.EventType[message.eventTypes[j]] : message.eventTypes[j];
+                            }
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Subscription to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.irm.v1alpha2.Subscription
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Subscription.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        /**
+                         * EventType enum.
+                         * @name google.cloud.irm.v1alpha2.Subscription.EventType
+                         * @enum {string}
+                         * @property {number} EVENT_TYPE_UNSPECIFIED=0 EVENT_TYPE_UNSPECIFIED value
+                         * @property {number} EVENT_TYPE_TITLE_CHANGE=1 EVENT_TYPE_TITLE_CHANGE value
+                         * @property {number} EVENT_TYPE_SYNOPSIS_CHANGE=2 EVENT_TYPE_SYNOPSIS_CHANGE value
+                         * @property {number} EVENT_TYPE_STAGE_CHANGE=3 EVENT_TYPE_STAGE_CHANGE value
+                         * @property {number} EVENT_TYPE_SEVERITY_CHANGE=4 EVENT_TYPE_SEVERITY_CHANGE value
+                         * @property {number} EVENT_TYPE_ANNOTATION_ADD=5 EVENT_TYPE_ANNOTATION_ADD value
+                         * @property {number} EVENT_TYPE_ANNOTATION_CHANGE=6 EVENT_TYPE_ANNOTATION_CHANGE value
+                         */
+                        Subscription.EventType = (function() {
+                            var valuesById = {}, values = Object.create(valuesById);
+                            values[valuesById[0] = "EVENT_TYPE_UNSPECIFIED"] = 0;
+                            values[valuesById[1] = "EVENT_TYPE_TITLE_CHANGE"] = 1;
+                            values[valuesById[2] = "EVENT_TYPE_SYNOPSIS_CHANGE"] = 2;
+                            values[valuesById[3] = "EVENT_TYPE_STAGE_CHANGE"] = 3;
+                            values[valuesById[4] = "EVENT_TYPE_SEVERITY_CHANGE"] = 4;
+                            values[valuesById[5] = "EVENT_TYPE_ANNOTATION_ADD"] = 5;
+                            values[valuesById[6] = "EVENT_TYPE_ANNOTATION_CHANGE"] = 6;
+                            return values;
+                        })();
+    
+                        return Subscription;
+                    })();
+    
                     v1alpha2.IncidentService = (function() {
     
                         /**
@@ -11273,4413 +15680,6 @@
                         return CancelIncidentRoleHandoverRequest;
                     })();
     
-                    v1alpha2.User = (function() {
-    
-                        /**
-                         * Properties of a User.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @interface IUser
-                         * @property {string|null} [userId] User userId
-                         * @property {string|null} [email] User email
-                         */
-    
-                        /**
-                         * Constructs a new User.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @classdesc Represents a User.
-                         * @implements IUser
-                         * @constructor
-                         * @param {google.cloud.irm.v1alpha2.IUser=} [properties] Properties to set
-                         */
-                        function User(properties) {
-                            if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                    if (properties[keys[i]] != null)
-                                        this[keys[i]] = properties[keys[i]];
-                        }
-    
-                        /**
-                         * User userId.
-                         * @member {string} userId
-                         * @memberof google.cloud.irm.v1alpha2.User
-                         * @instance
-                         */
-                        User.prototype.userId = "";
-    
-                        /**
-                         * User email.
-                         * @member {string} email
-                         * @memberof google.cloud.irm.v1alpha2.User
-                         * @instance
-                         */
-                        User.prototype.email = "";
-    
-                        // OneOf field names bound to virtual getters and setters
-                        var $oneOfFields;
-    
-                        /**
-                         * User user.
-                         * @member {"userId"|"email"|undefined} user
-                         * @memberof google.cloud.irm.v1alpha2.User
-                         * @instance
-                         */
-                        Object.defineProperty(User.prototype, "user", {
-                            get: $util.oneOfGetter($oneOfFields = ["userId", "email"]),
-                            set: $util.oneOfSetter($oneOfFields)
-                        });
-    
-                        /**
-                         * Creates a new User instance using the specified properties.
-                         * @function create
-                         * @memberof google.cloud.irm.v1alpha2.User
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IUser=} [properties] Properties to set
-                         * @returns {google.cloud.irm.v1alpha2.User} User instance
-                         */
-                        User.create = function create(properties) {
-                            return new User(properties);
-                        };
-    
-                        /**
-                         * Encodes the specified User message. Does not implicitly {@link google.cloud.irm.v1alpha2.User.verify|verify} messages.
-                         * @function encode
-                         * @memberof google.cloud.irm.v1alpha2.User
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IUser} message User message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        User.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.userId != null && message.hasOwnProperty("userId"))
-                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.userId);
-                            if (message.email != null && message.hasOwnProperty("email"))
-                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.email);
-                            return writer;
-                        };
-    
-                        /**
-                         * Encodes the specified User message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.User.verify|verify} messages.
-                         * @function encodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.User
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IUser} message User message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        User.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
-                        };
-    
-                        /**
-                         * Decodes a User message from the specified reader or buffer.
-                         * @function decode
-                         * @memberof google.cloud.irm.v1alpha2.User
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @param {number} [length] Message length if known beforehand
-                         * @returns {google.cloud.irm.v1alpha2.User} User
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        User.decode = function decode(reader, length) {
-                            if (!(reader instanceof $Reader))
-                                reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.User();
-                            while (reader.pos < end) {
-                                var tag = reader.uint32();
-                                switch (tag >>> 3) {
-                                case 1:
-                                    message.userId = reader.string();
-                                    break;
-                                case 2:
-                                    message.email = reader.string();
-                                    break;
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
-                                }
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Decodes a User message from the specified reader or buffer, length delimited.
-                         * @function decodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.User
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @returns {google.cloud.irm.v1alpha2.User} User
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        User.decodeDelimited = function decodeDelimited(reader) {
-                            if (!(reader instanceof $Reader))
-                                reader = new $Reader(reader);
-                            return this.decode(reader, reader.uint32());
-                        };
-    
-                        /**
-                         * Verifies a User message.
-                         * @function verify
-                         * @memberof google.cloud.irm.v1alpha2.User
-                         * @static
-                         * @param {Object.<string,*>} message Plain object to verify
-                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                         */
-                        User.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            var properties = {};
-                            if (message.userId != null && message.hasOwnProperty("userId")) {
-                                properties.user = 1;
-                                if (!$util.isString(message.userId))
-                                    return "userId: string expected";
-                            }
-                            if (message.email != null && message.hasOwnProperty("email")) {
-                                if (properties.user === 1)
-                                    return "user: multiple values";
-                                properties.user = 1;
-                                if (!$util.isString(message.email))
-                                    return "email: string expected";
-                            }
-                            return null;
-                        };
-    
-                        /**
-                         * Creates a User message from a plain object. Also converts values to their respective internal types.
-                         * @function fromObject
-                         * @memberof google.cloud.irm.v1alpha2.User
-                         * @static
-                         * @param {Object.<string,*>} object Plain object
-                         * @returns {google.cloud.irm.v1alpha2.User} User
-                         */
-                        User.fromObject = function fromObject(object) {
-                            if (object instanceof $root.google.cloud.irm.v1alpha2.User)
-                                return object;
-                            var message = new $root.google.cloud.irm.v1alpha2.User();
-                            if (object.userId != null)
-                                message.userId = String(object.userId);
-                            if (object.email != null)
-                                message.email = String(object.email);
-                            return message;
-                        };
-    
-                        /**
-                         * Creates a plain object from a User message. Also converts values to other types if specified.
-                         * @function toObject
-                         * @memberof google.cloud.irm.v1alpha2.User
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.User} message User
-                         * @param {$protobuf.IConversionOptions} [options] Conversion options
-                         * @returns {Object.<string,*>} Plain object
-                         */
-                        User.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
-                            var object = {};
-                            if (message.userId != null && message.hasOwnProperty("userId")) {
-                                object.userId = message.userId;
-                                if (options.oneofs)
-                                    object.user = "userId";
-                            }
-                            if (message.email != null && message.hasOwnProperty("email")) {
-                                object.email = message.email;
-                                if (options.oneofs)
-                                    object.user = "email";
-                            }
-                            return object;
-                        };
-    
-                        /**
-                         * Converts this User to JSON.
-                         * @function toJSON
-                         * @memberof google.cloud.irm.v1alpha2.User
-                         * @instance
-                         * @returns {Object.<string,*>} JSON object
-                         */
-                        User.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                        };
-    
-                        return User;
-                    })();
-    
-                    v1alpha2.Signal = (function() {
-    
-                        /**
-                         * Properties of a Signal.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @interface ISignal
-                         * @property {string|null} [name] Signal name
-                         * @property {string|null} [etag] Signal etag
-                         * @property {string|null} [incident] Signal incident
-                         * @property {google.protobuf.ITimestamp|null} [createTime] Signal createTime
-                         * @property {google.protobuf.ITimestamp|null} [closeTime] Signal closeTime
-                         * @property {google.protobuf.ITimestamp|null} [detectTime] Signal detectTime
-                         * @property {google.cloud.irm.v1alpha2.IUser|null} [creator] Signal creator
-                         * @property {string|null} [title] Signal title
-                         * @property {string|null} [contentType] Signal contentType
-                         * @property {string|null} [content] Signal content
-                         * @property {google.cloud.irm.v1alpha2.Signal.State|null} [signalState] Signal signalState
-                         * @property {Array.<google.cloud.irm.v1alpha2.Signal.ISignalArtifact>|null} [signalArtifacts] Signal signalArtifacts
-                         */
-    
-                        /**
-                         * Constructs a new Signal.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @classdesc Represents a Signal.
-                         * @implements ISignal
-                         * @constructor
-                         * @param {google.cloud.irm.v1alpha2.ISignal=} [properties] Properties to set
-                         */
-                        function Signal(properties) {
-                            this.signalArtifacts = [];
-                            if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                    if (properties[keys[i]] != null)
-                                        this[keys[i]] = properties[keys[i]];
-                        }
-    
-                        /**
-                         * Signal name.
-                         * @member {string} name
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @instance
-                         */
-                        Signal.prototype.name = "";
-    
-                        /**
-                         * Signal etag.
-                         * @member {string} etag
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @instance
-                         */
-                        Signal.prototype.etag = "";
-    
-                        /**
-                         * Signal incident.
-                         * @member {string} incident
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @instance
-                         */
-                        Signal.prototype.incident = "";
-    
-                        /**
-                         * Signal createTime.
-                         * @member {google.protobuf.ITimestamp|null|undefined} createTime
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @instance
-                         */
-                        Signal.prototype.createTime = null;
-    
-                        /**
-                         * Signal closeTime.
-                         * @member {google.protobuf.ITimestamp|null|undefined} closeTime
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @instance
-                         */
-                        Signal.prototype.closeTime = null;
-    
-                        /**
-                         * Signal detectTime.
-                         * @member {google.protobuf.ITimestamp|null|undefined} detectTime
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @instance
-                         */
-                        Signal.prototype.detectTime = null;
-    
-                        /**
-                         * Signal creator.
-                         * @member {google.cloud.irm.v1alpha2.IUser|null|undefined} creator
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @instance
-                         */
-                        Signal.prototype.creator = null;
-    
-                        /**
-                         * Signal title.
-                         * @member {string} title
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @instance
-                         */
-                        Signal.prototype.title = "";
-    
-                        /**
-                         * Signal contentType.
-                         * @member {string} contentType
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @instance
-                         */
-                        Signal.prototype.contentType = "";
-    
-                        /**
-                         * Signal content.
-                         * @member {string} content
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @instance
-                         */
-                        Signal.prototype.content = "";
-    
-                        /**
-                         * Signal signalState.
-                         * @member {google.cloud.irm.v1alpha2.Signal.State} signalState
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @instance
-                         */
-                        Signal.prototype.signalState = 0;
-    
-                        /**
-                         * Signal signalArtifacts.
-                         * @member {Array.<google.cloud.irm.v1alpha2.Signal.ISignalArtifact>} signalArtifacts
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @instance
-                         */
-                        Signal.prototype.signalArtifacts = $util.emptyArray;
-    
-                        /**
-                         * Creates a new Signal instance using the specified properties.
-                         * @function create
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.ISignal=} [properties] Properties to set
-                         * @returns {google.cloud.irm.v1alpha2.Signal} Signal instance
-                         */
-                        Signal.create = function create(properties) {
-                            return new Signal(properties);
-                        };
-    
-                        /**
-                         * Encodes the specified Signal message. Does not implicitly {@link google.cloud.irm.v1alpha2.Signal.verify|verify} messages.
-                         * @function encode
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.ISignal} message Signal message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        Signal.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                            if (message.etag != null && message.hasOwnProperty("etag"))
-                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.etag);
-                            if (message.incident != null && message.hasOwnProperty("incident"))
-                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.incident);
-                            if (message.createTime != null && message.hasOwnProperty("createTime"))
-                                $root.google.protobuf.Timestamp.encode(message.createTime, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                            if (message.creator != null && message.hasOwnProperty("creator"))
-                                $root.google.cloud.irm.v1alpha2.User.encode(message.creator, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
-                            if (message.title != null && message.hasOwnProperty("title"))
-                                writer.uint32(/* id 6, wireType 2 =*/50).string(message.title);
-                            if (message.contentType != null && message.hasOwnProperty("contentType"))
-                                writer.uint32(/* id 7, wireType 2 =*/58).string(message.contentType);
-                            if (message.content != null && message.hasOwnProperty("content"))
-                                writer.uint32(/* id 8, wireType 2 =*/66).string(message.content);
-                            if (message.signalState != null && message.hasOwnProperty("signalState"))
-                                writer.uint32(/* id 9, wireType 0 =*/72).int32(message.signalState);
-                            if (message.closeTime != null && message.hasOwnProperty("closeTime"))
-                                $root.google.protobuf.Timestamp.encode(message.closeTime, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
-                            if (message.detectTime != null && message.hasOwnProperty("detectTime"))
-                                $root.google.protobuf.Timestamp.encode(message.detectTime, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
-                            if (message.signalArtifacts != null && message.signalArtifacts.length)
-                                for (var i = 0; i < message.signalArtifacts.length; ++i)
-                                    $root.google.cloud.irm.v1alpha2.Signal.SignalArtifact.encode(message.signalArtifacts[i], writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
-                            return writer;
-                        };
-    
-                        /**
-                         * Encodes the specified Signal message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Signal.verify|verify} messages.
-                         * @function encodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.ISignal} message Signal message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        Signal.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
-                        };
-    
-                        /**
-                         * Decodes a Signal message from the specified reader or buffer.
-                         * @function decode
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @param {number} [length] Message length if known beforehand
-                         * @returns {google.cloud.irm.v1alpha2.Signal} Signal
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        Signal.decode = function decode(reader, length) {
-                            if (!(reader instanceof $Reader))
-                                reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Signal();
-                            while (reader.pos < end) {
-                                var tag = reader.uint32();
-                                switch (tag >>> 3) {
-                                case 1:
-                                    message.name = reader.string();
-                                    break;
-                                case 2:
-                                    message.etag = reader.string();
-                                    break;
-                                case 3:
-                                    message.incident = reader.string();
-                                    break;
-                                case 4:
-                                    message.createTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
-                                    break;
-                                case 10:
-                                    message.closeTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
-                                    break;
-                                case 15:
-                                    message.detectTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
-                                    break;
-                                case 5:
-                                    message.creator = $root.google.cloud.irm.v1alpha2.User.decode(reader, reader.uint32());
-                                    break;
-                                case 6:
-                                    message.title = reader.string();
-                                    break;
-                                case 7:
-                                    message.contentType = reader.string();
-                                    break;
-                                case 8:
-                                    message.content = reader.string();
-                                    break;
-                                case 9:
-                                    message.signalState = reader.int32();
-                                    break;
-                                case 16:
-                                    if (!(message.signalArtifacts && message.signalArtifacts.length))
-                                        message.signalArtifacts = [];
-                                    message.signalArtifacts.push($root.google.cloud.irm.v1alpha2.Signal.SignalArtifact.decode(reader, reader.uint32()));
-                                    break;
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
-                                }
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Decodes a Signal message from the specified reader or buffer, length delimited.
-                         * @function decodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @returns {google.cloud.irm.v1alpha2.Signal} Signal
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        Signal.decodeDelimited = function decodeDelimited(reader) {
-                            if (!(reader instanceof $Reader))
-                                reader = new $Reader(reader);
-                            return this.decode(reader, reader.uint32());
-                        };
-    
-                        /**
-                         * Verifies a Signal message.
-                         * @function verify
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @static
-                         * @param {Object.<string,*>} message Plain object to verify
-                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                         */
-                        Signal.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                if (!$util.isString(message.name))
-                                    return "name: string expected";
-                            if (message.etag != null && message.hasOwnProperty("etag"))
-                                if (!$util.isString(message.etag))
-                                    return "etag: string expected";
-                            if (message.incident != null && message.hasOwnProperty("incident"))
-                                if (!$util.isString(message.incident))
-                                    return "incident: string expected";
-                            if (message.createTime != null && message.hasOwnProperty("createTime")) {
-                                var error = $root.google.protobuf.Timestamp.verify(message.createTime);
-                                if (error)
-                                    return "createTime." + error;
-                            }
-                            if (message.closeTime != null && message.hasOwnProperty("closeTime")) {
-                                var error = $root.google.protobuf.Timestamp.verify(message.closeTime);
-                                if (error)
-                                    return "closeTime." + error;
-                            }
-                            if (message.detectTime != null && message.hasOwnProperty("detectTime")) {
-                                var error = $root.google.protobuf.Timestamp.verify(message.detectTime);
-                                if (error)
-                                    return "detectTime." + error;
-                            }
-                            if (message.creator != null && message.hasOwnProperty("creator")) {
-                                var error = $root.google.cloud.irm.v1alpha2.User.verify(message.creator);
-                                if (error)
-                                    return "creator." + error;
-                            }
-                            if (message.title != null && message.hasOwnProperty("title"))
-                                if (!$util.isString(message.title))
-                                    return "title: string expected";
-                            if (message.contentType != null && message.hasOwnProperty("contentType"))
-                                if (!$util.isString(message.contentType))
-                                    return "contentType: string expected";
-                            if (message.content != null && message.hasOwnProperty("content"))
-                                if (!$util.isString(message.content))
-                                    return "content: string expected";
-                            if (message.signalState != null && message.hasOwnProperty("signalState"))
-                                switch (message.signalState) {
-                                default:
-                                    return "signalState: enum value expected";
-                                case 0:
-                                case 1:
-                                case 2:
-                                    break;
-                                }
-                            if (message.signalArtifacts != null && message.hasOwnProperty("signalArtifacts")) {
-                                if (!Array.isArray(message.signalArtifacts))
-                                    return "signalArtifacts: array expected";
-                                for (var i = 0; i < message.signalArtifacts.length; ++i) {
-                                    var error = $root.google.cloud.irm.v1alpha2.Signal.SignalArtifact.verify(message.signalArtifacts[i]);
-                                    if (error)
-                                        return "signalArtifacts." + error;
-                                }
-                            }
-                            return null;
-                        };
-    
-                        /**
-                         * Creates a Signal message from a plain object. Also converts values to their respective internal types.
-                         * @function fromObject
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @static
-                         * @param {Object.<string,*>} object Plain object
-                         * @returns {google.cloud.irm.v1alpha2.Signal} Signal
-                         */
-                        Signal.fromObject = function fromObject(object) {
-                            if (object instanceof $root.google.cloud.irm.v1alpha2.Signal)
-                                return object;
-                            var message = new $root.google.cloud.irm.v1alpha2.Signal();
-                            if (object.name != null)
-                                message.name = String(object.name);
-                            if (object.etag != null)
-                                message.etag = String(object.etag);
-                            if (object.incident != null)
-                                message.incident = String(object.incident);
-                            if (object.createTime != null) {
-                                if (typeof object.createTime !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.Signal.createTime: object expected");
-                                message.createTime = $root.google.protobuf.Timestamp.fromObject(object.createTime);
-                            }
-                            if (object.closeTime != null) {
-                                if (typeof object.closeTime !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.Signal.closeTime: object expected");
-                                message.closeTime = $root.google.protobuf.Timestamp.fromObject(object.closeTime);
-                            }
-                            if (object.detectTime != null) {
-                                if (typeof object.detectTime !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.Signal.detectTime: object expected");
-                                message.detectTime = $root.google.protobuf.Timestamp.fromObject(object.detectTime);
-                            }
-                            if (object.creator != null) {
-                                if (typeof object.creator !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.Signal.creator: object expected");
-                                message.creator = $root.google.cloud.irm.v1alpha2.User.fromObject(object.creator);
-                            }
-                            if (object.title != null)
-                                message.title = String(object.title);
-                            if (object.contentType != null)
-                                message.contentType = String(object.contentType);
-                            if (object.content != null)
-                                message.content = String(object.content);
-                            switch (object.signalState) {
-                            case "STATE_UNSPECIFIED":
-                            case 0:
-                                message.signalState = 0;
-                                break;
-                            case "STATE_OPEN":
-                            case 1:
-                                message.signalState = 1;
-                                break;
-                            case "STATE_CLOSED":
-                            case 2:
-                                message.signalState = 2;
-                                break;
-                            }
-                            if (object.signalArtifacts) {
-                                if (!Array.isArray(object.signalArtifacts))
-                                    throw TypeError(".google.cloud.irm.v1alpha2.Signal.signalArtifacts: array expected");
-                                message.signalArtifacts = [];
-                                for (var i = 0; i < object.signalArtifacts.length; ++i) {
-                                    if (typeof object.signalArtifacts[i] !== "object")
-                                        throw TypeError(".google.cloud.irm.v1alpha2.Signal.signalArtifacts: object expected");
-                                    message.signalArtifacts[i] = $root.google.cloud.irm.v1alpha2.Signal.SignalArtifact.fromObject(object.signalArtifacts[i]);
-                                }
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Creates a plain object from a Signal message. Also converts values to other types if specified.
-                         * @function toObject
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.Signal} message Signal
-                         * @param {$protobuf.IConversionOptions} [options] Conversion options
-                         * @returns {Object.<string,*>} Plain object
-                         */
-                        Signal.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
-                            var object = {};
-                            if (options.arrays || options.defaults)
-                                object.signalArtifacts = [];
-                            if (options.defaults) {
-                                object.name = "";
-                                object.etag = "";
-                                object.incident = "";
-                                object.createTime = null;
-                                object.creator = null;
-                                object.title = "";
-                                object.contentType = "";
-                                object.content = "";
-                                object.signalState = options.enums === String ? "STATE_UNSPECIFIED" : 0;
-                                object.closeTime = null;
-                                object.detectTime = null;
-                            }
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                object.name = message.name;
-                            if (message.etag != null && message.hasOwnProperty("etag"))
-                                object.etag = message.etag;
-                            if (message.incident != null && message.hasOwnProperty("incident"))
-                                object.incident = message.incident;
-                            if (message.createTime != null && message.hasOwnProperty("createTime"))
-                                object.createTime = $root.google.protobuf.Timestamp.toObject(message.createTime, options);
-                            if (message.creator != null && message.hasOwnProperty("creator"))
-                                object.creator = $root.google.cloud.irm.v1alpha2.User.toObject(message.creator, options);
-                            if (message.title != null && message.hasOwnProperty("title"))
-                                object.title = message.title;
-                            if (message.contentType != null && message.hasOwnProperty("contentType"))
-                                object.contentType = message.contentType;
-                            if (message.content != null && message.hasOwnProperty("content"))
-                                object.content = message.content;
-                            if (message.signalState != null && message.hasOwnProperty("signalState"))
-                                object.signalState = options.enums === String ? $root.google.cloud.irm.v1alpha2.Signal.State[message.signalState] : message.signalState;
-                            if (message.closeTime != null && message.hasOwnProperty("closeTime"))
-                                object.closeTime = $root.google.protobuf.Timestamp.toObject(message.closeTime, options);
-                            if (message.detectTime != null && message.hasOwnProperty("detectTime"))
-                                object.detectTime = $root.google.protobuf.Timestamp.toObject(message.detectTime, options);
-                            if (message.signalArtifacts && message.signalArtifacts.length) {
-                                object.signalArtifacts = [];
-                                for (var j = 0; j < message.signalArtifacts.length; ++j)
-                                    object.signalArtifacts[j] = $root.google.cloud.irm.v1alpha2.Signal.SignalArtifact.toObject(message.signalArtifacts[j], options);
-                            }
-                            return object;
-                        };
-    
-                        /**
-                         * Converts this Signal to JSON.
-                         * @function toJSON
-                         * @memberof google.cloud.irm.v1alpha2.Signal
-                         * @instance
-                         * @returns {Object.<string,*>} JSON object
-                         */
-                        Signal.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                        };
-    
-                        Signal.SignalArtifact = (function() {
-    
-                            /**
-                             * Properties of a SignalArtifact.
-                             * @memberof google.cloud.irm.v1alpha2.Signal
-                             * @interface ISignalArtifact
-                             * @property {string|null} [userType] SignalArtifact userType
-                             * @property {string|null} [uri] SignalArtifact uri
-                             */
-    
-                            /**
-                             * Constructs a new SignalArtifact.
-                             * @memberof google.cloud.irm.v1alpha2.Signal
-                             * @classdesc Represents a SignalArtifact.
-                             * @implements ISignalArtifact
-                             * @constructor
-                             * @param {google.cloud.irm.v1alpha2.Signal.ISignalArtifact=} [properties] Properties to set
-                             */
-                            function SignalArtifact(properties) {
-                                if (properties)
-                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                        if (properties[keys[i]] != null)
-                                            this[keys[i]] = properties[keys[i]];
-                            }
-    
-                            /**
-                             * SignalArtifact userType.
-                             * @member {string} userType
-                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
-                             * @instance
-                             */
-                            SignalArtifact.prototype.userType = "";
-    
-                            /**
-                             * SignalArtifact uri.
-                             * @member {string} uri
-                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
-                             * @instance
-                             */
-                            SignalArtifact.prototype.uri = "";
-    
-                            // OneOf field names bound to virtual getters and setters
-                            var $oneOfFields;
-    
-                            /**
-                             * SignalArtifact artifactType.
-                             * @member {"userType"|undefined} artifactType
-                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
-                             * @instance
-                             */
-                            Object.defineProperty(SignalArtifact.prototype, "artifactType", {
-                                get: $util.oneOfGetter($oneOfFields = ["userType"]),
-                                set: $util.oneOfSetter($oneOfFields)
-                            });
-    
-                            /**
-                             * Creates a new SignalArtifact instance using the specified properties.
-                             * @function create
-                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
-                             * @static
-                             * @param {google.cloud.irm.v1alpha2.Signal.ISignalArtifact=} [properties] Properties to set
-                             * @returns {google.cloud.irm.v1alpha2.Signal.SignalArtifact} SignalArtifact instance
-                             */
-                            SignalArtifact.create = function create(properties) {
-                                return new SignalArtifact(properties);
-                            };
-    
-                            /**
-                             * Encodes the specified SignalArtifact message. Does not implicitly {@link google.cloud.irm.v1alpha2.Signal.SignalArtifact.verify|verify} messages.
-                             * @function encode
-                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
-                             * @static
-                             * @param {google.cloud.irm.v1alpha2.Signal.ISignalArtifact} message SignalArtifact message or plain object to encode
-                             * @param {$protobuf.Writer} [writer] Writer to encode to
-                             * @returns {$protobuf.Writer} Writer
-                             */
-                            SignalArtifact.encode = function encode(message, writer) {
-                                if (!writer)
-                                    writer = $Writer.create();
-                                if (message.userType != null && message.hasOwnProperty("userType"))
-                                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.userType);
-                                if (message.uri != null && message.hasOwnProperty("uri"))
-                                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.uri);
-                                return writer;
-                            };
-    
-                            /**
-                             * Encodes the specified SignalArtifact message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Signal.SignalArtifact.verify|verify} messages.
-                             * @function encodeDelimited
-                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
-                             * @static
-                             * @param {google.cloud.irm.v1alpha2.Signal.ISignalArtifact} message SignalArtifact message or plain object to encode
-                             * @param {$protobuf.Writer} [writer] Writer to encode to
-                             * @returns {$protobuf.Writer} Writer
-                             */
-                            SignalArtifact.encodeDelimited = function encodeDelimited(message, writer) {
-                                return this.encode(message, writer).ldelim();
-                            };
-    
-                            /**
-                             * Decodes a SignalArtifact message from the specified reader or buffer.
-                             * @function decode
-                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
-                             * @static
-                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                             * @param {number} [length] Message length if known beforehand
-                             * @returns {google.cloud.irm.v1alpha2.Signal.SignalArtifact} SignalArtifact
-                             * @throws {Error} If the payload is not a reader or valid buffer
-                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                             */
-                            SignalArtifact.decode = function decode(reader, length) {
-                                if (!(reader instanceof $Reader))
-                                    reader = $Reader.create(reader);
-                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Signal.SignalArtifact();
-                                while (reader.pos < end) {
-                                    var tag = reader.uint32();
-                                    switch (tag >>> 3) {
-                                    case 2:
-                                        message.userType = reader.string();
-                                        break;
-                                    case 3:
-                                        message.uri = reader.string();
-                                        break;
-                                    default:
-                                        reader.skipType(tag & 7);
-                                        break;
-                                    }
-                                }
-                                return message;
-                            };
-    
-                            /**
-                             * Decodes a SignalArtifact message from the specified reader or buffer, length delimited.
-                             * @function decodeDelimited
-                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
-                             * @static
-                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                             * @returns {google.cloud.irm.v1alpha2.Signal.SignalArtifact} SignalArtifact
-                             * @throws {Error} If the payload is not a reader or valid buffer
-                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                             */
-                            SignalArtifact.decodeDelimited = function decodeDelimited(reader) {
-                                if (!(reader instanceof $Reader))
-                                    reader = new $Reader(reader);
-                                return this.decode(reader, reader.uint32());
-                            };
-    
-                            /**
-                             * Verifies a SignalArtifact message.
-                             * @function verify
-                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
-                             * @static
-                             * @param {Object.<string,*>} message Plain object to verify
-                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                             */
-                            SignalArtifact.verify = function verify(message) {
-                                if (typeof message !== "object" || message === null)
-                                    return "object expected";
-                                var properties = {};
-                                if (message.userType != null && message.hasOwnProperty("userType")) {
-                                    properties.artifactType = 1;
-                                    if (!$util.isString(message.userType))
-                                        return "userType: string expected";
-                                }
-                                if (message.uri != null && message.hasOwnProperty("uri"))
-                                    if (!$util.isString(message.uri))
-                                        return "uri: string expected";
-                                return null;
-                            };
-    
-                            /**
-                             * Creates a SignalArtifact message from a plain object. Also converts values to their respective internal types.
-                             * @function fromObject
-                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
-                             * @static
-                             * @param {Object.<string,*>} object Plain object
-                             * @returns {google.cloud.irm.v1alpha2.Signal.SignalArtifact} SignalArtifact
-                             */
-                            SignalArtifact.fromObject = function fromObject(object) {
-                                if (object instanceof $root.google.cloud.irm.v1alpha2.Signal.SignalArtifact)
-                                    return object;
-                                var message = new $root.google.cloud.irm.v1alpha2.Signal.SignalArtifact();
-                                if (object.userType != null)
-                                    message.userType = String(object.userType);
-                                if (object.uri != null)
-                                    message.uri = String(object.uri);
-                                return message;
-                            };
-    
-                            /**
-                             * Creates a plain object from a SignalArtifact message. Also converts values to other types if specified.
-                             * @function toObject
-                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
-                             * @static
-                             * @param {google.cloud.irm.v1alpha2.Signal.SignalArtifact} message SignalArtifact
-                             * @param {$protobuf.IConversionOptions} [options] Conversion options
-                             * @returns {Object.<string,*>} Plain object
-                             */
-                            SignalArtifact.toObject = function toObject(message, options) {
-                                if (!options)
-                                    options = {};
-                                var object = {};
-                                if (options.defaults)
-                                    object.uri = "";
-                                if (message.userType != null && message.hasOwnProperty("userType")) {
-                                    object.userType = message.userType;
-                                    if (options.oneofs)
-                                        object.artifactType = "userType";
-                                }
-                                if (message.uri != null && message.hasOwnProperty("uri"))
-                                    object.uri = message.uri;
-                                return object;
-                            };
-    
-                            /**
-                             * Converts this SignalArtifact to JSON.
-                             * @function toJSON
-                             * @memberof google.cloud.irm.v1alpha2.Signal.SignalArtifact
-                             * @instance
-                             * @returns {Object.<string,*>} JSON object
-                             */
-                            SignalArtifact.prototype.toJSON = function toJSON() {
-                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                            };
-    
-                            return SignalArtifact;
-                        })();
-    
-                        /**
-                         * State enum.
-                         * @name google.cloud.irm.v1alpha2.Signal.State
-                         * @enum {string}
-                         * @property {number} STATE_UNSPECIFIED=0 STATE_UNSPECIFIED value
-                         * @property {number} STATE_OPEN=1 STATE_OPEN value
-                         * @property {number} STATE_CLOSED=2 STATE_CLOSED value
-                         */
-                        Signal.State = (function() {
-                            var valuesById = {}, values = Object.create(valuesById);
-                            values[valuesById[0] = "STATE_UNSPECIFIED"] = 0;
-                            values[valuesById[1] = "STATE_OPEN"] = 1;
-                            values[valuesById[2] = "STATE_CLOSED"] = 2;
-                            return values;
-                        })();
-    
-                        return Signal;
-                    })();
-    
-                    v1alpha2.Annotation = (function() {
-    
-                        /**
-                         * Properties of an Annotation.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @interface IAnnotation
-                         * @property {string|null} [name] Annotation name
-                         * @property {google.cloud.irm.v1alpha2.IUser|null} [author] Annotation author
-                         * @property {google.protobuf.ITimestamp|null} [createTime] Annotation createTime
-                         * @property {string|null} [content] Annotation content
-                         * @property {string|null} [contentType] Annotation contentType
-                         */
-    
-                        /**
-                         * Constructs a new Annotation.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @classdesc Represents an Annotation.
-                         * @implements IAnnotation
-                         * @constructor
-                         * @param {google.cloud.irm.v1alpha2.IAnnotation=} [properties] Properties to set
-                         */
-                        function Annotation(properties) {
-                            if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                    if (properties[keys[i]] != null)
-                                        this[keys[i]] = properties[keys[i]];
-                        }
-    
-                        /**
-                         * Annotation name.
-                         * @member {string} name
-                         * @memberof google.cloud.irm.v1alpha2.Annotation
-                         * @instance
-                         */
-                        Annotation.prototype.name = "";
-    
-                        /**
-                         * Annotation author.
-                         * @member {google.cloud.irm.v1alpha2.IUser|null|undefined} author
-                         * @memberof google.cloud.irm.v1alpha2.Annotation
-                         * @instance
-                         */
-                        Annotation.prototype.author = null;
-    
-                        /**
-                         * Annotation createTime.
-                         * @member {google.protobuf.ITimestamp|null|undefined} createTime
-                         * @memberof google.cloud.irm.v1alpha2.Annotation
-                         * @instance
-                         */
-                        Annotation.prototype.createTime = null;
-    
-                        /**
-                         * Annotation content.
-                         * @member {string} content
-                         * @memberof google.cloud.irm.v1alpha2.Annotation
-                         * @instance
-                         */
-                        Annotation.prototype.content = "";
-    
-                        /**
-                         * Annotation contentType.
-                         * @member {string} contentType
-                         * @memberof google.cloud.irm.v1alpha2.Annotation
-                         * @instance
-                         */
-                        Annotation.prototype.contentType = "";
-    
-                        /**
-                         * Creates a new Annotation instance using the specified properties.
-                         * @function create
-                         * @memberof google.cloud.irm.v1alpha2.Annotation
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IAnnotation=} [properties] Properties to set
-                         * @returns {google.cloud.irm.v1alpha2.Annotation} Annotation instance
-                         */
-                        Annotation.create = function create(properties) {
-                            return new Annotation(properties);
-                        };
-    
-                        /**
-                         * Encodes the specified Annotation message. Does not implicitly {@link google.cloud.irm.v1alpha2.Annotation.verify|verify} messages.
-                         * @function encode
-                         * @memberof google.cloud.irm.v1alpha2.Annotation
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IAnnotation} message Annotation message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        Annotation.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                            if (message.author != null && message.hasOwnProperty("author"))
-                                $root.google.cloud.irm.v1alpha2.User.encode(message.author, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                            if (message.createTime != null && message.hasOwnProperty("createTime"))
-                                $root.google.protobuf.Timestamp.encode(message.createTime, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-                            if (message.content != null && message.hasOwnProperty("content"))
-                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.content);
-                            if (message.contentType != null && message.hasOwnProperty("contentType"))
-                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.contentType);
-                            return writer;
-                        };
-    
-                        /**
-                         * Encodes the specified Annotation message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Annotation.verify|verify} messages.
-                         * @function encodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.Annotation
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IAnnotation} message Annotation message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        Annotation.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
-                        };
-    
-                        /**
-                         * Decodes an Annotation message from the specified reader or buffer.
-                         * @function decode
-                         * @memberof google.cloud.irm.v1alpha2.Annotation
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @param {number} [length] Message length if known beforehand
-                         * @returns {google.cloud.irm.v1alpha2.Annotation} Annotation
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        Annotation.decode = function decode(reader, length) {
-                            if (!(reader instanceof $Reader))
-                                reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Annotation();
-                            while (reader.pos < end) {
-                                var tag = reader.uint32();
-                                switch (tag >>> 3) {
-                                case 1:
-                                    message.name = reader.string();
-                                    break;
-                                case 2:
-                                    message.author = $root.google.cloud.irm.v1alpha2.User.decode(reader, reader.uint32());
-                                    break;
-                                case 3:
-                                    message.createTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
-                                    break;
-                                case 4:
-                                    message.content = reader.string();
-                                    break;
-                                case 5:
-                                    message.contentType = reader.string();
-                                    break;
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
-                                }
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Decodes an Annotation message from the specified reader or buffer, length delimited.
-                         * @function decodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.Annotation
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @returns {google.cloud.irm.v1alpha2.Annotation} Annotation
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        Annotation.decodeDelimited = function decodeDelimited(reader) {
-                            if (!(reader instanceof $Reader))
-                                reader = new $Reader(reader);
-                            return this.decode(reader, reader.uint32());
-                        };
-    
-                        /**
-                         * Verifies an Annotation message.
-                         * @function verify
-                         * @memberof google.cloud.irm.v1alpha2.Annotation
-                         * @static
-                         * @param {Object.<string,*>} message Plain object to verify
-                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                         */
-                        Annotation.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                if (!$util.isString(message.name))
-                                    return "name: string expected";
-                            if (message.author != null && message.hasOwnProperty("author")) {
-                                var error = $root.google.cloud.irm.v1alpha2.User.verify(message.author);
-                                if (error)
-                                    return "author." + error;
-                            }
-                            if (message.createTime != null && message.hasOwnProperty("createTime")) {
-                                var error = $root.google.protobuf.Timestamp.verify(message.createTime);
-                                if (error)
-                                    return "createTime." + error;
-                            }
-                            if (message.content != null && message.hasOwnProperty("content"))
-                                if (!$util.isString(message.content))
-                                    return "content: string expected";
-                            if (message.contentType != null && message.hasOwnProperty("contentType"))
-                                if (!$util.isString(message.contentType))
-                                    return "contentType: string expected";
-                            return null;
-                        };
-    
-                        /**
-                         * Creates an Annotation message from a plain object. Also converts values to their respective internal types.
-                         * @function fromObject
-                         * @memberof google.cloud.irm.v1alpha2.Annotation
-                         * @static
-                         * @param {Object.<string,*>} object Plain object
-                         * @returns {google.cloud.irm.v1alpha2.Annotation} Annotation
-                         */
-                        Annotation.fromObject = function fromObject(object) {
-                            if (object instanceof $root.google.cloud.irm.v1alpha2.Annotation)
-                                return object;
-                            var message = new $root.google.cloud.irm.v1alpha2.Annotation();
-                            if (object.name != null)
-                                message.name = String(object.name);
-                            if (object.author != null) {
-                                if (typeof object.author !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.Annotation.author: object expected");
-                                message.author = $root.google.cloud.irm.v1alpha2.User.fromObject(object.author);
-                            }
-                            if (object.createTime != null) {
-                                if (typeof object.createTime !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.Annotation.createTime: object expected");
-                                message.createTime = $root.google.protobuf.Timestamp.fromObject(object.createTime);
-                            }
-                            if (object.content != null)
-                                message.content = String(object.content);
-                            if (object.contentType != null)
-                                message.contentType = String(object.contentType);
-                            return message;
-                        };
-    
-                        /**
-                         * Creates a plain object from an Annotation message. Also converts values to other types if specified.
-                         * @function toObject
-                         * @memberof google.cloud.irm.v1alpha2.Annotation
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.Annotation} message Annotation
-                         * @param {$protobuf.IConversionOptions} [options] Conversion options
-                         * @returns {Object.<string,*>} Plain object
-                         */
-                        Annotation.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
-                            var object = {};
-                            if (options.defaults) {
-                                object.name = "";
-                                object.author = null;
-                                object.createTime = null;
-                                object.content = "";
-                                object.contentType = "";
-                            }
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                object.name = message.name;
-                            if (message.author != null && message.hasOwnProperty("author"))
-                                object.author = $root.google.cloud.irm.v1alpha2.User.toObject(message.author, options);
-                            if (message.createTime != null && message.hasOwnProperty("createTime"))
-                                object.createTime = $root.google.protobuf.Timestamp.toObject(message.createTime, options);
-                            if (message.content != null && message.hasOwnProperty("content"))
-                                object.content = message.content;
-                            if (message.contentType != null && message.hasOwnProperty("contentType"))
-                                object.contentType = message.contentType;
-                            return object;
-                        };
-    
-                        /**
-                         * Converts this Annotation to JSON.
-                         * @function toJSON
-                         * @memberof google.cloud.irm.v1alpha2.Annotation
-                         * @instance
-                         * @returns {Object.<string,*>} JSON object
-                         */
-                        Annotation.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                        };
-    
-                        return Annotation;
-                    })();
-    
-                    v1alpha2.Tag = (function() {
-    
-                        /**
-                         * Properties of a Tag.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @interface ITag
-                         * @property {string|null} [name] Tag name
-                         * @property {string|null} [displayName] Tag displayName
-                         */
-    
-                        /**
-                         * Constructs a new Tag.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @classdesc Represents a Tag.
-                         * @implements ITag
-                         * @constructor
-                         * @param {google.cloud.irm.v1alpha2.ITag=} [properties] Properties to set
-                         */
-                        function Tag(properties) {
-                            if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                    if (properties[keys[i]] != null)
-                                        this[keys[i]] = properties[keys[i]];
-                        }
-    
-                        /**
-                         * Tag name.
-                         * @member {string} name
-                         * @memberof google.cloud.irm.v1alpha2.Tag
-                         * @instance
-                         */
-                        Tag.prototype.name = "";
-    
-                        /**
-                         * Tag displayName.
-                         * @member {string} displayName
-                         * @memberof google.cloud.irm.v1alpha2.Tag
-                         * @instance
-                         */
-                        Tag.prototype.displayName = "";
-    
-                        /**
-                         * Creates a new Tag instance using the specified properties.
-                         * @function create
-                         * @memberof google.cloud.irm.v1alpha2.Tag
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.ITag=} [properties] Properties to set
-                         * @returns {google.cloud.irm.v1alpha2.Tag} Tag instance
-                         */
-                        Tag.create = function create(properties) {
-                            return new Tag(properties);
-                        };
-    
-                        /**
-                         * Encodes the specified Tag message. Does not implicitly {@link google.cloud.irm.v1alpha2.Tag.verify|verify} messages.
-                         * @function encode
-                         * @memberof google.cloud.irm.v1alpha2.Tag
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.ITag} message Tag message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        Tag.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                            if (message.displayName != null && message.hasOwnProperty("displayName"))
-                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.displayName);
-                            return writer;
-                        };
-    
-                        /**
-                         * Encodes the specified Tag message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Tag.verify|verify} messages.
-                         * @function encodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.Tag
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.ITag} message Tag message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        Tag.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
-                        };
-    
-                        /**
-                         * Decodes a Tag message from the specified reader or buffer.
-                         * @function decode
-                         * @memberof google.cloud.irm.v1alpha2.Tag
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @param {number} [length] Message length if known beforehand
-                         * @returns {google.cloud.irm.v1alpha2.Tag} Tag
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        Tag.decode = function decode(reader, length) {
-                            if (!(reader instanceof $Reader))
-                                reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Tag();
-                            while (reader.pos < end) {
-                                var tag = reader.uint32();
-                                switch (tag >>> 3) {
-                                case 1:
-                                    message.name = reader.string();
-                                    break;
-                                case 2:
-                                    message.displayName = reader.string();
-                                    break;
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
-                                }
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Decodes a Tag message from the specified reader or buffer, length delimited.
-                         * @function decodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.Tag
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @returns {google.cloud.irm.v1alpha2.Tag} Tag
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        Tag.decodeDelimited = function decodeDelimited(reader) {
-                            if (!(reader instanceof $Reader))
-                                reader = new $Reader(reader);
-                            return this.decode(reader, reader.uint32());
-                        };
-    
-                        /**
-                         * Verifies a Tag message.
-                         * @function verify
-                         * @memberof google.cloud.irm.v1alpha2.Tag
-                         * @static
-                         * @param {Object.<string,*>} message Plain object to verify
-                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                         */
-                        Tag.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                if (!$util.isString(message.name))
-                                    return "name: string expected";
-                            if (message.displayName != null && message.hasOwnProperty("displayName"))
-                                if (!$util.isString(message.displayName))
-                                    return "displayName: string expected";
-                            return null;
-                        };
-    
-                        /**
-                         * Creates a Tag message from a plain object. Also converts values to their respective internal types.
-                         * @function fromObject
-                         * @memberof google.cloud.irm.v1alpha2.Tag
-                         * @static
-                         * @param {Object.<string,*>} object Plain object
-                         * @returns {google.cloud.irm.v1alpha2.Tag} Tag
-                         */
-                        Tag.fromObject = function fromObject(object) {
-                            if (object instanceof $root.google.cloud.irm.v1alpha2.Tag)
-                                return object;
-                            var message = new $root.google.cloud.irm.v1alpha2.Tag();
-                            if (object.name != null)
-                                message.name = String(object.name);
-                            if (object.displayName != null)
-                                message.displayName = String(object.displayName);
-                            return message;
-                        };
-    
-                        /**
-                         * Creates a plain object from a Tag message. Also converts values to other types if specified.
-                         * @function toObject
-                         * @memberof google.cloud.irm.v1alpha2.Tag
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.Tag} message Tag
-                         * @param {$protobuf.IConversionOptions} [options] Conversion options
-                         * @returns {Object.<string,*>} Plain object
-                         */
-                        Tag.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
-                            var object = {};
-                            if (options.defaults) {
-                                object.name = "";
-                                object.displayName = "";
-                            }
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                object.name = message.name;
-                            if (message.displayName != null && message.hasOwnProperty("displayName"))
-                                object.displayName = message.displayName;
-                            return object;
-                        };
-    
-                        /**
-                         * Converts this Tag to JSON.
-                         * @function toJSON
-                         * @memberof google.cloud.irm.v1alpha2.Tag
-                         * @instance
-                         * @returns {Object.<string,*>} JSON object
-                         */
-                        Tag.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                        };
-    
-                        return Tag;
-                    })();
-    
-                    v1alpha2.Synopsis = (function() {
-    
-                        /**
-                         * Properties of a Synopsis.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @interface ISynopsis
-                         * @property {string|null} [contentType] Synopsis contentType
-                         * @property {string|null} [content] Synopsis content
-                         * @property {google.protobuf.ITimestamp|null} [updateTime] Synopsis updateTime
-                         * @property {google.cloud.irm.v1alpha2.IUser|null} [author] Synopsis author
-                         */
-    
-                        /**
-                         * Constructs a new Synopsis.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @classdesc Represents a Synopsis.
-                         * @implements ISynopsis
-                         * @constructor
-                         * @param {google.cloud.irm.v1alpha2.ISynopsis=} [properties] Properties to set
-                         */
-                        function Synopsis(properties) {
-                            if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                    if (properties[keys[i]] != null)
-                                        this[keys[i]] = properties[keys[i]];
-                        }
-    
-                        /**
-                         * Synopsis contentType.
-                         * @member {string} contentType
-                         * @memberof google.cloud.irm.v1alpha2.Synopsis
-                         * @instance
-                         */
-                        Synopsis.prototype.contentType = "";
-    
-                        /**
-                         * Synopsis content.
-                         * @member {string} content
-                         * @memberof google.cloud.irm.v1alpha2.Synopsis
-                         * @instance
-                         */
-                        Synopsis.prototype.content = "";
-    
-                        /**
-                         * Synopsis updateTime.
-                         * @member {google.protobuf.ITimestamp|null|undefined} updateTime
-                         * @memberof google.cloud.irm.v1alpha2.Synopsis
-                         * @instance
-                         */
-                        Synopsis.prototype.updateTime = null;
-    
-                        /**
-                         * Synopsis author.
-                         * @member {google.cloud.irm.v1alpha2.IUser|null|undefined} author
-                         * @memberof google.cloud.irm.v1alpha2.Synopsis
-                         * @instance
-                         */
-                        Synopsis.prototype.author = null;
-    
-                        /**
-                         * Creates a new Synopsis instance using the specified properties.
-                         * @function create
-                         * @memberof google.cloud.irm.v1alpha2.Synopsis
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.ISynopsis=} [properties] Properties to set
-                         * @returns {google.cloud.irm.v1alpha2.Synopsis} Synopsis instance
-                         */
-                        Synopsis.create = function create(properties) {
-                            return new Synopsis(properties);
-                        };
-    
-                        /**
-                         * Encodes the specified Synopsis message. Does not implicitly {@link google.cloud.irm.v1alpha2.Synopsis.verify|verify} messages.
-                         * @function encode
-                         * @memberof google.cloud.irm.v1alpha2.Synopsis
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.ISynopsis} message Synopsis message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        Synopsis.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.contentType != null && message.hasOwnProperty("contentType"))
-                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.contentType);
-                            if (message.content != null && message.hasOwnProperty("content"))
-                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.content);
-                            if (message.updateTime != null && message.hasOwnProperty("updateTime"))
-                                $root.google.protobuf.Timestamp.encode(message.updateTime, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-                            if (message.author != null && message.hasOwnProperty("author"))
-                                $root.google.cloud.irm.v1alpha2.User.encode(message.author, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                            return writer;
-                        };
-    
-                        /**
-                         * Encodes the specified Synopsis message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Synopsis.verify|verify} messages.
-                         * @function encodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.Synopsis
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.ISynopsis} message Synopsis message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        Synopsis.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
-                        };
-    
-                        /**
-                         * Decodes a Synopsis message from the specified reader or buffer.
-                         * @function decode
-                         * @memberof google.cloud.irm.v1alpha2.Synopsis
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @param {number} [length] Message length if known beforehand
-                         * @returns {google.cloud.irm.v1alpha2.Synopsis} Synopsis
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        Synopsis.decode = function decode(reader, length) {
-                            if (!(reader instanceof $Reader))
-                                reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Synopsis();
-                            while (reader.pos < end) {
-                                var tag = reader.uint32();
-                                switch (tag >>> 3) {
-                                case 1:
-                                    message.contentType = reader.string();
-                                    break;
-                                case 2:
-                                    message.content = reader.string();
-                                    break;
-                                case 3:
-                                    message.updateTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
-                                    break;
-                                case 4:
-                                    message.author = $root.google.cloud.irm.v1alpha2.User.decode(reader, reader.uint32());
-                                    break;
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
-                                }
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Decodes a Synopsis message from the specified reader or buffer, length delimited.
-                         * @function decodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.Synopsis
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @returns {google.cloud.irm.v1alpha2.Synopsis} Synopsis
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        Synopsis.decodeDelimited = function decodeDelimited(reader) {
-                            if (!(reader instanceof $Reader))
-                                reader = new $Reader(reader);
-                            return this.decode(reader, reader.uint32());
-                        };
-    
-                        /**
-                         * Verifies a Synopsis message.
-                         * @function verify
-                         * @memberof google.cloud.irm.v1alpha2.Synopsis
-                         * @static
-                         * @param {Object.<string,*>} message Plain object to verify
-                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                         */
-                        Synopsis.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.contentType != null && message.hasOwnProperty("contentType"))
-                                if (!$util.isString(message.contentType))
-                                    return "contentType: string expected";
-                            if (message.content != null && message.hasOwnProperty("content"))
-                                if (!$util.isString(message.content))
-                                    return "content: string expected";
-                            if (message.updateTime != null && message.hasOwnProperty("updateTime")) {
-                                var error = $root.google.protobuf.Timestamp.verify(message.updateTime);
-                                if (error)
-                                    return "updateTime." + error;
-                            }
-                            if (message.author != null && message.hasOwnProperty("author")) {
-                                var error = $root.google.cloud.irm.v1alpha2.User.verify(message.author);
-                                if (error)
-                                    return "author." + error;
-                            }
-                            return null;
-                        };
-    
-                        /**
-                         * Creates a Synopsis message from a plain object. Also converts values to their respective internal types.
-                         * @function fromObject
-                         * @memberof google.cloud.irm.v1alpha2.Synopsis
-                         * @static
-                         * @param {Object.<string,*>} object Plain object
-                         * @returns {google.cloud.irm.v1alpha2.Synopsis} Synopsis
-                         */
-                        Synopsis.fromObject = function fromObject(object) {
-                            if (object instanceof $root.google.cloud.irm.v1alpha2.Synopsis)
-                                return object;
-                            var message = new $root.google.cloud.irm.v1alpha2.Synopsis();
-                            if (object.contentType != null)
-                                message.contentType = String(object.contentType);
-                            if (object.content != null)
-                                message.content = String(object.content);
-                            if (object.updateTime != null) {
-                                if (typeof object.updateTime !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.Synopsis.updateTime: object expected");
-                                message.updateTime = $root.google.protobuf.Timestamp.fromObject(object.updateTime);
-                            }
-                            if (object.author != null) {
-                                if (typeof object.author !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.Synopsis.author: object expected");
-                                message.author = $root.google.cloud.irm.v1alpha2.User.fromObject(object.author);
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Creates a plain object from a Synopsis message. Also converts values to other types if specified.
-                         * @function toObject
-                         * @memberof google.cloud.irm.v1alpha2.Synopsis
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.Synopsis} message Synopsis
-                         * @param {$protobuf.IConversionOptions} [options] Conversion options
-                         * @returns {Object.<string,*>} Plain object
-                         */
-                        Synopsis.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
-                            var object = {};
-                            if (options.defaults) {
-                                object.contentType = "";
-                                object.content = "";
-                                object.updateTime = null;
-                                object.author = null;
-                            }
-                            if (message.contentType != null && message.hasOwnProperty("contentType"))
-                                object.contentType = message.contentType;
-                            if (message.content != null && message.hasOwnProperty("content"))
-                                object.content = message.content;
-                            if (message.updateTime != null && message.hasOwnProperty("updateTime"))
-                                object.updateTime = $root.google.protobuf.Timestamp.toObject(message.updateTime, options);
-                            if (message.author != null && message.hasOwnProperty("author"))
-                                object.author = $root.google.cloud.irm.v1alpha2.User.toObject(message.author, options);
-                            return object;
-                        };
-    
-                        /**
-                         * Converts this Synopsis to JSON.
-                         * @function toJSON
-                         * @memberof google.cloud.irm.v1alpha2.Synopsis
-                         * @instance
-                         * @returns {Object.<string,*>} JSON object
-                         */
-                        Synopsis.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                        };
-    
-                        return Synopsis;
-                    })();
-    
-                    v1alpha2.Incident = (function() {
-    
-                        /**
-                         * Properties of an Incident.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @interface IIncident
-                         * @property {string|null} [name] Incident name
-                         * @property {string|null} [title] Incident title
-                         * @property {google.cloud.irm.v1alpha2.Incident.EscalationLevel|null} [escalationLevel] Incident escalationLevel
-                         * @property {string|null} [etag] Incident etag
-                         * @property {google.cloud.irm.v1alpha2.Incident.Severity|null} [severity] Incident severity
-                         * @property {google.cloud.irm.v1alpha2.Incident.Stage|null} [stage] Incident stage
-                         * @property {string|null} [duplicateIncident] Incident duplicateIncident
-                         * @property {google.protobuf.ITimestamp|null} [startTime] Incident startTime
-                         * @property {google.cloud.irm.v1alpha2.ISynopsis|null} [synopsis] Incident synopsis
-                         * @property {google.cloud.irm.v1alpha2.Incident.ICommunicationVenue|null} [communicationVenue] Incident communicationVenue
-                         */
-    
-                        /**
-                         * Constructs a new Incident.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @classdesc Represents an Incident.
-                         * @implements IIncident
-                         * @constructor
-                         * @param {google.cloud.irm.v1alpha2.IIncident=} [properties] Properties to set
-                         */
-                        function Incident(properties) {
-                            if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                    if (properties[keys[i]] != null)
-                                        this[keys[i]] = properties[keys[i]];
-                        }
-    
-                        /**
-                         * Incident name.
-                         * @member {string} name
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @instance
-                         */
-                        Incident.prototype.name = "";
-    
-                        /**
-                         * Incident title.
-                         * @member {string} title
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @instance
-                         */
-                        Incident.prototype.title = "";
-    
-                        /**
-                         * Incident escalationLevel.
-                         * @member {google.cloud.irm.v1alpha2.Incident.EscalationLevel} escalationLevel
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @instance
-                         */
-                        Incident.prototype.escalationLevel = 0;
-    
-                        /**
-                         * Incident etag.
-                         * @member {string} etag
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @instance
-                         */
-                        Incident.prototype.etag = "";
-    
-                        /**
-                         * Incident severity.
-                         * @member {google.cloud.irm.v1alpha2.Incident.Severity} severity
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @instance
-                         */
-                        Incident.prototype.severity = 0;
-    
-                        /**
-                         * Incident stage.
-                         * @member {google.cloud.irm.v1alpha2.Incident.Stage} stage
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @instance
-                         */
-                        Incident.prototype.stage = 0;
-    
-                        /**
-                         * Incident duplicateIncident.
-                         * @member {string} duplicateIncident
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @instance
-                         */
-                        Incident.prototype.duplicateIncident = "";
-    
-                        /**
-                         * Incident startTime.
-                         * @member {google.protobuf.ITimestamp|null|undefined} startTime
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @instance
-                         */
-                        Incident.prototype.startTime = null;
-    
-                        /**
-                         * Incident synopsis.
-                         * @member {google.cloud.irm.v1alpha2.ISynopsis|null|undefined} synopsis
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @instance
-                         */
-                        Incident.prototype.synopsis = null;
-    
-                        /**
-                         * Incident communicationVenue.
-                         * @member {google.cloud.irm.v1alpha2.Incident.ICommunicationVenue|null|undefined} communicationVenue
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @instance
-                         */
-                        Incident.prototype.communicationVenue = null;
-    
-                        /**
-                         * Creates a new Incident instance using the specified properties.
-                         * @function create
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IIncident=} [properties] Properties to set
-                         * @returns {google.cloud.irm.v1alpha2.Incident} Incident instance
-                         */
-                        Incident.create = function create(properties) {
-                            return new Incident(properties);
-                        };
-    
-                        /**
-                         * Encodes the specified Incident message. Does not implicitly {@link google.cloud.irm.v1alpha2.Incident.verify|verify} messages.
-                         * @function encode
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IIncident} message Incident message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        Incident.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                            if (message.title != null && message.hasOwnProperty("title"))
-                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.title);
-                            if (message.escalationLevel != null && message.hasOwnProperty("escalationLevel"))
-                                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.escalationLevel);
-                            if (message.etag != null && message.hasOwnProperty("etag"))
-                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.etag);
-                            if (message.severity != null && message.hasOwnProperty("severity"))
-                                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.severity);
-                            if (message.stage != null && message.hasOwnProperty("stage"))
-                                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.stage);
-                            if (message.startTime != null && message.hasOwnProperty("startTime"))
-                                $root.google.protobuf.Timestamp.encode(message.startTime, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
-                            if (message.synopsis != null && message.hasOwnProperty("synopsis"))
-                                $root.google.cloud.irm.v1alpha2.Synopsis.encode(message.synopsis, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
-                            if (message.duplicateIncident != null && message.hasOwnProperty("duplicateIncident"))
-                                writer.uint32(/* id 9, wireType 2 =*/74).string(message.duplicateIncident);
-                            if (message.communicationVenue != null && message.hasOwnProperty("communicationVenue"))
-                                $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue.encode(message.communicationVenue, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
-                            return writer;
-                        };
-    
-                        /**
-                         * Encodes the specified Incident message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Incident.verify|verify} messages.
-                         * @function encodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IIncident} message Incident message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        Incident.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
-                        };
-    
-                        /**
-                         * Decodes an Incident message from the specified reader or buffer.
-                         * @function decode
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @param {number} [length] Message length if known beforehand
-                         * @returns {google.cloud.irm.v1alpha2.Incident} Incident
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        Incident.decode = function decode(reader, length) {
-                            if (!(reader instanceof $Reader))
-                                reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Incident();
-                            while (reader.pos < end) {
-                                var tag = reader.uint32();
-                                switch (tag >>> 3) {
-                                case 1:
-                                    message.name = reader.string();
-                                    break;
-                                case 2:
-                                    message.title = reader.string();
-                                    break;
-                                case 3:
-                                    message.escalationLevel = reader.int32();
-                                    break;
-                                case 4:
-                                    message.etag = reader.string();
-                                    break;
-                                case 5:
-                                    message.severity = reader.int32();
-                                    break;
-                                case 6:
-                                    message.stage = reader.int32();
-                                    break;
-                                case 9:
-                                    message.duplicateIncident = reader.string();
-                                    break;
-                                case 7:
-                                    message.startTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
-                                    break;
-                                case 8:
-                                    message.synopsis = $root.google.cloud.irm.v1alpha2.Synopsis.decode(reader, reader.uint32());
-                                    break;
-                                case 10:
-                                    message.communicationVenue = $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue.decode(reader, reader.uint32());
-                                    break;
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
-                                }
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Decodes an Incident message from the specified reader or buffer, length delimited.
-                         * @function decodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @returns {google.cloud.irm.v1alpha2.Incident} Incident
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        Incident.decodeDelimited = function decodeDelimited(reader) {
-                            if (!(reader instanceof $Reader))
-                                reader = new $Reader(reader);
-                            return this.decode(reader, reader.uint32());
-                        };
-    
-                        /**
-                         * Verifies an Incident message.
-                         * @function verify
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @static
-                         * @param {Object.<string,*>} message Plain object to verify
-                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                         */
-                        Incident.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                if (!$util.isString(message.name))
-                                    return "name: string expected";
-                            if (message.title != null && message.hasOwnProperty("title"))
-                                if (!$util.isString(message.title))
-                                    return "title: string expected";
-                            if (message.escalationLevel != null && message.hasOwnProperty("escalationLevel"))
-                                switch (message.escalationLevel) {
-                                default:
-                                    return "escalationLevel: enum value expected";
-                                case 0:
-                                case 1:
-                                    break;
-                                }
-                            if (message.etag != null && message.hasOwnProperty("etag"))
-                                if (!$util.isString(message.etag))
-                                    return "etag: string expected";
-                            if (message.severity != null && message.hasOwnProperty("severity"))
-                                switch (message.severity) {
-                                default:
-                                    return "severity: enum value expected";
-                                case 0:
-                                case 1:
-                                case 2:
-                                case 3:
-                                case 4:
-                                case 5:
-                                    break;
-                                }
-                            if (message.stage != null && message.hasOwnProperty("stage"))
-                                switch (message.stage) {
-                                default:
-                                    return "stage: enum value expected";
-                                case 0:
-                                case 4:
-                                case 1:
-                                case 2:
-                                case 3:
-                                case 5:
-                                case 6:
-                                    break;
-                                }
-                            if (message.duplicateIncident != null && message.hasOwnProperty("duplicateIncident"))
-                                if (!$util.isString(message.duplicateIncident))
-                                    return "duplicateIncident: string expected";
-                            if (message.startTime != null && message.hasOwnProperty("startTime")) {
-                                var error = $root.google.protobuf.Timestamp.verify(message.startTime);
-                                if (error)
-                                    return "startTime." + error;
-                            }
-                            if (message.synopsis != null && message.hasOwnProperty("synopsis")) {
-                                var error = $root.google.cloud.irm.v1alpha2.Synopsis.verify(message.synopsis);
-                                if (error)
-                                    return "synopsis." + error;
-                            }
-                            if (message.communicationVenue != null && message.hasOwnProperty("communicationVenue")) {
-                                var error = $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue.verify(message.communicationVenue);
-                                if (error)
-                                    return "communicationVenue." + error;
-                            }
-                            return null;
-                        };
-    
-                        /**
-                         * Creates an Incident message from a plain object. Also converts values to their respective internal types.
-                         * @function fromObject
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @static
-                         * @param {Object.<string,*>} object Plain object
-                         * @returns {google.cloud.irm.v1alpha2.Incident} Incident
-                         */
-                        Incident.fromObject = function fromObject(object) {
-                            if (object instanceof $root.google.cloud.irm.v1alpha2.Incident)
-                                return object;
-                            var message = new $root.google.cloud.irm.v1alpha2.Incident();
-                            if (object.name != null)
-                                message.name = String(object.name);
-                            if (object.title != null)
-                                message.title = String(object.title);
-                            switch (object.escalationLevel) {
-                            case "ESCALATION_LEVEL_UNSPECIFIED":
-                            case 0:
-                                message.escalationLevel = 0;
-                                break;
-                            case "ESCALATION_LEVEL_ORGANIZATION":
-                            case 1:
-                                message.escalationLevel = 1;
-                                break;
-                            }
-                            if (object.etag != null)
-                                message.etag = String(object.etag);
-                            switch (object.severity) {
-                            case "SEVERITY_UNSPECIFIED":
-                            case 0:
-                                message.severity = 0;
-                                break;
-                            case "SEVERITY_HUGE":
-                            case 1:
-                                message.severity = 1;
-                                break;
-                            case "SEVERITY_MAJOR":
-                            case 2:
-                                message.severity = 2;
-                                break;
-                            case "SEVERITY_MEDIUM":
-                            case 3:
-                                message.severity = 3;
-                                break;
-                            case "SEVERITY_MINOR":
-                            case 4:
-                                message.severity = 4;
-                                break;
-                            case "SEVERITY_NEGLIGIBLE":
-                            case 5:
-                                message.severity = 5;
-                                break;
-                            }
-                            switch (object.stage) {
-                            case "STAGE_UNSPECIFIED":
-                            case 0:
-                                message.stage = 0;
-                                break;
-                            case "STAGE_DETECTED":
-                            case 4:
-                                message.stage = 4;
-                                break;
-                            case "STAGE_TRIAGED":
-                            case 1:
-                                message.stage = 1;
-                                break;
-                            case "STAGE_MITIGATED":
-                            case 2:
-                                message.stage = 2;
-                                break;
-                            case "STAGE_RESOLVED":
-                            case 3:
-                                message.stage = 3;
-                                break;
-                            case "STAGE_DOCUMENTED":
-                            case 5:
-                                message.stage = 5;
-                                break;
-                            case "STAGE_DUPLICATE":
-                            case 6:
-                                message.stage = 6;
-                                break;
-                            }
-                            if (object.duplicateIncident != null)
-                                message.duplicateIncident = String(object.duplicateIncident);
-                            if (object.startTime != null) {
-                                if (typeof object.startTime !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.Incident.startTime: object expected");
-                                message.startTime = $root.google.protobuf.Timestamp.fromObject(object.startTime);
-                            }
-                            if (object.synopsis != null) {
-                                if (typeof object.synopsis !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.Incident.synopsis: object expected");
-                                message.synopsis = $root.google.cloud.irm.v1alpha2.Synopsis.fromObject(object.synopsis);
-                            }
-                            if (object.communicationVenue != null) {
-                                if (typeof object.communicationVenue !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.Incident.communicationVenue: object expected");
-                                message.communicationVenue = $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue.fromObject(object.communicationVenue);
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Creates a plain object from an Incident message. Also converts values to other types if specified.
-                         * @function toObject
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.Incident} message Incident
-                         * @param {$protobuf.IConversionOptions} [options] Conversion options
-                         * @returns {Object.<string,*>} Plain object
-                         */
-                        Incident.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
-                            var object = {};
-                            if (options.defaults) {
-                                object.name = "";
-                                object.title = "";
-                                object.escalationLevel = options.enums === String ? "ESCALATION_LEVEL_UNSPECIFIED" : 0;
-                                object.etag = "";
-                                object.severity = options.enums === String ? "SEVERITY_UNSPECIFIED" : 0;
-                                object.stage = options.enums === String ? "STAGE_UNSPECIFIED" : 0;
-                                object.startTime = null;
-                                object.synopsis = null;
-                                object.duplicateIncident = "";
-                                object.communicationVenue = null;
-                            }
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                object.name = message.name;
-                            if (message.title != null && message.hasOwnProperty("title"))
-                                object.title = message.title;
-                            if (message.escalationLevel != null && message.hasOwnProperty("escalationLevel"))
-                                object.escalationLevel = options.enums === String ? $root.google.cloud.irm.v1alpha2.Incident.EscalationLevel[message.escalationLevel] : message.escalationLevel;
-                            if (message.etag != null && message.hasOwnProperty("etag"))
-                                object.etag = message.etag;
-                            if (message.severity != null && message.hasOwnProperty("severity"))
-                                object.severity = options.enums === String ? $root.google.cloud.irm.v1alpha2.Incident.Severity[message.severity] : message.severity;
-                            if (message.stage != null && message.hasOwnProperty("stage"))
-                                object.stage = options.enums === String ? $root.google.cloud.irm.v1alpha2.Incident.Stage[message.stage] : message.stage;
-                            if (message.startTime != null && message.hasOwnProperty("startTime"))
-                                object.startTime = $root.google.protobuf.Timestamp.toObject(message.startTime, options);
-                            if (message.synopsis != null && message.hasOwnProperty("synopsis"))
-                                object.synopsis = $root.google.cloud.irm.v1alpha2.Synopsis.toObject(message.synopsis, options);
-                            if (message.duplicateIncident != null && message.hasOwnProperty("duplicateIncident"))
-                                object.duplicateIncident = message.duplicateIncident;
-                            if (message.communicationVenue != null && message.hasOwnProperty("communicationVenue"))
-                                object.communicationVenue = $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue.toObject(message.communicationVenue, options);
-                            return object;
-                        };
-    
-                        /**
-                         * Converts this Incident to JSON.
-                         * @function toJSON
-                         * @memberof google.cloud.irm.v1alpha2.Incident
-                         * @instance
-                         * @returns {Object.<string,*>} JSON object
-                         */
-                        Incident.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                        };
-    
-                        Incident.CommunicationVenue = (function() {
-    
-                            /**
-                             * Properties of a CommunicationVenue.
-                             * @memberof google.cloud.irm.v1alpha2.Incident
-                             * @interface ICommunicationVenue
-                             * @property {string|null} [uri] CommunicationVenue uri
-                             * @property {string|null} [displayName] CommunicationVenue displayName
-                             * @property {google.cloud.irm.v1alpha2.Incident.CommunicationVenue.ChannelType|null} [channelType] CommunicationVenue channelType
-                             */
-    
-                            /**
-                             * Constructs a new CommunicationVenue.
-                             * @memberof google.cloud.irm.v1alpha2.Incident
-                             * @classdesc Represents a CommunicationVenue.
-                             * @implements ICommunicationVenue
-                             * @constructor
-                             * @param {google.cloud.irm.v1alpha2.Incident.ICommunicationVenue=} [properties] Properties to set
-                             */
-                            function CommunicationVenue(properties) {
-                                if (properties)
-                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                        if (properties[keys[i]] != null)
-                                            this[keys[i]] = properties[keys[i]];
-                            }
-    
-                            /**
-                             * CommunicationVenue uri.
-                             * @member {string} uri
-                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
-                             * @instance
-                             */
-                            CommunicationVenue.prototype.uri = "";
-    
-                            /**
-                             * CommunicationVenue displayName.
-                             * @member {string} displayName
-                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
-                             * @instance
-                             */
-                            CommunicationVenue.prototype.displayName = "";
-    
-                            /**
-                             * CommunicationVenue channelType.
-                             * @member {google.cloud.irm.v1alpha2.Incident.CommunicationVenue.ChannelType} channelType
-                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
-                             * @instance
-                             */
-                            CommunicationVenue.prototype.channelType = 0;
-    
-                            /**
-                             * Creates a new CommunicationVenue instance using the specified properties.
-                             * @function create
-                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
-                             * @static
-                             * @param {google.cloud.irm.v1alpha2.Incident.ICommunicationVenue=} [properties] Properties to set
-                             * @returns {google.cloud.irm.v1alpha2.Incident.CommunicationVenue} CommunicationVenue instance
-                             */
-                            CommunicationVenue.create = function create(properties) {
-                                return new CommunicationVenue(properties);
-                            };
-    
-                            /**
-                             * Encodes the specified CommunicationVenue message. Does not implicitly {@link google.cloud.irm.v1alpha2.Incident.CommunicationVenue.verify|verify} messages.
-                             * @function encode
-                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
-                             * @static
-                             * @param {google.cloud.irm.v1alpha2.Incident.ICommunicationVenue} message CommunicationVenue message or plain object to encode
-                             * @param {$protobuf.Writer} [writer] Writer to encode to
-                             * @returns {$protobuf.Writer} Writer
-                             */
-                            CommunicationVenue.encode = function encode(message, writer) {
-                                if (!writer)
-                                    writer = $Writer.create();
-                                if (message.uri != null && message.hasOwnProperty("uri"))
-                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.uri);
-                                if (message.displayName != null && message.hasOwnProperty("displayName"))
-                                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.displayName);
-                                if (message.channelType != null && message.hasOwnProperty("channelType"))
-                                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.channelType);
-                                return writer;
-                            };
-    
-                            /**
-                             * Encodes the specified CommunicationVenue message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Incident.CommunicationVenue.verify|verify} messages.
-                             * @function encodeDelimited
-                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
-                             * @static
-                             * @param {google.cloud.irm.v1alpha2.Incident.ICommunicationVenue} message CommunicationVenue message or plain object to encode
-                             * @param {$protobuf.Writer} [writer] Writer to encode to
-                             * @returns {$protobuf.Writer} Writer
-                             */
-                            CommunicationVenue.encodeDelimited = function encodeDelimited(message, writer) {
-                                return this.encode(message, writer).ldelim();
-                            };
-    
-                            /**
-                             * Decodes a CommunicationVenue message from the specified reader or buffer.
-                             * @function decode
-                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
-                             * @static
-                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                             * @param {number} [length] Message length if known beforehand
-                             * @returns {google.cloud.irm.v1alpha2.Incident.CommunicationVenue} CommunicationVenue
-                             * @throws {Error} If the payload is not a reader or valid buffer
-                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                             */
-                            CommunicationVenue.decode = function decode(reader, length) {
-                                if (!(reader instanceof $Reader))
-                                    reader = $Reader.create(reader);
-                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue();
-                                while (reader.pos < end) {
-                                    var tag = reader.uint32();
-                                    switch (tag >>> 3) {
-                                    case 1:
-                                        message.uri = reader.string();
-                                        break;
-                                    case 2:
-                                        message.displayName = reader.string();
-                                        break;
-                                    case 3:
-                                        message.channelType = reader.int32();
-                                        break;
-                                    default:
-                                        reader.skipType(tag & 7);
-                                        break;
-                                    }
-                                }
-                                return message;
-                            };
-    
-                            /**
-                             * Decodes a CommunicationVenue message from the specified reader or buffer, length delimited.
-                             * @function decodeDelimited
-                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
-                             * @static
-                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                             * @returns {google.cloud.irm.v1alpha2.Incident.CommunicationVenue} CommunicationVenue
-                             * @throws {Error} If the payload is not a reader or valid buffer
-                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                             */
-                            CommunicationVenue.decodeDelimited = function decodeDelimited(reader) {
-                                if (!(reader instanceof $Reader))
-                                    reader = new $Reader(reader);
-                                return this.decode(reader, reader.uint32());
-                            };
-    
-                            /**
-                             * Verifies a CommunicationVenue message.
-                             * @function verify
-                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
-                             * @static
-                             * @param {Object.<string,*>} message Plain object to verify
-                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                             */
-                            CommunicationVenue.verify = function verify(message) {
-                                if (typeof message !== "object" || message === null)
-                                    return "object expected";
-                                if (message.uri != null && message.hasOwnProperty("uri"))
-                                    if (!$util.isString(message.uri))
-                                        return "uri: string expected";
-                                if (message.displayName != null && message.hasOwnProperty("displayName"))
-                                    if (!$util.isString(message.displayName))
-                                        return "displayName: string expected";
-                                if (message.channelType != null && message.hasOwnProperty("channelType"))
-                                    switch (message.channelType) {
-                                    default:
-                                        return "channelType: enum value expected";
-                                    case 0:
-                                    case 1:
-                                    case 5:
-                                        break;
-                                    }
-                                return null;
-                            };
-    
-                            /**
-                             * Creates a CommunicationVenue message from a plain object. Also converts values to their respective internal types.
-                             * @function fromObject
-                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
-                             * @static
-                             * @param {Object.<string,*>} object Plain object
-                             * @returns {google.cloud.irm.v1alpha2.Incident.CommunicationVenue} CommunicationVenue
-                             */
-                            CommunicationVenue.fromObject = function fromObject(object) {
-                                if (object instanceof $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue)
-                                    return object;
-                                var message = new $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue();
-                                if (object.uri != null)
-                                    message.uri = String(object.uri);
-                                if (object.displayName != null)
-                                    message.displayName = String(object.displayName);
-                                switch (object.channelType) {
-                                case "CHANNEL_TYPE_UNSPECIFIED":
-                                case 0:
-                                    message.channelType = 0;
-                                    break;
-                                case "CHANNEL_TYPE_URI":
-                                case 1:
-                                    message.channelType = 1;
-                                    break;
-                                case "CHANNEL_TYPE_SLACK":
-                                case 5:
-                                    message.channelType = 5;
-                                    break;
-                                }
-                                return message;
-                            };
-    
-                            /**
-                             * Creates a plain object from a CommunicationVenue message. Also converts values to other types if specified.
-                             * @function toObject
-                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
-                             * @static
-                             * @param {google.cloud.irm.v1alpha2.Incident.CommunicationVenue} message CommunicationVenue
-                             * @param {$protobuf.IConversionOptions} [options] Conversion options
-                             * @returns {Object.<string,*>} Plain object
-                             */
-                            CommunicationVenue.toObject = function toObject(message, options) {
-                                if (!options)
-                                    options = {};
-                                var object = {};
-                                if (options.defaults) {
-                                    object.uri = "";
-                                    object.displayName = "";
-                                    object.channelType = options.enums === String ? "CHANNEL_TYPE_UNSPECIFIED" : 0;
-                                }
-                                if (message.uri != null && message.hasOwnProperty("uri"))
-                                    object.uri = message.uri;
-                                if (message.displayName != null && message.hasOwnProperty("displayName"))
-                                    object.displayName = message.displayName;
-                                if (message.channelType != null && message.hasOwnProperty("channelType"))
-                                    object.channelType = options.enums === String ? $root.google.cloud.irm.v1alpha2.Incident.CommunicationVenue.ChannelType[message.channelType] : message.channelType;
-                                return object;
-                            };
-    
-                            /**
-                             * Converts this CommunicationVenue to JSON.
-                             * @function toJSON
-                             * @memberof google.cloud.irm.v1alpha2.Incident.CommunicationVenue
-                             * @instance
-                             * @returns {Object.<string,*>} JSON object
-                             */
-                            CommunicationVenue.prototype.toJSON = function toJSON() {
-                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                            };
-    
-                            /**
-                             * ChannelType enum.
-                             * @name google.cloud.irm.v1alpha2.Incident.CommunicationVenue.ChannelType
-                             * @enum {string}
-                             * @property {number} CHANNEL_TYPE_UNSPECIFIED=0 CHANNEL_TYPE_UNSPECIFIED value
-                             * @property {number} CHANNEL_TYPE_URI=1 CHANNEL_TYPE_URI value
-                             * @property {number} CHANNEL_TYPE_SLACK=5 CHANNEL_TYPE_SLACK value
-                             */
-                            CommunicationVenue.ChannelType = (function() {
-                                var valuesById = {}, values = Object.create(valuesById);
-                                values[valuesById[0] = "CHANNEL_TYPE_UNSPECIFIED"] = 0;
-                                values[valuesById[1] = "CHANNEL_TYPE_URI"] = 1;
-                                values[valuesById[5] = "CHANNEL_TYPE_SLACK"] = 5;
-                                return values;
-                            })();
-    
-                            return CommunicationVenue;
-                        })();
-    
-                        /**
-                         * EscalationLevel enum.
-                         * @name google.cloud.irm.v1alpha2.Incident.EscalationLevel
-                         * @enum {string}
-                         * @property {number} ESCALATION_LEVEL_UNSPECIFIED=0 ESCALATION_LEVEL_UNSPECIFIED value
-                         * @property {number} ESCALATION_LEVEL_ORGANIZATION=1 ESCALATION_LEVEL_ORGANIZATION value
-                         */
-                        Incident.EscalationLevel = (function() {
-                            var valuesById = {}, values = Object.create(valuesById);
-                            values[valuesById[0] = "ESCALATION_LEVEL_UNSPECIFIED"] = 0;
-                            values[valuesById[1] = "ESCALATION_LEVEL_ORGANIZATION"] = 1;
-                            return values;
-                        })();
-    
-                        /**
-                         * Severity enum.
-                         * @name google.cloud.irm.v1alpha2.Incident.Severity
-                         * @enum {string}
-                         * @property {number} SEVERITY_UNSPECIFIED=0 SEVERITY_UNSPECIFIED value
-                         * @property {number} SEVERITY_HUGE=1 SEVERITY_HUGE value
-                         * @property {number} SEVERITY_MAJOR=2 SEVERITY_MAJOR value
-                         * @property {number} SEVERITY_MEDIUM=3 SEVERITY_MEDIUM value
-                         * @property {number} SEVERITY_MINOR=4 SEVERITY_MINOR value
-                         * @property {number} SEVERITY_NEGLIGIBLE=5 SEVERITY_NEGLIGIBLE value
-                         */
-                        Incident.Severity = (function() {
-                            var valuesById = {}, values = Object.create(valuesById);
-                            values[valuesById[0] = "SEVERITY_UNSPECIFIED"] = 0;
-                            values[valuesById[1] = "SEVERITY_HUGE"] = 1;
-                            values[valuesById[2] = "SEVERITY_MAJOR"] = 2;
-                            values[valuesById[3] = "SEVERITY_MEDIUM"] = 3;
-                            values[valuesById[4] = "SEVERITY_MINOR"] = 4;
-                            values[valuesById[5] = "SEVERITY_NEGLIGIBLE"] = 5;
-                            return values;
-                        })();
-    
-                        /**
-                         * Stage enum.
-                         * @name google.cloud.irm.v1alpha2.Incident.Stage
-                         * @enum {string}
-                         * @property {number} STAGE_UNSPECIFIED=0 STAGE_UNSPECIFIED value
-                         * @property {number} STAGE_DETECTED=4 STAGE_DETECTED value
-                         * @property {number} STAGE_TRIAGED=1 STAGE_TRIAGED value
-                         * @property {number} STAGE_MITIGATED=2 STAGE_MITIGATED value
-                         * @property {number} STAGE_RESOLVED=3 STAGE_RESOLVED value
-                         * @property {number} STAGE_DOCUMENTED=5 STAGE_DOCUMENTED value
-                         * @property {number} STAGE_DUPLICATE=6 STAGE_DUPLICATE value
-                         */
-                        Incident.Stage = (function() {
-                            var valuesById = {}, values = Object.create(valuesById);
-                            values[valuesById[0] = "STAGE_UNSPECIFIED"] = 0;
-                            values[valuesById[4] = "STAGE_DETECTED"] = 4;
-                            values[valuesById[1] = "STAGE_TRIAGED"] = 1;
-                            values[valuesById[2] = "STAGE_MITIGATED"] = 2;
-                            values[valuesById[3] = "STAGE_RESOLVED"] = 3;
-                            values[valuesById[5] = "STAGE_DOCUMENTED"] = 5;
-                            values[valuesById[6] = "STAGE_DUPLICATE"] = 6;
-                            return values;
-                        })();
-    
-                        return Incident;
-                    })();
-    
-                    v1alpha2.IncidentRole = (function() {
-    
-                        /**
-                         * Properties of an IncidentRole.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @interface IIncidentRole
-                         * @property {google.cloud.irm.v1alpha2.IncidentRole.Type|null} [type] IncidentRole type
-                         * @property {string|null} [title] IncidentRole title
-                         * @property {string|null} [description] IncidentRole description
-                         */
-    
-                        /**
-                         * Constructs a new IncidentRole.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @classdesc Represents an IncidentRole.
-                         * @implements IIncidentRole
-                         * @constructor
-                         * @param {google.cloud.irm.v1alpha2.IIncidentRole=} [properties] Properties to set
-                         */
-                        function IncidentRole(properties) {
-                            if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                    if (properties[keys[i]] != null)
-                                        this[keys[i]] = properties[keys[i]];
-                        }
-    
-                        /**
-                         * IncidentRole type.
-                         * @member {google.cloud.irm.v1alpha2.IncidentRole.Type} type
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
-                         * @instance
-                         */
-                        IncidentRole.prototype.type = 0;
-    
-                        /**
-                         * IncidentRole title.
-                         * @member {string} title
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
-                         * @instance
-                         */
-                        IncidentRole.prototype.title = "";
-    
-                        /**
-                         * IncidentRole description.
-                         * @member {string} description
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
-                         * @instance
-                         */
-                        IncidentRole.prototype.description = "";
-    
-                        /**
-                         * Creates a new IncidentRole instance using the specified properties.
-                         * @function create
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IIncidentRole=} [properties] Properties to set
-                         * @returns {google.cloud.irm.v1alpha2.IncidentRole} IncidentRole instance
-                         */
-                        IncidentRole.create = function create(properties) {
-                            return new IncidentRole(properties);
-                        };
-    
-                        /**
-                         * Encodes the specified IncidentRole message. Does not implicitly {@link google.cloud.irm.v1alpha2.IncidentRole.verify|verify} messages.
-                         * @function encode
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IIncidentRole} message IncidentRole message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        IncidentRole.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.type != null && message.hasOwnProperty("type"))
-                                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
-                            if (message.title != null && message.hasOwnProperty("title"))
-                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.title);
-                            if (message.description != null && message.hasOwnProperty("description"))
-                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.description);
-                            return writer;
-                        };
-    
-                        /**
-                         * Encodes the specified IncidentRole message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.IncidentRole.verify|verify} messages.
-                         * @function encodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IIncidentRole} message IncidentRole message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        IncidentRole.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
-                        };
-    
-                        /**
-                         * Decodes an IncidentRole message from the specified reader or buffer.
-                         * @function decode
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @param {number} [length] Message length if known beforehand
-                         * @returns {google.cloud.irm.v1alpha2.IncidentRole} IncidentRole
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        IncidentRole.decode = function decode(reader, length) {
-                            if (!(reader instanceof $Reader))
-                                reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.IncidentRole();
-                            while (reader.pos < end) {
-                                var tag = reader.uint32();
-                                switch (tag >>> 3) {
-                                case 1:
-                                    message.type = reader.int32();
-                                    break;
-                                case 2:
-                                    message.title = reader.string();
-                                    break;
-                                case 3:
-                                    message.description = reader.string();
-                                    break;
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
-                                }
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Decodes an IncidentRole message from the specified reader or buffer, length delimited.
-                         * @function decodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @returns {google.cloud.irm.v1alpha2.IncidentRole} IncidentRole
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        IncidentRole.decodeDelimited = function decodeDelimited(reader) {
-                            if (!(reader instanceof $Reader))
-                                reader = new $Reader(reader);
-                            return this.decode(reader, reader.uint32());
-                        };
-    
-                        /**
-                         * Verifies an IncidentRole message.
-                         * @function verify
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
-                         * @static
-                         * @param {Object.<string,*>} message Plain object to verify
-                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                         */
-                        IncidentRole.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.type != null && message.hasOwnProperty("type"))
-                                switch (message.type) {
-                                default:
-                                    return "type: enum value expected";
-                                case 0:
-                                case 1:
-                                case 2:
-                                case 3:
-                                case 4:
-                                case 5:
-                                case 6:
-                                case 7:
-                                    break;
-                                }
-                            if (message.title != null && message.hasOwnProperty("title"))
-                                if (!$util.isString(message.title))
-                                    return "title: string expected";
-                            if (message.description != null && message.hasOwnProperty("description"))
-                                if (!$util.isString(message.description))
-                                    return "description: string expected";
-                            return null;
-                        };
-    
-                        /**
-                         * Creates an IncidentRole message from a plain object. Also converts values to their respective internal types.
-                         * @function fromObject
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
-                         * @static
-                         * @param {Object.<string,*>} object Plain object
-                         * @returns {google.cloud.irm.v1alpha2.IncidentRole} IncidentRole
-                         */
-                        IncidentRole.fromObject = function fromObject(object) {
-                            if (object instanceof $root.google.cloud.irm.v1alpha2.IncidentRole)
-                                return object;
-                            var message = new $root.google.cloud.irm.v1alpha2.IncidentRole();
-                            switch (object.type) {
-                            case "TYPE_UNSPECIFIED":
-                            case 0:
-                                message.type = 0;
-                                break;
-                            case "TYPE_INCIDENT_COMMANDER":
-                            case 1:
-                                message.type = 1;
-                                break;
-                            case "TYPE_COMMUNICATIONS_LEAD":
-                            case 2:
-                                message.type = 2;
-                                break;
-                            case "TYPE_OPERATIONS_LEAD":
-                            case 3:
-                                message.type = 3;
-                                break;
-                            case "TYPE_EXTERNAL_CUSTOMER_COMMUNICATIONS_LEAD":
-                            case 4:
-                                message.type = 4;
-                                break;
-                            case "TYPE_PRIMARY_ONCALL":
-                            case 5:
-                                message.type = 5;
-                                break;
-                            case "TYPE_SECONDARY_ONCALL":
-                            case 6:
-                                message.type = 6;
-                                break;
-                            case "TYPE_OTHER":
-                            case 7:
-                                message.type = 7;
-                                break;
-                            }
-                            if (object.title != null)
-                                message.title = String(object.title);
-                            if (object.description != null)
-                                message.description = String(object.description);
-                            return message;
-                        };
-    
-                        /**
-                         * Creates a plain object from an IncidentRole message. Also converts values to other types if specified.
-                         * @function toObject
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IncidentRole} message IncidentRole
-                         * @param {$protobuf.IConversionOptions} [options] Conversion options
-                         * @returns {Object.<string,*>} Plain object
-                         */
-                        IncidentRole.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
-                            var object = {};
-                            if (options.defaults) {
-                                object.type = options.enums === String ? "TYPE_UNSPECIFIED" : 0;
-                                object.title = "";
-                                object.description = "";
-                            }
-                            if (message.type != null && message.hasOwnProperty("type"))
-                                object.type = options.enums === String ? $root.google.cloud.irm.v1alpha2.IncidentRole.Type[message.type] : message.type;
-                            if (message.title != null && message.hasOwnProperty("title"))
-                                object.title = message.title;
-                            if (message.description != null && message.hasOwnProperty("description"))
-                                object.description = message.description;
-                            return object;
-                        };
-    
-                        /**
-                         * Converts this IncidentRole to JSON.
-                         * @function toJSON
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRole
-                         * @instance
-                         * @returns {Object.<string,*>} JSON object
-                         */
-                        IncidentRole.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                        };
-    
-                        /**
-                         * Type enum.
-                         * @name google.cloud.irm.v1alpha2.IncidentRole.Type
-                         * @enum {string}
-                         * @property {number} TYPE_UNSPECIFIED=0 TYPE_UNSPECIFIED value
-                         * @property {number} TYPE_INCIDENT_COMMANDER=1 TYPE_INCIDENT_COMMANDER value
-                         * @property {number} TYPE_COMMUNICATIONS_LEAD=2 TYPE_COMMUNICATIONS_LEAD value
-                         * @property {number} TYPE_OPERATIONS_LEAD=3 TYPE_OPERATIONS_LEAD value
-                         * @property {number} TYPE_EXTERNAL_CUSTOMER_COMMUNICATIONS_LEAD=4 TYPE_EXTERNAL_CUSTOMER_COMMUNICATIONS_LEAD value
-                         * @property {number} TYPE_PRIMARY_ONCALL=5 TYPE_PRIMARY_ONCALL value
-                         * @property {number} TYPE_SECONDARY_ONCALL=6 TYPE_SECONDARY_ONCALL value
-                         * @property {number} TYPE_OTHER=7 TYPE_OTHER value
-                         */
-                        IncidentRole.Type = (function() {
-                            var valuesById = {}, values = Object.create(valuesById);
-                            values[valuesById[0] = "TYPE_UNSPECIFIED"] = 0;
-                            values[valuesById[1] = "TYPE_INCIDENT_COMMANDER"] = 1;
-                            values[valuesById[2] = "TYPE_COMMUNICATIONS_LEAD"] = 2;
-                            values[valuesById[3] = "TYPE_OPERATIONS_LEAD"] = 3;
-                            values[valuesById[4] = "TYPE_EXTERNAL_CUSTOMER_COMMUNICATIONS_LEAD"] = 4;
-                            values[valuesById[5] = "TYPE_PRIMARY_ONCALL"] = 5;
-                            values[valuesById[6] = "TYPE_SECONDARY_ONCALL"] = 6;
-                            values[valuesById[7] = "TYPE_OTHER"] = 7;
-                            return values;
-                        })();
-    
-                        return IncidentRole;
-                    })();
-    
-                    v1alpha2.IncidentRoleAssignment = (function() {
-    
-                        /**
-                         * Properties of an IncidentRoleAssignment.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @interface IIncidentRoleAssignment
-                         * @property {string|null} [name] IncidentRoleAssignment name
-                         * @property {string|null} [etag] IncidentRoleAssignment etag
-                         * @property {google.cloud.irm.v1alpha2.IIncidentRole|null} [role] IncidentRoleAssignment role
-                         * @property {google.cloud.irm.v1alpha2.IUser|null} [assignee] IncidentRoleAssignment assignee
-                         * @property {google.cloud.irm.v1alpha2.IUser|null} [proposedAssignee] IncidentRoleAssignment proposedAssignee
-                         */
-    
-                        /**
-                         * Constructs a new IncidentRoleAssignment.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @classdesc Represents an IncidentRoleAssignment.
-                         * @implements IIncidentRoleAssignment
-                         * @constructor
-                         * @param {google.cloud.irm.v1alpha2.IIncidentRoleAssignment=} [properties] Properties to set
-                         */
-                        function IncidentRoleAssignment(properties) {
-                            if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                    if (properties[keys[i]] != null)
-                                        this[keys[i]] = properties[keys[i]];
-                        }
-    
-                        /**
-                         * IncidentRoleAssignment name.
-                         * @member {string} name
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
-                         * @instance
-                         */
-                        IncidentRoleAssignment.prototype.name = "";
-    
-                        /**
-                         * IncidentRoleAssignment etag.
-                         * @member {string} etag
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
-                         * @instance
-                         */
-                        IncidentRoleAssignment.prototype.etag = "";
-    
-                        /**
-                         * IncidentRoleAssignment role.
-                         * @member {google.cloud.irm.v1alpha2.IIncidentRole|null|undefined} role
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
-                         * @instance
-                         */
-                        IncidentRoleAssignment.prototype.role = null;
-    
-                        /**
-                         * IncidentRoleAssignment assignee.
-                         * @member {google.cloud.irm.v1alpha2.IUser|null|undefined} assignee
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
-                         * @instance
-                         */
-                        IncidentRoleAssignment.prototype.assignee = null;
-    
-                        /**
-                         * IncidentRoleAssignment proposedAssignee.
-                         * @member {google.cloud.irm.v1alpha2.IUser|null|undefined} proposedAssignee
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
-                         * @instance
-                         */
-                        IncidentRoleAssignment.prototype.proposedAssignee = null;
-    
-                        /**
-                         * Creates a new IncidentRoleAssignment instance using the specified properties.
-                         * @function create
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IIncidentRoleAssignment=} [properties] Properties to set
-                         * @returns {google.cloud.irm.v1alpha2.IncidentRoleAssignment} IncidentRoleAssignment instance
-                         */
-                        IncidentRoleAssignment.create = function create(properties) {
-                            return new IncidentRoleAssignment(properties);
-                        };
-    
-                        /**
-                         * Encodes the specified IncidentRoleAssignment message. Does not implicitly {@link google.cloud.irm.v1alpha2.IncidentRoleAssignment.verify|verify} messages.
-                         * @function encode
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IIncidentRoleAssignment} message IncidentRoleAssignment message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        IncidentRoleAssignment.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                            if (message.etag != null && message.hasOwnProperty("etag"))
-                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.etag);
-                            if (message.role != null && message.hasOwnProperty("role"))
-                                $root.google.cloud.irm.v1alpha2.IncidentRole.encode(message.role, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-                            if (message.assignee != null && message.hasOwnProperty("assignee"))
-                                $root.google.cloud.irm.v1alpha2.User.encode(message.assignee, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                            if (message.proposedAssignee != null && message.hasOwnProperty("proposedAssignee"))
-                                $root.google.cloud.irm.v1alpha2.User.encode(message.proposedAssignee, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
-                            return writer;
-                        };
-    
-                        /**
-                         * Encodes the specified IncidentRoleAssignment message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.IncidentRoleAssignment.verify|verify} messages.
-                         * @function encodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IIncidentRoleAssignment} message IncidentRoleAssignment message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        IncidentRoleAssignment.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
-                        };
-    
-                        /**
-                         * Decodes an IncidentRoleAssignment message from the specified reader or buffer.
-                         * @function decode
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @param {number} [length] Message length if known beforehand
-                         * @returns {google.cloud.irm.v1alpha2.IncidentRoleAssignment} IncidentRoleAssignment
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        IncidentRoleAssignment.decode = function decode(reader, length) {
-                            if (!(reader instanceof $Reader))
-                                reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.IncidentRoleAssignment();
-                            while (reader.pos < end) {
-                                var tag = reader.uint32();
-                                switch (tag >>> 3) {
-                                case 1:
-                                    message.name = reader.string();
-                                    break;
-                                case 2:
-                                    message.etag = reader.string();
-                                    break;
-                                case 3:
-                                    message.role = $root.google.cloud.irm.v1alpha2.IncidentRole.decode(reader, reader.uint32());
-                                    break;
-                                case 4:
-                                    message.assignee = $root.google.cloud.irm.v1alpha2.User.decode(reader, reader.uint32());
-                                    break;
-                                case 5:
-                                    message.proposedAssignee = $root.google.cloud.irm.v1alpha2.User.decode(reader, reader.uint32());
-                                    break;
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
-                                }
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Decodes an IncidentRoleAssignment message from the specified reader or buffer, length delimited.
-                         * @function decodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @returns {google.cloud.irm.v1alpha2.IncidentRoleAssignment} IncidentRoleAssignment
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        IncidentRoleAssignment.decodeDelimited = function decodeDelimited(reader) {
-                            if (!(reader instanceof $Reader))
-                                reader = new $Reader(reader);
-                            return this.decode(reader, reader.uint32());
-                        };
-    
-                        /**
-                         * Verifies an IncidentRoleAssignment message.
-                         * @function verify
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
-                         * @static
-                         * @param {Object.<string,*>} message Plain object to verify
-                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                         */
-                        IncidentRoleAssignment.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                if (!$util.isString(message.name))
-                                    return "name: string expected";
-                            if (message.etag != null && message.hasOwnProperty("etag"))
-                                if (!$util.isString(message.etag))
-                                    return "etag: string expected";
-                            if (message.role != null && message.hasOwnProperty("role")) {
-                                var error = $root.google.cloud.irm.v1alpha2.IncidentRole.verify(message.role);
-                                if (error)
-                                    return "role." + error;
-                            }
-                            if (message.assignee != null && message.hasOwnProperty("assignee")) {
-                                var error = $root.google.cloud.irm.v1alpha2.User.verify(message.assignee);
-                                if (error)
-                                    return "assignee." + error;
-                            }
-                            if (message.proposedAssignee != null && message.hasOwnProperty("proposedAssignee")) {
-                                var error = $root.google.cloud.irm.v1alpha2.User.verify(message.proposedAssignee);
-                                if (error)
-                                    return "proposedAssignee." + error;
-                            }
-                            return null;
-                        };
-    
-                        /**
-                         * Creates an IncidentRoleAssignment message from a plain object. Also converts values to their respective internal types.
-                         * @function fromObject
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
-                         * @static
-                         * @param {Object.<string,*>} object Plain object
-                         * @returns {google.cloud.irm.v1alpha2.IncidentRoleAssignment} IncidentRoleAssignment
-                         */
-                        IncidentRoleAssignment.fromObject = function fromObject(object) {
-                            if (object instanceof $root.google.cloud.irm.v1alpha2.IncidentRoleAssignment)
-                                return object;
-                            var message = new $root.google.cloud.irm.v1alpha2.IncidentRoleAssignment();
-                            if (object.name != null)
-                                message.name = String(object.name);
-                            if (object.etag != null)
-                                message.etag = String(object.etag);
-                            if (object.role != null) {
-                                if (typeof object.role !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.IncidentRoleAssignment.role: object expected");
-                                message.role = $root.google.cloud.irm.v1alpha2.IncidentRole.fromObject(object.role);
-                            }
-                            if (object.assignee != null) {
-                                if (typeof object.assignee !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.IncidentRoleAssignment.assignee: object expected");
-                                message.assignee = $root.google.cloud.irm.v1alpha2.User.fromObject(object.assignee);
-                            }
-                            if (object.proposedAssignee != null) {
-                                if (typeof object.proposedAssignee !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.IncidentRoleAssignment.proposedAssignee: object expected");
-                                message.proposedAssignee = $root.google.cloud.irm.v1alpha2.User.fromObject(object.proposedAssignee);
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Creates a plain object from an IncidentRoleAssignment message. Also converts values to other types if specified.
-                         * @function toObject
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IncidentRoleAssignment} message IncidentRoleAssignment
-                         * @param {$protobuf.IConversionOptions} [options] Conversion options
-                         * @returns {Object.<string,*>} Plain object
-                         */
-                        IncidentRoleAssignment.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
-                            var object = {};
-                            if (options.defaults) {
-                                object.name = "";
-                                object.etag = "";
-                                object.role = null;
-                                object.assignee = null;
-                                object.proposedAssignee = null;
-                            }
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                object.name = message.name;
-                            if (message.etag != null && message.hasOwnProperty("etag"))
-                                object.etag = message.etag;
-                            if (message.role != null && message.hasOwnProperty("role"))
-                                object.role = $root.google.cloud.irm.v1alpha2.IncidentRole.toObject(message.role, options);
-                            if (message.assignee != null && message.hasOwnProperty("assignee"))
-                                object.assignee = $root.google.cloud.irm.v1alpha2.User.toObject(message.assignee, options);
-                            if (message.proposedAssignee != null && message.hasOwnProperty("proposedAssignee"))
-                                object.proposedAssignee = $root.google.cloud.irm.v1alpha2.User.toObject(message.proposedAssignee, options);
-                            return object;
-                        };
-    
-                        /**
-                         * Converts this IncidentRoleAssignment to JSON.
-                         * @function toJSON
-                         * @memberof google.cloud.irm.v1alpha2.IncidentRoleAssignment
-                         * @instance
-                         * @returns {Object.<string,*>} JSON object
-                         */
-                        IncidentRoleAssignment.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                        };
-    
-                        return IncidentRoleAssignment;
-                    })();
-    
-                    v1alpha2.Artifact = (function() {
-    
-                        /**
-                         * Properties of an Artifact.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @interface IArtifact
-                         * @property {string|null} [name] Artifact name
-                         * @property {string|null} [displayName] Artifact displayName
-                         * @property {string|null} [etag] Artifact etag
-                         * @property {string|null} [url] Artifact url
-                         * @property {google.cloud.irm.v1alpha2.Artifact.Type|null} [type] Artifact type
-                         */
-    
-                        /**
-                         * Constructs a new Artifact.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @classdesc Represents an Artifact.
-                         * @implements IArtifact
-                         * @constructor
-                         * @param {google.cloud.irm.v1alpha2.IArtifact=} [properties] Properties to set
-                         */
-                        function Artifact(properties) {
-                            if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                    if (properties[keys[i]] != null)
-                                        this[keys[i]] = properties[keys[i]];
-                        }
-    
-                        /**
-                         * Artifact name.
-                         * @member {string} name
-                         * @memberof google.cloud.irm.v1alpha2.Artifact
-                         * @instance
-                         */
-                        Artifact.prototype.name = "";
-    
-                        /**
-                         * Artifact displayName.
-                         * @member {string} displayName
-                         * @memberof google.cloud.irm.v1alpha2.Artifact
-                         * @instance
-                         */
-                        Artifact.prototype.displayName = "";
-    
-                        /**
-                         * Artifact etag.
-                         * @member {string} etag
-                         * @memberof google.cloud.irm.v1alpha2.Artifact
-                         * @instance
-                         */
-                        Artifact.prototype.etag = "";
-    
-                        /**
-                         * Artifact url.
-                         * @member {string} url
-                         * @memberof google.cloud.irm.v1alpha2.Artifact
-                         * @instance
-                         */
-                        Artifact.prototype.url = "";
-    
-                        /**
-                         * Artifact type.
-                         * @member {google.cloud.irm.v1alpha2.Artifact.Type} type
-                         * @memberof google.cloud.irm.v1alpha2.Artifact
-                         * @instance
-                         */
-                        Artifact.prototype.type = 0;
-    
-                        /**
-                         * Creates a new Artifact instance using the specified properties.
-                         * @function create
-                         * @memberof google.cloud.irm.v1alpha2.Artifact
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IArtifact=} [properties] Properties to set
-                         * @returns {google.cloud.irm.v1alpha2.Artifact} Artifact instance
-                         */
-                        Artifact.create = function create(properties) {
-                            return new Artifact(properties);
-                        };
-    
-                        /**
-                         * Encodes the specified Artifact message. Does not implicitly {@link google.cloud.irm.v1alpha2.Artifact.verify|verify} messages.
-                         * @function encode
-                         * @memberof google.cloud.irm.v1alpha2.Artifact
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IArtifact} message Artifact message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        Artifact.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                            if (message.displayName != null && message.hasOwnProperty("displayName"))
-                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.displayName);
-                            if (message.etag != null && message.hasOwnProperty("etag"))
-                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.etag);
-                            if (message.url != null && message.hasOwnProperty("url"))
-                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.url);
-                            if (message.type != null && message.hasOwnProperty("type"))
-                                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.type);
-                            return writer;
-                        };
-    
-                        /**
-                         * Encodes the specified Artifact message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Artifact.verify|verify} messages.
-                         * @function encodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.Artifact
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.IArtifact} message Artifact message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        Artifact.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
-                        };
-    
-                        /**
-                         * Decodes an Artifact message from the specified reader or buffer.
-                         * @function decode
-                         * @memberof google.cloud.irm.v1alpha2.Artifact
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @param {number} [length] Message length if known beforehand
-                         * @returns {google.cloud.irm.v1alpha2.Artifact} Artifact
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        Artifact.decode = function decode(reader, length) {
-                            if (!(reader instanceof $Reader))
-                                reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Artifact();
-                            while (reader.pos < end) {
-                                var tag = reader.uint32();
-                                switch (tag >>> 3) {
-                                case 1:
-                                    message.name = reader.string();
-                                    break;
-                                case 2:
-                                    message.displayName = reader.string();
-                                    break;
-                                case 3:
-                                    message.etag = reader.string();
-                                    break;
-                                case 4:
-                                    message.url = reader.string();
-                                    break;
-                                case 5:
-                                    message.type = reader.int32();
-                                    break;
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
-                                }
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Decodes an Artifact message from the specified reader or buffer, length delimited.
-                         * @function decodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.Artifact
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @returns {google.cloud.irm.v1alpha2.Artifact} Artifact
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        Artifact.decodeDelimited = function decodeDelimited(reader) {
-                            if (!(reader instanceof $Reader))
-                                reader = new $Reader(reader);
-                            return this.decode(reader, reader.uint32());
-                        };
-    
-                        /**
-                         * Verifies an Artifact message.
-                         * @function verify
-                         * @memberof google.cloud.irm.v1alpha2.Artifact
-                         * @static
-                         * @param {Object.<string,*>} message Plain object to verify
-                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                         */
-                        Artifact.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                if (!$util.isString(message.name))
-                                    return "name: string expected";
-                            if (message.displayName != null && message.hasOwnProperty("displayName"))
-                                if (!$util.isString(message.displayName))
-                                    return "displayName: string expected";
-                            if (message.etag != null && message.hasOwnProperty("etag"))
-                                if (!$util.isString(message.etag))
-                                    return "etag: string expected";
-                            if (message.url != null && message.hasOwnProperty("url"))
-                                if (!$util.isString(message.url))
-                                    return "url: string expected";
-                            if (message.type != null && message.hasOwnProperty("type"))
-                                switch (message.type) {
-                                default:
-                                    return "type: enum value expected";
-                                case 0:
-                                case 1:
-                                case 4:
-                                    break;
-                                }
-                            return null;
-                        };
-    
-                        /**
-                         * Creates an Artifact message from a plain object. Also converts values to their respective internal types.
-                         * @function fromObject
-                         * @memberof google.cloud.irm.v1alpha2.Artifact
-                         * @static
-                         * @param {Object.<string,*>} object Plain object
-                         * @returns {google.cloud.irm.v1alpha2.Artifact} Artifact
-                         */
-                        Artifact.fromObject = function fromObject(object) {
-                            if (object instanceof $root.google.cloud.irm.v1alpha2.Artifact)
-                                return object;
-                            var message = new $root.google.cloud.irm.v1alpha2.Artifact();
-                            if (object.name != null)
-                                message.name = String(object.name);
-                            if (object.displayName != null)
-                                message.displayName = String(object.displayName);
-                            if (object.etag != null)
-                                message.etag = String(object.etag);
-                            if (object.url != null)
-                                message.url = String(object.url);
-                            switch (object.type) {
-                            case "TYPE_UNSPECIFIED":
-                            case 0:
-                                message.type = 0;
-                                break;
-                            case "TYPE_URL":
-                            case 1:
-                                message.type = 1;
-                                break;
-                            case "TYPE_JIRA_ISSUE":
-                            case 4:
-                                message.type = 4;
-                                break;
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Creates a plain object from an Artifact message. Also converts values to other types if specified.
-                         * @function toObject
-                         * @memberof google.cloud.irm.v1alpha2.Artifact
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.Artifact} message Artifact
-                         * @param {$protobuf.IConversionOptions} [options] Conversion options
-                         * @returns {Object.<string,*>} Plain object
-                         */
-                        Artifact.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
-                            var object = {};
-                            if (options.defaults) {
-                                object.name = "";
-                                object.displayName = "";
-                                object.etag = "";
-                                object.url = "";
-                                object.type = options.enums === String ? "TYPE_UNSPECIFIED" : 0;
-                            }
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                object.name = message.name;
-                            if (message.displayName != null && message.hasOwnProperty("displayName"))
-                                object.displayName = message.displayName;
-                            if (message.etag != null && message.hasOwnProperty("etag"))
-                                object.etag = message.etag;
-                            if (message.url != null && message.hasOwnProperty("url"))
-                                object.url = message.url;
-                            if (message.type != null && message.hasOwnProperty("type"))
-                                object.type = options.enums === String ? $root.google.cloud.irm.v1alpha2.Artifact.Type[message.type] : message.type;
-                            return object;
-                        };
-    
-                        /**
-                         * Converts this Artifact to JSON.
-                         * @function toJSON
-                         * @memberof google.cloud.irm.v1alpha2.Artifact
-                         * @instance
-                         * @returns {Object.<string,*>} JSON object
-                         */
-                        Artifact.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                        };
-    
-                        /**
-                         * Type enum.
-                         * @name google.cloud.irm.v1alpha2.Artifact.Type
-                         * @enum {string}
-                         * @property {number} TYPE_UNSPECIFIED=0 TYPE_UNSPECIFIED value
-                         * @property {number} TYPE_URL=1 TYPE_URL value
-                         * @property {number} TYPE_JIRA_ISSUE=4 TYPE_JIRA_ISSUE value
-                         */
-                        Artifact.Type = (function() {
-                            var valuesById = {}, values = Object.create(valuesById);
-                            values[valuesById[0] = "TYPE_UNSPECIFIED"] = 0;
-                            values[valuesById[1] = "TYPE_URL"] = 1;
-                            values[valuesById[4] = "TYPE_JIRA_ISSUE"] = 4;
-                            return values;
-                        })();
-    
-                        return Artifact;
-                    })();
-    
-                    v1alpha2.CommunicationChannel = (function() {
-    
-                        /**
-                         * Properties of a CommunicationChannel.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @interface ICommunicationChannel
-                         * @property {google.cloud.irm.v1alpha2.CommunicationChannel.IEmail|null} [email] CommunicationChannel email
-                         * @property {google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel|null} [notificationChannel] CommunicationChannel notificationChannel
-                         */
-    
-                        /**
-                         * Constructs a new CommunicationChannel.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @classdesc Represents a CommunicationChannel.
-                         * @implements ICommunicationChannel
-                         * @constructor
-                         * @param {google.cloud.irm.v1alpha2.ICommunicationChannel=} [properties] Properties to set
-                         */
-                        function CommunicationChannel(properties) {
-                            if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                    if (properties[keys[i]] != null)
-                                        this[keys[i]] = properties[keys[i]];
-                        }
-    
-                        /**
-                         * CommunicationChannel email.
-                         * @member {google.cloud.irm.v1alpha2.CommunicationChannel.IEmail|null|undefined} email
-                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
-                         * @instance
-                         */
-                        CommunicationChannel.prototype.email = null;
-    
-                        /**
-                         * CommunicationChannel notificationChannel.
-                         * @member {google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel|null|undefined} notificationChannel
-                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
-                         * @instance
-                         */
-                        CommunicationChannel.prototype.notificationChannel = null;
-    
-                        // OneOf field names bound to virtual getters and setters
-                        var $oneOfFields;
-    
-                        /**
-                         * CommunicationChannel endpoint.
-                         * @member {"email"|"notificationChannel"|undefined} endpoint
-                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
-                         * @instance
-                         */
-                        Object.defineProperty(CommunicationChannel.prototype, "endpoint", {
-                            get: $util.oneOfGetter($oneOfFields = ["email", "notificationChannel"]),
-                            set: $util.oneOfSetter($oneOfFields)
-                        });
-    
-                        /**
-                         * Creates a new CommunicationChannel instance using the specified properties.
-                         * @function create
-                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.ICommunicationChannel=} [properties] Properties to set
-                         * @returns {google.cloud.irm.v1alpha2.CommunicationChannel} CommunicationChannel instance
-                         */
-                        CommunicationChannel.create = function create(properties) {
-                            return new CommunicationChannel(properties);
-                        };
-    
-                        /**
-                         * Encodes the specified CommunicationChannel message. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.verify|verify} messages.
-                         * @function encode
-                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.ICommunicationChannel} message CommunicationChannel message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        CommunicationChannel.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.email != null && message.hasOwnProperty("email"))
-                                $root.google.cloud.irm.v1alpha2.CommunicationChannel.Email.encode(message.email, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                            if (message.notificationChannel != null && message.hasOwnProperty("notificationChannel"))
-                                $root.google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.encode(message.notificationChannel, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                            return writer;
-                        };
-    
-                        /**
-                         * Encodes the specified CommunicationChannel message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.verify|verify} messages.
-                         * @function encodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.ICommunicationChannel} message CommunicationChannel message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        CommunicationChannel.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
-                        };
-    
-                        /**
-                         * Decodes a CommunicationChannel message from the specified reader or buffer.
-                         * @function decode
-                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @param {number} [length] Message length if known beforehand
-                         * @returns {google.cloud.irm.v1alpha2.CommunicationChannel} CommunicationChannel
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        CommunicationChannel.decode = function decode(reader, length) {
-                            if (!(reader instanceof $Reader))
-                                reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.CommunicationChannel();
-                            while (reader.pos < end) {
-                                var tag = reader.uint32();
-                                switch (tag >>> 3) {
-                                case 1:
-                                    message.email = $root.google.cloud.irm.v1alpha2.CommunicationChannel.Email.decode(reader, reader.uint32());
-                                    break;
-                                case 2:
-                                    message.notificationChannel = $root.google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.decode(reader, reader.uint32());
-                                    break;
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
-                                }
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Decodes a CommunicationChannel message from the specified reader or buffer, length delimited.
-                         * @function decodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @returns {google.cloud.irm.v1alpha2.CommunicationChannel} CommunicationChannel
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        CommunicationChannel.decodeDelimited = function decodeDelimited(reader) {
-                            if (!(reader instanceof $Reader))
-                                reader = new $Reader(reader);
-                            return this.decode(reader, reader.uint32());
-                        };
-    
-                        /**
-                         * Verifies a CommunicationChannel message.
-                         * @function verify
-                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
-                         * @static
-                         * @param {Object.<string,*>} message Plain object to verify
-                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                         */
-                        CommunicationChannel.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            var properties = {};
-                            if (message.email != null && message.hasOwnProperty("email")) {
-                                properties.endpoint = 1;
-                                {
-                                    var error = $root.google.cloud.irm.v1alpha2.CommunicationChannel.Email.verify(message.email);
-                                    if (error)
-                                        return "email." + error;
-                                }
-                            }
-                            if (message.notificationChannel != null && message.hasOwnProperty("notificationChannel")) {
-                                if (properties.endpoint === 1)
-                                    return "endpoint: multiple values";
-                                properties.endpoint = 1;
-                                {
-                                    var error = $root.google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.verify(message.notificationChannel);
-                                    if (error)
-                                        return "notificationChannel." + error;
-                                }
-                            }
-                            return null;
-                        };
-    
-                        /**
-                         * Creates a CommunicationChannel message from a plain object. Also converts values to their respective internal types.
-                         * @function fromObject
-                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
-                         * @static
-                         * @param {Object.<string,*>} object Plain object
-                         * @returns {google.cloud.irm.v1alpha2.CommunicationChannel} CommunicationChannel
-                         */
-                        CommunicationChannel.fromObject = function fromObject(object) {
-                            if (object instanceof $root.google.cloud.irm.v1alpha2.CommunicationChannel)
-                                return object;
-                            var message = new $root.google.cloud.irm.v1alpha2.CommunicationChannel();
-                            if (object.email != null) {
-                                if (typeof object.email !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.CommunicationChannel.email: object expected");
-                                message.email = $root.google.cloud.irm.v1alpha2.CommunicationChannel.Email.fromObject(object.email);
-                            }
-                            if (object.notificationChannel != null) {
-                                if (typeof object.notificationChannel !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.CommunicationChannel.notificationChannel: object expected");
-                                message.notificationChannel = $root.google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.fromObject(object.notificationChannel);
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Creates a plain object from a CommunicationChannel message. Also converts values to other types if specified.
-                         * @function toObject
-                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.CommunicationChannel} message CommunicationChannel
-                         * @param {$protobuf.IConversionOptions} [options] Conversion options
-                         * @returns {Object.<string,*>} Plain object
-                         */
-                        CommunicationChannel.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
-                            var object = {};
-                            if (message.email != null && message.hasOwnProperty("email")) {
-                                object.email = $root.google.cloud.irm.v1alpha2.CommunicationChannel.Email.toObject(message.email, options);
-                                if (options.oneofs)
-                                    object.endpoint = "email";
-                            }
-                            if (message.notificationChannel != null && message.hasOwnProperty("notificationChannel")) {
-                                object.notificationChannel = $root.google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.toObject(message.notificationChannel, options);
-                                if (options.oneofs)
-                                    object.endpoint = "notificationChannel";
-                            }
-                            return object;
-                        };
-    
-                        /**
-                         * Converts this CommunicationChannel to JSON.
-                         * @function toJSON
-                         * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
-                         * @instance
-                         * @returns {Object.<string,*>} JSON object
-                         */
-                        CommunicationChannel.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                        };
-    
-                        CommunicationChannel.Email = (function() {
-    
-                            /**
-                             * Properties of an Email.
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
-                             * @interface IEmail
-                             * @property {string|null} [address] Email address
-                             */
-    
-                            /**
-                             * Constructs a new Email.
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
-                             * @classdesc Represents an Email.
-                             * @implements IEmail
-                             * @constructor
-                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.IEmail=} [properties] Properties to set
-                             */
-                            function Email(properties) {
-                                if (properties)
-                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                        if (properties[keys[i]] != null)
-                                            this[keys[i]] = properties[keys[i]];
-                            }
-    
-                            /**
-                             * Email address.
-                             * @member {string} address
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
-                             * @instance
-                             */
-                            Email.prototype.address = "";
-    
-                            /**
-                             * Creates a new Email instance using the specified properties.
-                             * @function create
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
-                             * @static
-                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.IEmail=} [properties] Properties to set
-                             * @returns {google.cloud.irm.v1alpha2.CommunicationChannel.Email} Email instance
-                             */
-                            Email.create = function create(properties) {
-                                return new Email(properties);
-                            };
-    
-                            /**
-                             * Encodes the specified Email message. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.Email.verify|verify} messages.
-                             * @function encode
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
-                             * @static
-                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.IEmail} message Email message or plain object to encode
-                             * @param {$protobuf.Writer} [writer] Writer to encode to
-                             * @returns {$protobuf.Writer} Writer
-                             */
-                            Email.encode = function encode(message, writer) {
-                                if (!writer)
-                                    writer = $Writer.create();
-                                if (message.address != null && message.hasOwnProperty("address"))
-                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.address);
-                                return writer;
-                            };
-    
-                            /**
-                             * Encodes the specified Email message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.Email.verify|verify} messages.
-                             * @function encodeDelimited
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
-                             * @static
-                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.IEmail} message Email message or plain object to encode
-                             * @param {$protobuf.Writer} [writer] Writer to encode to
-                             * @returns {$protobuf.Writer} Writer
-                             */
-                            Email.encodeDelimited = function encodeDelimited(message, writer) {
-                                return this.encode(message, writer).ldelim();
-                            };
-    
-                            /**
-                             * Decodes an Email message from the specified reader or buffer.
-                             * @function decode
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
-                             * @static
-                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                             * @param {number} [length] Message length if known beforehand
-                             * @returns {google.cloud.irm.v1alpha2.CommunicationChannel.Email} Email
-                             * @throws {Error} If the payload is not a reader or valid buffer
-                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                             */
-                            Email.decode = function decode(reader, length) {
-                                if (!(reader instanceof $Reader))
-                                    reader = $Reader.create(reader);
-                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.CommunicationChannel.Email();
-                                while (reader.pos < end) {
-                                    var tag = reader.uint32();
-                                    switch (tag >>> 3) {
-                                    case 1:
-                                        message.address = reader.string();
-                                        break;
-                                    default:
-                                        reader.skipType(tag & 7);
-                                        break;
-                                    }
-                                }
-                                return message;
-                            };
-    
-                            /**
-                             * Decodes an Email message from the specified reader or buffer, length delimited.
-                             * @function decodeDelimited
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
-                             * @static
-                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                             * @returns {google.cloud.irm.v1alpha2.CommunicationChannel.Email} Email
-                             * @throws {Error} If the payload is not a reader or valid buffer
-                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                             */
-                            Email.decodeDelimited = function decodeDelimited(reader) {
-                                if (!(reader instanceof $Reader))
-                                    reader = new $Reader(reader);
-                                return this.decode(reader, reader.uint32());
-                            };
-    
-                            /**
-                             * Verifies an Email message.
-                             * @function verify
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
-                             * @static
-                             * @param {Object.<string,*>} message Plain object to verify
-                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                             */
-                            Email.verify = function verify(message) {
-                                if (typeof message !== "object" || message === null)
-                                    return "object expected";
-                                if (message.address != null && message.hasOwnProperty("address"))
-                                    if (!$util.isString(message.address))
-                                        return "address: string expected";
-                                return null;
-                            };
-    
-                            /**
-                             * Creates an Email message from a plain object. Also converts values to their respective internal types.
-                             * @function fromObject
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
-                             * @static
-                             * @param {Object.<string,*>} object Plain object
-                             * @returns {google.cloud.irm.v1alpha2.CommunicationChannel.Email} Email
-                             */
-                            Email.fromObject = function fromObject(object) {
-                                if (object instanceof $root.google.cloud.irm.v1alpha2.CommunicationChannel.Email)
-                                    return object;
-                                var message = new $root.google.cloud.irm.v1alpha2.CommunicationChannel.Email();
-                                if (object.address != null)
-                                    message.address = String(object.address);
-                                return message;
-                            };
-    
-                            /**
-                             * Creates a plain object from an Email message. Also converts values to other types if specified.
-                             * @function toObject
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
-                             * @static
-                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.Email} message Email
-                             * @param {$protobuf.IConversionOptions} [options] Conversion options
-                             * @returns {Object.<string,*>} Plain object
-                             */
-                            Email.toObject = function toObject(message, options) {
-                                if (!options)
-                                    options = {};
-                                var object = {};
-                                if (options.defaults)
-                                    object.address = "";
-                                if (message.address != null && message.hasOwnProperty("address"))
-                                    object.address = message.address;
-                                return object;
-                            };
-    
-                            /**
-                             * Converts this Email to JSON.
-                             * @function toJSON
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.Email
-                             * @instance
-                             * @returns {Object.<string,*>} JSON object
-                             */
-                            Email.prototype.toJSON = function toJSON() {
-                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                            };
-    
-                            return Email;
-                        })();
-    
-                        CommunicationChannel.NotificationChannel = (function() {
-    
-                            /**
-                             * Properties of a NotificationChannel.
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
-                             * @interface INotificationChannel
-                             * @property {string|null} [name] NotificationChannel name
-                             */
-    
-                            /**
-                             * Constructs a new NotificationChannel.
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel
-                             * @classdesc Represents a NotificationChannel.
-                             * @implements INotificationChannel
-                             * @constructor
-                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel=} [properties] Properties to set
-                             */
-                            function NotificationChannel(properties) {
-                                if (properties)
-                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                        if (properties[keys[i]] != null)
-                                            this[keys[i]] = properties[keys[i]];
-                            }
-    
-                            /**
-                             * NotificationChannel name.
-                             * @member {string} name
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
-                             * @instance
-                             */
-                            NotificationChannel.prototype.name = "";
-    
-                            /**
-                             * Creates a new NotificationChannel instance using the specified properties.
-                             * @function create
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
-                             * @static
-                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel=} [properties] Properties to set
-                             * @returns {google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel} NotificationChannel instance
-                             */
-                            NotificationChannel.create = function create(properties) {
-                                return new NotificationChannel(properties);
-                            };
-    
-                            /**
-                             * Encodes the specified NotificationChannel message. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.verify|verify} messages.
-                             * @function encode
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
-                             * @static
-                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel} message NotificationChannel message or plain object to encode
-                             * @param {$protobuf.Writer} [writer] Writer to encode to
-                             * @returns {$protobuf.Writer} Writer
-                             */
-                            NotificationChannel.encode = function encode(message, writer) {
-                                if (!writer)
-                                    writer = $Writer.create();
-                                if (message.name != null && message.hasOwnProperty("name"))
-                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                                return writer;
-                            };
-    
-                            /**
-                             * Encodes the specified NotificationChannel message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel.verify|verify} messages.
-                             * @function encodeDelimited
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
-                             * @static
-                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.INotificationChannel} message NotificationChannel message or plain object to encode
-                             * @param {$protobuf.Writer} [writer] Writer to encode to
-                             * @returns {$protobuf.Writer} Writer
-                             */
-                            NotificationChannel.encodeDelimited = function encodeDelimited(message, writer) {
-                                return this.encode(message, writer).ldelim();
-                            };
-    
-                            /**
-                             * Decodes a NotificationChannel message from the specified reader or buffer.
-                             * @function decode
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
-                             * @static
-                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                             * @param {number} [length] Message length if known beforehand
-                             * @returns {google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel} NotificationChannel
-                             * @throws {Error} If the payload is not a reader or valid buffer
-                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                             */
-                            NotificationChannel.decode = function decode(reader, length) {
-                                if (!(reader instanceof $Reader))
-                                    reader = $Reader.create(reader);
-                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel();
-                                while (reader.pos < end) {
-                                    var tag = reader.uint32();
-                                    switch (tag >>> 3) {
-                                    case 1:
-                                        message.name = reader.string();
-                                        break;
-                                    default:
-                                        reader.skipType(tag & 7);
-                                        break;
-                                    }
-                                }
-                                return message;
-                            };
-    
-                            /**
-                             * Decodes a NotificationChannel message from the specified reader or buffer, length delimited.
-                             * @function decodeDelimited
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
-                             * @static
-                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                             * @returns {google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel} NotificationChannel
-                             * @throws {Error} If the payload is not a reader or valid buffer
-                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                             */
-                            NotificationChannel.decodeDelimited = function decodeDelimited(reader) {
-                                if (!(reader instanceof $Reader))
-                                    reader = new $Reader(reader);
-                                return this.decode(reader, reader.uint32());
-                            };
-    
-                            /**
-                             * Verifies a NotificationChannel message.
-                             * @function verify
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
-                             * @static
-                             * @param {Object.<string,*>} message Plain object to verify
-                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                             */
-                            NotificationChannel.verify = function verify(message) {
-                                if (typeof message !== "object" || message === null)
-                                    return "object expected";
-                                if (message.name != null && message.hasOwnProperty("name"))
-                                    if (!$util.isString(message.name))
-                                        return "name: string expected";
-                                return null;
-                            };
-    
-                            /**
-                             * Creates a NotificationChannel message from a plain object. Also converts values to their respective internal types.
-                             * @function fromObject
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
-                             * @static
-                             * @param {Object.<string,*>} object Plain object
-                             * @returns {google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel} NotificationChannel
-                             */
-                            NotificationChannel.fromObject = function fromObject(object) {
-                                if (object instanceof $root.google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel)
-                                    return object;
-                                var message = new $root.google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel();
-                                if (object.name != null)
-                                    message.name = String(object.name);
-                                return message;
-                            };
-    
-                            /**
-                             * Creates a plain object from a NotificationChannel message. Also converts values to other types if specified.
-                             * @function toObject
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
-                             * @static
-                             * @param {google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel} message NotificationChannel
-                             * @param {$protobuf.IConversionOptions} [options] Conversion options
-                             * @returns {Object.<string,*>} Plain object
-                             */
-                            NotificationChannel.toObject = function toObject(message, options) {
-                                if (!options)
-                                    options = {};
-                                var object = {};
-                                if (options.defaults)
-                                    object.name = "";
-                                if (message.name != null && message.hasOwnProperty("name"))
-                                    object.name = message.name;
-                                return object;
-                            };
-    
-                            /**
-                             * Converts this NotificationChannel to JSON.
-                             * @function toJSON
-                             * @memberof google.cloud.irm.v1alpha2.CommunicationChannel.NotificationChannel
-                             * @instance
-                             * @returns {Object.<string,*>} JSON object
-                             */
-                            NotificationChannel.prototype.toJSON = function toJSON() {
-                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                            };
-    
-                            return NotificationChannel;
-                        })();
-    
-                        return CommunicationChannel;
-                    })();
-    
-                    v1alpha2.Subscription = (function() {
-    
-                        /**
-                         * Properties of a Subscription.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @interface ISubscription
-                         * @property {string|null} [name] Subscription name
-                         * @property {string|null} [etag] Subscription etag
-                         * @property {google.cloud.irm.v1alpha2.ICommunicationChannel|null} [subscriptionChannel] Subscription subscriptionChannel
-                         * @property {Array.<google.cloud.irm.v1alpha2.Subscription.EventType>|null} [eventTypes] Subscription eventTypes
-                         */
-    
-                        /**
-                         * Constructs a new Subscription.
-                         * @memberof google.cloud.irm.v1alpha2
-                         * @classdesc Represents a Subscription.
-                         * @implements ISubscription
-                         * @constructor
-                         * @param {google.cloud.irm.v1alpha2.ISubscription=} [properties] Properties to set
-                         */
-                        function Subscription(properties) {
-                            this.eventTypes = [];
-                            if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                    if (properties[keys[i]] != null)
-                                        this[keys[i]] = properties[keys[i]];
-                        }
-    
-                        /**
-                         * Subscription name.
-                         * @member {string} name
-                         * @memberof google.cloud.irm.v1alpha2.Subscription
-                         * @instance
-                         */
-                        Subscription.prototype.name = "";
-    
-                        /**
-                         * Subscription etag.
-                         * @member {string} etag
-                         * @memberof google.cloud.irm.v1alpha2.Subscription
-                         * @instance
-                         */
-                        Subscription.prototype.etag = "";
-    
-                        /**
-                         * Subscription subscriptionChannel.
-                         * @member {google.cloud.irm.v1alpha2.ICommunicationChannel|null|undefined} subscriptionChannel
-                         * @memberof google.cloud.irm.v1alpha2.Subscription
-                         * @instance
-                         */
-                        Subscription.prototype.subscriptionChannel = null;
-    
-                        /**
-                         * Subscription eventTypes.
-                         * @member {Array.<google.cloud.irm.v1alpha2.Subscription.EventType>} eventTypes
-                         * @memberof google.cloud.irm.v1alpha2.Subscription
-                         * @instance
-                         */
-                        Subscription.prototype.eventTypes = $util.emptyArray;
-    
-                        /**
-                         * Creates a new Subscription instance using the specified properties.
-                         * @function create
-                         * @memberof google.cloud.irm.v1alpha2.Subscription
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.ISubscription=} [properties] Properties to set
-                         * @returns {google.cloud.irm.v1alpha2.Subscription} Subscription instance
-                         */
-                        Subscription.create = function create(properties) {
-                            return new Subscription(properties);
-                        };
-    
-                        /**
-                         * Encodes the specified Subscription message. Does not implicitly {@link google.cloud.irm.v1alpha2.Subscription.verify|verify} messages.
-                         * @function encode
-                         * @memberof google.cloud.irm.v1alpha2.Subscription
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.ISubscription} message Subscription message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        Subscription.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-                            if (message.etag != null && message.hasOwnProperty("etag"))
-                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.etag);
-                            if (message.subscriptionChannel != null && message.hasOwnProperty("subscriptionChannel"))
-                                $root.google.cloud.irm.v1alpha2.CommunicationChannel.encode(message.subscriptionChannel, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-                            if (message.eventTypes != null && message.eventTypes.length) {
-                                writer.uint32(/* id 4, wireType 2 =*/34).fork();
-                                for (var i = 0; i < message.eventTypes.length; ++i)
-                                    writer.int32(message.eventTypes[i]);
-                                writer.ldelim();
-                            }
-                            return writer;
-                        };
-    
-                        /**
-                         * Encodes the specified Subscription message, length delimited. Does not implicitly {@link google.cloud.irm.v1alpha2.Subscription.verify|verify} messages.
-                         * @function encodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.Subscription
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.ISubscription} message Subscription message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        Subscription.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
-                        };
-    
-                        /**
-                         * Decodes a Subscription message from the specified reader or buffer.
-                         * @function decode
-                         * @memberof google.cloud.irm.v1alpha2.Subscription
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @param {number} [length] Message length if known beforehand
-                         * @returns {google.cloud.irm.v1alpha2.Subscription} Subscription
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        Subscription.decode = function decode(reader, length) {
-                            if (!(reader instanceof $Reader))
-                                reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.irm.v1alpha2.Subscription();
-                            while (reader.pos < end) {
-                                var tag = reader.uint32();
-                                switch (tag >>> 3) {
-                                case 1:
-                                    message.name = reader.string();
-                                    break;
-                                case 2:
-                                    message.etag = reader.string();
-                                    break;
-                                case 3:
-                                    message.subscriptionChannel = $root.google.cloud.irm.v1alpha2.CommunicationChannel.decode(reader, reader.uint32());
-                                    break;
-                                case 4:
-                                    if (!(message.eventTypes && message.eventTypes.length))
-                                        message.eventTypes = [];
-                                    if ((tag & 7) === 2) {
-                                        var end2 = reader.uint32() + reader.pos;
-                                        while (reader.pos < end2)
-                                            message.eventTypes.push(reader.int32());
-                                    } else
-                                        message.eventTypes.push(reader.int32());
-                                    break;
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
-                                }
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Decodes a Subscription message from the specified reader or buffer, length delimited.
-                         * @function decodeDelimited
-                         * @memberof google.cloud.irm.v1alpha2.Subscription
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @returns {google.cloud.irm.v1alpha2.Subscription} Subscription
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        Subscription.decodeDelimited = function decodeDelimited(reader) {
-                            if (!(reader instanceof $Reader))
-                                reader = new $Reader(reader);
-                            return this.decode(reader, reader.uint32());
-                        };
-    
-                        /**
-                         * Verifies a Subscription message.
-                         * @function verify
-                         * @memberof google.cloud.irm.v1alpha2.Subscription
-                         * @static
-                         * @param {Object.<string,*>} message Plain object to verify
-                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                         */
-                        Subscription.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                if (!$util.isString(message.name))
-                                    return "name: string expected";
-                            if (message.etag != null && message.hasOwnProperty("etag"))
-                                if (!$util.isString(message.etag))
-                                    return "etag: string expected";
-                            if (message.subscriptionChannel != null && message.hasOwnProperty("subscriptionChannel")) {
-                                var error = $root.google.cloud.irm.v1alpha2.CommunicationChannel.verify(message.subscriptionChannel);
-                                if (error)
-                                    return "subscriptionChannel." + error;
-                            }
-                            if (message.eventTypes != null && message.hasOwnProperty("eventTypes")) {
-                                if (!Array.isArray(message.eventTypes))
-                                    return "eventTypes: array expected";
-                                for (var i = 0; i < message.eventTypes.length; ++i)
-                                    switch (message.eventTypes[i]) {
-                                    default:
-                                        return "eventTypes: enum value[] expected";
-                                    case 0:
-                                    case 1:
-                                    case 2:
-                                    case 3:
-                                    case 4:
-                                    case 5:
-                                    case 6:
-                                        break;
-                                    }
-                            }
-                            return null;
-                        };
-    
-                        /**
-                         * Creates a Subscription message from a plain object. Also converts values to their respective internal types.
-                         * @function fromObject
-                         * @memberof google.cloud.irm.v1alpha2.Subscription
-                         * @static
-                         * @param {Object.<string,*>} object Plain object
-                         * @returns {google.cloud.irm.v1alpha2.Subscription} Subscription
-                         */
-                        Subscription.fromObject = function fromObject(object) {
-                            if (object instanceof $root.google.cloud.irm.v1alpha2.Subscription)
-                                return object;
-                            var message = new $root.google.cloud.irm.v1alpha2.Subscription();
-                            if (object.name != null)
-                                message.name = String(object.name);
-                            if (object.etag != null)
-                                message.etag = String(object.etag);
-                            if (object.subscriptionChannel != null) {
-                                if (typeof object.subscriptionChannel !== "object")
-                                    throw TypeError(".google.cloud.irm.v1alpha2.Subscription.subscriptionChannel: object expected");
-                                message.subscriptionChannel = $root.google.cloud.irm.v1alpha2.CommunicationChannel.fromObject(object.subscriptionChannel);
-                            }
-                            if (object.eventTypes) {
-                                if (!Array.isArray(object.eventTypes))
-                                    throw TypeError(".google.cloud.irm.v1alpha2.Subscription.eventTypes: array expected");
-                                message.eventTypes = [];
-                                for (var i = 0; i < object.eventTypes.length; ++i)
-                                    switch (object.eventTypes[i]) {
-                                    default:
-                                    case "EVENT_TYPE_UNSPECIFIED":
-                                    case 0:
-                                        message.eventTypes[i] = 0;
-                                        break;
-                                    case "EVENT_TYPE_TITLE_CHANGE":
-                                    case 1:
-                                        message.eventTypes[i] = 1;
-                                        break;
-                                    case "EVENT_TYPE_SYNOPSIS_CHANGE":
-                                    case 2:
-                                        message.eventTypes[i] = 2;
-                                        break;
-                                    case "EVENT_TYPE_STAGE_CHANGE":
-                                    case 3:
-                                        message.eventTypes[i] = 3;
-                                        break;
-                                    case "EVENT_TYPE_SEVERITY_CHANGE":
-                                    case 4:
-                                        message.eventTypes[i] = 4;
-                                        break;
-                                    case "EVENT_TYPE_ANNOTATION_ADD":
-                                    case 5:
-                                        message.eventTypes[i] = 5;
-                                        break;
-                                    case "EVENT_TYPE_ANNOTATION_CHANGE":
-                                    case 6:
-                                        message.eventTypes[i] = 6;
-                                        break;
-                                    }
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Creates a plain object from a Subscription message. Also converts values to other types if specified.
-                         * @function toObject
-                         * @memberof google.cloud.irm.v1alpha2.Subscription
-                         * @static
-                         * @param {google.cloud.irm.v1alpha2.Subscription} message Subscription
-                         * @param {$protobuf.IConversionOptions} [options] Conversion options
-                         * @returns {Object.<string,*>} Plain object
-                         */
-                        Subscription.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
-                            var object = {};
-                            if (options.arrays || options.defaults)
-                                object.eventTypes = [];
-                            if (options.defaults) {
-                                object.name = "";
-                                object.etag = "";
-                                object.subscriptionChannel = null;
-                            }
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                object.name = message.name;
-                            if (message.etag != null && message.hasOwnProperty("etag"))
-                                object.etag = message.etag;
-                            if (message.subscriptionChannel != null && message.hasOwnProperty("subscriptionChannel"))
-                                object.subscriptionChannel = $root.google.cloud.irm.v1alpha2.CommunicationChannel.toObject(message.subscriptionChannel, options);
-                            if (message.eventTypes && message.eventTypes.length) {
-                                object.eventTypes = [];
-                                for (var j = 0; j < message.eventTypes.length; ++j)
-                                    object.eventTypes[j] = options.enums === String ? $root.google.cloud.irm.v1alpha2.Subscription.EventType[message.eventTypes[j]] : message.eventTypes[j];
-                            }
-                            return object;
-                        };
-    
-                        /**
-                         * Converts this Subscription to JSON.
-                         * @function toJSON
-                         * @memberof google.cloud.irm.v1alpha2.Subscription
-                         * @instance
-                         * @returns {Object.<string,*>} JSON object
-                         */
-                        Subscription.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                        };
-    
-                        /**
-                         * EventType enum.
-                         * @name google.cloud.irm.v1alpha2.Subscription.EventType
-                         * @enum {string}
-                         * @property {number} EVENT_TYPE_UNSPECIFIED=0 EVENT_TYPE_UNSPECIFIED value
-                         * @property {number} EVENT_TYPE_TITLE_CHANGE=1 EVENT_TYPE_TITLE_CHANGE value
-                         * @property {number} EVENT_TYPE_SYNOPSIS_CHANGE=2 EVENT_TYPE_SYNOPSIS_CHANGE value
-                         * @property {number} EVENT_TYPE_STAGE_CHANGE=3 EVENT_TYPE_STAGE_CHANGE value
-                         * @property {number} EVENT_TYPE_SEVERITY_CHANGE=4 EVENT_TYPE_SEVERITY_CHANGE value
-                         * @property {number} EVENT_TYPE_ANNOTATION_ADD=5 EVENT_TYPE_ANNOTATION_ADD value
-                         * @property {number} EVENT_TYPE_ANNOTATION_CHANGE=6 EVENT_TYPE_ANNOTATION_CHANGE value
-                         */
-                        Subscription.EventType = (function() {
-                            var valuesById = {}, values = Object.create(valuesById);
-                            values[valuesById[0] = "EVENT_TYPE_UNSPECIFIED"] = 0;
-                            values[valuesById[1] = "EVENT_TYPE_TITLE_CHANGE"] = 1;
-                            values[valuesById[2] = "EVENT_TYPE_SYNOPSIS_CHANGE"] = 2;
-                            values[valuesById[3] = "EVENT_TYPE_STAGE_CHANGE"] = 3;
-                            values[valuesById[4] = "EVENT_TYPE_SEVERITY_CHANGE"] = 4;
-                            values[valuesById[5] = "EVENT_TYPE_ANNOTATION_ADD"] = 5;
-                            values[valuesById[6] = "EVENT_TYPE_ANNOTATION_CHANGE"] = 6;
-                            return values;
-                        })();
-    
-                        return Subscription;
-                    })();
-    
                     return v1alpha2;
                 })();
     
@@ -16600,6 +16600,587 @@
                 };
     
                 return CustomHttpPattern;
+            })();
+    
+            /**
+             * FieldBehavior enum.
+             * @name google.api.FieldBehavior
+             * @enum {string}
+             * @property {number} FIELD_BEHAVIOR_UNSPECIFIED=0 FIELD_BEHAVIOR_UNSPECIFIED value
+             * @property {number} OPTIONAL=1 OPTIONAL value
+             * @property {number} REQUIRED=2 REQUIRED value
+             * @property {number} OUTPUT_ONLY=3 OUTPUT_ONLY value
+             * @property {number} INPUT_ONLY=4 INPUT_ONLY value
+             * @property {number} IMMUTABLE=5 IMMUTABLE value
+             */
+            api.FieldBehavior = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "FIELD_BEHAVIOR_UNSPECIFIED"] = 0;
+                values[valuesById[1] = "OPTIONAL"] = 1;
+                values[valuesById[2] = "REQUIRED"] = 2;
+                values[valuesById[3] = "OUTPUT_ONLY"] = 3;
+                values[valuesById[4] = "INPUT_ONLY"] = 4;
+                values[valuesById[5] = "IMMUTABLE"] = 5;
+                return values;
+            })();
+    
+            api.ResourceDescriptor = (function() {
+    
+                /**
+                 * Properties of a ResourceDescriptor.
+                 * @memberof google.api
+                 * @interface IResourceDescriptor
+                 * @property {string|null} [type] ResourceDescriptor type
+                 * @property {Array.<string>|null} [pattern] ResourceDescriptor pattern
+                 * @property {string|null} [nameField] ResourceDescriptor nameField
+                 * @property {google.api.ResourceDescriptor.History|null} [history] ResourceDescriptor history
+                 * @property {string|null} [plural] ResourceDescriptor plural
+                 * @property {string|null} [singular] ResourceDescriptor singular
+                 */
+    
+                /**
+                 * Constructs a new ResourceDescriptor.
+                 * @memberof google.api
+                 * @classdesc Represents a ResourceDescriptor.
+                 * @implements IResourceDescriptor
+                 * @constructor
+                 * @param {google.api.IResourceDescriptor=} [properties] Properties to set
+                 */
+                function ResourceDescriptor(properties) {
+                    this.pattern = [];
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * ResourceDescriptor type.
+                 * @member {string} type
+                 * @memberof google.api.ResourceDescriptor
+                 * @instance
+                 */
+                ResourceDescriptor.prototype.type = "";
+    
+                /**
+                 * ResourceDescriptor pattern.
+                 * @member {Array.<string>} pattern
+                 * @memberof google.api.ResourceDescriptor
+                 * @instance
+                 */
+                ResourceDescriptor.prototype.pattern = $util.emptyArray;
+    
+                /**
+                 * ResourceDescriptor nameField.
+                 * @member {string} nameField
+                 * @memberof google.api.ResourceDescriptor
+                 * @instance
+                 */
+                ResourceDescriptor.prototype.nameField = "";
+    
+                /**
+                 * ResourceDescriptor history.
+                 * @member {google.api.ResourceDescriptor.History} history
+                 * @memberof google.api.ResourceDescriptor
+                 * @instance
+                 */
+                ResourceDescriptor.prototype.history = 0;
+    
+                /**
+                 * ResourceDescriptor plural.
+                 * @member {string} plural
+                 * @memberof google.api.ResourceDescriptor
+                 * @instance
+                 */
+                ResourceDescriptor.prototype.plural = "";
+    
+                /**
+                 * ResourceDescriptor singular.
+                 * @member {string} singular
+                 * @memberof google.api.ResourceDescriptor
+                 * @instance
+                 */
+                ResourceDescriptor.prototype.singular = "";
+    
+                /**
+                 * Creates a new ResourceDescriptor instance using the specified properties.
+                 * @function create
+                 * @memberof google.api.ResourceDescriptor
+                 * @static
+                 * @param {google.api.IResourceDescriptor=} [properties] Properties to set
+                 * @returns {google.api.ResourceDescriptor} ResourceDescriptor instance
+                 */
+                ResourceDescriptor.create = function create(properties) {
+                    return new ResourceDescriptor(properties);
+                };
+    
+                /**
+                 * Encodes the specified ResourceDescriptor message. Does not implicitly {@link google.api.ResourceDescriptor.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.api.ResourceDescriptor
+                 * @static
+                 * @param {google.api.IResourceDescriptor} message ResourceDescriptor message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                ResourceDescriptor.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.type != null && message.hasOwnProperty("type"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.type);
+                    if (message.pattern != null && message.pattern.length)
+                        for (var i = 0; i < message.pattern.length; ++i)
+                            writer.uint32(/* id 2, wireType 2 =*/18).string(message.pattern[i]);
+                    if (message.nameField != null && message.hasOwnProperty("nameField"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.nameField);
+                    if (message.history != null && message.hasOwnProperty("history"))
+                        writer.uint32(/* id 4, wireType 0 =*/32).int32(message.history);
+                    if (message.plural != null && message.hasOwnProperty("plural"))
+                        writer.uint32(/* id 5, wireType 2 =*/42).string(message.plural);
+                    if (message.singular != null && message.hasOwnProperty("singular"))
+                        writer.uint32(/* id 6, wireType 2 =*/50).string(message.singular);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified ResourceDescriptor message, length delimited. Does not implicitly {@link google.api.ResourceDescriptor.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.api.ResourceDescriptor
+                 * @static
+                 * @param {google.api.IResourceDescriptor} message ResourceDescriptor message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                ResourceDescriptor.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a ResourceDescriptor message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.api.ResourceDescriptor
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.api.ResourceDescriptor} ResourceDescriptor
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                ResourceDescriptor.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1:
+                            message.type = reader.string();
+                            break;
+                        case 2:
+                            if (!(message.pattern && message.pattern.length))
+                                message.pattern = [];
+                            message.pattern.push(reader.string());
+                            break;
+                        case 3:
+                            message.nameField = reader.string();
+                            break;
+                        case 4:
+                            message.history = reader.int32();
+                            break;
+                        case 5:
+                            message.plural = reader.string();
+                            break;
+                        case 6:
+                            message.singular = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a ResourceDescriptor message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.api.ResourceDescriptor
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.api.ResourceDescriptor} ResourceDescriptor
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                ResourceDescriptor.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a ResourceDescriptor message.
+                 * @function verify
+                 * @memberof google.api.ResourceDescriptor
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                ResourceDescriptor.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.type != null && message.hasOwnProperty("type"))
+                        if (!$util.isString(message.type))
+                            return "type: string expected";
+                    if (message.pattern != null && message.hasOwnProperty("pattern")) {
+                        if (!Array.isArray(message.pattern))
+                            return "pattern: array expected";
+                        for (var i = 0; i < message.pattern.length; ++i)
+                            if (!$util.isString(message.pattern[i]))
+                                return "pattern: string[] expected";
+                    }
+                    if (message.nameField != null && message.hasOwnProperty("nameField"))
+                        if (!$util.isString(message.nameField))
+                            return "nameField: string expected";
+                    if (message.history != null && message.hasOwnProperty("history"))
+                        switch (message.history) {
+                        default:
+                            return "history: enum value expected";
+                        case 0:
+                        case 1:
+                        case 2:
+                            break;
+                        }
+                    if (message.plural != null && message.hasOwnProperty("plural"))
+                        if (!$util.isString(message.plural))
+                            return "plural: string expected";
+                    if (message.singular != null && message.hasOwnProperty("singular"))
+                        if (!$util.isString(message.singular))
+                            return "singular: string expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a ResourceDescriptor message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.api.ResourceDescriptor
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.api.ResourceDescriptor} ResourceDescriptor
+                 */
+                ResourceDescriptor.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.api.ResourceDescriptor)
+                        return object;
+                    var message = new $root.google.api.ResourceDescriptor();
+                    if (object.type != null)
+                        message.type = String(object.type);
+                    if (object.pattern) {
+                        if (!Array.isArray(object.pattern))
+                            throw TypeError(".google.api.ResourceDescriptor.pattern: array expected");
+                        message.pattern = [];
+                        for (var i = 0; i < object.pattern.length; ++i)
+                            message.pattern[i] = String(object.pattern[i]);
+                    }
+                    if (object.nameField != null)
+                        message.nameField = String(object.nameField);
+                    switch (object.history) {
+                    case "HISTORY_UNSPECIFIED":
+                    case 0:
+                        message.history = 0;
+                        break;
+                    case "ORIGINALLY_SINGLE_PATTERN":
+                    case 1:
+                        message.history = 1;
+                        break;
+                    case "FUTURE_MULTI_PATTERN":
+                    case 2:
+                        message.history = 2;
+                        break;
+                    }
+                    if (object.plural != null)
+                        message.plural = String(object.plural);
+                    if (object.singular != null)
+                        message.singular = String(object.singular);
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a ResourceDescriptor message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.api.ResourceDescriptor
+                 * @static
+                 * @param {google.api.ResourceDescriptor} message ResourceDescriptor
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                ResourceDescriptor.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.arrays || options.defaults)
+                        object.pattern = [];
+                    if (options.defaults) {
+                        object.type = "";
+                        object.nameField = "";
+                        object.history = options.enums === String ? "HISTORY_UNSPECIFIED" : 0;
+                        object.plural = "";
+                        object.singular = "";
+                    }
+                    if (message.type != null && message.hasOwnProperty("type"))
+                        object.type = message.type;
+                    if (message.pattern && message.pattern.length) {
+                        object.pattern = [];
+                        for (var j = 0; j < message.pattern.length; ++j)
+                            object.pattern[j] = message.pattern[j];
+                    }
+                    if (message.nameField != null && message.hasOwnProperty("nameField"))
+                        object.nameField = message.nameField;
+                    if (message.history != null && message.hasOwnProperty("history"))
+                        object.history = options.enums === String ? $root.google.api.ResourceDescriptor.History[message.history] : message.history;
+                    if (message.plural != null && message.hasOwnProperty("plural"))
+                        object.plural = message.plural;
+                    if (message.singular != null && message.hasOwnProperty("singular"))
+                        object.singular = message.singular;
+                    return object;
+                };
+    
+                /**
+                 * Converts this ResourceDescriptor to JSON.
+                 * @function toJSON
+                 * @memberof google.api.ResourceDescriptor
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                ResourceDescriptor.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * History enum.
+                 * @name google.api.ResourceDescriptor.History
+                 * @enum {string}
+                 * @property {number} HISTORY_UNSPECIFIED=0 HISTORY_UNSPECIFIED value
+                 * @property {number} ORIGINALLY_SINGLE_PATTERN=1 ORIGINALLY_SINGLE_PATTERN value
+                 * @property {number} FUTURE_MULTI_PATTERN=2 FUTURE_MULTI_PATTERN value
+                 */
+                ResourceDescriptor.History = (function() {
+                    var valuesById = {}, values = Object.create(valuesById);
+                    values[valuesById[0] = "HISTORY_UNSPECIFIED"] = 0;
+                    values[valuesById[1] = "ORIGINALLY_SINGLE_PATTERN"] = 1;
+                    values[valuesById[2] = "FUTURE_MULTI_PATTERN"] = 2;
+                    return values;
+                })();
+    
+                return ResourceDescriptor;
+            })();
+    
+            api.ResourceReference = (function() {
+    
+                /**
+                 * Properties of a ResourceReference.
+                 * @memberof google.api
+                 * @interface IResourceReference
+                 * @property {string|null} [type] ResourceReference type
+                 * @property {string|null} [childType] ResourceReference childType
+                 */
+    
+                /**
+                 * Constructs a new ResourceReference.
+                 * @memberof google.api
+                 * @classdesc Represents a ResourceReference.
+                 * @implements IResourceReference
+                 * @constructor
+                 * @param {google.api.IResourceReference=} [properties] Properties to set
+                 */
+                function ResourceReference(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * ResourceReference type.
+                 * @member {string} type
+                 * @memberof google.api.ResourceReference
+                 * @instance
+                 */
+                ResourceReference.prototype.type = "";
+    
+                /**
+                 * ResourceReference childType.
+                 * @member {string} childType
+                 * @memberof google.api.ResourceReference
+                 * @instance
+                 */
+                ResourceReference.prototype.childType = "";
+    
+                /**
+                 * Creates a new ResourceReference instance using the specified properties.
+                 * @function create
+                 * @memberof google.api.ResourceReference
+                 * @static
+                 * @param {google.api.IResourceReference=} [properties] Properties to set
+                 * @returns {google.api.ResourceReference} ResourceReference instance
+                 */
+                ResourceReference.create = function create(properties) {
+                    return new ResourceReference(properties);
+                };
+    
+                /**
+                 * Encodes the specified ResourceReference message. Does not implicitly {@link google.api.ResourceReference.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.api.ResourceReference
+                 * @static
+                 * @param {google.api.IResourceReference} message ResourceReference message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                ResourceReference.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.type != null && message.hasOwnProperty("type"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.type);
+                    if (message.childType != null && message.hasOwnProperty("childType"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.childType);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified ResourceReference message, length delimited. Does not implicitly {@link google.api.ResourceReference.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.api.ResourceReference
+                 * @static
+                 * @param {google.api.IResourceReference} message ResourceReference message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                ResourceReference.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a ResourceReference message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.api.ResourceReference
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.api.ResourceReference} ResourceReference
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                ResourceReference.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1:
+                            message.type = reader.string();
+                            break;
+                        case 2:
+                            message.childType = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a ResourceReference message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.api.ResourceReference
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.api.ResourceReference} ResourceReference
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                ResourceReference.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a ResourceReference message.
+                 * @function verify
+                 * @memberof google.api.ResourceReference
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                ResourceReference.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.type != null && message.hasOwnProperty("type"))
+                        if (!$util.isString(message.type))
+                            return "type: string expected";
+                    if (message.childType != null && message.hasOwnProperty("childType"))
+                        if (!$util.isString(message.childType))
+                            return "childType: string expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a ResourceReference message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.api.ResourceReference
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.api.ResourceReference} ResourceReference
+                 */
+                ResourceReference.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.api.ResourceReference)
+                        return object;
+                    var message = new $root.google.api.ResourceReference();
+                    if (object.type != null)
+                        message.type = String(object.type);
+                    if (object.childType != null)
+                        message.childType = String(object.childType);
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a ResourceReference message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.api.ResourceReference
+                 * @static
+                 * @param {google.api.ResourceReference} message ResourceReference
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                ResourceReference.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.type = "";
+                        object.childType = "";
+                    }
+                    if (message.type != null && message.hasOwnProperty("type"))
+                        object.type = message.type;
+                    if (message.childType != null && message.hasOwnProperty("childType"))
+                        object.childType = message.childType;
+                    return object;
+                };
+    
+                /**
+                 * Converts this ResourceReference to JSON.
+                 * @function toJSON
+                 * @memberof google.api.ResourceReference
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                ResourceReference.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                return ResourceReference;
             })();
     
             return api;
@@ -20773,6 +21354,7 @@
                  * @property {string|null} [phpMetadataNamespace] FileOptions phpMetadataNamespace
                  * @property {string|null} [rubyPackage] FileOptions rubyPackage
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] FileOptions uninterpretedOption
+                 * @property {Array.<google.api.IResourceDescriptor>|null} [".google.api.resourceDefinition"] FileOptions .google.api.resourceDefinition
                  */
     
                 /**
@@ -20785,6 +21367,7 @@
                  */
                 function FileOptions(properties) {
                     this.uninterpretedOption = [];
+                    this[".google.api.resourceDefinition"] = [];
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                             if (properties[keys[i]] != null)
@@ -20960,6 +21543,14 @@
                 FileOptions.prototype.uninterpretedOption = $util.emptyArray;
     
                 /**
+                 * FileOptions .google.api.resourceDefinition.
+                 * @member {Array.<google.api.IResourceDescriptor>} .google.api.resourceDefinition
+                 * @memberof google.protobuf.FileOptions
+                 * @instance
+                 */
+                FileOptions.prototype[".google.api.resourceDefinition"] = $util.emptyArray;
+    
+                /**
                  * Creates a new FileOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.FileOptions
@@ -21026,6 +21617,9 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
+                    if (message[".google.api.resourceDefinition"] != null && message[".google.api.resourceDefinition"].length)
+                        for (var i = 0; i < message[".google.api.resourceDefinition"].length; ++i)
+                            $root.google.api.ResourceDescriptor.encode(message[".google.api.resourceDefinition"][i], writer.uint32(/* id 1053, wireType 2 =*/8426).fork()).ldelim();
                     return writer;
                 };
     
@@ -21124,6 +21718,11 @@
                             if (!(message.uninterpretedOption && message.uninterpretedOption.length))
                                 message.uninterpretedOption = [];
                             message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                            break;
+                        case 1053:
+                            if (!(message[".google.api.resourceDefinition"] && message[".google.api.resourceDefinition"].length))
+                                message[".google.api.resourceDefinition"] = [];
+                            message[".google.api.resourceDefinition"].push($root.google.api.ResourceDescriptor.decode(reader, reader.uint32()));
                             break;
                         default:
                             reader.skipType(tag & 7);
@@ -21235,6 +21834,15 @@
                                 return "uninterpretedOption." + error;
                         }
                     }
+                    if (message[".google.api.resourceDefinition"] != null && message.hasOwnProperty(".google.api.resourceDefinition")) {
+                        if (!Array.isArray(message[".google.api.resourceDefinition"]))
+                            return ".google.api.resourceDefinition: array expected";
+                        for (var i = 0; i < message[".google.api.resourceDefinition"].length; ++i) {
+                            var error = $root.google.api.ResourceDescriptor.verify(message[".google.api.resourceDefinition"][i]);
+                            if (error)
+                                return ".google.api.resourceDefinition." + error;
+                        }
+                    }
                     return null;
                 };
     
@@ -21312,6 +21920,16 @@
                             message.uninterpretedOption[i] = $root.google.protobuf.UninterpretedOption.fromObject(object.uninterpretedOption[i]);
                         }
                     }
+                    if (object[".google.api.resourceDefinition"]) {
+                        if (!Array.isArray(object[".google.api.resourceDefinition"]))
+                            throw TypeError(".google.protobuf.FileOptions..google.api.resourceDefinition: array expected");
+                        message[".google.api.resourceDefinition"] = [];
+                        for (var i = 0; i < object[".google.api.resourceDefinition"].length; ++i) {
+                            if (typeof object[".google.api.resourceDefinition"][i] !== "object")
+                                throw TypeError(".google.protobuf.FileOptions..google.api.resourceDefinition: object expected");
+                            message[".google.api.resourceDefinition"][i] = $root.google.api.ResourceDescriptor.fromObject(object[".google.api.resourceDefinition"][i]);
+                        }
+                    }
                     return message;
                 };
     
@@ -21328,8 +21946,10 @@
                     if (!options)
                         options = {};
                     var object = {};
-                    if (options.arrays || options.defaults)
+                    if (options.arrays || options.defaults) {
                         object.uninterpretedOption = [];
+                        object[".google.api.resourceDefinition"] = [];
+                    }
                     if (options.defaults) {
                         object.javaPackage = "";
                         object.javaOuterClassname = "";
@@ -21397,6 +22017,11 @@
                         for (var j = 0; j < message.uninterpretedOption.length; ++j)
                             object.uninterpretedOption[j] = $root.google.protobuf.UninterpretedOption.toObject(message.uninterpretedOption[j], options);
                     }
+                    if (message[".google.api.resourceDefinition"] && message[".google.api.resourceDefinition"].length) {
+                        object[".google.api.resourceDefinition"] = [];
+                        for (var j = 0; j < message[".google.api.resourceDefinition"].length; ++j)
+                            object[".google.api.resourceDefinition"][j] = $root.google.api.ResourceDescriptor.toObject(message[".google.api.resourceDefinition"][j], options);
+                    }
                     return object;
                 };
     
@@ -21441,6 +22066,7 @@
                  * @property {boolean|null} [deprecated] MessageOptions deprecated
                  * @property {boolean|null} [mapEntry] MessageOptions mapEntry
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] MessageOptions uninterpretedOption
+                 * @property {google.api.IResourceDescriptor|null} [".google.api.resource"] MessageOptions .google.api.resource
                  */
     
                 /**
@@ -21500,6 +22126,14 @@
                 MessageOptions.prototype.uninterpretedOption = $util.emptyArray;
     
                 /**
+                 * MessageOptions .google.api.resource.
+                 * @member {google.api.IResourceDescriptor|null|undefined} .google.api.resource
+                 * @memberof google.protobuf.MessageOptions
+                 * @instance
+                 */
+                MessageOptions.prototype[".google.api.resource"] = null;
+    
+                /**
                  * Creates a new MessageOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.MessageOptions
@@ -21534,6 +22168,8 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
+                    if (message[".google.api.resource"] != null && message.hasOwnProperty(".google.api.resource"))
+                        $root.google.api.ResourceDescriptor.encode(message[".google.api.resource"], writer.uint32(/* id 1053, wireType 2 =*/8426).fork()).ldelim();
                     return writer;
                 };
     
@@ -21584,6 +22220,9 @@
                             if (!(message.uninterpretedOption && message.uninterpretedOption.length))
                                 message.uninterpretedOption = [];
                             message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                            break;
+                        case 1053:
+                            message[".google.api.resource"] = $root.google.api.ResourceDescriptor.decode(reader, reader.uint32());
                             break;
                         default:
                             reader.skipType(tag & 7);
@@ -21641,6 +22280,11 @@
                                 return "uninterpretedOption." + error;
                         }
                     }
+                    if (message[".google.api.resource"] != null && message.hasOwnProperty(".google.api.resource")) {
+                        var error = $root.google.api.ResourceDescriptor.verify(message[".google.api.resource"]);
+                        if (error)
+                            return ".google.api.resource." + error;
+                    }
                     return null;
                 };
     
@@ -21674,6 +22318,11 @@
                             message.uninterpretedOption[i] = $root.google.protobuf.UninterpretedOption.fromObject(object.uninterpretedOption[i]);
                         }
                     }
+                    if (object[".google.api.resource"] != null) {
+                        if (typeof object[".google.api.resource"] !== "object")
+                            throw TypeError(".google.protobuf.MessageOptions..google.api.resource: object expected");
+                        message[".google.api.resource"] = $root.google.api.ResourceDescriptor.fromObject(object[".google.api.resource"]);
+                    }
                     return message;
                 };
     
@@ -21697,6 +22346,7 @@
                         object.noStandardDescriptorAccessor = false;
                         object.deprecated = false;
                         object.mapEntry = false;
+                        object[".google.api.resource"] = null;
                     }
                     if (message.messageSetWireFormat != null && message.hasOwnProperty("messageSetWireFormat"))
                         object.messageSetWireFormat = message.messageSetWireFormat;
@@ -21711,6 +22361,8 @@
                         for (var j = 0; j < message.uninterpretedOption.length; ++j)
                             object.uninterpretedOption[j] = $root.google.protobuf.UninterpretedOption.toObject(message.uninterpretedOption[j], options);
                     }
+                    if (message[".google.api.resource"] != null && message.hasOwnProperty(".google.api.resource"))
+                        object[".google.api.resource"] = $root.google.api.ResourceDescriptor.toObject(message[".google.api.resource"], options);
                     return object;
                 };
     
@@ -21741,6 +22393,8 @@
                  * @property {boolean|null} [deprecated] FieldOptions deprecated
                  * @property {boolean|null} [weak] FieldOptions weak
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] FieldOptions uninterpretedOption
+                 * @property {Array.<google.api.FieldBehavior>|null} [".google.api.fieldBehavior"] FieldOptions .google.api.fieldBehavior
+                 * @property {google.api.IResourceReference|null} [".google.api.resourceReference"] FieldOptions .google.api.resourceReference
                  */
     
                 /**
@@ -21753,6 +22407,7 @@
                  */
                 function FieldOptions(properties) {
                     this.uninterpretedOption = [];
+                    this[".google.api.fieldBehavior"] = [];
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                             if (properties[keys[i]] != null)
@@ -21816,6 +22471,22 @@
                 FieldOptions.prototype.uninterpretedOption = $util.emptyArray;
     
                 /**
+                 * FieldOptions .google.api.fieldBehavior.
+                 * @member {Array.<google.api.FieldBehavior>} .google.api.fieldBehavior
+                 * @memberof google.protobuf.FieldOptions
+                 * @instance
+                 */
+                FieldOptions.prototype[".google.api.fieldBehavior"] = $util.emptyArray;
+    
+                /**
+                 * FieldOptions .google.api.resourceReference.
+                 * @member {google.api.IResourceReference|null|undefined} .google.api.resourceReference
+                 * @memberof google.protobuf.FieldOptions
+                 * @instance
+                 */
+                FieldOptions.prototype[".google.api.resourceReference"] = null;
+    
+                /**
                  * Creates a new FieldOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.FieldOptions
@@ -21854,6 +22525,14 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
+                    if (message[".google.api.fieldBehavior"] != null && message[".google.api.fieldBehavior"].length) {
+                        writer.uint32(/* id 1052, wireType 2 =*/8418).fork();
+                        for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
+                            writer.int32(message[".google.api.fieldBehavior"][i]);
+                        writer.ldelim();
+                    }
+                    if (message[".google.api.resourceReference"] != null && message.hasOwnProperty(".google.api.resourceReference"))
+                        $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     return writer;
                 };
     
@@ -21910,6 +22589,19 @@
                             if (!(message.uninterpretedOption && message.uninterpretedOption.length))
                                 message.uninterpretedOption = [];
                             message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                            break;
+                        case 1052:
+                            if (!(message[".google.api.fieldBehavior"] && message[".google.api.fieldBehavior"].length))
+                                message[".google.api.fieldBehavior"] = [];
+                            if ((tag & 7) === 2) {
+                                var end2 = reader.uint32() + reader.pos;
+                                while (reader.pos < end2)
+                                    message[".google.api.fieldBehavior"].push(reader.int32());
+                            } else
+                                message[".google.api.fieldBehavior"].push(reader.int32());
+                            break;
+                        case 1055:
+                            message[".google.api.resourceReference"] = $root.google.api.ResourceReference.decode(reader, reader.uint32());
                             break;
                         default:
                             reader.skipType(tag & 7);
@@ -21985,6 +22677,27 @@
                                 return "uninterpretedOption." + error;
                         }
                     }
+                    if (message[".google.api.fieldBehavior"] != null && message.hasOwnProperty(".google.api.fieldBehavior")) {
+                        if (!Array.isArray(message[".google.api.fieldBehavior"]))
+                            return ".google.api.fieldBehavior: array expected";
+                        for (var i = 0; i < message[".google.api.fieldBehavior"].length; ++i)
+                            switch (message[".google.api.fieldBehavior"][i]) {
+                            default:
+                                return ".google.api.fieldBehavior: enum value[] expected";
+                            case 0:
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 4:
+                            case 5:
+                                break;
+                            }
+                    }
+                    if (message[".google.api.resourceReference"] != null && message.hasOwnProperty(".google.api.resourceReference")) {
+                        var error = $root.google.api.ResourceReference.verify(message[".google.api.resourceReference"]);
+                        if (error)
+                            return ".google.api.resourceReference." + error;
+                    }
                     return null;
                 };
     
@@ -22046,6 +22759,44 @@
                             message.uninterpretedOption[i] = $root.google.protobuf.UninterpretedOption.fromObject(object.uninterpretedOption[i]);
                         }
                     }
+                    if (object[".google.api.fieldBehavior"]) {
+                        if (!Array.isArray(object[".google.api.fieldBehavior"]))
+                            throw TypeError(".google.protobuf.FieldOptions..google.api.fieldBehavior: array expected");
+                        message[".google.api.fieldBehavior"] = [];
+                        for (var i = 0; i < object[".google.api.fieldBehavior"].length; ++i)
+                            switch (object[".google.api.fieldBehavior"][i]) {
+                            default:
+                            case "FIELD_BEHAVIOR_UNSPECIFIED":
+                            case 0:
+                                message[".google.api.fieldBehavior"][i] = 0;
+                                break;
+                            case "OPTIONAL":
+                            case 1:
+                                message[".google.api.fieldBehavior"][i] = 1;
+                                break;
+                            case "REQUIRED":
+                            case 2:
+                                message[".google.api.fieldBehavior"][i] = 2;
+                                break;
+                            case "OUTPUT_ONLY":
+                            case 3:
+                                message[".google.api.fieldBehavior"][i] = 3;
+                                break;
+                            case "INPUT_ONLY":
+                            case 4:
+                                message[".google.api.fieldBehavior"][i] = 4;
+                                break;
+                            case "IMMUTABLE":
+                            case 5:
+                                message[".google.api.fieldBehavior"][i] = 5;
+                                break;
+                            }
+                    }
+                    if (object[".google.api.resourceReference"] != null) {
+                        if (typeof object[".google.api.resourceReference"] !== "object")
+                            throw TypeError(".google.protobuf.FieldOptions..google.api.resourceReference: object expected");
+                        message[".google.api.resourceReference"] = $root.google.api.ResourceReference.fromObject(object[".google.api.resourceReference"]);
+                    }
                     return message;
                 };
     
@@ -22062,8 +22813,10 @@
                     if (!options)
                         options = {};
                     var object = {};
-                    if (options.arrays || options.defaults)
+                    if (options.arrays || options.defaults) {
                         object.uninterpretedOption = [];
+                        object[".google.api.fieldBehavior"] = [];
+                    }
                     if (options.defaults) {
                         object.ctype = options.enums === String ? "STRING" : 0;
                         object.packed = false;
@@ -22071,6 +22824,7 @@
                         object.lazy = false;
                         object.jstype = options.enums === String ? "JS_NORMAL" : 0;
                         object.weak = false;
+                        object[".google.api.resourceReference"] = null;
                     }
                     if (message.ctype != null && message.hasOwnProperty("ctype"))
                         object.ctype = options.enums === String ? $root.google.protobuf.FieldOptions.CType[message.ctype] : message.ctype;
@@ -22089,6 +22843,13 @@
                         for (var j = 0; j < message.uninterpretedOption.length; ++j)
                             object.uninterpretedOption[j] = $root.google.protobuf.UninterpretedOption.toObject(message.uninterpretedOption[j], options);
                     }
+                    if (message[".google.api.fieldBehavior"] && message[".google.api.fieldBehavior"].length) {
+                        object[".google.api.fieldBehavior"] = [];
+                        for (var j = 0; j < message[".google.api.fieldBehavior"].length; ++j)
+                            object[".google.api.fieldBehavior"][j] = options.enums === String ? $root.google.api.FieldBehavior[message[".google.api.fieldBehavior"][j]] : message[".google.api.fieldBehavior"][j];
+                    }
+                    if (message[".google.api.resourceReference"] != null && message.hasOwnProperty(".google.api.resourceReference"))
+                        object[".google.api.resourceReference"] = $root.google.api.ResourceReference.toObject(message[".google.api.resourceReference"], options);
                     return object;
                 };
     
