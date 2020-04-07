@@ -299,7 +299,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.createIncident(request);
       }, expectedError);
       assert(
@@ -413,7 +413,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.getIncident(request);
       }, expectedError);
       assert(
@@ -530,7 +530,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.updateIncident(request);
       }, expectedError);
       assert(
@@ -644,7 +644,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.createAnnotation(request);
       }, expectedError);
       assert(
@@ -755,7 +755,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       };
       const expectedError = new Error('expected');
       client.innerApiCalls.createTag = stubSimpleCall(undefined, expectedError);
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.createTag(request);
       }, expectedError);
       assert(
@@ -866,7 +866,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       };
       const expectedError = new Error('expected');
       client.innerApiCalls.deleteTag = stubSimpleCall(undefined, expectedError);
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.deleteTag(request);
       }, expectedError);
       assert(
@@ -980,7 +980,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.createSignal(request);
       }, expectedError);
       assert(
@@ -1070,7 +1070,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.lookupSignal(request);
       }, expectedError);
       assert(
@@ -1181,7 +1181,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       };
       const expectedError = new Error('expected');
       client.innerApiCalls.getSignal = stubSimpleCall(undefined, expectedError);
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.getSignal(request);
       }, expectedError);
       assert(
@@ -1298,7 +1298,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.updateSignal(request);
       }, expectedError);
       assert(
@@ -1415,7 +1415,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.escalateIncident(request);
       }, expectedError);
       assert(
@@ -1529,7 +1529,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.createArtifact(request);
       }, expectedError);
       assert(
@@ -1646,7 +1646,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.updateArtifact(request);
       }, expectedError);
       assert(
@@ -1760,7 +1760,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.deleteArtifact(request);
       }, expectedError);
       assert(
@@ -1874,7 +1874,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.sendShiftHandoff(request);
       }, expectedError);
       assert(
@@ -1990,7 +1990,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.createSubscription(request);
       }, expectedError);
       assert(
@@ -2109,7 +2109,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.updateSubscription(request);
       }, expectedError);
       assert(
@@ -2225,7 +2225,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.deleteSubscription(request);
       }, expectedError);
       assert(
@@ -2341,7 +2341,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.createIncidentRoleAssignment(request);
       }, expectedError);
       assert(
@@ -2457,7 +2457,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.deleteIncidentRoleAssignment(request);
       }, expectedError);
       assert(
@@ -2573,7 +2573,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.requestIncidentRoleHandover(request);
       }, expectedError);
       assert(
@@ -2689,7 +2689,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.confirmIncidentRoleHandover(request);
       }, expectedError);
       assert(
@@ -2805,7 +2805,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.forceIncidentRoleHandover(request);
       }, expectedError);
       assert(
@@ -2921,7 +2921,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.cancelIncidentRoleHandover(request);
       }, expectedError);
       assert(
@@ -3039,7 +3039,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.searchIncidents(request);
       }, expectedError);
       assert(
@@ -3132,7 +3132,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
           reject(err);
         });
       });
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await promise;
       }, expectedError);
       assert(
@@ -3205,7 +3205,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         expectedError
       );
       const iterable = client.searchIncidentsAsync(request);
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         const responses: protos.google.cloud.irm.v1alpha2.IIncident[] = [];
         for await (const resource of iterable) {
           responses.push(resource!);
@@ -3349,7 +3349,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.searchSimilarIncidents(request);
       }, expectedError);
       assert(
@@ -3453,7 +3453,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
           reject(err);
         });
       });
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await promise;
       }, expectedError);
       assert(
@@ -3533,7 +3533,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         expectedError
       );
       const iterable = client.searchSimilarIncidentsAsync(request);
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         const responses: protos.google.cloud.irm.v1alpha2.SearchSimilarIncidentsResponse.IResult[] = [];
         for await (const resource of iterable) {
           responses.push(resource!);
@@ -3673,7 +3673,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.listAnnotations(request);
       }, expectedError);
       assert(
@@ -3772,7 +3772,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
           reject(err);
         });
       });
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await promise;
       }, expectedError);
       assert(
@@ -3851,7 +3851,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         expectedError
       );
       const iterable = client.listAnnotationsAsync(request);
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         const responses: protos.google.cloud.irm.v1alpha2.IAnnotation[] = [];
         for await (const resource of iterable) {
           responses.push(resource!);
@@ -3976,7 +3976,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       };
       const expectedError = new Error('expected');
       client.innerApiCalls.listTags = stubSimpleCall(undefined, expectedError);
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.listTags(request);
       }, expectedError);
       assert(
@@ -4061,7 +4061,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
           reject(err);
         });
       });
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await promise;
       }, expectedError);
       assert(
@@ -4130,7 +4130,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         expectedError
       );
       const iterable = client.listTagsAsync(request);
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         const responses: protos.google.cloud.irm.v1alpha2.ITag[] = [];
         for await (const resource of iterable) {
           responses.push(resource!);
@@ -4256,7 +4256,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.searchSignals(request);
       }, expectedError);
       assert(
@@ -4349,7 +4349,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
           reject(err);
         });
       });
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await promise;
       }, expectedError);
       assert(
@@ -4422,7 +4422,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         expectedError
       );
       const iterable = client.searchSignalsAsync(request);
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         const responses: protos.google.cloud.irm.v1alpha2.ISignal[] = [];
         for await (const resource of iterable) {
           responses.push(resource!);
@@ -4550,7 +4550,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.listArtifacts(request);
       }, expectedError);
       assert(
@@ -4643,7 +4643,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
           reject(err);
         });
       });
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await promise;
       }, expectedError);
       assert(
@@ -4716,7 +4716,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         expectedError
       );
       const iterable = client.listArtifactsAsync(request);
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         const responses: protos.google.cloud.irm.v1alpha2.IArtifact[] = [];
         for await (const resource of iterable) {
           responses.push(resource!);
@@ -4856,7 +4856,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.listSubscriptions(request);
       }, expectedError);
       assert(
@@ -4955,7 +4955,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
           reject(err);
         });
       });
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await promise;
       }, expectedError);
       assert(
@@ -5034,7 +5034,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         expectedError
       );
       const iterable = client.listSubscriptionsAsync(request);
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         const responses: protos.google.cloud.irm.v1alpha2.ISubscription[] = [];
         for await (const resource of iterable) {
           responses.push(resource!);
@@ -5178,7 +5178,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await client.listIncidentRoleAssignments(request);
       }, expectedError);
       assert(
@@ -5282,7 +5282,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
           reject(err);
         });
       });
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         await promise;
       }, expectedError);
       assert(
@@ -5362,7 +5362,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         expectedError
       );
       const iterable = client.listIncidentRoleAssignmentsAsync(request);
-      assert.rejects(async () => {
+      await assert.rejects(async () => {
         const responses: protos.google.cloud.irm.v1alpha2.IIncidentRoleAssignment[] = [];
         for await (const resource of iterable) {
           responses.push(resource!);
