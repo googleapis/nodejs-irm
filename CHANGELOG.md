@@ -4,6 +4,23 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+## [3.0.0](https://www.github.com/googleapis/nodejs-irm/compare/v2.1.0...v3.0.0) (2020-04-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* The library now supports Node.js v10+. The last version to support Node.js v8 is tagged legacy-8 on NPM.
+
+### Features
+
+* drop node8 support, support for async iterators ([#167](https://www.github.com/googleapis/nodejs-irm/issues/167)) ([cec27b8](https://www.github.com/googleapis/nodejs-irm/commit/cec27b84553e2994647db3bf6f5e31c3941219bf))
+
+
+### Bug Fixes
+
+* export explicit version from protos.js ([#172](https://www.github.com/googleapis/nodejs-irm/issues/172)) ([b668eb1](https://www.github.com/googleapis/nodejs-irm/commit/b668eb1247ef74571e516bddef674092344738b7))
+* remove eslint, update gax, fix generated protos, run the generator ([#176](https://www.github.com/googleapis/nodejs-irm/issues/176)) ([64aa282](https://www.github.com/googleapis/nodejs-irm/commit/64aa282cf7bb540998364397312a1e8ee57ec8c1))
+
 ## [2.1.0](https://www.github.com/googleapis/nodejs-irm/compare/v2.0.1...v2.1.0) (2020-03-06)
 
 
