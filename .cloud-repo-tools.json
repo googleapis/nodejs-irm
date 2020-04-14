@@ -1,8 +1,0 @@
-{
-  "requiresKeyFile": true,
-  "requiresProjectId": true,
-  "product": "irm",
-  "client_reference_url": "https://cloud.google.com/irm",
-  "release_quality": "alpha",
-  "samples": []
-}
