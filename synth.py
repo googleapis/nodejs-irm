@@ -32,7 +32,7 @@ for version in versions:
             "irm", version,
             generator_args={
                     "grpc-service-config": f"google/cloud/irm/{version}/irm_grpc_service_config.json",
-                    "package-name": f"@google-cloud/irm"
+                    "package-name": "@google-cloud/irm"
             },
             proto_path=f'google/cloud/irm/{version}',
             extra_proto_files=['google/cloud/common_resources.proto'],
