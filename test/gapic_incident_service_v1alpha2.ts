@@ -299,9 +299,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.createIncident(request);
-      }, expectedError);
+      await assert.rejects(client.createIncident(request), expectedError);
       assert(
         (client.innerApiCalls.createIncident as SinonStub)
           .getCall(0)
@@ -413,9 +411,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.getIncident(request);
-      }, expectedError);
+      await assert.rejects(client.getIncident(request), expectedError);
       assert(
         (client.innerApiCalls.getIncident as SinonStub)
           .getCall(0)
@@ -530,9 +526,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.updateIncident(request);
-      }, expectedError);
+      await assert.rejects(client.updateIncident(request), expectedError);
       assert(
         (client.innerApiCalls.updateIncident as SinonStub)
           .getCall(0)
@@ -644,9 +638,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.createAnnotation(request);
-      }, expectedError);
+      await assert.rejects(client.createAnnotation(request), expectedError);
       assert(
         (client.innerApiCalls.createAnnotation as SinonStub)
           .getCall(0)
@@ -755,9 +747,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       };
       const expectedError = new Error('expected');
       client.innerApiCalls.createTag = stubSimpleCall(undefined, expectedError);
-      await assert.rejects(async () => {
-        await client.createTag(request);
-      }, expectedError);
+      await assert.rejects(client.createTag(request), expectedError);
       assert(
         (client.innerApiCalls.createTag as SinonStub)
           .getCall(0)
@@ -866,9 +856,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       };
       const expectedError = new Error('expected');
       client.innerApiCalls.deleteTag = stubSimpleCall(undefined, expectedError);
-      await assert.rejects(async () => {
-        await client.deleteTag(request);
-      }, expectedError);
+      await assert.rejects(client.deleteTag(request), expectedError);
       assert(
         (client.innerApiCalls.deleteTag as SinonStub)
           .getCall(0)
@@ -980,9 +968,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.createSignal(request);
-      }, expectedError);
+      await assert.rejects(client.createSignal(request), expectedError);
       assert(
         (client.innerApiCalls.createSignal as SinonStub)
           .getCall(0)
@@ -1070,9 +1056,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.lookupSignal(request);
-      }, expectedError);
+      await assert.rejects(client.lookupSignal(request), expectedError);
       assert(
         (client.innerApiCalls.lookupSignal as SinonStub)
           .getCall(0)
@@ -1181,9 +1165,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       };
       const expectedError = new Error('expected');
       client.innerApiCalls.getSignal = stubSimpleCall(undefined, expectedError);
-      await assert.rejects(async () => {
-        await client.getSignal(request);
-      }, expectedError);
+      await assert.rejects(client.getSignal(request), expectedError);
       assert(
         (client.innerApiCalls.getSignal as SinonStub)
           .getCall(0)
@@ -1298,9 +1280,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.updateSignal(request);
-      }, expectedError);
+      await assert.rejects(client.updateSignal(request), expectedError);
       assert(
         (client.innerApiCalls.updateSignal as SinonStub)
           .getCall(0)
@@ -1415,9 +1395,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.escalateIncident(request);
-      }, expectedError);
+      await assert.rejects(client.escalateIncident(request), expectedError);
       assert(
         (client.innerApiCalls.escalateIncident as SinonStub)
           .getCall(0)
@@ -1529,9 +1507,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.createArtifact(request);
-      }, expectedError);
+      await assert.rejects(client.createArtifact(request), expectedError);
       assert(
         (client.innerApiCalls.createArtifact as SinonStub)
           .getCall(0)
@@ -1646,9 +1622,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.updateArtifact(request);
-      }, expectedError);
+      await assert.rejects(client.updateArtifact(request), expectedError);
       assert(
         (client.innerApiCalls.updateArtifact as SinonStub)
           .getCall(0)
@@ -1760,9 +1734,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.deleteArtifact(request);
-      }, expectedError);
+      await assert.rejects(client.deleteArtifact(request), expectedError);
       assert(
         (client.innerApiCalls.deleteArtifact as SinonStub)
           .getCall(0)
@@ -1874,9 +1846,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.sendShiftHandoff(request);
-      }, expectedError);
+      await assert.rejects(client.sendShiftHandoff(request), expectedError);
       assert(
         (client.innerApiCalls.sendShiftHandoff as SinonStub)
           .getCall(0)
@@ -1990,9 +1960,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.createSubscription(request);
-      }, expectedError);
+      await assert.rejects(client.createSubscription(request), expectedError);
       assert(
         (client.innerApiCalls.createSubscription as SinonStub)
           .getCall(0)
@@ -2109,9 +2077,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.updateSubscription(request);
-      }, expectedError);
+      await assert.rejects(client.updateSubscription(request), expectedError);
       assert(
         (client.innerApiCalls.updateSubscription as SinonStub)
           .getCall(0)
@@ -2225,9 +2191,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.deleteSubscription(request);
-      }, expectedError);
+      await assert.rejects(client.deleteSubscription(request), expectedError);
       assert(
         (client.innerApiCalls.deleteSubscription as SinonStub)
           .getCall(0)
@@ -2341,9 +2305,10 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.createIncidentRoleAssignment(request);
-      }, expectedError);
+      await assert.rejects(
+        client.createIncidentRoleAssignment(request),
+        expectedError
+      );
       assert(
         (client.innerApiCalls.createIncidentRoleAssignment as SinonStub)
           .getCall(0)
@@ -2457,9 +2422,10 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.deleteIncidentRoleAssignment(request);
-      }, expectedError);
+      await assert.rejects(
+        client.deleteIncidentRoleAssignment(request),
+        expectedError
+      );
       assert(
         (client.innerApiCalls.deleteIncidentRoleAssignment as SinonStub)
           .getCall(0)
@@ -2573,9 +2539,10 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.requestIncidentRoleHandover(request);
-      }, expectedError);
+      await assert.rejects(
+        client.requestIncidentRoleHandover(request),
+        expectedError
+      );
       assert(
         (client.innerApiCalls.requestIncidentRoleHandover as SinonStub)
           .getCall(0)
@@ -2689,9 +2656,10 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.confirmIncidentRoleHandover(request);
-      }, expectedError);
+      await assert.rejects(
+        client.confirmIncidentRoleHandover(request),
+        expectedError
+      );
       assert(
         (client.innerApiCalls.confirmIncidentRoleHandover as SinonStub)
           .getCall(0)
@@ -2805,9 +2773,10 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.forceIncidentRoleHandover(request);
-      }, expectedError);
+      await assert.rejects(
+        client.forceIncidentRoleHandover(request),
+        expectedError
+      );
       assert(
         (client.innerApiCalls.forceIncidentRoleHandover as SinonStub)
           .getCall(0)
@@ -2921,9 +2890,10 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.cancelIncidentRoleHandover(request);
-      }, expectedError);
+      await assert.rejects(
+        client.cancelIncidentRoleHandover(request),
+        expectedError
+      );
       assert(
         (client.innerApiCalls.cancelIncidentRoleHandover as SinonStub)
           .getCall(0)
@@ -3039,9 +3009,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.searchIncidents(request);
-      }, expectedError);
+      await assert.rejects(client.searchIncidents(request), expectedError);
       assert(
         (client.innerApiCalls.searchIncidents as SinonStub)
           .getCall(0)
@@ -3132,9 +3100,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
           reject(err);
         });
       });
-      await assert.rejects(async () => {
-        await promise;
-      }, expectedError);
+      await assert.rejects(promise, expectedError);
       assert(
         (client.descriptors.page.searchIncidents.createStream as SinonStub)
           .getCall(0)
@@ -3349,9 +3315,10 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.searchSimilarIncidents(request);
-      }, expectedError);
+      await assert.rejects(
+        client.searchSimilarIncidents(request),
+        expectedError
+      );
       assert(
         (client.innerApiCalls.searchSimilarIncidents as SinonStub)
           .getCall(0)
@@ -3453,9 +3420,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
           reject(err);
         });
       });
-      await assert.rejects(async () => {
-        await promise;
-      }, expectedError);
+      await assert.rejects(promise, expectedError);
       assert(
         (client.descriptors.page.searchSimilarIncidents
           .createStream as SinonStub)
@@ -3673,9 +3638,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.listAnnotations(request);
-      }, expectedError);
+      await assert.rejects(client.listAnnotations(request), expectedError);
       assert(
         (client.innerApiCalls.listAnnotations as SinonStub)
           .getCall(0)
@@ -3772,9 +3735,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
           reject(err);
         });
       });
-      await assert.rejects(async () => {
-        await promise;
-      }, expectedError);
+      await assert.rejects(promise, expectedError);
       assert(
         (client.descriptors.page.listAnnotations.createStream as SinonStub)
           .getCall(0)
@@ -3976,9 +3937,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
       };
       const expectedError = new Error('expected');
       client.innerApiCalls.listTags = stubSimpleCall(undefined, expectedError);
-      await assert.rejects(async () => {
-        await client.listTags(request);
-      }, expectedError);
+      await assert.rejects(client.listTags(request), expectedError);
       assert(
         (client.innerApiCalls.listTags as SinonStub)
           .getCall(0)
@@ -4061,9 +4020,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
           reject(err);
         });
       });
-      await assert.rejects(async () => {
-        await promise;
-      }, expectedError);
+      await assert.rejects(promise, expectedError);
       assert(
         (client.descriptors.page.listTags.createStream as SinonStub)
           .getCall(0)
@@ -4256,9 +4213,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.searchSignals(request);
-      }, expectedError);
+      await assert.rejects(client.searchSignals(request), expectedError);
       assert(
         (client.innerApiCalls.searchSignals as SinonStub)
           .getCall(0)
@@ -4349,9 +4304,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
           reject(err);
         });
       });
-      await assert.rejects(async () => {
-        await promise;
-      }, expectedError);
+      await assert.rejects(promise, expectedError);
       assert(
         (client.descriptors.page.searchSignals.createStream as SinonStub)
           .getCall(0)
@@ -4550,9 +4503,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.listArtifacts(request);
-      }, expectedError);
+      await assert.rejects(client.listArtifacts(request), expectedError);
       assert(
         (client.innerApiCalls.listArtifacts as SinonStub)
           .getCall(0)
@@ -4643,9 +4594,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
           reject(err);
         });
       });
-      await assert.rejects(async () => {
-        await promise;
-      }, expectedError);
+      await assert.rejects(promise, expectedError);
       assert(
         (client.descriptors.page.listArtifacts.createStream as SinonStub)
           .getCall(0)
@@ -4856,9 +4805,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.listSubscriptions(request);
-      }, expectedError);
+      await assert.rejects(client.listSubscriptions(request), expectedError);
       assert(
         (client.innerApiCalls.listSubscriptions as SinonStub)
           .getCall(0)
@@ -4955,9 +4902,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
           reject(err);
         });
       });
-      await assert.rejects(async () => {
-        await promise;
-      }, expectedError);
+      await assert.rejects(promise, expectedError);
       assert(
         (client.descriptors.page.listSubscriptions.createStream as SinonStub)
           .getCall(0)
@@ -5178,9 +5123,10 @@ describe('v1alpha2.IncidentServiceClient', () => {
         undefined,
         expectedError
       );
-      await assert.rejects(async () => {
-        await client.listIncidentRoleAssignments(request);
-      }, expectedError);
+      await assert.rejects(
+        client.listIncidentRoleAssignments(request),
+        expectedError
+      );
       assert(
         (client.innerApiCalls.listIncidentRoleAssignments as SinonStub)
           .getCall(0)
@@ -5282,9 +5228,7 @@ describe('v1alpha2.IncidentServiceClient', () => {
           reject(err);
         });
       });
-      await assert.rejects(async () => {
-        await promise;
-      }, expectedError);
+      await assert.rejects(promise, expectedError);
       assert(
         (client.descriptors.page.listIncidentRoleAssignments
           .createStream as SinonStub)
