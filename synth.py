@@ -29,19 +29,21 @@ gapic = gcp.GAPICMicrogenerator()
 versions = ["v1alpha2"]
 for version in versions:
     library = gapic.typescript_library(
-            "irm", version,
-            generator_args={
-                    "grpc-service-config": f"google/cloud/irm/{version}/irm_grpc_service_config.json",
-                    "package-name": "@google-cloud/irm"
-            },
-            proto_path=f'google/cloud/irm/{version}',
-            extra_proto_files=['google/cloud/common_resources.proto'],
-            )
-    s.copy(library, excludes=['src/index.ts', 'README.md', 'package.json'])
+        "irm",
+        version,
+        generator_args={
+            "grpc-service-config": f"google/cloud/irm/{version}/irm_grpc_service_config.json",
+            "package-name": "@google-cloud/irm"
+        },
+        proto_path=f'google/cloud/irm/{version}',
+        extra_proto_files=['google/cloud/common_resources.proto'],
+    )
+    s.copy(library, excludes=['README.md', 'package.json'])
 
 # Copy common templates
 common_templates = gcp.CommonTemplates()
-templates = common_templates.node_library(source_location='build/src')
+templates = common_templates.node_library(
+    source_location='build/src', versions=versions, default_version='v1alpha2')
 s.copy(templates)
 
 node.postprocess_gapic_library()
