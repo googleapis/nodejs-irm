@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/nodejs-irm.git",
-        "sha": "ae4375f1e5313b9c3ac6873c37d5a8c922b6ba05"
+        "sha": "a467f3c25068bf247ac8db83ec2a028c2c495510"
       }
     },
     {
