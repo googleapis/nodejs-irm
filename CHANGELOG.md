@@ -4,6 +4,15 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+### [3.0.1](https://www.github.com/googleapis/nodejs-irm/compare/v3.0.0...v3.0.1) (2020-06-04)
+
+
+### Bug Fixes
+
+* regenerate unit tests ([#188](https://www.github.com/googleapis/nodejs-irm/issues/188)) ([16e8dff](https://www.github.com/googleapis/nodejs-irm/commit/16e8dff5f5bf1083abb92479c6397cba1f8ac03c))
+* remove bonus files from package ([#179](https://www.github.com/googleapis/nodejs-irm/issues/179)) ([d07dafb](https://www.github.com/googleapis/nodejs-irm/commit/d07dafb7c925d3f963c70c44daedca6fb41715a1))
+* synth.py clean up for multiple version ([#189](https://www.github.com/googleapis/nodejs-irm/issues/189)) ([ae4375f](https://www.github.com/googleapis/nodejs-irm/commit/ae4375f1e5313b9c3ac6873c37d5a8c922b6ba05))
+
 ## [3.0.0](https://www.github.com/googleapis/nodejs-irm/compare/v2.1.0...v3.0.0) (2020-04-12)
 
 
