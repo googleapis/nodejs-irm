@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/nodejs-irm.git",
-        "sha": "4e76b1825000e59ac239f897fee5d7d585e2d3ff"
+        "sha": "61cd2fff7cadf15492a4cd38d28f19440fefbb00"
       }
     },
     {
@@ -19,7 +19,7 @@
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "b10590a4a1568548dd13cfcea9aa11d40898144b"
+        "sha": "dc9caca650c77b7039e2bbc3339ffb34ae78e5b7"
       }
     }
   ],
