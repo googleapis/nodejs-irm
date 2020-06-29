@@ -4,6 +4,18 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+## [3.1.0](https://www.github.com/googleapis/nodejs-irm/compare/v3.0.1...v3.1.0) (2020-06-28)
+
+
+### Features
+
+* move ts target to es2018 from es2016 ([#194](https://www.github.com/googleapis/nodejs-irm/issues/194)) ([6372729](https://www.github.com/googleapis/nodejs-irm/commit/6372729765c48ea9671f898c4fef572db8bd0f1e))
+
+
+### Bug Fixes
+
+* proper fallback option handling ([4e76b18](https://www.github.com/googleapis/nodejs-irm/commit/4e76b1825000e59ac239f897fee5d7d585e2d3ff))
+
 ### [3.0.1](https://www.github.com/googleapis/nodejs-irm/compare/v3.0.0...v3.0.1) (2020-06-04)
 
 
