@@ -3,23 +3,15 @@
     {
       "git": {
         "name": ".",
-        "remote": "https://github.com/googleapis/nodejs-irm.git",
-        "sha": "61cd2fff7cadf15492a4cd38d28f19440fefbb00"
-      }
-    },
-    {
-      "git": {
-        "name": "googleapis",
-        "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "6dfd72d028a0d0a43764e060f7b15e004385c3a1",
-        "internalRef": "310168181"
+        "remote": "git@github.com:googleapis/nodejs-irm.git",
+        "sha": "2b26f0ce05387dd866163025b5113c1d35b998ce"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "dc9caca650c77b7039e2bbc3339ffb34ae78e5b7"
+        "sha": "303271797a360f8a439203413f13a160f2f5b3b4"
       }
     }
   ],
@@ -29,8 +21,8 @@
         "source": "googleapis",
         "apiName": "irm",
         "apiVersion": "v1alpha2",
-        "language": "typescript",
-        "generator": "gapic-generator-typescript"
+        "language": "nodejs",
+        "generator": "bazel"
       }
     }
   ]

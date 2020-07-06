@@ -25,19 +25,10 @@ AUTOSYNTH_MULTIPLE_COMMITS = True
 
 
 # Run the gapic generator
-gapic = gcp.GAPICMicrogenerator()
+gapic = gcp.GAPICBazel()
 versions = ["v1alpha2"]
 for version in versions:
-    library = gapic.typescript_library(
-        "irm",
-        version,
-        generator_args={
-            "grpc-service-config": f"google/cloud/irm/{version}/irm_grpc_service_config.json",
-            "package-name": "@google-cloud/irm"
-        },
-        proto_path=f'google/cloud/irm/{version}',
-        extra_proto_files=['google/cloud/common_resources.proto'],
-    )
+    library = gapic.node_library("irm", version)
     s.copy(library, excludes=['README.md', 'package.json'])
 
 # Copy common templates
