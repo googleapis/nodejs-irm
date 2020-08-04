@@ -16,6 +16,9 @@ visit [cloud.google.com/incident-response](https://cloud.google.com/incident-res
 sign up.
 
 
+A comprehensive list of changes in each version may be found in
+[the CHANGELOG](https://github.com/googleapis/nodejs-irm/blob/master/CHANGELOG.md).
+
 * [Stackdriver Incident Response &amp; Management Node.js Client API Reference][client-docs]
 * [Stackdriver Incident Response &amp; Management Documentation][product-docs]
 * [github.com/googleapis/nodejs-irm](https://github.com/googleapis/nodejs-irm)
