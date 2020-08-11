@@ -4,15 +4,15 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/nodejs-irm.git",
-        "sha": "f7384a00feb6f274e9525c5fc2e521acbd6428dd"
+        "sha": "8d64252edb9d25a0d5c130ea9ca821c327dca332"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "4f4aa3a03e470f1390758b9d89eb1aa88837a5be",
-        "internalRef": "320300472"
+        "sha": "94006b3cb8d2fb44703cf535da15608eed6bf7db",
+        "internalRef": "325949033"
       }
     },
     {
