@@ -2,6 +2,11 @@
 [//]: # "To regenerate it, use `python -m synthtool`."
 <img src="https://avatars2.githubusercontent.com/u/2810941?v=3&s=96" alt="Google Cloud Platform logo" title="Google Cloud Platform" align="right" height="96" width="96"/>
 
+## This module has been deprecated.
+
+_Note: The Stackdriver Incident Response and Management module has been
+deprecated and the corresponding API has been shutdown._
+
 # [Stackdriver Incident Response &amp; Management: Node.js Client](https://github.com/googleapis/nodejs-irm)
 
 [![release level](https://img.shields.io/badge/release%20level-alpha-orange.svg?style=flat)](https://cloud.google.com/terms/launch-stages)

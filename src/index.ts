@@ -24,3 +24,7 @@ export {v1alpha2, IncidentServiceClient};
 export default {v1alpha2, IncidentServiceClient};
 import * as protos from '../protos/protos';
 export {protos};
+
+process.emitWarning(
+  'The Stackdriver Incident Response and Management module has been deprecated and the corresponding API has been shutdown'
+);
