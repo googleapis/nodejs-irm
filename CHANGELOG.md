@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/irm?activeTab=versions
 
+## [3.2.0](https://www.github.com/googleapis/nodejs-irm/compare/v3.1.0...v3.2.0) (2020-08-14)
+
+
+### Features
+
+* **process:** add deprecation notice to README and warning ([#224](https://www.github.com/googleapis/nodejs-irm/issues/224)) ([75e0804](https://www.github.com/googleapis/nodejs-irm/commit/75e08044537a7149ebde4bbccc47edb17a83d11c))
+
 ## [3.1.0](https://www.github.com/googleapis/nodejs-irm/compare/v3.0.1...v3.1.0) (2020-06-28)
 
 
