@@ -5,7 +5,7 @@
 ## This module has been deprecated.
 
 _Note: The Stackdriver Incident Response and Management module has been
-deprecated, and the corresponding API has been shutdown._
+deprecated and the corresponding API has been shutdown._
 
 # [Stackdriver Incident Response &amp; Management: Node.js Client](https://github.com/googleapis/nodejs-irm)
 
