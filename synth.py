@@ -23,18 +23,4 @@ logging.basicConfig(level=logging.DEBUG)
 
 AUTOSYNTH_MULTIPLE_COMMITS = True
 
-
-# Run the gapic generator
-gapic = gcp.GAPICBazel()
-versions = ["v1alpha2"]
-for version in versions:
-    library = gapic.node_library("irm", version)
-    s.copy(library, excludes=['README.md', 'package.json'])
-
-# Copy common templates
-common_templates = gcp.CommonTemplates()
-templates = common_templates.node_library(
-    source_location='build/src', versions=versions, default_version='v1alpha2')
-s.copy(templates)
-
-node.postprocess_gapic_library()
+# This library has been deprecated.
